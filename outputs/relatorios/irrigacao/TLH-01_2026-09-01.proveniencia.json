@@ -1,0 +1,61 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "irrigacao",
+  "talhao_id": "TLH-01",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "media",
+  "tipos": [
+    "irrigacao"
+  ],
+  "recomenda_irrigar": true,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "irrigacao",
+    "talhao_id": "TLH-01",
+    "diagnostico": "Talhão TLH-01 (milho AG 8088 PRO4, 18,6 ha, pivo_central) em R1, 79 dias após o plantio. Umidade média de 25,4 % em 2026-09-01, fração de água disponível 0,522, déficit de 25,8 mm. Nos últimos 14 dias: 17,2 mm de chuva, 62,5 mm de ETc, 23,0 mm irrigados, 0 dia(s) em estresse.",
+    "recomendacoes": [
+      {
+        "prioridade": "media",
+        "tipo": "irrigacao",
+        "acao": "Programar irrigação do talhão TLH-01 para os próximos dias",
+        "detalhe": "Fração de água disponível em 0,522, aproximando-se do limiar de 0,50; variação de umidade de -2,0 pontos em 7 dias e 17,2 mm de chuva em 14 dias. Sem previsão disponível, preparar a lâmina para quando o limiar for cruzado.",
+        "janela_execucao": "reavaliar diariamente",
+        "dados_usados": [
+          "hidrico.fracao_agua_disponivel_atual",
+          "limiares.fracao_irrigacao",
+          "hidrico.variacao_umidade_7d_pontos",
+          "hidrico.chuva_14d_mm"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "serie_hidrica_14d",
+      "limiares.fracao_irrigacao",
+      "sensores"
+    ]
+  },
+  "saida_rejeitada": null
+}

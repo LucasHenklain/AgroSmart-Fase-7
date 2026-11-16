@@ -1,0 +1,33 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Automação inteligente · cada ação tem motivo e evidência</div>
+  <h2>ACT-0001 · irrigar TLH-02 · prioridade alta · <span style="color:#7BD389">publicado</span></h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Motivo (gerado pelo motor de regras)</h3>
+      <p>Fração de água disponível em <b>0,480</b>, abaixo do limiar de <b>0,50</b> para irrigar; déficit de <b>26,5 mm</b> até a capacidade de campo. Lâmina de <b>22,5 mm</b> (85 % do déficit, máx. 30 mm) = <b>170 min</b> de pivô central a 8,0 mm/h. Estádio VT é crítico para água.</p>
+      <h3 style="margin-top:26px">Evidência</h3>
+      <p><code>fato_balanco_hidrico : TLH-02 : 2026-09-01</code></p>
+      <h3 style="margin-top:26px">Limiares (agronomia.py, os mesmos do copiloto)</h3>
+      <p>irrigar &lt; 0,50 FAD · estresse &lt; 0,35 · bateria &lt; 15 % · sinal &lt; −95 dBm · fungo: 3+ dias UR &gt; 80 % e 17–27 °C</p>
+    </div>
+    <div>
+      <pre class="term"><span class="p">$</span> python -m agrosmart automacao --publicar
+plano 2026-09-01: 6 talhões, 3 ação(ões)
+copiloto: 6 justificativa(s) anexada(s)
+<span class="ok">ACT-0001 publicada</span> em agrosmart/atuadores/TLH-02/irrigacao
+  → {"acao": "ligar", "minutos": 170}
+✔ MQTT localhost:1883: 1 comando(s) publicado(s)
+
+<span class="d">--- assinante de prova (QoS 1) recebeu ---</span>
+agrosmart/atuadores/TLH-02/irrigacao
+  {"acao": "ligar", "minutos": 170}
+
+<span class="d">--- no ESP32 (firmware) ---</span>
+[atuador] irrigação <span class="ok">LIGADA</span> por 170 min  → LED verde aceso
+estado publicado em …/irrigacao/estado</pre>
+      <p style="font-size:26px;color:#C8D9CF;margin-top:22px">Sem <b>--publicar</b> o status fica <b>simulado</b>: nada age no campo sem autorização. Talhão de sequeiro nunca recebe irrigação, por construção.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>src/agrosmart/automacao/ · docs/fase6/04-automacao-inteligente.md</span><span>AgroSmart · Fase 6</span></div>
+</div></body></html>

@@ -1,0 +1,181 @@
+# =============================================================================
+# CONTRATO DE DADOS - Observação e previsão meteorológica
+# =============================================================================
+fonte: clima
+versao: v1
+titulo: Série meteorológica diária por estação
+descricao: >
+  Observações diárias consolidadas obtidas por API pública de meteorologia,
+  associadas à estação mais próxima de cada fazenda. Fornece a precipitação e
+  a evapotranspiração de referência (ETo) que fecham o balanço hídrico - sem
+  esta fonte, a umidade do solo sozinha não diz se irrigar ou esperar a chuva.
+responsavel: Engenharia de Dados (E1)
+tipo_dado: semiestruturado
+classificacao_lgpd: publico
+
+ingestao:
+  modo: api_pull
+  origem: https://api.open-meteo.com/v1/forecast
+  formato_bruto: json
+  janela: diária (03h00, janela D-1 fechada)
+  sla_freshness_min: 360
+  observacao: >
+    Resposta gravada íntegra no bronze, incluindo o envelope da API. Isso
+    permite reprocessar quando um campo novo passa a ser necessário, sem
+    precisar refazer a chamada - que pode nem estar mais disponível.
+
+particionamento:
+  estrategia: fonte/ano/mes/dia
+  coluna_evento: data
+  colunas: [ano, mes, dia]
+
+chave_natural: [estacao_id, data]
+
+dedup:
+  estrategia: evento     # o dia observado não muda; repetição é a API devolvendo o dia de novo
+
+destino:
+  silver_tabela: clima_diario
+  gold_contribui: [fato_leitura_diaria_talhao, dim_estacao]
+
+retencao:
+  bronze_dias: 90
+  silver_dias: 1825      # 5 anos: série histórica alimenta o benchmark regional
+  gold_dias: null
+
+campos:
+  - nome: estacao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Identificador da estação meteorológica de referência.
+    exemplo: EST-SP-014
+  - nome: fazenda_id
+    tipo: string
+    obrigatorio: true
+    descricao: Fazenda atendida por esta estação.
+    exemplo: FAZ-01
+  - nome: data
+    tipo: date
+    obrigatorio: true
+    descricao: Dia de referência da observação.
+    exemplo: "2026-08-28"
+  - nome: temp_min_c
+    tipo: float
+    unidade: "°C"
+    obrigatorio: true
+    descricao: Temperatura mínima do dia.
+    exemplo: 16.8
+  - nome: temp_max_c
+    tipo: float
+    unidade: "°C"
+    obrigatorio: true
+    descricao: Temperatura máxima do dia.
+    exemplo: 33.1
+  - nome: temp_media_c
+    tipo: float
+    unidade: "°C"
+    obrigatorio: true
+    descricao: Média das temperaturas horárias.
+    exemplo: 24.6
+  - nome: umidade_relativa_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: true
+    descricao: Umidade relativa média do ar.
+    exemplo: 58.0
+  - nome: precipitacao_mm
+    tipo: float
+    unidade: mm
+    obrigatorio: true
+    descricao: Chuva acumulada em 24 h.
+    exemplo: 0.0
+  - nome: velocidade_vento_ms
+    tipo: float
+    unidade: m/s
+    obrigatorio: false
+    descricao: Vento médio a 2 m. Entra no cálculo de ETo e na janela de pulverização.
+    exemplo: 2.4
+  - nome: radiacao_mj_m2
+    tipo: float
+    unidade: MJ/m²
+    obrigatorio: false
+    descricao: Radiação solar global acumulada no dia.
+    exemplo: 19.7
+  - nome: eto_mm
+    tipo: float
+    unidade: mm
+    obrigatorio: true
+    descricao: Evapotranspiração de referência (Penman-Monteith, FAO-56).
+    exemplo: 4.8
+  - nome: origem_api
+    tipo: string
+    obrigatorio: true
+    descricao: Provedor da observação, para rastreabilidade e troca de fornecedor.
+    exemplo: open-meteo
+
+qualidade:
+  - id: CLI-01
+    regra: nao_nulo
+    campos: [estacao_id, fazenda_id, data, temp_media_c, precipitacao_mm, eto_mm]
+    severidade: critica
+    justificativa: Campos sem os quais o balanço hídrico não fecha.
+
+  - id: CLI-02
+    regra: unicidade
+    campos: [estacao_id, data]
+    severidade: critica
+    justificativa: Reexecução do pull diário não pode duplicar o dia.
+
+  - id: CLI-03
+    regra: comparacao
+    campo_a: temp_min_c
+    operador: "<="
+    campo_b: temp_max_c
+    severidade: critica
+    justificativa: >
+      Inversão indica troca de colunas no parser da API - erro silencioso que
+      só aparece semanas depois, no gráfico errado do dashboard.
+
+  - id: CLI-04
+    regra: intervalo
+    campos: [precipitacao_mm]
+    min: 0
+    max: 500
+    severidade: critica
+    justificativa: 500 mm em 24 h já é recorde nacional; acima disso é erro de unidade.
+
+  - id: CLI-05
+    regra: intervalo
+    campos: [umidade_relativa_pct]
+    min: 0
+    max: 100
+    severidade: critica
+    justificativa: Faixa física da grandeza.
+
+  - id: CLI-06
+    regra: intervalo
+    campos: [eto_mm]
+    min: 0
+    max: 15
+    severidade: alerta
+    justificativa: ETo acima de 15 mm/dia é implausível no Brasil; revisar o cálculo.
+
+  - id: CLI-07
+    regra: nao_futuro
+    campos: [data]
+    tolerancia_min: 0
+    severidade: alerta
+    justificativa: >
+      Alerta, não crítica: a mesma API entrega previsão futura, que é dado
+      legítimo em outra tabela. Aqui o alerta sinaliza mistura de observado
+      com previsto.
+
+  - id: CLI-08
+    regra: freshness
+    max_atraso_min: 360
+    detectar_lacunas: true   # série diária: dia ausente (ou na quarentena) é lacuna
+    severidade: alerta
+    justificativa: >
+      Sem o clima de ontem a recomendação de hoje perde metade do contexto. A
+      série é diária: o atraso conta a partir do fim do dia observado, e um
+      dia faltando entre dois observados é lacuna.

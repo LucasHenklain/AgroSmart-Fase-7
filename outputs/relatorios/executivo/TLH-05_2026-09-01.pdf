@@ -1,0 +1,144 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Title (Resumo executivo · TLH-05 — Encosta do Café) /Author (AgroSmart Copiloto) /Producer (agrosmart-pdf) >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2740 >>
+stream
+BT
+/F1 15 Tf
+56 790 Td
+(Resumo executivo · TLH-05 — Encosta do Café) Tj
+/F1 10 Tf
+0 -25 Td
+() Tj
+0 -14 Td
+(Cultura: cafe Catuaí Vermelho IAC 144 · Área: 7.5 ha · Estádio: florada \(1996 dias após o plantio\)) Tj
+0 -14 Td
+(· Irrigação: gotejamento) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Referência: 2026-09-01 · Confiança: alta — dados completos: sensores com cobertura plena, clima em) Tj
+0 -14 Td
+(toda a série e sem alertas abertos) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Diagnóstico) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Resumo executivo do talhão TLH-05 — Encosta do Café \(cafe, 7,5 ha, florada\). Água: 0 dia\(s\) em) Tj
+0 -14 Td
+(estresse em 14, 9,0 mm de chuva e 49,0 mm irrigados; fração de água disponível atual 0,776.) Tj
+0 -14 Td
+(Vegetação: NDVI 0,697 \(media\), variação -0,003 em 30 dias. Custos: R$ 12539,26 no período \(R$) Tj
+0 -14 Td
+(1671,90/ha\). Valor de produção de referência: R$ 420000,00. 5 alerta\(s\) de qualidade de dados) Tj
+0 -14 Td
+(relevante\(s\).) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Recomendações) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(1. [MÉDIA] Planejar calagem de 0,96 t/ha no talhão TLH-05 \(nutricao\) · quando: entressafra, antes) Tj
+0 -14 Td
+(do próximo plantio) Tj
+0 -14 Td
+(Laudo LAU-2026-00476 \(2026-07-25, 0-20 cm\): saturação por bases de 57,7 % \(classe media\), pH 5,4.) Tj
+0 -14 Td
+(Fósforo medio \(18,4 mg/dm³\).) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(2. [BAIXA] Acompanhar o custo por hectare do talhão TLH-05 \(gestao\)) Tj
+0 -14 Td
+(R$ 12539,26 em 8 operação\(ões\) nos últimos 30 dias \(R$ 1671,90/ha\); maior item: adubacao com R$) Tj
+0 -14 Td
+(10200,00.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Custo estimado das ações: não estimado · Perda evitada / economia: não estimado) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Limitações) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(- previsão meteorológica não disponível nesta fase — decidir com base no observado) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Dados usados) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Tabelas do gold: dim_sensor, dim_talhao, fato_alerta_qualidade, fato_balanco_hidrico,) Tj
+0 -14 Td
+(fato_clima_diario, fato_custo_diario_talhao, fato_fertilidade_talhao, fato_leitura_diaria_talhao,) Tj
+0 -14 Td
+(fato_ndvi_talhao) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Campos do contexto: talhao, hidrico, vegetacao, custos, fertilidade, economia, alertas) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Proveniência) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(- Motor: regras) Tj
+0 -14 Td
+(- Guardrails: aprovado, sem ajustes) Tj
+0 -14 Td
+(- Context Pack context-pack.v1 gerado em 2026-09-06T00:02:05+00:00 · instante de referência) Tj
+0 -14 Td
+(2026-09-01T03:00:00+00:00) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(O copiloto recomenda; o produtor decide. Toda cifra e medida acima vem do Data Lake da fazenda;) Tj
+0 -14 Td
+(nenhuma foi estimada pelo modelo.) Tj
+0 -14 Td
+/F1 8 Tf
+0 -14 Td
+(página 1 de 1) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000347 00000 n 
+0000000473 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R /Info 4 0 R >>
+startxref
+3264
+%%EOF

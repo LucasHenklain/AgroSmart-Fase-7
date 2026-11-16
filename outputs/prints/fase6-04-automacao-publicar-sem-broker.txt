@@ -1,0 +1,28 @@
+09:55:46 INFO     plano 2026-09-01: 6 talhões, 3 ação(ões) {'irrigar': 1, 'inspecionar_sensor': 2, 'nenhuma': 3}                                               
+09:55:50 ERROR    publicação abortada: broker MQTT localhost:1883 inalcançável — [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as
+                  recusou ativamente                                                                                                                           
+                                         Plano de ações · 2026-09-01                                          
+                                                                                                              
+  talhão   cultura                risco       FAD   déficit mm   cobertura 7d   decisão             ações     
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  TLH-01   milho · pivo_central   atencao   0.522         25.8   99 %           programar           nenhuma   
+  TLH-02   milho · pivo_central   critico   0.480         26.5   98 %           irrigar             ACT-0001  
+  TLH-03   feijao · aspersao      atencao   0.655         18.6   50 %           ok                  ACT-0002  
+  TLH-04   trigo · aspersao       normal    0.833          8.5   99 %           ok                  nenhuma   
+  TLH-05   cafe · gotejamento     normal    0.776         12.1   99 %           ok                  nenhuma   
+  TLH-06   cana · sequeiro        critico   0.002         50.9   100 %          sequeiro_estresse   ACT-0003  
+                                                                                                              
+                                                                             Ações                                                                             
+                                                                                                                                                               
+  id         talhão   sensor     tipo                 prioridade   parâmetros                        MQTT                                            status    
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  ACT-0001   TLH-02   —          irrigar              alta         22.5 mm · 170 min · 04:00-07:00   agrosmart/atuadores/TLH-02/irrigacao {'acao':   simulado  
+                                                                                                     'ligar', 'minutos': 170}                                  
+  ACT-0002   TLH-03   SNS-0302   inspecionar_sensor   media        cobertura_baixa                   —                                               simulado  
+  ACT-0003   TLH-06   SNS-0602   inspecionar_sensor   baixa        sinal_fraco                       —                                               simulado  
+                                                                                                                                                               
+6 talhões · 3 ação(ões) · por tipo {'irrigar': 1, 'inspecionar_sensor': 2, 'nenhuma': 3} · por prioridade {'alta': 1, 'media': 1, 'baixa': 1}
+✘ MQTT localhost:1883: 0 comando(s) publicado(s), 1 falha(s)
+  ! ACT-0001 agrosmart/atuadores/TLH-02/irrigacao: broker MQTT localhost:1883 inalcançável — [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina 
+de destino as recusou ativamente
+✔ plano em outputs/acoes/acoes_2026-09-01.json · outputs/acoes/acoes_2026-09-01.md

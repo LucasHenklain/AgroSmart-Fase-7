@@ -1,0 +1,28 @@
+{
+  "batch_id": "2ebfe77a2d5e5f44",
+  "fonte": "erp_operacoes",
+  "schema_version": "erp_operacoes.v1",
+  "modo": "batch",
+  "coletor": "ColetorBatch",
+  "janela": {
+    "inicio": "2026-08-02T00:00:00+00:00",
+    "fim": "2026-08-03T02:45:00+00:00"
+  },
+  "particao": "2026-08-03",
+  "origem": "erp/operacoes_20260803.csv",
+  "arquivos": [
+    {
+      "chave": "erp_operacoes/ano=2026/mes=08/dia=03/operacoes_20260803.csv",
+      "nome": "operacoes_20260803.csv",
+      "papel": "principal",
+      "bytes": 474,
+      "checksum_sha256": "95cfa6db5e5c08b8b2a5c60b8c2651d4b21cc7d2c3511aeaf77ea33574c0153f"
+    }
+  ],
+  "registros": 3,
+  "bytes": 474,
+  "checksum_sha256": "3c938125344cdab616ac55d75fe25fe6004b7501fbaf29eef04603b60be73064",
+  "ingerido_em": "2026-09-03T15:53:11+00:00",
+  "versao": 1,
+  "versao_anterior_checksum": null
+}

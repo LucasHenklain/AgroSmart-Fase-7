@@ -1,0 +1,226 @@
+# =============================================================================
+# CONTRATO DE DADOS - Imagens aéreas e índice de vegetação (NDVI)
+#
+# Esta é a fonte NÃO ESTRUTURADA do lake. O binário (JPEG/TIFF) vai íntegro
+# para o bronze; um sidecar JSON carrega os metadados e os índices extraídos.
+# O silver indexa os metadados; o binário permanece no bronze e é referenciado
+# por chave - nunca copiado entre camadas.
+# =============================================================================
+fonte: imagens_ndvi
+versao: v1
+titulo: Imagens de drone e satélite com índice NDVI por talhão
+descricao: >
+  Voos de drone (semanais) e passagens de satélite (a cada 5 dias) geram
+  ortomosaicos por talhão. O NDVI derivado é o indicador de vigor da lavoura:
+  uma queda sustentada antecede em dias o que o produtor veria a olho nu.
+responsavel: Engenharia de Dados (E1) / Analytics (E2)
+tipo_dado: nao_estruturado
+classificacao_lgpd: pessoal   # imagem aérea georreferenciada identifica a propriedade
+
+ingestao:
+  modo: watch_folder
+  origem: ./landing/imagens/
+  formato_bruto: jpeg + sidecar json
+  janela: sob demanda (após cada voo ou passagem)
+  sla_freshness_min: 10080     # 7 dias
+  campos_derivados: [arquivo_bruto, checksum_sha256, tamanho_bytes]
+  observacao: >
+    O binário é gravado no bronze com checksum SHA-256 e nunca é reescrito.
+    Se o mesmo arquivo aparecer de novo na pasta observada, o checksum idêntico
+    faz o coletor pular a gravação - idempotência sem consultar banco.
+
+particionamento:
+  estrategia: fonte/ano/mes/dia
+  coluna_evento: capturada_em
+  colunas: [ano, mes, dia]
+
+chave_natural: [imagem_id]
+
+dedup:
+  estrategia: evento
+
+destino:
+  silver_tabela: imagens_ndvi_meta
+  gold_contribui: [fato_ndvi_talhao, dim_talhao]
+
+retencao:
+  bronze_dias: 1825    # o binário é caro de reproduzir: retenção longa
+  silver_dias: 1825
+  gold_dias: null
+
+campos:
+  - nome: imagem_id
+    tipo: string
+    obrigatorio: true
+    descricao: Identificador do produto de imagem gerado pelo voo/passagem.
+    exemplo: IMG-2026-0834
+  - nome: talhao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Talhão coberto pela imagem. Chave conformada com o ERP.
+    exemplo: TLH-03
+  - nome: capturada_em
+    tipo: timestamp
+    unidade: UTC
+    obrigatorio: true
+    descricao: Instante da captura.
+    exemplo: "2026-08-27T13:40:00Z"
+  - nome: plataforma
+    tipo: string
+    obrigatorio: true
+    descricao: Origem da imagem.
+    exemplo: drone
+  - nome: arquivo_bruto
+    tipo: string
+    obrigatorio: true
+    descricao: Chave do binário na camada bruta. Referência, não cópia.
+    exemplo: imagens_ndvi/2026/08/27/IMG-2026-0834.jpg
+  - nome: checksum_sha256
+    tipo: string
+    obrigatorio: true
+    descricao: Impressão digital do binário. Base da idempotência e da auditoria.
+    exemplo: "9f2c…a41b"
+  - nome: tamanho_bytes
+    tipo: int
+    unidade: bytes
+    obrigatorio: true
+    descricao: Tamanho do arquivo original.
+    exemplo: 2841722
+  - nome: largura_px
+    tipo: int
+    unidade: px
+    obrigatorio: false
+    descricao: Largura do ortomosaico.
+    exemplo: 2048
+  - nome: altura_px
+    tipo: int
+    unidade: px
+    obrigatorio: false
+    descricao: Altura do ortomosaico.
+    exemplo: 1536
+  - nome: altitude_m
+    tipo: float
+    unidade: m
+    obrigatorio: false
+    descricao: Altitude de voo. Determina a resolução do produto.
+    exemplo: 120.0
+  - nome: resolucao_cm_px
+    tipo: float
+    unidade: cm/px
+    obrigatorio: false
+    descricao: Tamanho do pixel no terreno (GSD).
+    exemplo: 3.2
+  - nome: nuvem_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: true
+    descricao: Cobertura de nuvem na cena. Acima de 30% o NDVI é pouco confiável.
+    exemplo: 4.0
+  - nome: ndvi_medio
+    tipo: float
+    unidade: índice
+    obrigatorio: true
+    descricao: NDVI médio da área útil do talhão.
+    exemplo: 0.68
+  - nome: ndvi_min
+    tipo: float
+    unidade: índice
+    obrigatorio: false
+    descricao: Menor NDVI observado - localiza a falha mais severa.
+    exemplo: 0.31
+  - nome: ndvi_max
+    tipo: float
+    unidade: índice
+    obrigatorio: false
+    descricao: Maior NDVI observado.
+    exemplo: 0.86
+  - nome: ndvi_desvio
+    tipo: float
+    unidade: índice
+    obrigatorio: false
+    descricao: Desvio padrão do NDVI. Alto = lavoura desuniforme.
+    exemplo: 0.09
+  - nome: area_analisada_ha
+    tipo: float
+    unidade: ha
+    obrigatorio: true
+    descricao: Área efetivamente coberta e analisada.
+    exemplo: 12.1
+
+qualidade:
+  - id: IMG-01
+    regra: nao_nulo
+    campos: [imagem_id, talhao_id, capturada_em, arquivo_bruto, checksum_sha256, ndvi_medio]
+    severidade: critica
+    justificativa: Metadado sem ponteiro para o binário é registro órfão.
+
+  - id: IMG-02
+    regra: unicidade
+    campos: [imagem_id]
+    severidade: critica
+    justificativa: Reprocessar a pasta observada não pode duplicar a cena.
+
+  - id: IMG-03
+    regra: intervalo
+    campos: [ndvi_medio, ndvi_min, ndvi_max]
+    min: -1.0
+    max: 1.0
+    severidade: critica
+    justificativa: NDVI é normalizado por definição; fora da faixa é erro de cálculo.
+
+  - id: IMG-04
+    regra: comparacao
+    campo_a: ndvi_min
+    operador: "<="
+    campo_b: ndvi_max
+    severidade: critica
+    justificativa: Inconsistência interna da estatística da cena.
+
+  - id: IMG-05
+    regra: dominio
+    campos: [plataforma]
+    valores: [drone, satelite]
+    severidade: critica
+    justificativa: Plataforma desconhecida impede comparar séries de resoluções diferentes.
+
+  - id: IMG-06
+    regra: intervalo
+    campos: [nuvem_pct]
+    min: 0
+    max: 100
+    severidade: critica
+    justificativa: Faixa física da grandeza.
+
+  - id: IMG-07
+    regra: intervalo
+    campos: [nuvem_pct]
+    max: 30
+    severidade: alerta
+    justificativa: >
+      Cena muito nublada não é descartada - é marcada. O copiloto de IA precisa
+      saber que aquele NDVI tem confiança baixa antes de recomendar qualquer coisa.
+
+  - id: IMG-08
+    regra: referencia
+    campos: [talhao_id]
+    tabela_referencia: erp_talhoes
+    campo_referencia: talhao_id
+    severidade: critica
+    justificativa: Imagem de talhão inexistente é erro de rotulagem do voo.
+
+  - id: IMG-09
+    regra: nao_futuro
+    campos: [capturada_em]
+    tolerancia_min: 60
+    severidade: critica
+    justificativa: Data de captura no futuro indica EXIF corrompido.
+
+  - id: IMG-10
+    regra: intervalo
+    campos: [tamanho_bytes]
+    min: 2048
+    severidade: alerta
+    justificativa: >
+      Arquivo minúsculo geralmente é upload truncado. Um JPEG com menos de 2 KB
+      não contém um ortomosaico de talhão — nem no menor produto de satélite;
+      o alerta pede reenvio antes que o NDVI da cena seja usado.

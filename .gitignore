@@ -1,0 +1,46 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Segredos ---
+.env
+*.key
+*.pem
+
+# --- Data Lake local (backend filesystem) ---
+# Nunca versionar o lake inteiro: só as amostras curadas em data/exemplos/.
+datalake/
+
+# --- Landing (gerada pelos simuladores; ~3 mil arquivos) ---
+# Mantém só a estrutura de pastas.
+landing/**
+!landing/
+!landing/*/
+!landing/*/.gitkeep
+
+# --- Saídas geradas ---
+outputs/logs/
+outputs/tmp/
+
+# --- Pacote de entrega ---
+entrega/*.zip
+entrega/*.rar
+entrega/*.mp4
+
+# --- Ferramentas / SO ---
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

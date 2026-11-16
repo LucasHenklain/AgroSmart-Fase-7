@@ -1,0 +1,75 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "executivo",
+  "talhao_id": "TLH-05",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "media",
+  "tipos": [
+    "gestao",
+    "nutricao"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 2,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "executivo",
+    "talhao_id": "TLH-05",
+    "diagnostico": "Resumo executivo do talhão TLH-05 — Encosta do Café (cafe, 7,5 ha, florada). Água: 0 dia(s) em estresse em 14, 9,0 mm de chuva e 49,0 mm irrigados; fração de água disponível atual 0,776. Vegetação: NDVI 0,697 (media), variação -0,003 em 30 dias. Custos: R$ 12539,26 no período (R$ 1671,90/ha). Valor de produção de referência: R$ 420000,00. 5 alerta(s) de qualidade de dados relevante(s).",
+    "recomendacoes": [
+      {
+        "prioridade": "media",
+        "tipo": "nutricao",
+        "acao": "Planejar calagem de 0,96 t/ha no talhão TLH-05",
+        "detalhe": "Laudo LAU-2026-00476 (2026-07-25, 0-20 cm): saturação por bases de 57,7 % (classe media), pH 5,4. Fósforo medio (18,4 mg/dm³).",
+        "janela_execucao": "entressafra, antes do próximo plantio",
+        "dados_usados": [
+          "fertilidade.necessidade_calagem_t_ha",
+          "fertilidade.saturacao_bases_pct",
+          "fertilidade.ph_cacl2"
+        ]
+      },
+      {
+        "prioridade": "baixa",
+        "tipo": "gestao",
+        "acao": "Acompanhar o custo por hectare do talhão TLH-05",
+        "detalhe": "R$ 12539,26 em 8 operação(ões) nos últimos 30 dias (R$ 1671,90/ha); maior item: adubacao com R$ 10200,00.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "custos.custo_total_brl",
+          "custos.custo_por_ha_brl",
+          "custos.por_tipo_brl"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "vegetacao",
+      "custos",
+      "fertilidade",
+      "economia",
+      "alertas"
+    ]
+  },
+  "saida_rejeitada": null
+}

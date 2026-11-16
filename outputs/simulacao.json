@@ -1,0 +1,4593 @@
+{
+  "seed": 20260905,
+  "janela": {
+    "inicio": "2026-08-02",
+    "fim": "2026-08-31"
+  },
+  "dias": 30,
+  "talhoes": [
+    "TLH-01",
+    "TLH-02",
+    "TLH-03",
+    "TLH-04",
+    "TLH-05",
+    "TLH-06"
+  ],
+  "sensores": [
+    "SNS-0101",
+    "SNS-0102",
+    "SNS-0201",
+    "SNS-0202",
+    "SNS-0301",
+    "SNS-0302",
+    "SNS-0401",
+    "SNS-0402",
+    "SNS-0501",
+    "SNS-0502",
+    "SNS-0601",
+    "SNS-0602"
+  ],
+  "fontes": {
+    "clima": {
+      "arquivos": 60,
+      "registros": 60,
+      "bytes": 59574
+    },
+    "erp_operacoes": {
+      "arquivos": 30,
+      "registros": 49,
+      "bytes": 9551
+    },
+    "erp_talhoes": {
+      "arquivos": 31,
+      "registros": 186,
+      "bytes": 34999
+    },
+    "imagens_ndvi": {
+      "arquivos": 120,
+      "registros": 60,
+      "bytes": 320797
+    },
+    "laudos_solo": {
+      "arquivos": 16,
+      "registros": 8,
+      "bytes": 21526
+    },
+    "sensores": {
+      "arquivos": 2892,
+      "registros": 34431,
+      "bytes": 8498918
+    }
+  },
+  "defeitos_por_tipo": {
+    "CLI-INV": 2,
+    "CLI-UR": 1,
+    "IMG-NDV": 1,
+    "IMG-TRU": 1,
+    "LAU-DAT": 1,
+    "LAU-PH": 1,
+    "OPR-CEN": 3,
+    "OPR-FUT": 1,
+    "OPR-TLH": 1,
+    "OPR-UNI": 2,
+    "SEN-DUP": 207,
+    "SEN-FUT": 29,
+    "SEN-ID": 10,
+    "SEN-NUL": 25,
+    "SEN-TLH": 45,
+    "SEN-UMI": 75,
+    "TLH-GEO": 1
+  },
+  "defeitos_por_regra": {
+    "CLI-03": 2,
+    "CLI-05": 1,
+    "IMG-03": 1,
+    "IMG-10": 1,
+    "LAU-03": 1,
+    "LAU-06": 1,
+    "OPR-04": 2,
+    "OPR-06": 3,
+    "OPR-07": 1,
+    "OPR-08": 1,
+    "SEN-01": 25,
+    "SEN-02": 207,
+    "SEN-03": 10,
+    "SEN-04": 75,
+    "SEN-08": 29,
+    "SEN-09": 45,
+    "TLH-04": 1
+  },
+  "defeitos": [
+    {
+      "tipo": "TLH-GEO",
+      "fonte": "erp_talhoes",
+      "regra": "TLH-04",
+      "chave": {
+        "talhao_id": "TLH-05",
+        "extraido_em": "2026-08-25T02:30:00Z"
+      },
+      "arquivo": "talhoes_20260825.csv",
+      "descricao": "latitude e longitude trocadas em um snapshot"
+    },
+    {
+      "tipo": "CLI-INV",
+      "fonte": "clima",
+      "regra": "CLI-03",
+      "chave": {
+        "estacao_id": "EST-SP-014",
+        "data": "2026-08-02"
+      },
+      "arquivo": "EST-SP-014_20260802.json",
+      "descricao": "parser trocou colunas: temp_min > temp_max"
+    },
+    {
+      "tipo": "CLI-INV",
+      "fonte": "clima",
+      "regra": "CLI-03",
+      "chave": {
+        "estacao_id": "EST-SP-027",
+        "data": "2026-08-10"
+      },
+      "arquivo": "EST-SP-027_20260810.json",
+      "descricao": "parser trocou colunas: temp_min > temp_max"
+    },
+    {
+      "tipo": "CLI-UR",
+      "fonte": "clima",
+      "regra": "CLI-05",
+      "chave": {
+        "estacao_id": "EST-SP-027",
+        "data": "2026-08-14"
+      },
+      "arquivo": "EST-SP-027_20260814.json",
+      "descricao": "umidade relativa acima de 100 %"
+    },
+    {
+      "tipo": "OPR-FUT",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-08",
+      "chave": {
+        "operacao_id": "OPR-2026-018002",
+        "lancado_em": "2026-08-03"
+      },
+      "arquivo": "operacoes_20260803.csv",
+      "descricao": "operação planejada lançada como executada (data futura)"
+    },
+    {
+      "tipo": "OPR-UNI",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-04",
+      "chave": {
+        "operacao_id": "OPR-2026-018007",
+        "lancado_em": "2026-08-06"
+      },
+      "arquivo": "operacoes_20260806.csv",
+      "descricao": "unidade fora do domínio (\"litros\" em vez de \"L\")"
+    },
+    {
+      "tipo": "OPR-CEN",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-06",
+      "chave": {
+        "operacao_id": "OPR-2026-018023",
+        "lancado_em": "2026-08-17"
+      },
+      "arquivo": "operacoes_20260817.csv",
+      "descricao": "exportação em centavos: custo 100 vezes maior"
+    },
+    {
+      "tipo": "OPR-TLH",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-07",
+      "chave": {
+        "operacao_id": "OPR-2026-018036",
+        "lancado_em": "2026-08-26"
+      },
+      "arquivo": "operacoes_20260826.csv",
+      "descricao": "lançamento em talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "OPR-CEN",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-06",
+      "chave": {
+        "operacao_id": "OPR-2026-018039",
+        "lancado_em": "2026-08-28"
+      },
+      "arquivo": "operacoes_20260828.csv",
+      "descricao": "exportação em centavos: custo 100 vezes maior"
+    },
+    {
+      "tipo": "OPR-CEN",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-06",
+      "chave": {
+        "operacao_id": "OPR-2026-018041",
+        "lancado_em": "2026-08-29"
+      },
+      "arquivo": "operacoes_20260829.csv",
+      "descricao": "exportação em centavos: custo 100 vezes maior"
+    },
+    {
+      "tipo": "OPR-UNI",
+      "fonte": "erp_operacoes",
+      "regra": "OPR-04",
+      "chave": {
+        "operacao_id": "OPR-2026-018047",
+        "lancado_em": "2026-09-01"
+      },
+      "arquivo": "operacoes_20260901.csv",
+      "descricao": "unidade fora do domínio (\"litros\" em vez de \"L\")"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-02T02:45:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0245Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-02T03:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0330Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-02T03:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0330Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-02T07:15:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0715Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-02T07:15:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-04T07:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0730Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-04T09:00:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0900Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-02T09:15:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T0915Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-02T11:15:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-02T11:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1130Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-02T11:45:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-02T12:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-02T17:45:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1745Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-02T18:00:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1800Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-04T18:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1830Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-02T19:30:00Z"
+      },
+      "arquivo": "20260802/leituras_20260802T1930Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-03T01:00:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0100Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-03T01:30:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0130Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-03T02:00:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0200Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-03T05:00:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0500Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-03T06:30:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0630Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-03T06:45:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0645Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-03T08:00:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0800Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-03T08:30:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T0830Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-03T16:30:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T1630Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-03T18:15:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T1815Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-03T20:00:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T2000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-03T23:45:00Z"
+      },
+      "arquivo": "20260803/leituras_20260803T2345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-04T00:45:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T0045Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-04T02:30:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T0230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-04T04:00:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T0400Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-04T06:15:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T0615Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-06T07:45:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T0745Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-06T11:00:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1100Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-04T12:30:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-04T12:30:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1230Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-04T16:30:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1630Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-04T17:45:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1745Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-04T19:15:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1915Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-04T19:30:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T1930Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-04T20:00:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T2000Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-04T23:00:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T2300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-04T23:15:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T2315Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-06T23:30:00Z"
+      },
+      "arquivo": "20260804/leituras_20260804T2330Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-05T01:30:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T0130Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-05T02:45:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T0245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-05T03:45:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T0345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-05T11:45:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T1145Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-05T12:15:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T1215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-05T13:45:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T1345Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-05T14:00:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T1400Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-05T15:15:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T1515Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-05T19:30:00Z"
+      },
+      "arquivo": "20260805/leituras_20260805T1930Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-06T01:30:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0130Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-06T02:45:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-06T03:00:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-06T05:30:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0530Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-08T06:30:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0630Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-06T07:45:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0745Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-06T08:00:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0800Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-06T08:45:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0845Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-06T09:45:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T0945Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-06T13:45:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T1345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-06T21:15:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T2115Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-06T22:00:00Z"
+      },
+      "arquivo": "20260806/leituras_20260806T2200Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-07T01:15:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T0115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-07T02:30:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T0230Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-07T04:00:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T0400Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-07T07:15:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T0715Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-07T07:15:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T0715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-09T07:30:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T0730Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-07T13:00:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T1300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-07T13:45:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T1345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-07T16:30:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T1630Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-07T18:00:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T1800Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-07T21:45:00Z"
+      },
+      "arquivo": "20260807/leituras_20260807T2145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-08T00:00:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T0000Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-08T02:30:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T0230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-08T03:45:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T0345Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-08T05:00:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T0500Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-08T06:15:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T0615Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-08T07:00:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T0700Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-08T10:15:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1015Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-08T12:15:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-08T12:30:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1230Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-08T12:45:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1245Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-08T13:15:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-08T14:15:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1415Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-08T15:15:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1515Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-08T16:45:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1645Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-08T17:00:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1700Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-08T18:00:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T1800Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-08T20:45:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T2045Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-08T23:45:00Z"
+      },
+      "arquivo": "20260808/leituras_20260808T2345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-09T05:30:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T0530Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-09T11:15:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T1115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-09T15:00:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T1500Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-09T15:30:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T1530Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-09T15:45:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T1545Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-09T18:15:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T1815Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-09T20:00:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T2000Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-09T20:30:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T2030Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-09T21:45:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T2145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-09T21:45:00Z"
+      },
+      "arquivo": "20260809/leituras_20260809T2145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-10T00:00:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T0000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-10T03:00:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-12T05:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T0515Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-10T05:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T0515Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-12T08:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T0815Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-12T08:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T0815Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-10T11:30:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1130Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-10T12:30:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-10T13:00:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-10T14:00:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1400Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-10T16:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1615Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-10T17:00:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1700Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-10T17:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-10T17:45:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1745Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-10T19:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T1915Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-10T20:45:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T2045Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-10T23:15:00Z"
+      },
+      "arquivo": "20260810/leituras_20260810T2315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-13T01:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T0145Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-13T03:15:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T0315Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-11T05:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T0545Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-11T07:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T0745Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-11T08:30:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T0830Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-11T08:30:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T0830Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-11T12:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T1245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-11T14:15:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T1415Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-11T15:15:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T1515Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-11T20:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T2045Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-11T22:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T2245Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-11T23:15:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T2315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-13T23:45:00Z"
+      },
+      "arquivo": "20260811/leituras_20260811T2345Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-12T02:30:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0230Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-12T03:00:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-12T03:00:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-12T03:15:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-12T03:15:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-12T04:00:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0400Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-12T05:30:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0530Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-12T05:45:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0545Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-12T06:30:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0630Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-12T06:30:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0630Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-12T06:45:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0645Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-12T08:45:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T0845Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-12T11:15:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T1115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-12T12:30:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T1230Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-12T17:00:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T1700Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-14T17:15:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T1715Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-12T21:30:00Z"
+      },
+      "arquivo": "20260812/leituras_20260812T2130Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-13T00:30:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0030Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-13T01:15:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-13T02:00:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0200Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-13T02:30:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0230Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-13T02:45:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0245Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-13T04:15:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0415Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-15T04:15:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0415Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-13T08:00:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0800Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-13T08:30:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T0830Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-13T13:30:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T1330Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-13T15:00:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T1500Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-13T17:15:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T1715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-13T17:15:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T1715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-13T18:30:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T1830Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-13T20:15:00Z"
+      },
+      "arquivo": "20260813/leituras_20260813T2015Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-14T01:15:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-16T01:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0145Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-14T03:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0345Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-14T03:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-14T04:00:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0400Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-14T04:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0445Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-14T05:00:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0500Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-14T07:00:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0700Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-14T09:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T0945Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-14T10:15:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1015Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-16T12:00:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1200Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-14T12:15:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-14T15:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1545Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-14T17:00:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1700Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-14T17:15:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-14T18:00:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1800Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-14T18:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T1845Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-14T21:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T2145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-14T22:45:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T2245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-14T23:30:00Z"
+      },
+      "arquivo": "20260814/leituras_20260814T2330Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-15T08:30:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T0830Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-15T10:00:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1000Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-17T13:30:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1330Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-15T15:15:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1515Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-15T15:15:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1515Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-15T16:15:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1615Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-15T16:45:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1645Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-15T17:00:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1700Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-15T18:15:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T1815Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-15T20:45:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T2045Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-17T21:00:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T2100Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-15T22:45:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T2245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-15T23:30:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T2330Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-15T23:45:00Z"
+      },
+      "arquivo": "20260815/leituras_20260815T2345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-16T00:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-16T01:15:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-16T02:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0200Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-16T02:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0200Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-16T03:45:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-16T05:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0500Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-16T05:45:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0545Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-16T07:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0700Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-16T09:45:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T0945Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-16T10:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T1000Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-16T12:45:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T1245Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-16T13:45:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T1345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-16T16:15:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T1615Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-16T18:00:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T1800Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-16T20:45:00Z"
+      },
+      "arquivo": "20260816/leituras_20260816T2045Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-17T00:00:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0000Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-17T00:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-17T00:30:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0030Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-17T02:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-17T03:00:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-17T04:30:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0430Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-19T07:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0715Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-17T09:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0915Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-17T09:30:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T0930Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-17T10:30:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T1030Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-17T11:00:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T1100Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-17T12:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T1215Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-17T13:00:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T1300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-17T18:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T1815Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-17T19:45:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T1945Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-19T21:45:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T2145Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-17T22:15:00Z"
+      },
+      "arquivo": "20260817/leituras_20260817T2215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-18T00:15:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T0015Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-18T03:45:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T0345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-18T05:00:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T0500Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-18T06:15:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T0615Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-18T09:30:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T0930Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-18T09:30:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T0930Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-18T13:15:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T1315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-18T16:45:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T1645Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-18T17:00:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T1700Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-18T19:30:00Z"
+      },
+      "arquivo": "20260818/leituras_20260818T1930Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-19T01:45:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T0145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-19T02:45:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T0245Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-19T09:45:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T0945Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-19T12:00:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1200Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-19T13:00:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-19T15:15:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1515Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-19T15:15:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1515Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-19T16:00:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1600Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-19T17:00:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1700Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-19T17:15:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-19T19:45:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T1945Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-19T23:30:00Z"
+      },
+      "arquivo": "20260819/leituras_20260819T2330Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-20T00:15:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T0015Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-20T01:45:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T0145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-20T03:15:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T0315Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-20T14:00:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1400Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-20T14:45:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1445Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-20T14:45:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1445Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-20T15:30:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1530Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-20T16:15:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1615Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-20T16:30:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1630Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-20T17:30:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1730Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-20T18:15:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1815Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-20T18:45:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1845Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-20T19:15:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T1915Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-20T21:00:00Z"
+      },
+      "arquivo": "20260820/leituras_20260820T2100Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-21T00:00:00Z"
+      },
+      "arquivo": "20260821/leituras_20260821T0000Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-21T00:15:00Z"
+      },
+      "arquivo": "20260821/leituras_20260821T0015Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-21T05:30:00Z"
+      },
+      "arquivo": "20260821/leituras_20260821T0530Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-ID",
+      "fonte": "sensores",
+      "regra": "SEN-03",
+      "chave": {
+        "sensor_id": "SNSX-01",
+        "medido_em": "2026-08-21T08:45:00Z"
+      },
+      "arquivo": "20260821/leituras_20260821T0845Z.jsonl",
+      "descricao": "dispositivo não homologado publicando no tópico (id fora do padrão)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-21T09:30:00Z"
+      },
+      "arquivo": "20260821/leituras_20260821T0930Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-22T01:00:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T0100Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-22T03:30:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T0330Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-22T08:15:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T0815Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-22T08:30:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T0830Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-22T09:15:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T0915Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-22T10:15:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1015Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-22T11:00:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1100Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-22T12:30:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1230Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-22T12:30:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-22T13:45:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-22T17:00:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1700Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-22T19:45:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T1945Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-22T20:00:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T2000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-24T22:30:00Z"
+      },
+      "arquivo": "20260822/leituras_20260822T2230Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-23T00:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T0015Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-23T01:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T0115Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-23T05:00:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T0500Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-25T07:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T0715Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-23T10:00:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-25T12:00:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1200Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-23T12:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-23T12:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1215Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-23T13:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1315Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-23T15:45:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1545Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-23T19:45:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T1945Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-23T21:15:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T2115Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-23T23:45:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T2345Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-23T23:45:00Z"
+      },
+      "arquivo": "20260823/leituras_20260823T2345Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-24T00:15:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T0015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-24T03:15:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T0315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-24T03:30:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T0330Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-24T04:00:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T0400Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-24T04:30:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T0430Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-24T09:30:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T0930Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-24T10:15:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T1015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-24T12:00:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T1200Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-24T19:15:00Z"
+      },
+      "arquivo": "20260824/leituras_20260824T1915Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-25T00:00:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T0000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-25T00:15:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T0015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-25T06:15:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T0615Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-27T06:15:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T0615Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-25T07:30:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T0730Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-25T15:45:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T1545Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-25T18:45:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T1845Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-25T21:30:00Z"
+      },
+      "arquivo": "20260825/leituras_20260825T2130Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-26T00:30:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T0030Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-26T01:30:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T0130Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-26T01:45:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T0145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-26T03:00:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-26T03:45:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T0345Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-26T04:45:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T0445Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-28T13:15:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T1315Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-26T13:45:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T1345Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-26T18:15:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T1815Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-26T18:15:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T1815Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-26T18:45:00Z"
+      },
+      "arquivo": "20260826/leituras_20260826T1845Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-27T00:45:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T0045Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-27T03:15:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T0315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-27T04:45:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T0445Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-27T05:00:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T0500Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-27T07:45:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T0745Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-27T09:30:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T0930Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-27T11:15:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T1115Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-27T18:00:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T1800Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-27T23:00:00Z"
+      },
+      "arquivo": "20260827/leituras_20260827T2300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-28T02:45:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T0245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-28T03:30:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T0330Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-28T04:30:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T0430Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-28T11:45:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T1145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-28T13:15:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T1315Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-28T15:00:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T1500Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-28T19:00:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T1900Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-28T21:00:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T2100Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-28T21:45:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T2145Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-28T22:00:00Z"
+      },
+      "arquivo": "20260828/leituras_20260828T2200Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-29T00:15:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-29T02:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-29T04:45:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0445Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-29T06:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0630Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-29T07:15:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0715Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-31T07:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0730Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-29T09:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T0930Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-29T10:00:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-29T10:00:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1000Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-29T10:15:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1015Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-29T13:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1330Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-29T13:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1330Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-29T15:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1530Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-29T16:00:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1600Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-29T16:15:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1615Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-29T16:45:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T1645Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-29T20:15:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T2015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0401",
+        "medido_em": "2026-08-29T20:30:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T2030Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-29T22:00:00Z"
+      },
+      "arquivo": "20260829/leituras_20260829T2200Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-30T01:15:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T0115Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-08-30T02:45:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T0245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-30T02:45:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T0245Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-30T03:00:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T0300Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0601",
+        "medido_em": "2026-08-30T06:15:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T0615Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-30T12:45:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T1245Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0302",
+        "medido_em": "2026-08-30T20:15:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T2015Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-30T21:15:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T2115Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-30T21:45:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T2145Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-30T23:30:00Z"
+      },
+      "arquivo": "20260830/leituras_20260830T2330Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-08-31T01:00:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0100Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-31T02:15:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0215Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0502",
+        "medido_em": "2026-08-31T02:30:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0230Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0602",
+        "medido_em": "2026-08-31T02:45:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0245Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-31T04:45:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0445Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-08-31T05:30:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0530Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-31T05:45:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0545Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-NUL",
+      "fonte": "sensores",
+      "regra": "SEN-01",
+      "chave": {
+        "sensor_id": "SNS-0301",
+        "medido_em": "2026-08-31T07:00:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0700Z.jsonl",
+      "descricao": "falha de leitura: umidade ausente"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0202",
+        "medido_em": "2026-08-31T08:30:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0830Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "SEN-DUP",
+      "fonte": "sensores",
+      "regra": "SEN-02",
+      "chave": {
+        "sensor_id": "SNS-0501",
+        "medido_em": "2026-08-31T08:45:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T0845Z.jsonl",
+      "descricao": "leitura reenviada pelo gateway no lote seguinte (duplicata exata)"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0101",
+        "medido_em": "2026-08-31T17:15:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T1715Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-FUT",
+      "fonte": "sensores",
+      "regra": "SEN-08",
+      "chave": {
+        "sensor_id": "SNS-0102",
+        "medido_em": "2026-09-02T20:45:00Z"
+      },
+      "arquivo": "20260831/leituras_20260831T2045Z.jsonl",
+      "descricao": "relógio do dispositivo adiantado: medido_em dois dias no futuro"
+    },
+    {
+      "tipo": "SEN-UMI",
+      "fonte": "sensores",
+      "regra": "SEN-04",
+      "chave": {
+        "sensor_id": "SNS-0201",
+        "medido_em": "2026-09-01T00:15:00Z"
+      },
+      "arquivo": "20260901/leituras_20260901T0015Z.jsonl",
+      "descricao": "sensor descalibrado: umidade acima de 100 %"
+    },
+    {
+      "tipo": "SEN-TLH",
+      "fonte": "sensores",
+      "regra": "SEN-09",
+      "chave": {
+        "sensor_id": "SNS-0402",
+        "medido_em": "2026-09-01T02:15:00Z"
+      },
+      "arquivo": "20260901/leituras_20260901T0215Z.jsonl",
+      "descricao": "dispositivo configurado com talhão inexistente (TLH-99)"
+    },
+    {
+      "tipo": "IMG-NDV",
+      "fonte": "imagens_ndvi",
+      "regra": "IMG-03",
+      "chave": {
+        "imagem_id": "IMG-2026-0805"
+      },
+      "arquivo": "IMG-2026-0805.json",
+      "descricao": "erro no cálculo do índice: ndvi_max acima de 1"
+    },
+    {
+      "tipo": "IMG-TRU",
+      "fonte": "imagens_ndvi",
+      "regra": "IMG-10",
+      "chave": {
+        "imagem_id": "IMG-2026-0856"
+      },
+      "arquivo": "IMG-2026-0856.jpg",
+      "descricao": "upload interrompido: arquivo com 1 KB"
+    },
+    {
+      "tipo": "LAU-DAT",
+      "fonte": "laudos_solo",
+      "regra": "LAU-06",
+      "chave": {
+        "laudo_id": "LAU-2026-00473"
+      },
+      "arquivo": "LAU-2026-00473.json",
+      "descricao": "datas trocadas na extração: emitido antes da coleta"
+    },
+    {
+      "tipo": "LAU-PH",
+      "fonte": "laudos_solo",
+      "regra": "LAU-03",
+      "chave": {
+        "laudo_id": "LAU-2026-00478"
+      },
+      "arquivo": "LAU-2026-00478.json",
+      "descricao": "extrator leu o campo errado: pH 11,2"
+    }
+  ],
+  "fontes_selecionadas": [
+    "erp_talhoes",
+    "clima",
+    "erp_operacoes",
+    "sensores",
+    "imagens_ndvi",
+    "laudos_solo"
+  ],
+  "trajetoria": {
+    "operacoes": 49,
+    "correcoes_retroativas": 2,
+    "irrigacoes": 15,
+    "lamina_total_mm": 353.5,
+    "chuva_total_mm_por_estacao": {
+      "EST-SP-014": 35.2,
+      "EST-SP-027": 102.8
+    },
+    "laudos": 8,
+    "sensores_com_silencio": {
+      "SNS-0302": {
+        "calou_em": "2026-08-21",
+        "manutencao_em": "2026-08-26"
+      }
+    }
+  },
+  "metricas_extras": {
+    "sensores_leituras_atrasadas": 1070
+  },
+  "duracao_s": 12.76
+}

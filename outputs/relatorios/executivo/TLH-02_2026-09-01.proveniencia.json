@@ -1,0 +1,63 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "executivo",
+  "talhao_id": "TLH-02",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "baixa",
+  "tipos": [
+    "gestao"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "executivo",
+    "talhao_id": "TLH-02",
+    "diagnostico": "Resumo executivo do talhão TLH-02 — Baixada do Córrego (milho, 12,4 ha, VT). Água: 0 dia(s) em estresse em 14, 17,2 mm de chuva e 0,0 mm irrigados; fração de água disponível atual 0,480. Vegetação: NDVI 0,768 (alta), variação 0,363 em 30 dias. Custos: R$ 7547,88 no período (R$ 608,70/ha). Valor de produção de referência: R$ 129580,00. 5 alerta(s) de qualidade de dados relevante(s).",
+    "recomendacoes": [
+      {
+        "prioridade": "baixa",
+        "tipo": "gestao",
+        "acao": "Acompanhar o custo por hectare do talhão TLH-02",
+        "detalhe": "R$ 7547,88 em 6 operação(ões) nos últimos 30 dias (R$ 608,70/ha); maior item: adubacao com R$ 6051,20.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "custos.custo_total_brl",
+          "custos.custo_por_ha_brl",
+          "custos.por_tipo_brl"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado",
+      "sem laudo de solo 0–20 cm aprovado para o talhão"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "vegetacao",
+      "custos",
+      "fertilidade",
+      "economia",
+      "alertas"
+    ]
+  },
+  "saida_rejeitada": null
+}

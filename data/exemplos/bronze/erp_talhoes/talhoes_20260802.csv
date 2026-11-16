@@ -1,0 +1,7 @@
+talhao_id,fazenda_id,nome,area_ha,cultura,variedade,data_plantio,data_colheita_prevista,latitude,longitude,tipo_solo,sistema_irrigacao,capacidade_campo_pct,ponto_murcha_pct,extraido_em
+TLH-01,FAZ-01,Alto da Sede,18.6,milho,AG 8088 PRO4,2026-06-14,2026-10-20,-22.7381,-47.3312,latossolo vermelho,pivo_central,34.0,16.0,2026-08-02T02:30:00Z
+TLH-02,FAZ-01,Baixada do Córrego,12.4,milho,DKB 390 PRO3,2026-07-05,2026-11-08,-22.7455,-47.3208,argissolo vermelho-amarelo,pivo_central,30.0,13.0,2026-08-02T02:30:00Z
+TLH-03,FAZ-01,Várzea Norte,9.8,feijao,IPR Tangará,2026-07-20,2026-10-12,-22.7302,-47.3151,nitossolo vermelho,aspersao,36.0,18.0,2026-08-02T02:30:00Z
+TLH-04,FAZ-02,Espigão,22.0,trigo,TBIO Sonic,2026-05-10,2026-09-15,-22.9014,-47.0587,latossolo vermelho-amarelo,aspersao,31.0,14.0,2026-08-02T02:30:00Z
+TLH-05,FAZ-02,Encosta do Café,7.5,cafe,Catuaí Vermelho IAC 144,2021-03-15,2027-06-30,-22.9102,-47.0641,latossolo vermelho,gotejamento,33.0,15.0,2026-08-02T02:30:00Z
+TLH-06,FAZ-02,Canavial da Estrada,41.3,cana,RB867515,2025-10-01,2026-10-30,-22.8956,-47.071,argissolo vermelho,sequeiro,29.0,12.0,2026-08-02T02:30:00Z

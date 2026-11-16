@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052 712" width="1052" height="712" role="img" aria-label="Arquitetura integrada do AgroSmart — Fase 6">
+  <title>Arquitetura integrada do AgroSmart — Fase 6: coleta IoT, Data Lake, automação e consumo</title>
+  <style>
+    .fundo { fill: #FBFCFA; }
+    .box { fill: #E9ECE6; stroke: #B9C1B5; }
+    .band { fill: #DDEAE1; stroke: #2C6A4C; stroke-opacity: .45; }
+    .auto { fill: #E4E8F3; stroke: #2F4A8A; stroke-opacity: .5; }
+    .quar { fill: #F6E3DE; stroke: #9E3320; stroke-opacity: .5; }
+    .chip { fill: #FBFCFA; stroke: #D5DAD1; }
+    .chipnovo { fill: #FBFCFA; stroke: #2F4A8A; stroke-opacity: .55; }
+    .titulo { font-family: Georgia, "Times New Roman", serif; font-size: 14px; font-weight: 600;
+              fill: #191E1A; }
+    .sub { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.6px; letter-spacing: .09em;
+           fill: #616B62; }
+    .chiptxt { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #3D463F; }
+    .stage { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.6px; letter-spacing: .14em;
+             fill: #616B62; }
+    .nota { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.2px; letter-spacing: .06em;
+            fill: #2F4A8A; }
+    .arrow { stroke: #B9C1B5; stroke-width: 1.4; fill: none; }
+    .retorno { stroke: #2F4A8A; stroke-width: 1.4; fill: none;
+               stroke-dasharray: 5 4; stroke-opacity: .8; }
+    .head { fill: #B9C1B5; }
+    .headretorno { fill: #2F4A8A; fill-opacity: .8; }
+    .r-campo { fill: #2C6A4C; } .r-coleta { fill: #2F4A8A; }
+    .r-bronze { fill: #8A5A2B; } .r-prata { fill: #6F7C77; }
+    .r-ouro { fill: #9C7A1E; } .r-quar { fill: #9E3320; }
+  </style>
+  <rect class="fundo" x="0" y="0" width="1052" height="712"/>
+
+  <text class="stage" x="40" y="14">CAMPO</text>
+  <rect class="box" x="40" y="24" width="180" height="276" rx="9"/>
+  <rect class="r-campo" x="40" y="24" width="180" height="3.5" rx="1.75"/>
+  <text class="titulo" x="56" y="50">Dispositivos e origens</text>
+  <text class="sub" x="56" y="65">ESP32 (WOKWI) + 5 ORIGENS</text>
+  <rect class="chipnovo" x="54" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="66" y="98">ESP32 · solo, ar, bateria</text>
+  <rect class="chipnovo" x="54" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="66" y="134">Atuador de irrigação (relé)</text>
+  <rect class="chipnovo" x="54" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="66" y="170">Firmware · firmware/</text>
+  <rect class="chip" x="54" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="66" y="206">Clima · API REST</text>
+  <rect class="chip" x="54" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="66" y="242">ERP · CSV · Drone · JPEG</text>
+  <rect class="chip" x="54" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="66" y="278">Laudos de solo · PDF</text>
+
+  <text class="stage" x="244" y="14">TRANSPORTE E COLETA</text>
+  <rect class="box" x="244" y="24" width="180" height="276" rx="9"/>
+  <rect class="r-coleta" x="244" y="24" width="180" height="3.5" rx="1.75"/>
+  <text class="titulo" x="260" y="50">Broker e coletores</text>
+  <text class="sub" x="260" y="65">MQTT + 4 MODOS · IDEMPOTENTES</text>
+  <rect class="chipnovo" x="258" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="270" y="98">Broker MQTT (Mosquitto)</text>
+  <rect class="chipnovo" x="258" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="270" y="134">agrosmart/sensores/+/leitura</text>
+  <rect class="chipnovo" x="258" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="270" y="170">coletar-mqtt → landing/</text>
+  <rect class="chipnovo" x="258" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="270" y="206">Emulador de frota (dispositivo)</text>
+  <rect class="chip" x="258" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="270" y="242">Stream · API · batch · pasta</text>
+  <rect class="chip" x="258" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="270" y="278">Schema na porta · manifest</text>
+
+  <text class="stage" x="448" y="14">CAMADA BRUTA</text>
+  <rect class="box" x="448" y="24" width="180" height="276" rx="9"/>
+  <rect class="r-bronze" x="448" y="24" width="180" height="3.5" rx="1.75"/>
+  <text class="titulo" x="464" y="50">bronze</text>
+  <text class="sub" x="464" y="65">FORMATO ORIGINAL · MINIO</text>
+  <rect class="chip" x="462" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="474" y="98">Imutável, append-only</text>
+  <rect class="chip" x="462" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="474" y="134">Bytes iguais à origem</text>
+  <rect class="chip" x="462" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="474" y="170">fonte/ano=/mes=/dia=</text>
+  <rect class="chip" x="462" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="474" y="206">Manifest por lote · sha256</text>
+  <rect class="chip" x="462" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="474" y="242">Versionamento de objeto</text>
+  <rect class="chip" x="462" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="474" y="278">Retenção por contrato</text>
+
+  <text class="stage" x="652" y="14">CAMADA CONFIÁVEL</text>
+  <rect class="box" x="652" y="24" width="180" height="276" rx="9"/>
+  <rect class="r-prata" x="652" y="24" width="180" height="3.5" rx="1.75"/>
+  <text class="titulo" x="668" y="50">silver</text>
+  <text class="sub" x="668" y="65">PARQUET · VALIDADO</text>
+  <rect class="chip" x="666" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="678" y="98">Tipado pelo contrato (TIP-01)</text>
+  <rect class="chip" x="666" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="678" y="134">58 regras · crítica / alerta</text>
+  <rect class="chip" x="666" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="678" y="170">Dedup evento / versão</text>
+  <rect class="chip" x="666" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="678" y="206">Chaves conformadas · UTC</text>
+  <rect class="chip" x="666" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="678" y="242">Reprovado → quarentena</text>
+  <rect class="chip" x="666" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="678" y="278">PII pseudonimizada</text>
+
+  <text class="stage" x="856" y="14">CAMADA REFINADA</text>
+  <rect class="box" x="856" y="24" width="180" height="276" rx="9"/>
+  <rect class="r-ouro" x="856" y="24" width="180" height="3.5" rx="1.75"/>
+  <text class="titulo" x="872" y="50">gold</text>
+  <text class="sub" x="872" y="65">MODELO DIMENSIONAL · DUCKDB</text>
+  <rect class="chip" x="870" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="882" y="98">dim_talhao · dim_sensor</text>
+  <rect class="chip" x="870" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="882" y="134">fato_balanco_hidrico</text>
+  <rect class="chip" x="870" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="882" y="170">fato_leitura_diaria_talhao</text>
+  <rect class="chip" x="870" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="882" y="206">fato_ndvi · fato_custo</text>
+  <rect class="chip" x="870" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="882" y="242">fato_alerta_qualidade</text>
+  <rect class="chip" x="870" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="882" y="278">benchmark_regional</text>
+
+  <g>
+    <path class="arrow" d="M222 166 H236"/><polygon class="head" points="236,162 244,166 236,170"/>
+    <path class="arrow" d="M426 166 H440"/><polygon class="head" points="440,162 448,166 440,170"/>
+    <path class="arrow" d="M630 166 H644"/><polygon class="head" points="644,162 652,166 644,170"/>
+    <path class="arrow" d="M834 166 H848"/><polygon class="head" points="848,162 856,166 848,170"/>
+    <path class="arrow" d="M742 300 V320"/><polygon class="head" points="738,320 742,328 746,320"/>
+    <path class="arrow" d="M334 300 V336 H440"/><polygon class="head" points="440,332 448,336 440,340"/>
+    <path class="arrow" d="M946 300 V404"/><polygon class="head" points="942,404 946,412 950,404"/>
+    <path class="arrow" d="M946 484 V496"/><polygon class="head" points="942,496 946,504 950,496"/>
+  </g>
+
+  <rect class="quar" x="448" y="328" width="384" height="60" rx="9"/>
+  <rect class="r-quar" x="448" y="328" width="384" height="3.5" rx="1.75"/>
+  <text class="titulo" x="464" y="352">quarentena</text>
+  <text class="sub" x="464" y="367">REPROVADO COM MOTIVO</text>
+  <rect class="chip" x="620" y="340" width="100" height="36" rx="5"/><text class="chiptxt" x="628" y="355">Lotes fora de</text><text class="chiptxt" x="628" y="368">schema (porta)</text>
+  <rect class="chip" x="726" y="340" width="98" height="36" rx="5"/><text class="chiptxt" x="734" y="355">Registros com</text><text class="chiptxt" x="734" y="368">regra + motivo</text>
+
+  <rect class="auto" x="40" y="412" width="996" height="72" rx="9"/>
+  <rect class="r-coleta" x="40" y="412" width="996" height="3.5" rx="1.75"/>
+  <text class="titulo" x="56" y="438">Automação inteligente</text>
+  <text class="sub" x="56" y="453">agrosmart automacao · FASE 6</text>
+  <text class="sub" x="56" y="468">LÊ O GOLD · AGE NO CAMPO</text>
+  <rect class="chipnovo" x="224" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="236" y="444">Motor de decisão (regras)</text>
+  <rect class="chipnovo" x="382" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="394" y="444">Ações · outputs/acoes/*.json</text>
+  <rect class="chipnovo" x="540" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="552" y="444">Comando MQTT → atuador</text>
+  <rect class="chip" x="698" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="710" y="444">Copiloto GenAI + guardrails</text>
+  <rect class="chipnovo" x="856" y="426" width="166" height="30" rx="5"/><text class="chiptxt" x="868" y="444">Risco por talhão · evidências</text>
+
+  <path class="retorno" d="M614 456 V478 H20 V130 H32"/>
+  <polygon class="headretorno" points="32,126 40,130 32,134"/>
+  <text class="nota" transform="translate(14 382) rotate(-90)">comando_mqtt → agrosmart/atuadores/+/comando · simulado | publicado</text>
+
+  <rect class="band" x="40" y="504" width="996" height="72" rx="9"/>
+  <text class="titulo" x="56" y="530">Consumo</text>
+  <text class="sub" x="56" y="545">CAMADA DE ENTREGA DE VALOR</text>
+  <rect class="chip" x="224" y="518" width="148" height="30" rx="5"/><text class="chiptxt" x="236" y="536">Dashboard (9 seções)</text>
+  <rect class="chipnovo" x="382" y="518" width="148" height="30" rx="5"/><text class="chiptxt" x="394" y="536">Aba Automação (ações)</text>
+  <rect class="chip" x="540" y="518" width="148" height="30" rx="5"/><text class="chiptxt" x="552" y="536">Relatórios MD / PDF</text>
+  <rect class="chip" x="698" y="518" width="148" height="30" rx="5"/><text class="chiptxt" x="710" y="536">SQL ad hoc (DuckDB)</text>
+  <rect class="chip" x="856" y="518" width="166" height="30" rx="5"/><text class="chiptxt" x="868" y="536">Benchmarks anonimizados</text>
+
+  <rect class="box" x="40" y="596" width="996" height="92" rx="9"/>
+  <text class="titulo" x="56" y="622">Governança transversal</text>
+  <text class="sub" x="56" y="637">ATRAVESSA TODAS AS CAMADAS</text>
+  <rect class="chip" x="250" y="610" width="142" height="28" rx="5"/><text class="chiptxt" x="262" y="628">Contratos YAML e catálogo</text>
+  <rect class="chip" x="250" y="644" width="142" height="26" rx="5"/><text class="chiptxt" x="262" y="662">LGPD por campo</text>
+  <rect class="chip" x="402" y="610" width="142" height="28" rx="5"/><text class="chiptxt" x="414" y="628">Trilha de eventos JSONL</text>
+  <rect class="chip" x="402" y="644" width="142" height="26" rx="5"/><text class="chiptxt" x="414" y="662">Reconciliação por fonte</text>
+  <rect class="chip" x="554" y="610" width="142" height="28" rx="5"/><text class="chiptxt" x="566" y="628">Linhagem por lote</text>
+  <rect class="chip" x="554" y="644" width="142" height="26" rx="5"/><text class="chiptxt" x="566" y="662">Ciclo de vida e retenção</text>
+  <rect class="chip" x="706" y="610" width="142" height="28" rx="5"/><text class="chiptxt" x="718" y="628">IAM por bucket · SSE</text>
+  <rect class="chip" x="706" y="644" width="142" height="26" rx="5"/><text class="chiptxt" x="718" y="662">Decisões (ADR 0001–0010)</text>
+  <rect class="chip" x="858" y="610" width="160" height="28" rx="5"/><text class="chiptxt" x="870" y="628">Testes pytest isolados</text>
+  <rect class="chip" x="858" y="644" width="160" height="26" rx="5"/><text class="chiptxt" x="870" y="662">Semente fixa · reprodutível</text>
+
+  <text class="sub" x="40" y="704">CHIPS COM BORDA AZUL = NOVOS NA FASE 6 · SETA TRACEJADA = COMANDO DE VOLTA AO CAMPO · docs/fase6/01-arquitetura-integrada.md</text>
+</svg>

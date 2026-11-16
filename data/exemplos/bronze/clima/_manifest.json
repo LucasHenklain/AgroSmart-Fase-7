@@ -1,0 +1,28 @@
+{
+  "batch_id": "08afeaeb43159c81",
+  "fonte": "clima",
+  "schema_version": "clima.v1",
+  "modo": "api_pull",
+  "coletor": "ColetorApiPull",
+  "janela": {
+    "inicio": "2026-08-02T00:00:00+00:00",
+    "fim": "2026-08-03T00:00:00+00:00"
+  },
+  "particao": "2026-08-02",
+  "origem": "clima/EST-SP-014_20260802.json",
+  "arquivos": [
+    {
+      "chave": "clima/ano=2026/mes=08/dia=02/EST-SP-014_20260802.json",
+      "nome": "EST-SP-014_20260802.json",
+      "papel": "principal",
+      "bytes": 993,
+      "checksum_sha256": "972998af4ca6948b99e39fa75b0af3c9efd721fe4b3efd494fcb193bf32d9f4c"
+    }
+  ],
+  "registros": 1,
+  "bytes": 993,
+  "checksum_sha256": "9c31e0bb6ac6cd0bf5dac131aa6b3f175cec0277edfab476a922975c9051a701",
+  "ingerido_em": "2026-09-03T15:53:11+00:00",
+  "versao": 1,
+  "versao_anterior_checksum": null
+}

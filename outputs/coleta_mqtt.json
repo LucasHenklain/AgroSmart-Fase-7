@@ -1,0 +1,22 @@
+{
+  "broker": "broker.hivemq.com:1883",
+  "topico": "agrosmart/sensores/+/leitura",
+  "janela_min": 1,
+  "pasta": "C:/Users/lmhsilva/AppData/Local/Temp/agro_hivemq_v3",
+  "inicio": "2026-10-08T14:09:32+00:00",
+  "fim": "2026-10-08T14:11:33+00:00",
+  "recebidas": 1,
+  "gravadas": 1,
+  "duplicatas": 0,
+  "descartadas": {},
+  "chaves_extras_ignoradas": {
+    "luminosidade_lux": 1
+  },
+  "por_sensor": {
+    "SNS-0301": 1
+  },
+  "arquivos": {
+    "C:/Users/lmhsilva/AppData/Local/Temp/agro_hivemq_v3/20261008/leituras_20261008T1408Z.jsonl": 1
+  },
+  "reconexoes": 0
+}

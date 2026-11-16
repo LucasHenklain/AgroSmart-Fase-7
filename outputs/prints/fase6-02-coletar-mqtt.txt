@@ -1,0 +1,30 @@
+$ python -m agrosmart coletar-mqtt --broker localhost --porta 1883 --topico agrosmart/sensores/+/leitura --janela-min 1 --duracao-s 100 --saida landing/sensores
+10:13:52 INFO     conectando a localhost:1883 · tópico agrosmart/sensores/+/leitura · janela 1 min · saída   
+                  landing/sensores                                                                           
+10:13:52 INFO     conectado a localhost:1883 · assinando agrosmart/sensores/+/leitura                        
+10:13:56 INFO     chave fora do contrato sensores.v1 ignorada: 'luminosidade_lux' (avisado uma vez; contagem 
+                  no resumo)                                                                                 
+10:13:56 INFO     janela aberta: landing/sensores/20261008/leituras_20261008T1313Z.jsonl                     
+10:14:01 INFO     janela aberta: landing/sensores/20261008/leituras_20261008T1314Z.jsonl                     
+10:15:01 INFO     janela aberta: landing/sensores/20261008/leituras_20261008T1315Z.jsonl                     
+10:15:32 INFO     duração de 100 s atingida — encerrando                                                     
+10:15:32 INFO     [concluida] 216 mensagens · 215 gravadas em 3 arquivo(s) · recebidas=216 gravadas=215      
+                  duplicatas=1 descartadas=0 arquivos=3 sensores=12 reconexoes=0                             
+          Coleta MQTT · localhost:1883 ·           
+           agrosmart/sensores/+/leitura            
+                                                   
+  métrica                                   valor  
+ ───────────────────────────────────────────────── 
+  mensagens recebidas                         216  
+  leituras gravadas                           215  
+  duplicatas ignoradas                          1  
+  descartadas (inválidas)                       0  
+  chave extra ignorada · luminosidade_lux     216  
+  sensores distintos                           12  
+  arquivos escritos                             3  
+  reconexões                                    0  
+                                                   
+  landing/sensores/20261008/leituras_20261008T1313Z.jsonl  (12 linha(s) nesta execução)
+  landing/sensores/20261008/leituras_20261008T1314Z.jsonl  (144 linha(s) nesta execução)
+  landing/sensores/20261008/leituras_20261008T1315Z.jsonl  (59 linha(s) nesta execução)
+✔ resumo em outputs/coleta_mqtt.json

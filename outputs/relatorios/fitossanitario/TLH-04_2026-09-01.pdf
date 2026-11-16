@@ -1,0 +1,136 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Title (Risco fitossanitário · TLH-04 — Espigão) /Author (AgroSmart Copiloto) /Producer (agrosmart-pdf) >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2439 >>
+stream
+BT
+/F1 15 Tf
+56 790 Td
+(Risco fitossanitário · TLH-04 — Espigão) Tj
+/F1 10 Tf
+0 -25 Td
+() Tj
+0 -14 Td
+(Cultura: trigo TBIO Sonic · Área: 22.0 ha · Estádio: maturacao \(114 dias após o plantio\) ·) Tj
+0 -14 Td
+(Irrigação: aspersao) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Referência: 2026-09-01 · Confiança: alta — dados completos: sensores com cobertura plena, clima em) Tj
+0 -14 Td
+(toda a série e sem alertas abertos) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Diagnóstico) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Risco fitossanitário do talhão TLH-04 \(trigo, maturacao\). Última semana: 7 dia\(s\) de clima, UR) Tj
+0 -14 Td
+(média 57,9 %, 1 dia\(s\) acima de 80,0 %, temperatura máxima média 29,2 °C, 1 dia\(s\) de chuva.) Tj
+0 -14 Td
+(Vegetação: NDVI 0,620 \(confiança alta\), variação de -0,184 em 30 dias, 1 de 10 cenas com nuvem) Tj
+0 -14 Td
+(alta.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Recomendações) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(1. [MÉDIA] Vistoriar em campo a queda de vigor do talhão TLH-04 \(monitoramento\) · quando: próximos) Tj
+0 -14 Td
+(3 dias) Tj
+0 -14 Td
+(NDVI variou -0,184 em 30 dias \(último 0,620, confiança alta\) sem clima favorável a fungos:) Tj
+0 -14 Td
+(investigar estresse hídrico \(0 dia\(s\) em estresse\), praga ou deficiência nutricional.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Custo estimado das ações: não estimado · Perda evitada / economia: não estimado) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Limitações) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(- previsão meteorológica não disponível nesta fase — decidir com base no observado) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Dados usados) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Tabelas do gold: dim_sensor, dim_talhao, fato_alerta_qualidade, fato_balanco_hidrico,) Tj
+0 -14 Td
+(fato_clima_diario, fato_custo_diario_talhao, fato_fertilidade_talhao, fato_leitura_diaria_talhao,) Tj
+0 -14 Td
+(fato_ndvi_talhao) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Campos do contexto: clima_recente, vegetacao, cenas_ndvi_30d, custos.dias_desde_pulverizacao,) Tj
+0 -14 Td
+(limiares) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Proveniência) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(- Motor: regras) Tj
+0 -14 Td
+(- Guardrails: aprovado, sem ajustes) Tj
+0 -14 Td
+(- Context Pack context-pack.v1 gerado em 2026-09-06T00:02:05+00:00 · instante de referência) Tj
+0 -14 Td
+(2026-09-01T03:00:00+00:00) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(O copiloto recomenda; o produtor decide. Toda cifra e medida acima vem do Data Lake da fazenda;) Tj
+0 -14 Td
+(nenhuma foi estimada pelo modelo.) Tj
+0 -14 Td
+/F1 8 Tf
+0 -14 Td
+(página 1 de 1) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000343 00000 n 
+0000000469 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R /Info 4 0 R >>
+startxref
+2959
+%%EOF

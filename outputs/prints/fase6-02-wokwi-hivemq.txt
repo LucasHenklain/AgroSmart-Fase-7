@@ -1,0 +1,20 @@
+﻿Evidência: ESP32 simulado no Wokwi (firmware/wokwi-esp32) -> Wi-Fi "Wokwi-GUEST" -> broker público broker.hivemq.com:1883
+         -> gateway nesta máquina: python -m agrosmart coletar-mqtt --broker broker.hivemq.com --topico "agrosmart/sensores/+/leitura" --janela-min 1
+Sem emulador: as leituras abaixo saíram do ESP32 rodando no navegador (captura em firmware/wokwi-esp32/captura-wokwi.png,
+gerada por firmware/wokwi-esp32/capturar_wokwi.py, que carrega o projeto, instala as bibliotecas e inicia a simulação via DevTools).
+
+Execução 1 · 08/10/2026 10:31 (America/Sao_Paulo) · 45 s · firmware com a biblioteca DHTesp
+  mensagens recebidas 7 · leituras gravadas 7 · duplicatas 0 · descartadas 0 · luminosidade_lux descartada 7x · 1 sensor · 1 arquivo
+  -> temperatura_ar_c/umidade_ar_pct vieram null (DHTesp não leu o DHT22 do Wokwi); trocado pela "DHT sensor library" (Adafruit).
+
+Execução 2 · 08/10/2026 11:05–11:08 · firmware corrigido (DHT Adafruit) · potenciômetros em 420 (solo) e 860 (bateria)
+  leituras com todos os campos: umidade_solo 41,1 % · solo 24,8 °C · ar 27,1 °C / 58 % · bateria 84,1 % · rssi -77..-90 dBm
+  arquivos: leituras_20261008T1405Z.jsonl (2) · leituras_20261008T1406Z.jsonl (2) · leituras_20261008T1408Z.jsonl (1)
+  cópias em data/exemplos/fase6/landing/sensores/wokwi_hivemq/
+
+Leituras (execução 2):{"sensor_id":"SNS-0301","talhao_id":"TLH-03","medido_em":"2026-10-08T14:05:53Z","umidade_solo_pct":41.1,"temperatura_solo_c":24.8,"temperatura_ar_c":27.1,"umidade_ar_pct":58,"condutividade_ds_m":null,"ph":null,"bateria_pct":84.1,"rssi_dbm":-90}
+{"sensor_id":"SNS-0301","talhao_id":"TLH-03","medido_em":"2026-10-08T14:05:58Z","umidade_solo_pct":41.1,"temperatura_solo_c":24.8,"temperatura_ar_c":27.1,"umidade_ar_pct":58,"condutividade_ds_m":null,"ph":null,"bateria_pct":84.1,"rssi_dbm":-82}
+{"sensor_id":"SNS-0301","talhao_id":"TLH-03","medido_em":"2026-10-08T14:06:03Z","umidade_solo_pct":41.1,"temperatura_solo_c":24.8,"temperatura_ar_c":27.1,"umidade_ar_pct":58,"condutividade_ds_m":null,"ph":null,"bateria_pct":84.1,"rssi_dbm":-77}
+{"sensor_id":"SNS-0301","talhao_id":"TLH-03","medido_em":"2026-10-08T14:06:08Z","umidade_solo_pct":41.1,"temperatura_solo_c":24.8,"temperatura_ar_c":27.1,"umidade_ar_pct":58,"condutividade_ds_m":null,"ph":null,"bateria_pct":84.1,"rssi_dbm":-84}
+{"sensor_id":"SNS-0301","talhao_id":"TLH-03","medido_em":"2026-10-08T14:08:26Z","umidade_solo_pct":41.1,"temperatura_solo_c":24.8,"temperatura_ar_c":27.1,"umidade_ar_pct":58,"condutividade_ds_m":null,"ph":null,"bateria_pct":84.1,"rssi_dbm":-81}
+

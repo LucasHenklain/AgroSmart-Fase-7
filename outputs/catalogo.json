@@ -1,0 +1,2124 @@
+{
+  "gerado_em": "2026-09-05T23:04:31+00:00",
+  "backend": "minio",
+  "camadas": {
+    "bronze": {
+      "proposito": "Preserva o dado exatamente como chegou. Imutável, append-only, particionado por fonte e data. É a única fonte da verdade para reprocessar o lake inteiro quando uma regra muda.",
+      "objetos": 6230
+    },
+    "silver": {
+      "proposito": "Dado validado, tipado, deduplicado e com unidades no SI. Aqui o lake deixa de ser um pântano: nada entra sem passar pelas regras do contrato da fonte.",
+      "objetos": 103
+    },
+    "gold": {
+      "proposito": "Modelo dimensional e indicadores prontos para consumo. Serve dashboard, API e o Context Pack do copiloto de IA a partir do mesmo conjunto de tabelas.",
+      "objetos": 14
+    },
+    "quarentena": {
+      "proposito": "Registros reprovados na validação, guardados com o motivo da reprovação. Nada é descartado em silêncio — dado ruim é evidência de problema na origem.",
+      "objetos": 6
+    }
+  },
+  "fontes": {
+    "erp_talhoes": {
+      "contrato": "erp_talhoes.v1",
+      "titulo": "Cadastro de talhões, cultura e parâmetros de solo",
+      "tipo_dado": "estruturado",
+      "classificacao_lgpd": "pessoal",
+      "campos_lgpd": [
+        "nome",
+        "latitude",
+        "longitude"
+      ],
+      "bronze": {
+        "objetos": 31,
+        "bytes": 34999,
+        "lotes": 31,
+        "particoes": [
+          "ano=2026/mes=08/dia=02",
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=09",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=16",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30",
+          "ano=2026/mes=08/dia=31",
+          "ano=2026/mes=09/dia=01"
+        ]
+      },
+      "silver": {
+        "tabela": "erp_talhoes",
+        "existe": true,
+        "registros": 6,
+        "colunas": 19,
+        "arquivos": 1,
+        "bytes": 7696,
+        "particoes": [
+          "ano=2026/mes=09/dia=01"
+        ],
+        "schema": {
+          "talhao_id": "String",
+          "fazenda_id": "String",
+          "nome": "String",
+          "area_ha": "Float64",
+          "cultura": "String",
+          "variedade": "String",
+          "data_plantio": "Date",
+          "data_colheita_prevista": "Date",
+          "latitude": "Float64",
+          "longitude": "Float64",
+          "tipo_solo": "String",
+          "sistema_irrigacao": "String",
+          "capacidade_campo_pct": "Float64",
+          "ponto_murcha_pct": "Float64",
+          "extraido_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_schema_version": "String",
+          "_alertas": "List(String)"
+        },
+        "lotes_distintos": 1,
+        "linhagem_por_arquivo": {
+          "erp_talhoes/ano=2026/mes=09/dia=01/erp_talhoes-20260901.parquet": {
+            "registros": 6,
+            "lotes": 1,
+            "amostra_lotes": [
+              "36a9f89bd6f89d03"
+            ]
+          }
+        },
+        "primeiro_evento": "2026-09-01 02:30:00+00:00",
+        "ultimo_evento": "2026-09-01 02:30:00+00:00"
+      },
+      "quarentena": {
+        "existe": true,
+        "registros": 1,
+        "colunas": 25,
+        "arquivos": 1,
+        "bytes": 10096,
+        "particoes": [
+          "ano=2026/mes=09/dia=03"
+        ],
+        "schema": {
+          "talhao_id": "String",
+          "fazenda_id": "String",
+          "nome": "String",
+          "area_ha": "Float64",
+          "cultura": "String",
+          "variedade": "String",
+          "data_plantio": "Date",
+          "data_colheita_prevista": "Date",
+          "latitude": "Float64",
+          "longitude": "Float64",
+          "tipo_solo": "String",
+          "sistema_irrigacao": "String",
+          "capacidade_campo_pct": "Float64",
+          "ponto_murcha_pct": "Float64",
+          "extraido_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_janela_fim": "Datetime(time_unit='us', time_zone='UTC')",
+          "_particao": "Date",
+          "_schema_version": "String",
+          "_versao_lote": "Int64",
+          "_linha": "Int64",
+          "_falha_tipagem": "List(String)",
+          "_regras_violadas": "List(String)",
+          "_motivo": "String"
+        },
+        "lotes_distintos": 1,
+        "linhagem_por_arquivo": {
+          "erp_talhoes/ano=2026/mes=09/dia=03/erp_talhoes-20260903.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "0ee3ffd3730b8e92"
+            ]
+          }
+        }
+      },
+      "linhagem": {
+        "bronze_lotes": 1,
+        "silver_tabela": "erp_talhoes",
+        "gold_tabelas": [
+          "dim_talhao",
+          "dim_fazenda",
+          "fato_balanco_hidrico",
+          "fato_operacao_custo",
+          "fato_custo_diario_talhao",
+          "fato_fertilidade_talhao",
+          "benchmark_regional"
+        ]
+      },
+      "retencao_dias": {
+        "bronze_dias": 365,
+        "silver_dias": null,
+        "gold_dias": null
+      }
+    },
+    "clima": {
+      "contrato": "clima.v1",
+      "titulo": "Série meteorológica diária por estação",
+      "tipo_dado": "semiestruturado",
+      "classificacao_lgpd": "publico",
+      "campos_lgpd": [],
+      "bronze": {
+        "objetos": 60,
+        "bytes": 59574,
+        "lotes": 60,
+        "particoes": [
+          "ano=2026/mes=08/dia=02",
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=09",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=16",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30",
+          "ano=2026/mes=08/dia=31"
+        ]
+      },
+      "silver": {
+        "tabela": "clima_diario",
+        "existe": true,
+        "registros": 57,
+        "colunas": 16,
+        "arquivos": 30,
+        "bytes": 178181,
+        "particoes": [
+          "ano=2026/mes=08/dia=02",
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=09",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=16",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30",
+          "ano=2026/mes=08/dia=31"
+        ],
+        "schema": {
+          "estacao_id": "String",
+          "fazenda_id": "String",
+          "data": "Date",
+          "temp_min_c": "Float64",
+          "temp_max_c": "Float64",
+          "temp_media_c": "Float64",
+          "umidade_relativa_pct": "Float64",
+          "precipitacao_mm": "Float64",
+          "velocidade_vento_ms": "Float64",
+          "radiacao_mj_m2": "Float64",
+          "eto_mm": "Float64",
+          "origem_api": "String",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_schema_version": "String",
+          "_alertas": "List(String)"
+        },
+        "lotes_distintos": 57,
+        "linhagem_por_arquivo": {
+          "clima_diario/ano=2026/mes=08/dia=02/clima_diario-20260802.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "1ebcb182a868a614"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=03/clima_diario-20260803.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "775c285c5bbc50ec",
+              "996a42f7f8b9816e"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=04/clima_diario-20260804.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "0f09ad1b96307ab3",
+              "e100f8f4251b0263"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=05/clima_diario-20260805.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "80f8d23a7a22b0bf",
+              "f030731c077859cc"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=06/clima_diario-20260806.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "4e9bd91db8921965",
+              "daef2ea7ebca89ce"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=07/clima_diario-20260807.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "92c24e75909d3e63",
+              "bc378c873306f2dd"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=08/clima_diario-20260808.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "7ec378c10be69e82",
+              "b127df22632af7e2"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=09/clima_diario-20260809.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "39764578407ec010",
+              "f92e615edf64458d"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=10/clima_diario-20260810.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "73baa38e51789af7"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=11/clima_diario-20260811.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "0cf0d0dcd3304236",
+              "232447a2e4a86abb"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=12/clima_diario-20260812.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "74e751c793043827",
+              "83a5fa5ecc8e6feb"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=13/clima_diario-20260813.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "106bb220a7324a74",
+              "8b7365b18da31d99"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=14/clima_diario-20260814.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "45dbd3c6b1a73712"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=15/clima_diario-20260815.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "0f1c4fc7b6cfec9c",
+              "36c2a999a2a4f2d6"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=16/clima_diario-20260816.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "147e8f2e55937942",
+              "b1bb13dfc586ed98"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=17/clima_diario-20260817.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "b34a98fbb608031a",
+              "f259a10e6944619f"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=18/clima_diario-20260818.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "071a146fa44c6f90",
+              "d2581de4e791dd60"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=19/clima_diario-20260819.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "31f387f1362ccd6d",
+              "fc560651a1e2c3c8"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=20/clima_diario-20260820.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "6bea2c5b16a2f044",
+              "ed363ba7a25113d1"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=21/clima_diario-20260821.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "38b212179f344fbe",
+              "df2968d144189c00"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=22/clima_diario-20260822.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "2ba9cce339238b7c",
+              "924faf39dccc75d0"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=23/clima_diario-20260823.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "01545a1000df3b12",
+              "f456d3692a9a4772"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=24/clima_diario-20260824.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "141092ac6f2a85f4",
+              "bc1382cc68159c10"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=25/clima_diario-20260825.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "0c6a8b27bf63351f",
+              "4dfd3d93c804e408"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=26/clima_diario-20260826.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "87610e90dd798406",
+              "e50f40f6122e3d79"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=27/clima_diario-20260827.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "366c705082f875cd",
+              "6780ed11a28ad82e"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=28/clima_diario-20260828.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "4cc9f4a91d09b2fe",
+              "e03db97468902476"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=29/clima_diario-20260829.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "0973dca40a61fb6f",
+              "ae1b9eb86f618e8e"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=30/clima_diario-20260830.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "68982df040e6642a",
+              "d01f665bbe511b69"
+            ]
+          },
+          "clima_diario/ano=2026/mes=08/dia=31/clima_diario-20260831.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "17dea6a2dd6dc517",
+              "e0fb1d76c45fb254"
+            ]
+          }
+        },
+        "primeiro_evento": "2026-08-02",
+        "ultimo_evento": "2026-08-31"
+      },
+      "quarentena": {
+        "existe": true,
+        "registros": 3,
+        "colunas": 22,
+        "arquivos": 1,
+        "bytes": 8731,
+        "particoes": [
+          "ano=2026/mes=09/dia=03"
+        ],
+        "schema": {
+          "estacao_id": "String",
+          "fazenda_id": "String",
+          "data": "Date",
+          "temp_min_c": "Float64",
+          "temp_max_c": "Float64",
+          "temp_media_c": "Float64",
+          "umidade_relativa_pct": "Float64",
+          "precipitacao_mm": "Float64",
+          "velocidade_vento_ms": "Float64",
+          "radiacao_mj_m2": "Float64",
+          "eto_mm": "Float64",
+          "origem_api": "String",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_janela_fim": "Datetime(time_unit='us', time_zone='UTC')",
+          "_particao": "Date",
+          "_schema_version": "String",
+          "_versao_lote": "Int64",
+          "_linha": "Int64",
+          "_falha_tipagem": "List(String)",
+          "_regras_violadas": "List(String)",
+          "_motivo": "String"
+        },
+        "lotes_distintos": 3,
+        "linhagem_por_arquivo": {
+          "clima/ano=2026/mes=09/dia=03/clima-20260903.parquet": {
+            "registros": 3,
+            "lotes": 3,
+            "amostra_lotes": [
+              "08afeaeb43159c81",
+              "7eb3e5733de54519",
+              "aa05c13ebe4e7eeb"
+            ]
+          }
+        }
+      },
+      "linhagem": {
+        "bronze_lotes": 57,
+        "silver_tabela": "clima_diario",
+        "gold_tabelas": [
+          "dim_fazenda",
+          "dim_estacao",
+          "fato_clima_diario",
+          "fato_balanco_hidrico"
+        ]
+      },
+      "retencao_dias": {
+        "bronze_dias": 90,
+        "silver_dias": 1825,
+        "gold_dias": null
+      }
+    },
+    "erp_operacoes": {
+      "contrato": "erp_operacoes.v1",
+      "titulo": "Operações executadas no talhão com insumo e custo",
+      "tipo_dado": "estruturado",
+      "classificacao_lgpd": "pessoal",
+      "campos_lgpd": [
+        "responsavel_id"
+      ],
+      "bronze": {
+        "objetos": 30,
+        "bytes": 9551,
+        "lotes": 30,
+        "particoes": [
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=09",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=16",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30",
+          "ano=2026/mes=08/dia=31",
+          "ano=2026/mes=09/dia=01"
+        ]
+      },
+      "silver": {
+        "tabela": "erp_operacoes",
+        "existe": true,
+        "registros": 40,
+        "colunas": 15,
+        "arquivos": 25,
+        "bytes": 150109,
+        "particoes": [
+          "ano=2026/mes=08/dia=02",
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30"
+        ],
+        "schema": {
+          "operacao_id": "String",
+          "talhao_id": "String",
+          "data": "Date",
+          "tipo_operacao": "String",
+          "insumo": "String",
+          "quantidade": "Float64",
+          "unidade": "String",
+          "custo_brl": "Float64",
+          "responsavel_id": "String",
+          "observacao": "String",
+          "extraido_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_schema_version": "String",
+          "_alertas": "List(String)"
+        },
+        "lotes_distintos": 24,
+        "linhagem_por_arquivo": {
+          "erp_operacoes/ano=2026/mes=08/dia=02/erp_operacoes-20260802.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "2ebfe77a2d5e5f44"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=03/erp_operacoes-20260803.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "18a3a6d6fd146c0f"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=04/erp_operacoes-20260804.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "4f7d58cf7454aebd"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=05/erp_operacoes-20260805.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "1903ca5d14e91fbc",
+              "6b937c71f39651e5"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=06/erp_operacoes-20260806.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "0356452842e246b8"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=07/erp_operacoes-20260807.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "73a0c678bd7d3940"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=08/erp_operacoes-20260808.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "6b937c71f39651e5"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=10/erp_operacoes-20260810.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "1c20c276dc372d36"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=11/erp_operacoes-20260811.parquet": {
+            "registros": 3,
+            "lotes": 1,
+            "amostra_lotes": [
+              "0b14aa5dda664f19"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=12/erp_operacoes-20260812.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "2c0a3f3a94fcad62"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=13/erp_operacoes-20260813.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "20c1c9efa82d6b40"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=14/erp_operacoes-20260814.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "6a96ee498389fab5"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=15/erp_operacoes-20260815.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "6f564bc51a2f9770"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=17/erp_operacoes-20260817.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "9df90777fb1c997f"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=18/erp_operacoes-20260818.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "6f564bc51a2f9770"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=19/erp_operacoes-20260819.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "bd5c6cf43ab21a3a"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=20/erp_operacoes-20260820.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "97ace2e03db4109a"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=21/erp_operacoes-20260821.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "73758204097666c2"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=22/erp_operacoes-20260822.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "6fc721a1a0e1e2ca"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=24/erp_operacoes-20260824.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "16ed178d59eb661b"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=26/erp_operacoes-20260826.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "30ecaf5aabf47f33"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=27/erp_operacoes-20260827.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "1f95a09e967ddd6b"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=28/erp_operacoes-20260828.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "73ffb76a7b2e8a74"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=29/erp_operacoes-20260829.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "0a5f503f33c427ba"
+            ]
+          },
+          "erp_operacoes/ano=2026/mes=08/dia=30/erp_operacoes-20260830.parquet": {
+            "registros": 2,
+            "lotes": 1,
+            "amostra_lotes": [
+              "152f91baebae9e9f"
+            ]
+          }
+        },
+        "primeiro_evento": "2026-08-02",
+        "ultimo_evento": "2026-08-30"
+      },
+      "quarentena": {
+        "existe": true,
+        "registros": 7,
+        "colunas": 21,
+        "arquivos": 1,
+        "bytes": 9366,
+        "particoes": [
+          "ano=2026/mes=09/dia=03"
+        ],
+        "schema": {
+          "operacao_id": "String",
+          "talhao_id": "String",
+          "data": "Date",
+          "tipo_operacao": "String",
+          "insumo": "String",
+          "quantidade": "Float64",
+          "unidade": "String",
+          "custo_brl": "Float64",
+          "responsavel_id": "String",
+          "observacao": "String",
+          "extraido_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_janela_fim": "Datetime(time_unit='us', time_zone='UTC')",
+          "_particao": "Date",
+          "_schema_version": "String",
+          "_versao_lote": "Int64",
+          "_linha": "Int64",
+          "_falha_tipagem": "List(String)",
+          "_regras_violadas": "List(String)",
+          "_motivo": "String"
+        },
+        "lotes_distintos": 7,
+        "linhagem_por_arquivo": {
+          "erp_operacoes/ano=2026/mes=09/dia=03/erp_operacoes-20260903.parquet": {
+            "registros": 7,
+            "lotes": 7,
+            "amostra_lotes": [
+              "1903ca5d14e91fbc",
+              "1f95a09e967ddd6b",
+              "2ebfe77a2d5e5f44"
+            ]
+          }
+        }
+      },
+      "linhagem": {
+        "bronze_lotes": 24,
+        "silver_tabela": "erp_operacoes",
+        "gold_tabelas": [
+          "fato_balanco_hidrico",
+          "fato_operacao_custo",
+          "fato_custo_diario_talhao"
+        ]
+      },
+      "retencao_dias": {
+        "bronze_dias": 365,
+        "silver_dias": 2555,
+        "gold_dias": null
+      }
+    },
+    "imagens_ndvi": {
+      "contrato": "imagens_ndvi.v1",
+      "titulo": "Imagens de drone e satélite com índice NDVI por talhão",
+      "tipo_dado": "nao_estruturado",
+      "classificacao_lgpd": "pessoal",
+      "campos_lgpd": [],
+      "bronze": {
+        "objetos": 120,
+        "bytes": 320797,
+        "lotes": 60,
+        "particoes": [
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=28"
+        ]
+      },
+      "silver": {
+        "tabela": "imagens_ndvi_meta",
+        "existe": true,
+        "registros": 59,
+        "colunas": 21,
+        "arquivos": 9,
+        "bytes": 84734,
+        "particoes": [
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=28"
+        ],
+        "schema": {
+          "imagem_id": "String",
+          "talhao_id": "String",
+          "capturada_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "plataforma": "String",
+          "arquivo_bruto": "String",
+          "checksum_sha256": "String",
+          "tamanho_bytes": "Int64",
+          "largura_px": "Int64",
+          "altura_px": "Int64",
+          "altitude_m": "Float64",
+          "resolucao_cm_px": "Float64",
+          "nuvem_pct": "Float64",
+          "ndvi_medio": "Float64",
+          "ndvi_min": "Float64",
+          "ndvi_max": "Float64",
+          "ndvi_desvio": "Float64",
+          "area_analisada_ha": "Float64",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_schema_version": "String",
+          "_alertas": "List(String)"
+        },
+        "lotes_distintos": 59,
+        "linhagem_por_arquivo": {
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=03/imagens_ndvi_meta-20260803.parquet": {
+            "registros": 5,
+            "lotes": 5,
+            "amostra_lotes": [
+              "2725c082612ca69c",
+              "4467259180ef7a2c",
+              "4962b03f8f830b86"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=04/imagens_ndvi_meta-20260804.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "3f0c5b90395af028",
+              "5c8249aad3242919",
+              "dd26f555b213800b"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=08/imagens_ndvi_meta-20260808.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "0380c220c7faf78b",
+              "3f7ec492a086fd2e",
+              "717b42c2ad82b19e"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=11/imagens_ndvi_meta-20260811.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "013e6b97bd1cf8dc",
+              "1491d0acaac0376d",
+              "641cbddbb8eea619"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=13/imagens_ndvi_meta-20260813.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "1108371e5243d0c2",
+              "1d3dd21c95186081",
+              "1dcf1dd937278e53"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=18/imagens_ndvi_meta-20260818.parquet": {
+            "registros": 12,
+            "lotes": 12,
+            "amostra_lotes": [
+              "27fc588df33c9a8e",
+              "616bd3c0141c608b",
+              "663fa2b24e4f2c14"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=23/imagens_ndvi_meta-20260823.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "22820bb239a1b44a",
+              "633872ff62869ea4",
+              "8cda00de7fca1450"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=25/imagens_ndvi_meta-20260825.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "15c9b9123f291b90",
+              "280b9805bd02c277",
+              "5fc4c1dc584a2e0e"
+            ]
+          },
+          "imagens_ndvi_meta/ano=2026/mes=08/dia=28/imagens_ndvi_meta-20260828.parquet": {
+            "registros": 6,
+            "lotes": 6,
+            "amostra_lotes": [
+              "6718f416ed483c3e",
+              "6cec2b18c13196f5",
+              "71c9cff7cbfcf803"
+            ]
+          }
+        },
+        "primeiro_evento": "2026-08-03 12:53:00+00:00",
+        "ultimo_evento": "2026-08-28 13:18:00+00:00"
+      },
+      "quarentena": {
+        "existe": true,
+        "registros": 1,
+        "colunas": 27,
+        "arquivos": 1,
+        "bytes": 11413,
+        "particoes": [
+          "ano=2026/mes=09/dia=03"
+        ],
+        "schema": {
+          "imagem_id": "String",
+          "talhao_id": "String",
+          "capturada_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "plataforma": "String",
+          "arquivo_bruto": "String",
+          "checksum_sha256": "String",
+          "tamanho_bytes": "Int64",
+          "largura_px": "Int64",
+          "altura_px": "Int64",
+          "altitude_m": "Float64",
+          "resolucao_cm_px": "Float64",
+          "nuvem_pct": "Float64",
+          "ndvi_medio": "Float64",
+          "ndvi_min": "Float64",
+          "ndvi_max": "Float64",
+          "ndvi_desvio": "Float64",
+          "area_analisada_ha": "Float64",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_janela_fim": "Datetime(time_unit='us', time_zone='UTC')",
+          "_particao": "Date",
+          "_schema_version": "String",
+          "_versao_lote": "Int64",
+          "_linha": "Int64",
+          "_falha_tipagem": "List(String)",
+          "_regras_violadas": "List(String)",
+          "_motivo": "String"
+        },
+        "lotes_distintos": 1,
+        "linhagem_por_arquivo": {
+          "imagens_ndvi/ano=2026/mes=09/dia=03/imagens_ndvi-20260903.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "5bdc04b7bb31861d"
+            ]
+          }
+        }
+      },
+      "linhagem": {
+        "bronze_lotes": 59,
+        "silver_tabela": "imagens_ndvi_meta",
+        "gold_tabelas": [
+          "fato_ndvi_talhao"
+        ]
+      },
+      "retencao_dias": {
+        "bronze_dias": 1825,
+        "silver_dias": 1825,
+        "gold_dias": null
+      }
+    },
+    "laudos_solo": {
+      "contrato": "laudos_solo.v1",
+      "titulo": "Laudos laboratoriais de fertilidade do solo",
+      "tipo_dado": "nao_estruturado",
+      "classificacao_lgpd": "pessoal",
+      "campos_lgpd": [],
+      "bronze": {
+        "objetos": 16,
+        "bytes": 21526,
+        "lotes": 8,
+        "particoes": [
+          "ano=2026/mes=07/dia=21",
+          "ano=2026/mes=07/dia=23",
+          "ano=2026/mes=07/dia=24",
+          "ano=2026/mes=07/dia=25",
+          "ano=2026/mes=07/dia=26",
+          "ano=2026/mes=08/dia=03"
+        ]
+      },
+      "silver": {
+        "tabela": "laudos_solo",
+        "existe": true,
+        "registros": 6,
+        "colunas": 21,
+        "arquivos": 5,
+        "bytes": 45830,
+        "particoes": [
+          "ano=2026/mes=07/dia=21",
+          "ano=2026/mes=07/dia=23",
+          "ano=2026/mes=07/dia=24",
+          "ano=2026/mes=07/dia=25",
+          "ano=2026/mes=07/dia=26"
+        ],
+        "schema": {
+          "laudo_id": "String",
+          "talhao_id": "String",
+          "laboratorio": "String",
+          "coletado_em": "Date",
+          "emitido_em": "Date",
+          "profundidade_cm": "String",
+          "arquivo_bruto": "String",
+          "checksum_sha256": "String",
+          "ph_cacl2": "Float64",
+          "materia_organica_g_dm3": "Float64",
+          "fosforo_mg_dm3": "Float64",
+          "potassio_mmolc_dm3": "Float64",
+          "calcio_mmolc_dm3": "Float64",
+          "magnesio_mmolc_dm3": "Float64",
+          "ctc_mmolc_dm3": "Float64",
+          "saturacao_bases_pct": "Float64",
+          "extrator_versao": "String",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_schema_version": "String",
+          "_alertas": "List(String)"
+        },
+        "lotes_distintos": 6,
+        "linhagem_por_arquivo": {
+          "laudos_solo/ano=2026/mes=07/dia=21/laudos_solo-20260721.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "7221996043e14b03",
+              "724288ff1e1645ce"
+            ]
+          },
+          "laudos_solo/ano=2026/mes=07/dia=23/laudos_solo-20260723.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "09c661ac7abd09fb"
+            ]
+          },
+          "laudos_solo/ano=2026/mes=07/dia=24/laudos_solo-20260724.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "30ff980277198c13"
+            ]
+          },
+          "laudos_solo/ano=2026/mes=07/dia=25/laudos_solo-20260725.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "c87642f5be817840"
+            ]
+          },
+          "laudos_solo/ano=2026/mes=07/dia=26/laudos_solo-20260726.parquet": {
+            "registros": 1,
+            "lotes": 1,
+            "amostra_lotes": [
+              "85338f09d5d61869"
+            ]
+          }
+        },
+        "primeiro_evento": "2026-07-21",
+        "ultimo_evento": "2026-07-26"
+      },
+      "quarentena": {
+        "existe": true,
+        "registros": 2,
+        "colunas": 27,
+        "arquivos": 1,
+        "bytes": 11928,
+        "particoes": [
+          "ano=2026/mes=09/dia=03"
+        ],
+        "schema": {
+          "laudo_id": "String",
+          "talhao_id": "String",
+          "laboratorio": "String",
+          "coletado_em": "Date",
+          "emitido_em": "Date",
+          "profundidade_cm": "String",
+          "arquivo_bruto": "String",
+          "checksum_sha256": "String",
+          "ph_cacl2": "Float64",
+          "materia_organica_g_dm3": "Float64",
+          "fosforo_mg_dm3": "Float64",
+          "potassio_mmolc_dm3": "Float64",
+          "calcio_mmolc_dm3": "Float64",
+          "magnesio_mmolc_dm3": "Float64",
+          "ctc_mmolc_dm3": "Float64",
+          "saturacao_bases_pct": "Float64",
+          "extrator_versao": "String",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_janela_fim": "Datetime(time_unit='us', time_zone='UTC')",
+          "_particao": "Date",
+          "_schema_version": "String",
+          "_versao_lote": "Int64",
+          "_linha": "Int64",
+          "_falha_tipagem": "List(String)",
+          "_regras_violadas": "List(String)",
+          "_motivo": "String"
+        },
+        "lotes_distintos": 2,
+        "linhagem_por_arquivo": {
+          "laudos_solo/ano=2026/mes=09/dia=03/laudos_solo-20260903.parquet": {
+            "registros": 2,
+            "lotes": 2,
+            "amostra_lotes": [
+              "c2d4945b81988e33",
+              "cf41e50e4393aaa8"
+            ]
+          }
+        }
+      },
+      "linhagem": {
+        "bronze_lotes": 6,
+        "silver_tabela": "laudos_solo",
+        "gold_tabelas": [
+          "fato_fertilidade_talhao"
+        ]
+      },
+      "retencao_dias": {
+        "bronze_dias": null,
+        "silver_dias": null,
+        "gold_dias": null
+      }
+    },
+    "sensores": {
+      "contrato": "sensores.v1",
+      "titulo": "Leituras de sensores de solo e ar",
+      "tipo_dado": "estruturado",
+      "classificacao_lgpd": "interno",
+      "campos_lgpd": [],
+      "bronze": {
+        "objetos": 2892,
+        "bytes": 8498918,
+        "lotes": 2892,
+        "particoes": [
+          "ano=2026/mes=08/dia=02",
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=09",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=16",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30",
+          "ano=2026/mes=08/dia=31",
+          "ano=2026/mes=09/dia=01"
+        ]
+      },
+      "silver": {
+        "tabela": "sensores_leitura",
+        "existe": true,
+        "registros": 34040,
+        "colunas": 15,
+        "arquivos": 31,
+        "bytes": 690888,
+        "particoes": [
+          "ano=2026/mes=08/dia=02",
+          "ano=2026/mes=08/dia=03",
+          "ano=2026/mes=08/dia=04",
+          "ano=2026/mes=08/dia=05",
+          "ano=2026/mes=08/dia=06",
+          "ano=2026/mes=08/dia=07",
+          "ano=2026/mes=08/dia=08",
+          "ano=2026/mes=08/dia=09",
+          "ano=2026/mes=08/dia=10",
+          "ano=2026/mes=08/dia=11",
+          "ano=2026/mes=08/dia=12",
+          "ano=2026/mes=08/dia=13",
+          "ano=2026/mes=08/dia=14",
+          "ano=2026/mes=08/dia=15",
+          "ano=2026/mes=08/dia=16",
+          "ano=2026/mes=08/dia=17",
+          "ano=2026/mes=08/dia=18",
+          "ano=2026/mes=08/dia=19",
+          "ano=2026/mes=08/dia=20",
+          "ano=2026/mes=08/dia=21",
+          "ano=2026/mes=08/dia=22",
+          "ano=2026/mes=08/dia=23",
+          "ano=2026/mes=08/dia=24",
+          "ano=2026/mes=08/dia=25",
+          "ano=2026/mes=08/dia=26",
+          "ano=2026/mes=08/dia=27",
+          "ano=2026/mes=08/dia=28",
+          "ano=2026/mes=08/dia=29",
+          "ano=2026/mes=08/dia=30",
+          "ano=2026/mes=08/dia=31",
+          "ano=2026/mes=09/dia=01"
+        ],
+        "schema": {
+          "sensor_id": "String",
+          "talhao_id": "String",
+          "medido_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "umidade_solo_pct": "Float64",
+          "temperatura_solo_c": "Float64",
+          "temperatura_ar_c": "Float64",
+          "umidade_ar_pct": "Float64",
+          "condutividade_ds_m": "Float64",
+          "ph": "Float64",
+          "bateria_pct": "Float64",
+          "rssi_dbm": "Int64",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_schema_version": "String",
+          "_alertas": "List(String)"
+        },
+        "lotes_distintos": 2892,
+        "linhagem_por_arquivo": {
+          "sensores_leitura/ano=2026/mes=08/dia=02/sensores_leitura-20260802.parquet": {
+            "registros": 1145,
+            "lotes": 98,
+            "amostra_lotes": [
+              "037a44a7e045987c",
+              "07ee658fdff20f92",
+              "10af5211d22dbf11"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=03/sensores_leitura-20260803.parquet": {
+            "registros": 1146,
+            "lotes": 98,
+            "amostra_lotes": [
+              "00b93325dac4e301",
+              "03d5705342fd6dc3",
+              "04d4aa28ed48a688"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=04/sensores_leitura-20260804.parquet": {
+            "registros": 1140,
+            "lotes": 96,
+            "amostra_lotes": [
+              "009f4a34cc98ff36",
+              "01cfee8b7b1566ad",
+              "030d69d170947e7b"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=05/sensores_leitura-20260805.parquet": {
+            "registros": 1148,
+            "lotes": 98,
+            "amostra_lotes": [
+              "020d286af5b2d298",
+              "021a2c5839249376",
+              "0a01aa647b1d5f1a"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=06/sensores_leitura-20260806.parquet": {
+            "registros": 1145,
+            "lotes": 96,
+            "amostra_lotes": [
+              "0185ab63d88c4d7f",
+              "01b83bb3f23b48de",
+              "042c0cd0e29518c5"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=07/sensores_leitura-20260807.parquet": {
+            "registros": 1148,
+            "lotes": 98,
+            "amostra_lotes": [
+              "01b211243ccb72f9",
+              "06d564e76ae25395",
+              "0b1447d8c9acfd03"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=08/sensores_leitura-20260808.parquet": {
+            "registros": 1142,
+            "lotes": 96,
+            "amostra_lotes": [
+              "017c1f0203b1d0cd",
+              "01da46ae3d17430a",
+              "0247560893ea888b"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=09/sensores_leitura-20260809.parquet": {
+            "registros": 1148,
+            "lotes": 96,
+            "amostra_lotes": [
+              "0426bd2c4c669dcb",
+              "062268165fbd8448",
+              "0a221d9cbaeb4104"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=10/sensores_leitura-20260810.parquet": {
+            "registros": 1145,
+            "lotes": 96,
+            "amostra_lotes": [
+              "00a4ee77678ee4b1",
+              "02966ef096f0dea5",
+              "032ee453257c98d1"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=11/sensores_leitura-20260811.parquet": {
+            "registros": 1144,
+            "lotes": 96,
+            "amostra_lotes": [
+              "015fb4f2213110e6",
+              "02306b28ebd45713",
+              "04f362ae6fba1e03"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=12/sensores_leitura-20260812.parquet": {
+            "registros": 1146,
+            "lotes": 97,
+            "amostra_lotes": [
+              "0574c94efd2e6008",
+              "05c29fd589b28a0e",
+              "0675aff0073cbee5"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=13/sensores_leitura-20260813.parquet": {
+            "registros": 1145,
+            "lotes": 96,
+            "amostra_lotes": [
+              "026bbe159e2aaf97",
+              "0761d710fad485ed",
+              "08dc43663ccca8ea"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=14/sensores_leitura-20260814.parquet": {
+            "registros": 1143,
+            "lotes": 97,
+            "amostra_lotes": [
+              "02c4dc69021c69d2",
+              "09f0b9b1372f1118",
+              "0bf5ac174b6a4709"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=15/sensores_leitura-20260815.parquet": {
+            "registros": 1143,
+            "lotes": 97,
+            "amostra_lotes": [
+              "0598011b3c51007e",
+              "06ff36ef5690aa32",
+              "07f40c70d26c0034"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=16/sensores_leitura-20260816.parquet": {
+            "registros": 1149,
+            "lotes": 97,
+            "amostra_lotes": [
+              "01b540677b1d84cd",
+              "04a7736c3d8bdd75",
+              "0517e5a1a3708839"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=17/sensores_leitura-20260817.parquet": {
+            "registros": 1144,
+            "lotes": 98,
+            "amostra_lotes": [
+              "025e3e3d92f6fd3d",
+              "0528a1ecf1281681",
+              "09227ff149b15c94"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=18/sensores_leitura-20260818.parquet": {
+            "registros": 1149,
+            "lotes": 97,
+            "amostra_lotes": [
+              "002c3b0b9eaf638d",
+              "00abbeecfb8bc05d",
+              "01712185e8d486db"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=19/sensores_leitura-20260819.parquet": {
+            "registros": 1148,
+            "lotes": 96,
+            "amostra_lotes": [
+              "0019aace71856df0",
+              "01c8809e2efd14c6",
+              "06787dd34c2955c9"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=20/sensores_leitura-20260820.parquet": {
+            "registros": 1145,
+            "lotes": 96,
+            "amostra_lotes": [
+              "04ede9bc2af6df10",
+              "069dd46a7c1e4da8",
+              "086b021ff7c20382"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=21/sensores_leitura-20260821.parquet": {
+            "registros": 1052,
+            "lotes": 96,
+            "amostra_lotes": [
+              "01d097edb4d8e795",
+              "05a68a508f68b7e3",
+              "062e3e92f92c36b5"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=22/sensores_leitura-20260822.parquet": {
+            "registros": 1049,
+            "lotes": 97,
+            "amostra_lotes": [
+              "0043ad4551408c66",
+              "0161635685f326b1",
+              "032683bc59955dbe"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=23/sensores_leitura-20260823.parquet": {
+            "registros": 1048,
+            "lotes": 96,
+            "amostra_lotes": [
+              "02ea1001e450fd8a",
+              "033d05c4281fd464",
+              "0498ac080e750417"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=24/sensores_leitura-20260824.parquet": {
+            "registros": 1053,
+            "lotes": 97,
+            "amostra_lotes": [
+              "04bc31aabb65092d",
+              "05aa032eb14d1905",
+              "0b25d37118a33ff7"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=25/sensores_leitura-20260825.parquet": {
+            "registros": 1054,
+            "lotes": 96,
+            "amostra_lotes": [
+              "02134ba586c33f2c",
+              "03822205583fd279",
+              "063762e2f4170566"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=26/sensores_leitura-20260826.parquet": {
+            "registros": 1148,
+            "lotes": 96,
+            "amostra_lotes": [
+              "0ac095589721472f",
+              "0cdc2c0af3627288",
+              "17f1f20d5b0e1767"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=27/sensores_leitura-20260827.parquet": {
+            "registros": 1147,
+            "lotes": 96,
+            "amostra_lotes": [
+              "0283b3c760ee8279",
+              "0a280cafa3ad4b07",
+              "11a1ef6316ad413f"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=28/sensores_leitura-20260828.parquet": {
+            "registros": 1147,
+            "lotes": 98,
+            "amostra_lotes": [
+              "05386a76effa3936",
+              "053ff6fac343136e",
+              "057cd2267ec32c0c"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=29/sensores_leitura-20260829.parquet": {
+            "registros": 1146,
+            "lotes": 97,
+            "amostra_lotes": [
+              "05386a76effa3936",
+              "0618217f1b4994ad",
+              "07ec245885fbca32"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=30/sensores_leitura-20260830.parquet": {
+            "registros": 1145,
+            "lotes": 99,
+            "amostra_lotes": [
+              "053a6352c4f6a747",
+              "07251387a70c928d",
+              "0b3d7f8cbd7f0c7d"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=08/dia=31/sensores_leitura-20260831.parquet": {
+            "registros": 1146,
+            "lotes": 96,
+            "amostra_lotes": [
+              "051a989cbaef45e4",
+              "0b72ef86cc3fcbd3",
+              "0e74bbc7c9d874bc"
+            ]
+          },
+          "sensores_leitura/ano=2026/mes=09/dia=01/sensores_leitura-20260901.parquet": {
+            "registros": 142,
+            "lotes": 12,
+            "amostra_lotes": [
+              "1c37a2fe93d44046",
+              "30fa40d6653743f3",
+              "3ea0e45d77768789"
+            ]
+          }
+        },
+        "primeiro_evento": "2026-08-02 00:00:00+00:00",
+        "ultimo_evento": "2026-09-01 02:45:00+00:00"
+      },
+      "quarentena": {
+        "existe": true,
+        "registros": 391,
+        "colunas": 21,
+        "arquivos": 1,
+        "bytes": 23340,
+        "particoes": [
+          "ano=2026/mes=09/dia=03"
+        ],
+        "schema": {
+          "sensor_id": "String",
+          "talhao_id": "String",
+          "medido_em": "Datetime(time_unit='us', time_zone='UTC')",
+          "umidade_solo_pct": "Float64",
+          "temperatura_solo_c": "Float64",
+          "temperatura_ar_c": "Float64",
+          "umidade_ar_pct": "Float64",
+          "condutividade_ds_m": "Float64",
+          "ph": "Float64",
+          "bateria_pct": "Float64",
+          "rssi_dbm": "Int64",
+          "_batch_id": "String",
+          "_ingested_at": "Datetime(time_unit='us', time_zone='UTC')",
+          "_janela_fim": "Datetime(time_unit='us', time_zone='UTC')",
+          "_particao": "Date",
+          "_schema_version": "String",
+          "_versao_lote": "Int64",
+          "_linha": "Int64",
+          "_falha_tipagem": "List(String)",
+          "_regras_violadas": "List(String)",
+          "_motivo": "String"
+        },
+        "lotes_distintos": 358,
+        "linhagem_por_arquivo": {
+          "sensores/ano=2026/mes=09/dia=03/sensores-20260903.parquet": {
+            "registros": 391,
+            "lotes": 358,
+            "amostra_lotes": [
+              "01c8809e2efd14c6",
+              "05386a76effa3936",
+              "057cd2267ec32c0c"
+            ]
+          }
+        }
+      },
+      "linhagem": {
+        "bronze_lotes": 2892,
+        "silver_tabela": "sensores_leitura",
+        "gold_tabelas": [
+          "dim_sensor",
+          "fato_leitura_diaria_talhao",
+          "fato_balanco_hidrico"
+        ]
+      },
+      "retencao_dias": {
+        "bronze_dias": 90,
+        "silver_dias": 730,
+        "gold_dias": null
+      }
+    }
+  },
+  "gold": {
+    "dim_fenologia": {
+      "grao": "um estádio por cultura (ou um mês, para perenes)",
+      "descricao": "Estádios fenológicos com coeficiente de cultura Kc (FAO-56). Vem do conhecimento agronômico compartilhado, não de uma fonte ingerida.",
+      "fontes_silver": [],
+      "existe": true,
+      "registros": 48,
+      "colunas": 7,
+      "arquivos": 1,
+      "bytes": 3112,
+      "particoes": [],
+      "schema": {
+        "cultura": "String",
+        "estadio": "String",
+        "dia_inicio": "Int64",
+        "dia_fim": "Int64",
+        "mes": "Int64",
+        "kc": "Float64",
+        "perene": "Boolean"
+      }
+    },
+    "dim_talhao": {
+      "grao": "um talhão",
+      "descricao": "Cadastro vigente dos talhões: a versão mais recente e válida do ERP.",
+      "fontes_silver": [
+        "erp_talhoes"
+      ],
+      "existe": true,
+      "registros": 6,
+      "colunas": 16,
+      "arquivos": 1,
+      "bytes": 6394,
+      "particoes": [],
+      "schema": {
+        "talhao_id": "String",
+        "fazenda_id": "String",
+        "nome": "String",
+        "area_ha": "Float64",
+        "cultura": "String",
+        "variedade": "String",
+        "data_plantio": "Date",
+        "data_colheita_prevista": "Date",
+        "latitude": "Float64",
+        "longitude": "Float64",
+        "tipo_solo": "String",
+        "sistema_irrigacao": "String",
+        "capacidade_campo_pct": "Float64",
+        "ponto_murcha_pct": "Float64",
+        "irrigado": "Boolean",
+        "cadastro_atualizado_em": "Datetime(time_unit='us', time_zone='UTC')"
+      }
+    },
+    "dim_fazenda": {
+      "grao": "uma fazenda",
+      "descricao": "Fazendas com sua estação meteorológica de referência e totais de área.",
+      "fontes_silver": [
+        "erp_talhoes",
+        "clima_diario"
+      ],
+      "existe": true,
+      "registros": 2,
+      "colunas": 5,
+      "arquivos": 1,
+      "bytes": 2077,
+      "particoes": [],
+      "schema": {
+        "fazenda_id": "String",
+        "estacao_id": "String",
+        "qtd_talhoes": "Int64",
+        "area_total_ha": "Float64",
+        "culturas": "String"
+      }
+    },
+    "dim_estacao": {
+      "grao": "uma estação meteorológica",
+      "descricao": "Estações observadas e a cobertura temporal de cada uma.",
+      "fontes_silver": [
+        "clima_diario"
+      ],
+      "existe": true,
+      "registros": 2,
+      "colunas": 6,
+      "arquivos": 1,
+      "bytes": 2331,
+      "particoes": [],
+      "schema": {
+        "estacao_id": "String",
+        "fazenda_id": "String",
+        "dias_observados": "Int64",
+        "primeiro_dia": "Date",
+        "ultimo_dia": "Date",
+        "chuva_total_mm": "Float64"
+      }
+    },
+    "dim_sensor": {
+      "grao": "um sensor de campo",
+      "descricao": "Inventário dos sensores a partir do que publicaram: cobertura, bateria e sinal.",
+      "fontes_silver": [
+        "sensores_leitura"
+      ],
+      "existe": true,
+      "registros": 12,
+      "colunas": 12,
+      "arquivos": 1,
+      "bytes": 5114,
+      "particoes": [],
+      "schema": {
+        "sensor_id": "String",
+        "talhao_id": "String",
+        "primeira_leitura": "Datetime(time_unit='us', time_zone='UTC')",
+        "ultima_leitura": "Datetime(time_unit='us', time_zone='UTC')",
+        "leituras": "Int64",
+        "dias_com_leitura": "Int64",
+        "bateria_ultima_pct": "Float64",
+        "bateria_min_pct": "Float64",
+        "rssi_medio_dbm": "Float64",
+        "leituras_com_alerta": "Decimal(precision=38, scale=0)",
+        "leituras_bateria_baixa": "Decimal(precision=38, scale=0)",
+        "leituras_sinal_fraco": "Decimal(precision=38, scale=0)"
+      }
+    },
+    "fato_clima_diario": {
+      "grao": "uma estação em um dia",
+      "descricao": "Observação meteorológica diária, pronta para junção por fazenda.",
+      "fontes_silver": [
+        "clima_diario"
+      ],
+      "existe": true,
+      "registros": 57,
+      "colunas": 13,
+      "arquivos": 1,
+      "bytes": 6124,
+      "particoes": [],
+      "schema": {
+        "estacao_id": "String",
+        "fazenda_id": "String",
+        "data": "Date",
+        "temp_min_c": "Float64",
+        "temp_max_c": "Float64",
+        "temp_media_c": "Float64",
+        "umidade_relativa_pct": "Float64",
+        "precipitacao_mm": "Float64",
+        "velocidade_vento_ms": "Float64",
+        "radiacao_mj_m2": "Float64",
+        "eto_mm": "Float64",
+        "dia_chuvoso": "Boolean",
+        "origem_api": "String"
+      }
+    },
+    "fato_leitura_diaria_talhao": {
+      "grao": "um talhão em um dia",
+      "descricao": "Agregação diária das leituras de sensores por talhão, com cobertura e alertas.",
+      "fontes_silver": [
+        "sensores_leitura"
+      ],
+      "existe": true,
+      "registros": 186,
+      "colunas": 18,
+      "arquivos": 1,
+      "bytes": 12786,
+      "particoes": [],
+      "schema": {
+        "talhao_id": "String",
+        "dia": "Date",
+        "n_leituras": "Int64",
+        "n_sensores_ativos": "Int64",
+        "umidade_media_pct": "Float64",
+        "umidade_min_pct": "Float64",
+        "umidade_max_pct": "Float64",
+        "temp_solo_media_c": "Float64",
+        "temp_ar_min_c": "Float64",
+        "temp_ar_max_c": "Float64",
+        "umidade_ar_media_pct": "Float64",
+        "condutividade_media_ds_m": "Float64",
+        "ph_medio": "Float64",
+        "bateria_min_pct": "Float64",
+        "rssi_medio_dbm": "Float64",
+        "leituras_esperadas": "Int64",
+        "cobertura_pct": "Float64",
+        "leituras_com_alerta": "Decimal(precision=38, scale=0)"
+      }
+    },
+    "fato_balanco_hidrico": {
+      "grao": "um talhão em um dia",
+      "descricao": "Balanço hídrico diário: clima da fazenda, Kc do estádio, irrigação lançada e umidade medida, com fração de água disponível, déficit e sinal de irrigação. É a tabela que o copiloto lê para recomendar.",
+      "fontes_silver": [
+        "erp_talhoes",
+        "clima_diario",
+        "erp_operacoes",
+        "sensores_leitura"
+      ],
+      "existe": true,
+      "registros": 186,
+      "colunas": 17,
+      "arquivos": 1,
+      "bytes": 9852,
+      "particoes": [],
+      "schema": {
+        "talhao_id": "String",
+        "dia": "Date",
+        "dap": "Int64",
+        "estadio": "String",
+        "kc": "Float64",
+        "precipitacao_mm": "Float64",
+        "eto_mm": "Float64",
+        "etc_mm": "Float64",
+        "irrigacao_mm": "Float64",
+        "umidade_media_pct": "Float64",
+        "fracao_agua_disponivel": "Float64",
+        "deficit_mm": "Float64",
+        "estresse_hidrico": "Boolean",
+        "recomenda_irrigar": "Boolean",
+        "dias_desde_irrigacao": "Int64",
+        "irrigado": "Boolean",
+        "clima_disponivel": "Boolean"
+      }
+    },
+    "fato_ndvi_talhao": {
+      "grao": "uma cena (drone ou satélite) de um talhão",
+      "descricao": "Índice de vegetação por cena, com confiança pela cobertura de nuvem e variação em relação à cena anterior da mesma plataforma.",
+      "fontes_silver": [
+        "imagens_ndvi_meta"
+      ],
+      "existe": true,
+      "registros": 59,
+      "colunas": 15,
+      "arquivos": 1,
+      "bytes": 8606,
+      "particoes": [],
+      "schema": {
+        "imagem_id": "String",
+        "talhao_id": "String",
+        "dia": "Date",
+        "capturada_em": "Datetime(time_unit='us', time_zone='UTC')",
+        "plataforma": "String",
+        "ndvi_medio": "Float64",
+        "ndvi_min": "Float64",
+        "ndvi_max": "Float64",
+        "ndvi_desvio": "Float64",
+        "nuvem_pct": "Float64",
+        "confianca": "String",
+        "variacao_vs_anterior": "Float64",
+        "area_analisada_ha": "Float64",
+        "arquivo_bruto": "String",
+        "com_alerta_dq": "Boolean"
+      }
+    },
+    "fato_operacao_custo": {
+      "grao": "uma operação de campo",
+      "descricao": "Operações vigentes (última versão do ERP) com custo por hectare. O responsável já está pseudonimizado desde o silver.",
+      "fontes_silver": [
+        "erp_operacoes",
+        "erp_talhoes"
+      ],
+      "existe": true,
+      "registros": 40,
+      "colunas": 11,
+      "arquivos": 1,
+      "bytes": 5608,
+      "particoes": [],
+      "schema": {
+        "operacao_id": "String",
+        "talhao_id": "String",
+        "data": "Date",
+        "tipo_operacao": "String",
+        "insumo": "String",
+        "quantidade": "Float64",
+        "unidade": "String",
+        "custo_brl": "Float64",
+        "custo_brl_ha": "Float64",
+        "responsavel_id": "String",
+        "observacao": "String"
+      }
+    },
+    "fato_custo_diario_talhao": {
+      "grao": "um talhão, um dia, um tipo de operação",
+      "descricao": "Custo agregado por dia e tipo, para o relatório executivo e o rateio por hectare.",
+      "fontes_silver": [
+        "erp_operacoes",
+        "erp_talhoes"
+      ],
+      "existe": true,
+      "registros": 40,
+      "colunas": 6,
+      "arquivos": 1,
+      "bytes": 2712,
+      "particoes": [],
+      "schema": {
+        "talhao_id": "String",
+        "dia": "Date",
+        "tipo_operacao": "String",
+        "operacoes": "Int64",
+        "custo_brl": "Float64",
+        "custo_brl_ha": "Float64"
+      }
+    },
+    "fato_fertilidade_talhao": {
+      "grao": "um laudo de solo",
+      "descricao": "Resultados analíticos com interpretação: classe de saturação por bases e necessidade de calagem (método da saturação por bases, PRNT 100 %).",
+      "fontes_silver": [
+        "laudos_solo",
+        "erp_talhoes"
+      ],
+      "existe": true,
+      "registros": 6,
+      "colunas": 17,
+      "arquivos": 1,
+      "bytes": 7034,
+      "particoes": [],
+      "schema": {
+        "laudo_id": "String",
+        "talhao_id": "String",
+        "coletado_em": "Date",
+        "emitido_em": "Date",
+        "profundidade_cm": "String",
+        "ph_cacl2": "Float64",
+        "materia_organica_g_dm3": "Float64",
+        "fosforo_mg_dm3": "Float64",
+        "potassio_mmolc_dm3": "Float64",
+        "calcio_mmolc_dm3": "Float64",
+        "magnesio_mmolc_dm3": "Float64",
+        "ctc_mmolc_dm3": "Float64",
+        "saturacao_bases_pct": "Float64",
+        "classe_saturacao": "String",
+        "necessidade_calagem_t_ha": "Float64",
+        "classe_fosforo": "String",
+        "arquivo_bruto": "String"
+      }
+    },
+    "benchmark_regional": {
+      "grao": "uma cultura",
+      "descricao": "Agregado por cultura para o produto de dados externo (degrau 3 do modelo de negócio). Não contém identificador de talhão, fazenda, pessoa nem coordenada; só é publicável quando o grupo tem pelo menos 3 talhões.",
+      "fontes_silver": [
+        "erp_talhoes",
+        "fato_balanco_hidrico",
+        "fato_ndvi_talhao",
+        "fato_operacao_custo"
+      ],
+      "existe": true,
+      "registros": 5,
+      "colunas": 11,
+      "arquivos": 1,
+      "bytes": 4129,
+      "particoes": [],
+      "schema": {
+        "cultura": "String",
+        "n_talhoes": "Int64",
+        "area_total_ha": "Float64",
+        "umidade_media_pct": "Float64",
+        "fad_media": "Float64",
+        "dias_estresse_pct": "Float64",
+        "irrigacao_mm_media_talhao": "Float64",
+        "chuva_mm_media": "Float64",
+        "ndvi_medio": "Float64",
+        "custo_brl_ha": "Float64",
+        "publicavel": "Boolean"
+      }
+    },
+    "fato_alerta_qualidade": {
+      "grao": "um alerta de qualidade (por regra ou por entidade)",
+      "descricao": "Alertas do último relatório de qualidade, prontos para o dashboard e para o Context Pack do copiloto: regras de alerta acionadas por fonte e alertas de frescor por entidade (sensor atrasado, lacuna na série).",
+      "fontes_silver": [],
+      "existe": true,
+      "registros": 6,
+      "colunas": 7,
+      "arquivos": 1,
+      "bytes": 3116,
+      "particoes": [],
+      "schema": {
+        "fonte": "String",
+        "regra": "String",
+        "tipo": "String",
+        "subtipo": "String",
+        "entidade": "String",
+        "quantidade": "Int64",
+        "detalhe": "String"
+      }
+    }
+  },
+  "duracao_s": 1.74
+}

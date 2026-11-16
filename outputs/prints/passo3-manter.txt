@@ -1,0 +1,19 @@
+﻿12:54:34 INFO     clima_diario/ano=2026/mes=08: 30 arquivos → 1 · 57 registros · 174 KB → 8 KB                                                       
+12:54:35 INFO     erp_operacoes/ano=2026/mes=08: 25 arquivos → 1 · 40 registros · 147 KB → 7 KB                                                      
+12:54:35 INFO     imagens_ndvi_meta/ano=2026/mes=08: 9 arquivos → 1 · 59 registros · 83 KB → 14 KB                                                   
+12:54:35 INFO     laudos_solo/ano=2026/mes=07: 5 arquivos → 1 · 6 registros · 45 KB → 10 KB                                                          
+12:54:35 INFO     sensores_leitura/ano=2026/mes=08: 30 arquivos → 1 · 33898 registros · 666 KB → 455 KB                                              
+12:54:35 INFO     [compactacao] 5 partições compactadas · particoes=5 arquivos_removidos=94                                                          
+12:54:36 INFO     retenção: 6213 objetos avaliados · 0 expirados · simulação (nada removido)                                                         
+12:54:36 INFO     [retencao_simulada] 0 objetos além da retenção · avaliados=6213 expirados=0 removidos=0                                            
+                                      Compactação do silver                                       
+                                                                                                  
+  partição                            arquivos antes   depois   registros   KB antes   KB depois  
+ ──────────────────────────────────────────────────────────────────────────────────────────────── 
+  clima_diario/ano=2026/mes=08                    30        1          57        174           8  
+  erp_operacoes/ano=2026/mes=08                   25        1          40        147           7  
+  imagens_ndvi_meta/ano=2026/mes=08                9        1          59         83          14  
+  laudos_solo/ano=2026/mes=07                      5        1           6         45          10  
+  sensores_leitura/ano=2026/mes=08                30        1      33,898        666         455  
+                                                                                                  
+retenção simulada em 2026-09-01: 6213 objetos avaliados · 0 além da retenção · 0 removidos

@@ -1,0 +1,16 @@
+$ docker compose -f infra/docker-compose.yml up -d mosquitto
+docker :  Container agrosmart-mosquitto  Running
+No C:\Users\lmhsilva\AppData\Local\Temp\claude\C--Users-lmhsilva-Projetos-StartupOne\f6a65157-5d50-471e-86f3-c1f77a65ce
+e8\scratchpad\agro_iot\demo_fase6.ps1:29 caractere:12
++ $texto += (docker compose -f infra/docker-compose.yml up -d mosquitto ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container agrosmart-mosquitto  Running:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+$ docker compose -f infra/docker-compose.yml ps mosquitto
+NAME                  IMAGE                 COMMAND                  SERVICE     CREATED          STATUS                    PORTS
+agrosmart-mosquitto   eclipse-mosquitto:2   "/docker-entrypoint.…"   mosquitto   16 minutes ago   Up 16 minutes (healthy)   0.0.0.0:1883->1883/tcp
+
+$ docker inspect --format '{{.State.Health.Status}}' agrosmart-mosquitto
+healthy

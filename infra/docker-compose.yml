@@ -1,0 +1,106 @@
+# ---------------------------------------------------------------------------
+# AgroSmart Fase 5 - infraestrutura local do Data Lake
+#
+#   docker compose -f infra/docker-compose.yml up -d
+#
+# Sobe um object store S3-compatível (MinIO) e um serviço efêmero de bootstrap
+# que cria os buckets das camadas, liga versionamento na camada bruta e aplica
+# as políticas de ciclo de vida.
+#
+# Nota de engenharia: em produção as imagens seriam fixadas por digest. Aqui a
+# tag flutuante é deliberada - garante que `docker compose up` funcione na
+# máquina de qualquer avaliador sem depender de uma release específica ainda
+# publicada no registry.
+# ---------------------------------------------------------------------------
+name: agrosmart
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: agrosmart-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${AGROSMART_MINIO_ACCESS_KEY:-agrosmart}
+      MINIO_ROOT_PASSWORD: ${AGROSMART_MINIO_SECRET_KEY:-agrosmart123}
+      MINIO_REGION: ${AGROSMART_MINIO_REGION:-us-east-1}
+      # Rótulos da console, só para a demonstração ficar legível em print.
+      MINIO_BROWSER_REDIRECT_URL: http://localhost:9001
+    ports:
+      - "9000:9000"   # API S3  -> usada pelo pipeline
+      - "9001:9001"   # Console -> http://localhost:9001 (prints da entrega)
+    volumes:
+      - minio-dados:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+      start_period: 5s
+    restart: unless-stopped
+
+  # Serviço de bootstrap: roda uma vez, cria a topologia do lake e encerra.
+  # É a versão executável do diagrama de arquitetura da Entrega 1.
+  bootstrap:
+    image: minio/mc:latest
+    container_name: agrosmart-bootstrap
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MC_HOST_lake: http://${AGROSMART_MINIO_ACCESS_KEY:-agrosmart}:${AGROSMART_MINIO_SECRET_KEY:-agrosmart123}@minio:9000
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -e
+        echo "==> criando buckets das camadas do Data Lake"
+        for camada in bronze silver gold quarentena; do
+          mc mb --ignore-existing "lake/agrosmart-$$camada"
+        done
+
+        echo "==> camada bruta e quarentena: versionamento ligado"
+        # Bronze é append-only e imutável por contrato. O versionamento é a
+        # rede de segurança contra sobrescrita acidental durante backfill.
+        mc version enable lake/agrosmart-bronze
+        mc version enable lake/agrosmart-quarentena
+
+        echo "==> ciclo de vida (retencao por camada)"
+        # Bronze: 90 dias em quente. Em nuvem, a regra seria uma transição para
+        # storage class fria; MinIO local não tem tier remoto configurado, então
+        # aplicamos expiração de versões antigas e documentamos a intenção.
+        mc ilm rule add --noncurrent-expire-days 90 lake/agrosmart-bronze 2>/dev/null \
+          || mc ilm add --noncurrentversion-expiration-days 90 lake/agrosmart-bronze 2>/dev/null \
+          || echo "    (aviso) regra de ciclo de vida do bronze nao aplicada nesta versao do mc"
+        # Quarentena: 30 dias. Registro reprovado precisa ser investigado dentro
+        # de um mês; depois disso, o backfill do bronze reconstrói o que faltar.
+        mc ilm rule add --expire-days 30 lake/agrosmart-quarentena 2>/dev/null \
+          || mc ilm add --expiry-days 30 lake/agrosmart-quarentena 2>/dev/null \
+          || echo "    (aviso) regra de ciclo de vida da quarentena nao aplicada nesta versao do mc"
+
+        echo "==> topologia final"
+        mc ls lake
+        echo "==> bootstrap concluido"
+    restart: "no"
+
+  # --- Fase 6: broker MQTT da coleta IoT ------------------------------------
+  # Os dispositivos (ESP32 no Wokwi ou `agrosmart dispositivo`) publicam aqui;
+  # `agrosmart coletar-mqtt` assina e materializa a landing. Independente do
+  # MinIO: sobe sozinho com `docker compose -f infra/docker-compose.yml up -d mosquitto`.
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: agrosmart-mosquitto
+    ports:
+      - "1883:1883"   # MQTT sem TLS -> só localhost, demonstração
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    healthcheck:
+      # $SYS/broker/version é retido: a assinatura responde na hora se o broker está de pé.
+      test: ["CMD", "mosquitto_sub", "-h", "localhost", "-p", "1883", "-t", "$$SYS/broker/version", "-C", "1", "-W", "5"]
+      interval: 5s
+      timeout: 6s
+      retries: 12
+      start_period: 3s
+    restart: unless-stopped
+
+volumes:
+  minio-dados:
+    name: agrosmart-minio-dados

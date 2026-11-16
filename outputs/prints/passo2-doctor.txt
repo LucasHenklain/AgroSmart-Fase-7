@@ -1,0 +1,16 @@
+﻿
+┌──────────────────────────────────────────────────────────── agrosmart doctor · v5.0.0 ────────────────────────────────────────────────────────────┐
+│                                                                                                                                                   │
+│       verificação           detalhe                                                                                                               │
+│  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────             │
+│  ✔    configuração          backend=minio · seed=20260905 · talhões=6                                                                             │
+│  ✔    dependência polars    1.44.1 · processamento                                                                                                │
+│  ✔    dependência duckdb    1.5.5 · consultas SQL sobre Parquet                                                                                   │
+│  ✔    dependência pyarrow   25.0.1 · escrita Parquet                                                                                              │
+│  ✔    dependência boto3     1.43.87 · cliente S3/MinIO                                                                                            │
+│  ✔    dependência PIL       12.3.0 · imagens                                                                                                      │
+│  ✔    contratos             6 fontes · 58 regras · ordem: erp_talhoes → clima → erp_operacoes → imagens_ndvi → laudos_solo → sensores             │
+│  ✔    lake (minio)          objetos por camada: bronze=6230 · silver=0 · gold=0 · quarentena=0 · 18.1 ms                                          │
+│  !    ia generativa         sem ANTHROPIC_API_KEY — copiloto rodará em modo regras/mock                                                           │
+│                                                                                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘

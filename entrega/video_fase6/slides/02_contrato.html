@@ -1,0 +1,39 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Arquitetura · a fronteira é o contrato de dados</div>
+  <h2>contratos/sensores.v1.yaml — uma fonte única gera coletor, qualidade, catálogo e dicionário</h2>
+  <div class="grid2">
+    <pre class="term"><span class="d"># contrato da fonte IoT</span>
+<span class="k">fonte:</span> sensores        <span class="k">versao:</span> v1
+<span class="k">ingestao:</span>
+  <span class="k">modo:</span> streaming
+  <span class="k">origem:</span> mqtt://…/agrosmart/sensores/+/leitura
+  <span class="k">formato_bruto:</span> jsonl   <span class="k">janela:</span> 15 minutos
+<span class="k">chave_natural:</span> [sensor_id, medido_em]
+<span class="k">dedup:</span> evento
+<span class="k">campos:</span> sensor_id · talhao_id · medido_em
+         umidade_solo_pct · temperatura_solo_c
+         temperatura_ar_c · umidade_ar_pct
+         condutividade_ds_m · ph · bateria_pct · rssi_dbm
+<span class="k">qualidade:</span> SEN-01 … SEN-12
+  <span class="d">nao_nulo · unicidade · regex · intervalo · não-futuro · frescor</span></pre>
+    <div class="card">
+      <h3>O que não mudou da Fase 5 para a 6</h3>
+      <ul>
+        <li>ColetorStreaming: lê os mesmos <b>leituras_&lt;janela&gt;.jsonl</b></li>
+        <li>Bronze imutável com manifest e checksum</li>
+        <li>Silver: 12 regras, quarentena com motivo, dedup</li>
+        <li>Gold: balanço hídrico, cobertura, dimensões</li>
+        <li>Copiloto de IA com guardrails</li>
+      </ul>
+      <h3 style="margin-top:28px">O que entrou</h3>
+      <ul>
+        <li>Firmware ESP32 (Wokwi) + broker Mosquitto</li>
+        <li><b>agrosmart coletar-mqtt</b> e <b>agrosmart dispositivo</b></li>
+        <li><b>agrosmart automacao</b> → ações → comando MQTT</li>
+        <li>Aba <b>Automação</b> no dashboard</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"><span>docs/fase6/01-arquitetura-integrada.md · docs/diagramas/arquitetura-fase6.svg</span><span>AgroSmart · Fase 6</span></div>
+</div></body></html>

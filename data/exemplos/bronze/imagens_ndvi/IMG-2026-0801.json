@@ -1,0 +1,16 @@
+{
+  "imagem_id": "IMG-2026-0801",
+  "talhao_id": "TLH-01",
+  "capturada_em": "2026-08-03T13:24:00Z",
+  "plataforma": "satelite",
+  "largura_px": 160,
+  "altura_px": 120,
+  "altitude_m": 786000.0,
+  "resolucao_cm_px": 1000.0,
+  "nuvem_pct": 35.5,
+  "ndvi_medio": 0.764,
+  "ndvi_min": 0.561,
+  "ndvi_max": 0.874,
+  "ndvi_desvio": 0.052,
+  "area_analisada_ha": 14.64
+}

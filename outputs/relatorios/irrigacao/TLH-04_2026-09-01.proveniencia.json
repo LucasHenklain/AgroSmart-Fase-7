@@ -1,0 +1,59 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "irrigacao",
+  "talhao_id": "TLH-04",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "baixa",
+  "tipos": [
+    "monitoramento"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.0,
+  "saida": {
+    "caso": "irrigacao",
+    "talhao_id": "TLH-04",
+    "diagnostico": "Talhão TLH-04 (trigo TBIO Sonic, 22,0 ha, aspersao) em maturacao, 114 dias após o plantio. Umidade média de 28,2 % em 2026-09-01, fração de água disponível 0,833, déficit de 8,5 mm. Nos últimos 14 dias: 9,0 mm de chuva, 34,6 mm de ETc, 23,0 mm irrigados, 0 dia(s) em estresse.",
+    "recomendacoes": [
+      {
+        "prioridade": "baixa",
+        "tipo": "monitoramento",
+        "acao": "Manter o manejo atual do talhão TLH-04",
+        "detalhe": "Fração de água disponível em 0,833, acima do limiar de 0,50; umidade média de 28,2 % e 23,0 mm irrigados em 14 dias. Nenhuma ação de irrigação necessária hoje.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "hidrico.fracao_agua_disponivel_atual",
+          "hidrico.umidade_atual_pct"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "serie_hidrica_14d",
+      "limiares.fracao_irrigacao",
+      "sensores"
+    ]
+  },
+  "saida_rejeitada": null
+}

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "author": "AgroSmart · 4ESOA · Fase 6",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -120,
+      "left": -170,
+      "attrs": { "temperature": "27.1", "humidity": "58" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_solo",
+      "top": 60,
+      "left": -190,
+      "attrs": { "value": "420" }
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc_solo",
+      "top": 170,
+      "left": -190,
+      "attrs": { "temperature": "24.8" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr",
+      "top": -120,
+      "left": 230,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_bateria",
+      "top": 60,
+      "left": 250,
+      "attrs": { "value": "860" }
+    },
+    { "type": "wokwi-resistor", "id": "r_verde", "top": 190, "left": 230, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-led",
+      "id": "led_irrigacao",
+      "top": 170,
+      "left": 320,
+      "attrs": { "color": "green", "label": "irrigação" }
+    },
+    { "type": "wokwi-resistor", "id": "r_vermelho", "top": 250, "left": 230, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-led",
+      "id": "led_bateria",
+      "top": 230,
+      "left": 320,
+      "attrs": { "color": "red", "label": "bateria" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+
+    [ "dht:VCC", "esp:3V3", "red", [] ],
+    [ "dht:GND", "esp:GND.1", "black", [] ],
+    [ "dht:SDA", "esp:4", "green", [] ],
+
+    [ "pot_solo:VCC", "esp:3V3", "red", [] ],
+    [ "pot_solo:GND", "esp:GND.1", "black", [] ],
+    [ "pot_solo:SIG", "esp:34", "blue", [] ],
+
+    [ "ntc_solo:VCC", "esp:3V3", "red", [] ],
+    [ "ntc_solo:GND", "esp:GND.1", "black", [] ],
+    [ "ntc_solo:OUT", "esp:35", "orange", [] ],
+
+    [ "ldr:VCC", "esp:3V3", "red", [] ],
+    [ "ldr:GND", "esp:GND.2", "black", [] ],
+    [ "ldr:AO", "esp:32", "gold", [] ],
+
+    [ "pot_bateria:VCC", "esp:3V3", "red", [] ],
+    [ "pot_bateria:GND", "esp:GND.2", "black", [] ],
+    [ "pot_bateria:SIG", "esp:33", "violet", [] ],
+
+    [ "esp:26", "r_verde:1", "green", [] ],
+    [ "r_verde:2", "led_irrigacao:A", "green", [] ],
+    [ "led_irrigacao:C", "esp:GND.2", "black", [] ],
+
+    [ "esp:27", "r_vermelho:1", "red", [] ],
+    [ "r_vermelho:2", "led_bateria:A", "red", [] ],
+    [ "led_bateria:C", "esp:GND.2", "black", [] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,60 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "fitossanitario",
+  "talhao_id": "TLH-06",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "media",
+  "tipos": [
+    "monitoramento"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "fitossanitario",
+    "talhao_id": "TLH-06",
+    "diagnostico": "Risco fitossanitário do talhão TLH-06 (cana, maturacao). Última semana: 7 dia(s) de clima, UR média 57,9 %, 1 dia(s) acima de 80,0 %, temperatura máxima média 29,2 °C, 1 dia(s) de chuva. Vegetação: NDVI 0,635 (confiança alta), variação de -0,199 em 30 dias, 1 de 10 cenas com nuvem alta.",
+    "recomendacoes": [
+      {
+        "prioridade": "media",
+        "tipo": "monitoramento",
+        "acao": "Vistoriar em campo a queda de vigor do talhão TLH-06",
+        "detalhe": "NDVI variou -0,199 em 30 dias (último 0,635, confiança alta) sem clima favorável a fungos: investigar estresse hídrico (10 dia(s) em estresse), praga ou deficiência nutricional.",
+        "janela_execucao": "próximos 3 dias",
+        "dados_usados": [
+          "vegetacao.variacao_30d",
+          "vegetacao.ndvi_ultimo",
+          "hidrico.dias_em_estresse_14d"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "clima_recente",
+      "vegetacao",
+      "cenas_ndvi_30d",
+      "custos.dias_desde_pulverizacao",
+      "limiares"
+    ]
+  },
+  "saida_rejeitada": null
+}

@@ -1,0 +1,159 @@
+﻿15:32:24 INFO     janela 2026-08-02 → 2026-08-31 · 30 dias · 6 talhões · 12    
+                  sensores · seed 20260905                                     
+15:32:24 INFO     erp_talhoes        31 arquivos ·     186 registros ·     34.2
+                  KB · 0.1s                                                    
+15:32:24 INFO     clima              60 arquivos ·      60 registros ·     58.2
+                  KB · 0.3s                                                    
+15:32:24 INFO     erp_operacoes      30 arquivos ·      49 registros ·      9.3
+                  KB · 0.0s                                                    
+15:32:28 INFO     sensores         2892 arquivos ·   34431 registros ·   8299.7
+                  KB · 3.2s                                                    
+15:32:33 INFO     imagens_ndvi      120 arquivos ·      60 registros ·    313.3
+                  KB · 4.7s                                                    
+15:32:33 INFO     laudos_solo        16 arquivos ·       8 registros ·     21.0
+                  KB · 0.0s                                                    
+15:32:33 INFO     [concluida] 6 fontes geradas em landing/ · arquivos=3149     
+                  registros=34794 defeitos=406 duracao_s=9.4                   
+15:32:33 INFO     etapa simular    ok       9.4s {'arquivos': 3149,            
+                  'registros': 34794, 'defeitos': 406}                         
+15:32:34 INFO     31 lote(s) descobertos em landing                            
+15:32:35 INFO     0 gravados · 0 atualizados · 31 pulados · 0 rejeitados · 0   
+                  registros · 0.2s                                             
+15:32:35 INFO     60 lote(s) descobertos em landing                            
+15:32:35 INFO     0 gravados · 0 atualizados · 60 pulados · 0 rejeitados · 0   
+                  registros · 0.4s                                             
+15:32:35 INFO     30 lote(s) descobertos em landing                            
+15:32:35 INFO     0 gravados · 0 atualizados · 30 pulados · 0 rejeitados · 0   
+                  registros · 0.2s                                             
+15:32:36 INFO     60 lote(s) descobertos em landing                            
+15:32:36 INFO     0 gravados · 0 atualizados · 60 pulados · 0 rejeitados · 0   
+                  registros · 1.1s                                             
+15:32:36 INFO     8 lote(s) descobertos em landing                             
+15:32:36 INFO     0 gravados · 0 atualizados · 8 pulados · 0 rejeitados · 0    
+                  registros · 0.1s                                             
+15:32:36 INFO     2892 lote(s) descobertos em landing                          
+15:32:57 INFO     0 gravados · 0 atualizados · 2892 pulados · 0 rejeitados · 0 
+                  registros · 20.5s                                            
+15:32:58 INFO     [concluida] 6 fontes · 3081 lotes · lotes=3081 gravados=0    
+                  atualizados=0 pulados=3081 rejeitados=0 registros=0          
+                  duracao_s=23.31                                              
+15:32:58 INFO     bronze com 6230 objetos · quarentena com 6                   
+15:32:58 INFO     etapa ingerir    ok      24.3s {'lotes': 3081, 'gravados': 0,
+                  'atualizados': 0, 'pulados': 3081, 'rejeitados': 0,          
+                  'objetos_bronze': 6230}                                      
+15:32:58 INFO     31 lotes · 186 registros lidos do bronze                     
+15:32:58 INFO     186 lidos → 6 aprovados · 1 quarentena (0 duplicatas) · 179  
+                  substituídos · 0 alertas de tabela                           
+15:32:58 INFO     [fonte_processada] erp_talhoes: 6 aprovados · 1 quarentena · 
+                  lidos=186 aprovados=6 quarentena=1 substituidos=179          
+                  arquivos=1 reconciliacao_ok=True                             
+15:32:59 INFO     60 lotes · 60 registros lidos do bronze                      
+15:32:59 INFO     60 lidos → 57 aprovados · 3 quarentena (0 duplicatas) · 0    
+                  substituídos · 1 alertas de tabela                           
+15:32:59 INFO     [fonte_processada] clima_diario: 57 aprovados · 3 quarentena 
+                  · lidos=60 aprovados=57 quarentena=3 substituidos=0          
+                  arquivos=30 reconciliacao_ok=True                            
+15:32:59 INFO     30 lotes · 49 registros lidos do bronze                      
+15:32:59 INFO     49 lidos → 40 aprovados · 7 quarentena (0 duplicatas) · 2    
+                  substituídos · 0 alertas de tabela                           
+15:33:00 INFO     [fonte_processada] erp_operacoes: 40 aprovados · 7 quarentena
+                  · lidos=49 aprovados=40 quarentena=7 substituidos=2          
+                  arquivos=25 reconciliacao_ok=True                            
+15:33:00 INFO     60 lotes · 60 registros lidos do bronze                      
+15:33:00 INFO     60 lidos → 59 aprovados · 1 quarentena (0 duplicatas) · 0    
+                  substituídos · 0 alertas de tabela                           
+15:33:00 INFO     [fonte_processada] imagens_ndvi_meta: 59 aprovados · 1       
+                  quarentena · lidos=60 aprovados=59 quarentena=1              
+                  substituidos=0 arquivos=9 reconciliacao_ok=True              
+15:33:00 INFO     8 lotes · 8 registros lidos do bronze                        
+15:33:00 INFO     8 lidos → 6 aprovados · 2 quarentena (0 duplicatas) · 0      
+                  substituídos · 0 alertas de tabela                           
+15:33:00 INFO     [fonte_processada] laudos_solo: 6 aprovados · 2 quarentena · 
+                  lidos=8 aprovados=6 quarentena=2 substituidos=0 arquivos=5   
+                  reconciliacao_ok=True                                        
+15:33:16 INFO     2892 lotes · 34431 registros lidos do bronze                 
+15:33:16 INFO     34431 lidos → 34040 aprovados · 391 quarentena (205          
+                  duplicatas) · 0 substituídos · 1 alertas de tabela           
+15:33:19 INFO     [fonte_processada] sensores_leitura: 34040 aprovados · 391   
+                  quarentena · lidos=34431 aprovados=34040 quarentena=391      
+                  substituidos=0 arquivos=31 reconciliacao_ok=True             
+15:33:19 INFO     silver: 34208 aprovados · 405 quarentena · 181 substituídos ·
+                  reconciliação ok · defeitos localizados 406/406              
+15:33:19 INFO     etapa silver     ok      21.0s {'lidos': 34794, 'aprovados': 
+                  34208, 'quarentena': 405, 'substituidos': 181,               
+                  'reconciliacao_ok': True, 'defeitos_localizados': '406/406', 
+                  'intervalo': None}                                           
+15:33:21 INFO     dim_fenologia                    48 linhas ·  7 colunas ·    
+                  3.0 KB                                                       
+15:33:21 INFO     dim_talhao                        6 linhas · 16 colunas ·    
+                  6.2 KB                                                       
+15:33:21 INFO     dim_fazenda                       2 linhas ·  5 colunas ·    
+                  2.0 KB                                                       
+15:33:21 INFO     dim_estacao                       2 linhas ·  6 colunas ·    
+                  2.3 KB                                                       
+15:33:21 INFO     dim_sensor                       12 linhas · 12 colunas ·    
+                  5.0 KB                                                       
+15:33:21 INFO     fato_clima_diario                57 linhas · 13 colunas ·    
+                  6.0 KB                                                       
+15:33:21 INFO     fato_leitura_diaria_talhao      186 linhas · 18 colunas ·    
+                  12.5 KB                                                      
+15:33:21 INFO     fato_balanco_hidrico            186 linhas · 17 colunas ·    
+                  9.6 KB                                                       
+15:33:21 INFO     fato_ndvi_talhao                 59 linhas · 15 colunas ·    
+                  8.4 KB                                                       
+15:33:21 INFO     fato_operacao_custo              40 linhas · 11 colunas ·    
+                  5.5 KB                                                       
+15:33:21 INFO     fato_custo_diario_talhao         40 linhas ·  6 colunas ·    
+                  2.6 KB                                                       
+15:33:21 INFO     fato_fertilidade_talhao           6 linhas · 17 colunas ·    
+                  6.9 KB                                                       
+15:33:21 INFO     benchmark_regional                5 linhas · 11 colunas ·    
+                  4.0 KB                                                       
+15:33:21 INFO     fato_alerta_qualidade             6 linhas ·  7 colunas ·    
+                  3.0 KB                                                       
+15:33:21 INFO     [concluida] 14 tabelas materializadas · tabelas=14 puladas=0 
+                  duracao_s=2.18                                               
+15:33:21 INFO     etapa gold       ok       2.2s {'tabelas': 14, 'puladas': 0} 
+15:33:23 INFO     catálogo: 6 fontes · 14 tabelas gold · 1.85s                 
+15:33:23 INFO     etapa catalogo   ok       1.9s {'fontes': 6, 'tabelas_gold': 
+                  14}                                                          
+15:33:24 WARNING  motor 'claude' pedido, mas indisponível — usando regras      
+15:33:24 INFO     TLH-01/irrigacao avaliado                                    
+15:33:24 INFO     TLH-01/fitossanitario avaliado                               
+15:33:24 INFO     TLH-01/executivo avaliado                                    
+15:33:24 INFO     TLH-02/irrigacao avaliado                                    
+15:33:24 INFO     TLH-02/fitossanitario avaliado                               
+15:33:24 INFO     TLH-02/executivo avaliado                                    
+15:33:24 INFO     TLH-03/irrigacao avaliado                                    
+15:33:24 INFO     TLH-03/fitossanitario avaliado                               
+15:33:24 INFO     TLH-03/executivo avaliado                                    
+15:33:24 INFO     TLH-04/irrigacao avaliado                                    
+15:33:24 INFO     TLH-04/fitossanitario avaliado                               
+15:33:24 INFO     TLH-04/executivo avaliado                                    
+15:33:24 INFO     TLH-05/irrigacao avaliado                                    
+15:33:24 INFO     TLH-05/fitossanitario avaliado                               
+15:33:24 INFO     TLH-05/executivo avaliado                                    
+15:33:24 INFO     TLH-06/irrigacao avaliado                                    
+15:33:24 INFO     TLH-06/fitossanitario avaliado                               
+15:33:24 INFO     TLH-06/executivo avaliado                                    
+15:33:24 INFO     etapa copiloto   ok       1.1s {'execucoes': 18, 'aprovadas':
+                  18, 'fallbacks': 0, 'motor_generativo': None, 'concordancia':
+                  None}                                                        
+15:33:24 INFO     [concluida] completo · 6 etapas ok · duracao_s=60.34 etapas=6
+                           agrosmart run · completo                            
+                                                                               
+  etapa      status      s   resumo                                            
+ ───────────────────────────────────────────────────────────────────────────── 
+  simular    ok        9.4   arquivos=3149 · registros=34794 · defeitos=406    
+  ingerir    ok       24.3   lotes=3081 · gravados=0 · atualizados=0 ·         
+                             pulados=3081 · rejeitados=0 ·                     
+                             objetos_bronze=6230                               
+  silver     ok       21.0   lidos=34794 · aprovados=34208 · quarentena=405 ·  
+                             substituidos=181 · reconciliacao_ok=True ·        
+                             defeitos_localizados=406/406 · intervalo=None     
+  gold       ok        2.2   tabelas=14 · puladas=0                            
+  catalogo   ok        1.9   fontes=6 · tabelas_gold=14                        
+  copiloto   ok        1.1   execucoes=18 · aprovadas=18 · fallbacks=0 ·       
+                             motor_generativo=None · concordancia=None         
+                                                                               
+✔ completo em 60.34s · resumo em outputs/run.json

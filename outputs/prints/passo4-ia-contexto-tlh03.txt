@@ -1,0 +1,470 @@
+﻿{
+  "versao": "context-pack.v1",
+  "gerado_em": "2026-09-03T16:57:08Z",
+  "instante_referencia": "2026-09-01T03:00:00Z",
+  "janela": {
+    "inicio": "2026-08-19",
+    "fim": "2026-09-01",
+    "dias": 14,
+    "hoje": "2026-09-01"
+  },
+  "talhao": {
+    "talhao_id": "TLH-03",
+    "nome": "Várzea Norte",
+    "fazenda_id": "FAZ-01",
+    "cultura": "feijao",
+    "variedade": "IPR Tangará",
+    "area_ha": 9.8,
+    "sistema_irrigacao": "aspersao",
+    "irrigado": true,
+    "tipo_solo": "nitossolo vermelho",
+    "data_plantio": "2026-07-20",
+    "dap_atual": 43,
+    "estadio_atual": "R7",
+    "kc_atual": 1.1,
+    "estadio_critico_para_agua": true,
+    "capacidade_campo_pct": 36.0,
+    "ponto_murcha_pct": 18.0
+  },
+  "hidrico": {
+    "ultimo_dia": "2026-09-01",
+    "umidade_atual_pct": 29.79,
+    "fracao_agua_disponivel_atual": 0.655,
+    "deficit_atual_mm": 18.6,
+    "recomenda_irrigar_hoje": false,
+    "estresse_hoje": false,
+    "dias_em_estresse_14d": 0,
+    "dias_com_recomendacao_14d": 0,
+    "chuva_14d_mm": 17.2,
+    "eto_14d_mm": 52.1,
+    "etc_14d_mm": 54.9,
+    "irrigacao_14d_mm": 46.5,
+    "dias_desde_irrigacao": 3,
+    "variacao_umidade_7d_pontos": -2.02,
+    "dias_sem_clima_14d": 0,
+    "lamina_sugerida_mm": 16.0,
+    "custo_lamina_sugerida_brl": 266.56,
+    "custo_irrigacao_brl_mm_ha": 1.7,
+    "previsao_chuva_72h_mm": null
+  },
+  "serie_hidrica_14d": [
+    {
+      "dia": "2026-08-19",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 3.71,
+      "etc_mm": 3.9,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 27.17,
+      "fracao_agua_disponivel": 0.509,
+      "deficit_mm": 26.5,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-20",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 3.86,
+      "etc_mm": 4.05,
+      "irrigacao_mm": 23.5,
+      "umidade_media_pct": 29.7,
+      "fracao_agua_disponivel": 0.65,
+      "deficit_mm": 18.9,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-21",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 3.39,
+      "etc_mm": 3.56,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 32.42,
+      "fracao_agua_disponivel": 0.801,
+      "deficit_mm": 10.7,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-22",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 3.97,
+      "etc_mm": 4.17,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 31.11,
+      "fracao_agua_disponivel": 0.728,
+      "deficit_mm": 14.7,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-23",
+      "estadio": "R5",
+      "precipitacao_mm": 17.2,
+      "eto_mm": 2.56,
+      "etc_mm": 2.69,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 32.19,
+      "fracao_agua_disponivel": 0.788,
+      "deficit_mm": 11.4,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-24",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.46,
+      "etc_mm": 4.68,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 33.29,
+      "fracao_agua_disponivel": 0.849,
+      "deficit_mm": 8.1,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-25",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.3,
+      "etc_mm": 4.51,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 31.81,
+      "fracao_agua_disponivel": 0.767,
+      "deficit_mm": 12.6,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-26",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 3.98,
+      "etc_mm": 4.18,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 30.38,
+      "fracao_agua_disponivel": 0.688,
+      "deficit_mm": 16.9,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-27",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.35,
+      "etc_mm": 4.57,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 28.91,
+      "fracao_agua_disponivel": 0.606,
+      "deficit_mm": 21.3,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-28",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.14,
+      "etc_mm": 4.35,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 27.44,
+      "fracao_agua_disponivel": 0.524,
+      "deficit_mm": 25.7,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-29",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.28,
+      "etc_mm": 4.49,
+      "irrigacao_mm": 23.0,
+      "umidade_media_pct": 29.74,
+      "fracao_agua_disponivel": 0.652,
+      "deficit_mm": 18.8,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-30",
+      "estadio": "R5",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.45,
+      "etc_mm": 4.67,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 32.15,
+      "fracao_agua_disponivel": 0.786,
+      "deficit_mm": 11.6,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-08-31",
+      "estadio": "R7",
+      "precipitacao_mm": 0.0,
+      "eto_mm": 4.65,
+      "etc_mm": 5.12,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 30.46,
+      "fracao_agua_disponivel": 0.692,
+      "deficit_mm": 16.6,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": true
+    },
+    {
+      "dia": "2026-09-01",
+      "estadio": "R7",
+      "precipitacao_mm": null,
+      "eto_mm": null,
+      "etc_mm": null,
+      "irrigacao_mm": 0.0,
+      "umidade_media_pct": 29.79,
+      "fracao_agua_disponivel": 0.655,
+      "deficit_mm": 18.6,
+      "estresse_hidrico": false,
+      "recomenda_irrigar": false,
+      "clima_disponivel": false
+    }
+  ],
+  "vegetacao": {
+    "ndvi_ultimo": 0.775,
+    "confianca_ultimo": "media",
+    "dia_ultimo": "2026-08-28",
+    "variacao_30d": 0.453,
+    "cenas_30d": 10,
+    "cenas_baixa_confianca_30d": 2,
+    "desuniformidade_ultima": 0.054
+  },
+  "cenas_ndvi_30d": [
+    {
+      "dia": "2026-08-03",
+      "plataforma": "satelite",
+      "ndvi_medio": 0.302,
+      "ndvi_desvio": 0.056,
+      "variacao_vs_anterior": null,
+      "confianca": "baixa",
+      "nuvem_pct": 44.4
+    },
+    {
+      "dia": "2026-08-04",
+      "plataforma": "drone",
+      "ndvi_medio": 0.322,
+      "ndvi_desvio": 0.054,
+      "variacao_vs_anterior": null,
+      "confianca": "alta",
+      "nuvem_pct": 5.7
+    },
+    {
+      "dia": "2026-08-08",
+      "plataforma": "satelite",
+      "ndvi_medio": 0.407,
+      "ndvi_desvio": 0.057,
+      "variacao_vs_anterior": 0.105,
+      "confianca": "media",
+      "nuvem_pct": 11.3
+    },
+    {
+      "dia": "2026-08-11",
+      "plataforma": "drone",
+      "ndvi_medio": 0.464,
+      "ndvi_desvio": 0.055,
+      "variacao_vs_anterior": 0.142,
+      "confianca": "alta",
+      "nuvem_pct": 2.3
+    },
+    {
+      "dia": "2026-08-13",
+      "plataforma": "satelite",
+      "ndvi_medio": 0.533,
+      "ndvi_desvio": 0.056,
+      "variacao_vs_anterior": 0.126,
+      "confianca": "alta",
+      "nuvem_pct": 3.7
+    },
+    {
+      "dia": "2026-08-18",
+      "plataforma": "satelite",
+      "ndvi_medio": 0.618,
+      "ndvi_desvio": 0.06,
+      "variacao_vs_anterior": 0.085,
+      "confianca": "media",
+      "nuvem_pct": 12.2
+    },
+    {
+      "dia": "2026-08-18",
+      "plataforma": "drone",
+      "ndvi_medio": 0.646,
+      "ndvi_desvio": 0.058,
+      "variacao_vs_anterior": 0.182,
+      "confianca": "alta",
+      "nuvem_pct": 2.0
+    },
+    {
+      "dia": "2026-08-23",
+      "plataforma": "satelite",
+      "ndvi_medio": 0.724,
+      "ndvi_desvio": 0.054,
+      "variacao_vs_anterior": 0.106,
+      "confianca": "baixa",
+      "nuvem_pct": 36.2
+    },
+    {
+      "dia": "2026-08-25",
+      "plataforma": "drone",
+      "ndvi_medio": 0.727,
+      "ndvi_desvio": 0.051,
+      "variacao_vs_anterior": 0.081,
+      "confianca": "alta",
+      "nuvem_pct": 2.9
+    },
+    {
+      "dia": "2026-08-28",
+      "plataforma": "satelite",
+      "ndvi_medio": 0.775,
+      "ndvi_desvio": 0.054,
+      "variacao_vs_anterior": 0.051,
+      "confianca": "media",
+      "nuvem_pct": 17.8
+    }
+  ],
+  "clima_recente": {
+    "ultimo_dia": "2026-08-31",
+    "dias_observados_7d": 7,
+    "tmax_media_7d": 29.8,
+    "tmin_media_7d": 15.6,
+    "ur_media_7d": 57.6,
+    "dias_ur_alta_7d": 0,
+    "dias_chuva_7d": 0,
+    "chuva_7d_mm": 0.0,
+    "temperatura_favoravel_a_fungos": true
+  },
+  "custos": {
+    "periodo_dias": 30,
+    "custo_total_brl": 9070.53,
+    "custo_por_ha_brl": 925.56,
+    "por_tipo_brl": {
+      "adubacao": 7105.0,
+      "irrigacao": 1157.87,
+      "manutencao": 95.0,
+      "monitoramento": 712.66
+    },
+    "operacoes": 9,
+    "ultima_operacao_dia": "2026-08-29",
+    "ultima_operacao_tipo": "irrigacao",
+    "dias_desde_pulverizacao": null
+  },
+  "fertilidade": {
+    "laudo_id": "LAU-2026-00474",
+    "coletado_em": "2026-07-23",
+    "profundidade_cm": "0-20",
+    "ph_cacl2": 5.5,
+    "saturacao_bases_pct": 66.7,
+    "classe_saturacao": "media",
+    "necessidade_calagem_t_ha": 0.27,
+    "classe_fosforo": "medio",
+    "fosforo_mg_dm3": 21.3
+  },
+  "sensores": {
+    "sensores": [
+      {
+        "sensor_id": "SNS-0301",
+        "ultima_leitura": "2026-09-01T02:45:00Z",
+        "leituras": 2877,
+        "bateria_ultima_pct": 89.0,
+        "bateria_min_pct": 85.0,
+        "rssi_medio_dbm": -70.0,
+        "leituras_com_alerta": 0,
+        "leituras_bateria_baixa": 0,
+        "leituras_sinal_fraco": 0,
+        "fracao_sinal_fraco": 0.0,
+        "precisa_manutencao": false,
+        "sinal_fraco": false
+      },
+      {
+        "sensor_id": "SNS-0302",
+        "ultima_leitura": "2026-09-01T02:45:00Z",
+        "leituras": 2399,
+        "bateria_ultima_pct": 95.2,
+        "bateria_min_pct": 2.9,
+        "rssi_medio_dbm": -74.2,
+        "leituras_com_alerta": 397,
+        "leituras_bateria_baixa": 397,
+        "leituras_sinal_fraco": 0,
+        "fracao_sinal_fraco": 0.0,
+        "precisa_manutencao": false,
+        "sinal_fraco": false
+      }
+    ],
+    "cobertura_media_7d_pct": 92.4,
+    "menor_cobertura_7d_pct": 50.0
+  },
+  "alertas": [
+    {
+      "fonte": "clima",
+      "regra": "CLI-08",
+      "tipo": "tabela",
+      "subtipo": "lacuna",
+      "entidade": "EST-SP-027",
+      "quantidade": 2,
+      "detalhe": "{\"lacunas\": 2, \"maior_lacuna_min\": 1440.0, \"maior_lacuna_inicio\": \"2026-08-09T00:00:00+00:00\", \"maior_lacuna_fim\": 
+\"2026-08-11T00:00:00+00:00\", \"limite_min\": 360}"
+    },
+    {
+      "fonte": "imagens_ndvi",
+      "regra": "IMG-07",
+      "tipo": "registro",
+      "subtipo": "intervalo",
+      "entidade": null,
+      "quantidade": 9,
+      "detalhe": "{\"max\": 30.0}"
+    },
+    {
+      "fonte": "imagens_ndvi",
+      "regra": "IMG-10",
+      "tipo": "registro",
+      "subtipo": "intervalo",
+      "entidade": null,
+      "quantidade": 1,
+      "detalhe": "{\"min\": 2048.0}"
+    },
+    {
+      "fonte": "sensores",
+      "regra": "SEN-10",
+      "tipo": "registro",
+      "subtipo": "intervalo",
+      "entidade": null,
+      "quantidade": 399,
+      "detalhe": "{\"min\": 15.0, \"max\": 100.0}"
+    },
+    {
+      "fonte": "sensores",
+      "regra": "SEN-11",
+      "tipo": "registro",
+      "subtipo": "intervalo",
+      "entidade": null,
+      "quantidade": 284,
+      "detalhe": "{\"min\": 
+… (truncado; use --salvar)
+
+162 números citáveis · 462 caminhos · tabelas: dim_sensor, dim_talhao, fato_alerta_qualidade, fato_balanco_hidrico, fato_clima_diario, 
+fato_custo_diario_talhao, fato_fertilidade_talhao, fato_leitura_diaria_talhao, fato_ndvi_talhao
+✔ salvo em outputs/relatorios/contexto/TLH-03_2026-09-01.contexto.json

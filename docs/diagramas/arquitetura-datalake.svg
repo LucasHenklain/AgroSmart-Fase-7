@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1028 600" width="1028" height="600" role="img" aria-label="Arquitetura do Data Lake AgroSmart">
+  <title>Arquitetura do Data Lake AgroSmart — Fase 5</title>
+  <style>
+    .fundo { fill: #FBFCFA; }
+    .box { fill: #E9ECE6; stroke: #B9C1B5; }
+    .band { fill: #DDEAE1; stroke: #2C6A4C; stroke-opacity: .45; }
+    .quar { fill: #F6E3DE; stroke: #9E3320; stroke-opacity: .5; }
+    .chip { fill: #FBFCFA; stroke: #D5DAD1; }
+    .titulo { font-family: Georgia, "Times New Roman", serif; font-size: 14px; font-weight: 600; fill: #191E1A; }
+    .sub { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.6px; letter-spacing: .09em; fill: #616B62; }
+    .chiptxt { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #3D463F; }
+    .stage { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.6px; letter-spacing: .14em; fill: #616B62; }
+    .arrow { stroke: #B9C1B5; stroke-width: 1.4; fill: none; }
+    .head { fill: #B9C1B5; }
+    .r-bronze { fill: #8A5A2B; } .r-prata { fill: #6F7C77; } .r-ouro { fill: #9C7A1E; } .r-quar { fill: #9E3320; }
+  </style>
+  <rect class="fundo" x="0" y="0" width="1028" height="600"/>
+
+  <text class="stage" x="16" y="14">FONTES</text>
+  <text class="stage" x="220" y="14">INGESTÃO</text>
+  <text class="stage" x="424" y="14">CAMADA BRUTA</text>
+  <text class="stage" x="628" y="14">CAMADA CONFIÁVEL</text>
+  <text class="stage" x="832" y="14">CAMADA REFINADA</text>
+
+  <rect class="box" x="16"  y="24" width="180" height="276" rx="9"/>
+  <rect class="box" x="220" y="24" width="180" height="276" rx="9"/>
+  <rect class="box" x="424" y="24" width="180" height="276" rx="9"/>
+  <rect class="box" x="628" y="24" width="180" height="276" rx="9"/>
+  <rect class="box" x="832" y="24" width="180" height="276" rx="9"/>
+  <rect class="r-bronze" x="424" y="24" width="180" height="3.5" rx="1.75"/>
+  <rect class="r-prata"  x="628" y="24" width="180" height="3.5" rx="1.75"/>
+  <rect class="r-ouro"   x="832" y="24" width="180" height="3.5" rx="1.75"/>
+
+  <text class="titulo" x="32"  y="50">Origens do campo</text>
+  <text class="titulo" x="236" y="50">Coletores</text>
+  <text class="titulo" x="440" y="50">bronze</text>
+  <text class="titulo" x="644" y="50">silver</text>
+  <text class="titulo" x="848" y="50">gold</text>
+  <text class="sub" x="32"  y="65">6 FONTES · 3 TIPOS DE DADO</text>
+  <text class="sub" x="236" y="65">4 MODOS · IDEMPOTENTES</text>
+  <text class="sub" x="440" y="65">FORMATO ORIGINAL</text>
+  <text class="sub" x="644" y="65">PARQUET · VALIDADO</text>
+  <text class="sub" x="848" y="65">MODELO DIMENSIONAL</text>
+
+  <rect class="chip" x="30" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="42" y="98">Sensores IoT · MQTT</text>
+  <rect class="chip" x="30" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="42" y="134">Clima · API REST</text>
+  <rect class="chip" x="30" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="42" y="170">Drone · JPEG + EXIF</text>
+  <rect class="chip" x="30" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="42" y="206">Talhões ERP · CSV</text>
+  <rect class="chip" x="30" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="42" y="242">Operações ERP · CSV</text>
+  <rect class="chip" x="30" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="42" y="278">Laudos de solo · PDF</text>
+
+  <rect class="chip" x="234" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="246" y="98">Streaming 15 min</text>
+  <rect class="chip" x="234" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="246" y="134">Pull de API diário</text>
+  <rect class="chip" x="234" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="246" y="170">Pasta observada</text>
+  <rect class="chip" x="234" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="246" y="206">Batch full e incremental</text>
+  <rect class="chip" x="234" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="246" y="242">Manifest + checksum</text>
+  <rect class="chip" x="234" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="246" y="278">Schema checado na porta</text>
+
+  <rect class="chip" x="438" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="450" y="98">Imutável, append-only</text>
+  <rect class="chip" x="438" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="450" y="134">Bytes iguais à origem</text>
+  <rect class="chip" x="438" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="450" y="170">fonte/ano=/mes=/dia=</text>
+  <rect class="chip" x="438" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="450" y="206">Proveniência no objeto</text>
+  <rect class="chip" x="438" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="450" y="242">Versionamento de objeto</text>
+  <rect class="chip" x="438" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="450" y="278">Retenção por contrato</text>
+
+  <rect class="chip" x="642" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="654" y="98">Tipado pelo contrato</text>
+  <rect class="chip" x="642" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="654" y="134">Dedup evento/versão, SI, UTC</text>
+  <rect class="chip" x="642" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="654" y="170">Chaves conformadas</text>
+  <rect class="chip" x="642" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="654" y="206">58 regras + tipagem</text>
+  <rect class="chip" x="642" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="654" y="242">Reprovado → quarentena</text>
+  <rect class="chip" x="642" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="654" y="278">PII pseudonimizada</text>
+
+  <rect class="chip" x="846" y="80" width="152" height="28" rx="5"/><text class="chiptxt" x="858" y="98">dim_talhao · dim_fenologia</text>
+  <rect class="chip" x="846" y="116" width="152" height="28" rx="5"/><text class="chiptxt" x="858" y="134">fato_balanco_hidrico</text>
+  <rect class="chip" x="846" y="152" width="152" height="28" rx="5"/><text class="chiptxt" x="858" y="170">fato_ndvi · fato_custo</text>
+  <rect class="chip" x="846" y="188" width="152" height="28" rx="5"/><text class="chiptxt" x="858" y="206">fato_fertilidade</text>
+  <rect class="chip" x="846" y="224" width="152" height="28" rx="5"/><text class="chiptxt" x="858" y="242">fato_alerta_qualidade</text>
+  <rect class="chip" x="846" y="260" width="152" height="28" rx="5"/><text class="chiptxt" x="858" y="278">benchmark_regional</text>
+
+  <g>
+    <path class="arrow" d="M198 162 H212"/><polygon class="head" points="212,158 220,162 212,166"/>
+    <path class="arrow" d="M402 162 H416"/><polygon class="head" points="416,158 424,162 416,166"/>
+    <path class="arrow" d="M606 162 H620"/><polygon class="head" points="620,158 628,162 620,166"/>
+    <path class="arrow" d="M810 162 H824"/><polygon class="head" points="824,158 832,162 824,166"/>
+    <path class="arrow" d="M922 300 V404"/><polygon class="head" points="918,404 922,412 926,404"/>
+    <path class="arrow" d="M310 300 V336 H416"/><polygon class="head" points="416,332 424,336 416,340"/>
+    <path class="arrow" d="M718 300 V320"/><polygon class="head" points="714,320 718,328 722,320"/>
+  </g>
+
+  <rect class="quar" x="424" y="328" width="384" height="60" rx="9"/>
+  <rect class="r-quar" x="424" y="328" width="384" height="3.5" rx="1.75"/>
+  <text class="titulo" x="440" y="352">quarentena</text>
+  <text class="sub" x="440" y="367">NADA É DESCARTADO EM SILÊNCIO</text>
+  <rect class="chip" x="596" y="340" width="100" height="36" rx="5"/><text class="chiptxt" x="604" y="355">Lotes fora de</text><text class="chiptxt" x="604" y="368">schema (porta)</text>
+  <rect class="chip" x="702" y="340" width="98" height="36" rx="5"/><text class="chiptxt" x="710" y="355">Registros com</text><text class="chiptxt" x="710" y="368">regra + motivo</text>
+
+  <rect class="band" x="16" y="412" width="996" height="72" rx="9"/>
+  <text class="titulo" x="32" y="438">Consumo</text>
+  <text class="sub" x="32" y="453">CAMADA DE ENTREGA DE VALOR</text>
+  <rect class="chip" x="200" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="212" y="445">Copiloto GenAI</text>
+  <rect class="chip" x="358" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="370" y="445">Dashboard do produtor</text>
+  <rect class="chip" x="516" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="528" y="445">SQL ad hoc (DuckDB)</text>
+  <rect class="chip" x="674" y="426" width="148" height="30" rx="5"/><text class="chiptxt" x="686" y="445">Relatórios ESG e crédito</text>
+  <rect class="chip" x="832" y="426" width="166" height="30" rx="5"/><text class="chiptxt" x="844" y="445">Benchmarks anonimizados</text>
+
+  <rect class="box" x="16" y="504" width="996" height="76" rx="9"/>
+  <text class="titulo" x="32" y="530">Governança transversal</text>
+  <text class="sub" x="32" y="545">ATRAVESSA TODAS AS CAMADAS</text>
+  <rect class="chip" x="240" y="518" width="146" height="28" rx="5"/><text class="chiptxt" x="252" y="536">Contratos e catálogo</text>
+  <rect class="chip" x="240" y="550" width="146" height="24" rx="5"/><text class="chiptxt" x="252" y="566">LGPD por campo</text>
+  <rect class="chip" x="396" y="518" width="146" height="28" rx="5"/><text class="chiptxt" x="408" y="536">IAM por bucket</text>
+  <rect class="chip" x="396" y="550" width="146" height="24" rx="5"/><text class="chiptxt" x="408" y="566">Criptografia em repouso</text>
+  <rect class="chip" x="552" y="518" width="146" height="28" rx="5"/><text class="chiptxt" x="564" y="536">Linhagem por lote</text>
+  <rect class="chip" x="552" y="550" width="146" height="24" rx="5"/><text class="chiptxt" x="564" y="566">Ciclo de vida e retenção</text>
+  <rect class="chip" x="708" y="518" width="146" height="28" rx="5"/><text class="chiptxt" x="720" y="536">Trilha de eventos</text>
+  <rect class="chip" x="708" y="550" width="146" height="24" rx="5"/><text class="chiptxt" x="720" y="566">Reconciliação</text>
+  <rect class="chip" x="864" y="518" width="134" height="28" rx="5"/><text class="chiptxt" x="876" y="536">Backup e DR</text>
+  <rect class="chip" x="864" y="550" width="134" height="24" rx="5"/><text class="chiptxt" x="876" y="566">Decisões (ADR)</text>
+</svg>

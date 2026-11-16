@@ -1,0 +1,213 @@
+# =============================================================================
+# CONTRATO DE DADOS - Cadastro de talhões (ERP do produtor)
+#
+# É a fonte mestra das chaves do lake. Todas as outras fontes referenciam
+# talhao_id daqui - por isso este contrato é o primeiro a ser ingerido no
+# pipeline, e a falha dele bloqueia as regras de integridade referencial
+# de todas as demais.
+# =============================================================================
+fonte: erp_talhoes
+versao: v1
+titulo: Cadastro de talhões, cultura e parâmetros de solo
+descricao: >
+  Extração diária completa (full load) da tabela de talhões do ERP do produtor.
+  Muda pouco, mas muda: replantio, mudança de variedade e correção de área são
+  eventos reais que não podem ser tratados como imutáveis.
+responsavel: Engenharia de Dados (E1)
+tipo_dado: estruturado
+classificacao_lgpd: pessoal   # coordenadas identificam a propriedade do produtor
+
+ingestao:
+  modo: batch
+  origem: sftp://erp.produtor.local/exports/talhoes_YYYYMMDD.csv
+  formato_bruto: csv
+  janela: diária (02h30, carga completa)
+  sla_freshness_min: 1440
+  observacao: >
+    Carga completa, não incremental. O coletor compara o cabeçalho do CSV com
+    o contrato antes de gravar: mudança de schema no ERP é detectada na porta
+    de entrada, e não três camadas depois, quando o silver já quebrou.
+
+particionamento:
+  estrategia: fonte/ano/mes/dia
+  coluna_evento: extraido_em
+  colunas: [ano, mes, dia]
+
+chave_natural: [talhao_id]
+
+dedup:
+  estrategia: versao     # snapshot diário: o talhão reaparece a cada carga, vale o mais recente
+  campo_ordem: extraido_em
+
+destino:
+  silver_tabela: erp_talhoes
+  gold_contribui: [dim_talhao, dim_cultura, dim_fazenda]
+
+retencao:
+  bronze_dias: 365     # snapshots diários permitem reconstruir a história do cadastro
+  silver_dias: null
+  gold_dias: null
+
+campos:
+  - nome: talhao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Chave primária do talhão. Conformada em todo o lake.
+    exemplo: TLH-03
+  - nome: fazenda_id
+    tipo: string
+    obrigatorio: true
+    descricao: Fazenda a que o talhão pertence.
+    exemplo: FAZ-01
+  - nome: nome
+    tipo: string
+    obrigatorio: true
+    descricao: Nome usado pelo produtor no dia a dia.
+    exemplo: Baixada do Córrego
+    lgpd: identificador
+  - nome: area_ha
+    tipo: float
+    unidade: ha
+    obrigatorio: true
+    descricao: Área produtiva do talhão. Denominador de quase todo indicador.
+    exemplo: 12.4
+  - nome: cultura
+    tipo: string
+    obrigatorio: true
+    descricao: Cultura implantada na safra corrente.
+    exemplo: milho
+  - nome: variedade
+    tipo: string
+    obrigatorio: false
+    descricao: Cultivar ou híbrido plantado.
+    exemplo: AG 8088 PRO4
+  - nome: data_plantio
+    tipo: date
+    obrigatorio: true
+    descricao: Data de semeadura. Base do cálculo do estádio fenológico.
+    exemplo: "2026-06-14"
+  - nome: data_colheita_prevista
+    tipo: date
+    obrigatorio: false
+    descricao: Previsão de colheita informada pelo produtor.
+    exemplo: "2026-11-02"
+  - nome: latitude
+    tipo: float
+    unidade: graus
+    obrigatorio: true
+    descricao: Latitude do centroide do talhão (WGS-84).
+    exemplo: -22.9138
+    lgpd: localizacao
+  - nome: longitude
+    tipo: float
+    unidade: graus
+    obrigatorio: true
+    descricao: Longitude do centroide do talhão (WGS-84).
+    exemplo: -47.0632
+    lgpd: localizacao
+  - nome: tipo_solo
+    tipo: string
+    obrigatorio: false
+    descricao: Classe textural predominante.
+    exemplo: latossolo vermelho
+  - nome: sistema_irrigacao
+    tipo: string
+    obrigatorio: true
+    descricao: Sistema disponível. Define se a recomendação de irrigação é executável.
+    exemplo: pivo_central
+  - nome: capacidade_campo_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: false
+    descricao: Umidade na capacidade de campo. Limite superior do balanço hídrico.
+    exemplo: 32.0
+  - nome: ponto_murcha_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: false
+    descricao: Umidade no ponto de murcha permanente. Limite inferior crítico.
+    exemplo: 14.0
+  - nome: extraido_em
+    tipo: timestamp
+    unidade: UTC
+    obrigatorio: true
+    descricao: Momento da extração no ERP. Define a partição do snapshot.
+    exemplo: "2026-08-28T05:30:00Z"
+
+qualidade:
+  - id: TLH-01
+    regra: nao_nulo
+    campos: [talhao_id, fazenda_id, area_ha, cultura, data_plantio, latitude, longitude]
+    severidade: critica
+    justificativa: São os campos que sustentam todas as junções e agregações do gold.
+
+  - id: TLH-02
+    regra: unicidade
+    campos: [talhao_id]
+    severidade: critica
+    justificativa: Talhão duplicado multiplica área e distorce todo custo por hectare.
+
+  - id: TLH-03
+    regra: intervalo
+    campos: [area_ha]
+    min: 0.1
+    max: 5000
+    severidade: critica
+    justificativa: Área zero ou negativa gera divisão por zero nos indicadores.
+
+  - id: TLH-04
+    regra: intervalo
+    campos: [latitude]
+    min: -34.0
+    max: 6.0
+    severidade: critica
+    justificativa: Fora do território brasileiro é erro de digitação ou troca lat/lon.
+
+  - id: TLH-05
+    regra: intervalo
+    campos: [longitude]
+    min: -74.5
+    max: -33.0
+    severidade: critica
+    justificativa: Idem - a troca de latitude por longitude é o erro mais comum aqui.
+
+  - id: TLH-06
+    regra: dominio
+    campos: [cultura]
+    valores: [milho, soja, cafe, cana, algodao, feijao, trigo]
+    severidade: alerta
+    justificativa: >
+      Cultura nova é possível, mas exige limiares agronômicos que a IA ainda
+      não tem. O alerta força a revisão do prompt antes de recomendar.
+
+  - id: TLH-07
+    regra: dominio
+    campos: [sistema_irrigacao]
+    valores: [pivo_central, gotejamento, aspersao, sulco, sequeiro]
+    severidade: critica
+    justificativa: >
+      Recomendar irrigação para talhão de sequeiro é o pior erro possível do
+      copiloto. Este domínio é a trava agronômica dessa recomendação.
+
+  - id: TLH-08
+    regra: comparacao
+    campo_a: data_plantio
+    operador: "<="
+    campo_b: data_colheita_prevista
+    severidade: critica
+    justificativa: Ordem invertida quebra o cálculo do ciclo da cultura.
+
+  - id: TLH-09
+    regra: comparacao
+    campo_a: ponto_murcha_pct
+    operador: "<="
+    campo_b: capacidade_campo_pct
+    severidade: critica
+    justificativa: Inversão torna o balanço hídrico matematicamente impossível.
+
+  - id: TLH-10
+    regra: nao_futuro
+    campos: [data_plantio]
+    tolerancia_min: 0
+    severidade: alerta
+    justificativa: Plantio programado é legítimo, mas não deve entrar na safra corrente.

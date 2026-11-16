@@ -1,0 +1,31 @@
+{
+  "backend": "minio",
+  "fontes": [
+    {
+      "fonte": "sensores",
+      "modo": "streaming",
+      "lotes": 3,
+      "gravados": 3,
+      "atualizados": 0,
+      "pulados": 0,
+      "rejeitados": 0,
+      "registros": 215,
+      "bytes": 53105,
+      "duracao_s": 0.29,
+      "rejeicoes": []
+    }
+  ],
+  "totais": {
+    "lotes": 3,
+    "gravados": 3,
+    "atualizados": 0,
+    "pulados": 0,
+    "rejeitados": 0,
+    "registros": 215,
+    "bytes": 53105
+  },
+  "objetos_no_bronze": 6236,
+  "objetos_na_quarentena": 0,
+  "exemplos": {},
+  "duracao_s": 2.08
+}

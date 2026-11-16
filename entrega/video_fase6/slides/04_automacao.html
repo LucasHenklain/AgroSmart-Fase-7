@@ -1,0 +1,22 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<style>.slide table.t td{padding:8px 14px;font-size:26px;white-space:nowrap}.slide table.t th{padding:6px 14px;font-size:21px}.slide h2{margin-bottom:22px}</style>
+<div class="slide">
+  <div class="kicker">Automação inteligente · agrosmart automacao --publicar</div>
+  <h2>Plano de ações · gold de 01/09/2026 · 6 talhões · 3 ações</h2>
+  <table class="t">
+    <tr><th>Talhão</th><th>Cultura · irrigação</th><th>Risco</th><th>FAD</th><th>Déficit</th><th>Cobertura 7d</th><th>Decisão</th><th>Ação</th></tr>
+    <tr><td>TLH-01</td><td>milho · pivô central</td><td class="atencao">atenção</td><td>0,522</td><td>25,8 mm</td><td>99 %</td><td>programar</td><td>nenhuma</td></tr>
+    <tr><td>TLH-02</td><td>milho · pivô central</td><td class="critico">crítico</td><td>0,480</td><td>26,5 mm</td><td>98 %</td><td><b>irrigar</b></td><td><b>ACT-0001</b></td></tr>
+    <tr><td>TLH-03</td><td>feijão · aspersão</td><td class="atencao">atenção</td><td>0,655</td><td>18,6 mm</td><td class="atencao">50 %</td><td>ok</td><td>ACT-0002</td></tr>
+    <tr><td>TLH-04</td><td>trigo · aspersão</td><td class="normal">normal</td><td>0,833</td><td>8,5 mm</td><td>99 %</td><td>ok</td><td>nenhuma</td></tr>
+    <tr><td>TLH-05</td><td>café · gotejamento</td><td class="normal">normal</td><td>0,776</td><td>12,1 mm</td><td>99 %</td><td>ok</td><td>nenhuma</td></tr>
+    <tr><td>TLH-06</td><td>cana · sequeiro</td><td class="critico">crítico</td><td>0,002</td><td>50,9 mm</td><td>100 %</td><td>sequeiro em estresse</td><td>ACT-0003</td></tr>
+  </table>
+  <table class="t" style="margin-top:26px">
+    <tr><th>ID</th><th>Tipo</th><th>Prioridade</th><th>Parâmetros</th><th>Comando MQTT</th><th>Status</th></tr>
+    <tr><td>ACT-0001</td><td>irrigar · TLH-02</td><td class="critico">alta</td><td>22,5 mm · 170 min · 04:00–07:00</td><td>…/TLH-02/irrigacao → {"acao":"ligar","minutos":170}</td><td class="normal">publicado</td></tr>
+    <tr><td>ACT-0002</td><td>inspecionar sensor · SNS-0302</td><td class="atencao">média</td><td>cobertura 50 % em 1 dia</td><td>—</td><td>simulado</td></tr>
+    <tr><td>ACT-0003</td><td>inspecionar sensor · SNS-0602</td><td>baixa</td><td>RSSI −90,2 dBm · fração fraca 0,096</td><td>—</td><td>simulado</td></tr>
+  </table>
+  <div class="rodape"><span>outputs/acoes/acoes_2026-09-01.json · .md · outputs/prints/fase6-04-automacao-publicar.txt</span><span>AgroSmart · Fase 6</span></div>
+</div></body></html>

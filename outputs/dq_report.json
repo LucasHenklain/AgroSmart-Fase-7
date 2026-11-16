@@ -1,0 +1,392 @@
+{
+  "gerado_em": "2026-10-08T13:16:54+00:00",
+  "instante_referencia": "2026-09-01T03:00:00+00:00",
+  "backend": "minio",
+  "intervalo": null,
+  "fontes": {
+    "sensores": {
+      "fonte": "sensores",
+      "tabela": "sensores_leitura",
+      "lotes": 2895,
+      "declarados": 34646,
+      "lidos": 34646,
+      "aprovados": 34255,
+      "quarentena": 391,
+      "substituidos": 0,
+      "duplicatas": 205,
+      "falhas_tipagem": 0,
+      "registros_com_alerta": 675,
+      "arquivos_silver": 32,
+      "arquivos_quarentena": 1,
+      "reconciliacao_ok": true,
+      "duracao_s": 16.06,
+      "qualidade": {
+        "fonte": "sensores",
+        "tabela": "sensores_leitura",
+        "lidos": 34646,
+        "aprovados": 34255,
+        "quarentena": 391,
+        "substituidos": 0,
+        "duplicatas": 205,
+        "falhas_tipagem": 0,
+        "registros_com_alerta": 675,
+        "quarentena_por_regra": {
+          "SEN-01": 25,
+          "SEN-02": 205,
+          "SEN-03": 11,
+          "SEN-04": 76,
+          "SEN-08": 29,
+          "SEN-09": 45
+        },
+        "regras": [
+          {
+            "id": "TIP-01",
+            "regra": "tipagem",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 34646,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "SEN-01",
+            "regra": "nao_nulo",
+            "severidade": "critica",
+            "campos": [
+              "sensor_id",
+              "talhao_id",
+              "medido_em",
+              "umidade_solo_pct",
+              "bateria_pct"
+            ],
+            "avaliados": 34646,
+            "violacoes": 25,
+            "parametros": {}
+          },
+          {
+            "id": "SEN-03",
+            "regra": "regex",
+            "severidade": "critica",
+            "campos": [
+              "sensor_id"
+            ],
+            "avaliados": 34646,
+            "violacoes": 11,
+            "parametros": {
+              "padrao": "^SNS-\\d{4}$"
+            }
+          },
+          {
+            "id": "SEN-04",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "umidade_solo_pct"
+            ],
+            "avaliados": 34646,
+            "violacoes": 76,
+            "parametros": {
+              "min": 0.0,
+              "max": 100.0
+            }
+          },
+          {
+            "id": "SEN-05",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "temperatura_solo_c"
+            ],
+            "avaliados": 34646,
+            "violacoes": 0,
+            "parametros": {
+              "min": -10.0,
+              "max": 70.0
+            }
+          },
+          {
+            "id": "SEN-06",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "ph"
+            ],
+            "avaliados": 34646,
+            "violacoes": 0,
+            "parametros": {
+              "min": 3.0,
+              "max": 10.0
+            }
+          },
+          {
+            "id": "SEN-08",
+            "regra": "nao_futuro",
+            "severidade": "critica",
+            "campos": [
+              "medido_em"
+            ],
+            "avaliados": 34646,
+            "violacoes": 29,
+            "parametros": {
+              "tolerancia_min": 5,
+              "referencia": "lote"
+            }
+          },
+          {
+            "id": "SEN-09",
+            "regra": "referencia",
+            "severidade": "critica",
+            "campos": [
+              "talhao_id"
+            ],
+            "avaliados": 34646,
+            "violacoes": 45,
+            "parametros": {
+              "tabela_referencia": "erp_talhoes",
+              "campo_referencia": "talhao_id"
+            }
+          },
+          {
+            "id": "SEN-07",
+            "regra": "intervalo",
+            "severidade": "alerta",
+            "campos": [
+              "condutividade_ds_m"
+            ],
+            "avaliados": 34646,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0,
+              "max": 10.0
+            }
+          },
+          {
+            "id": "SEN-10",
+            "regra": "intervalo",
+            "severidade": "alerta",
+            "campos": [
+              "bateria_pct"
+            ],
+            "avaliados": 34646,
+            "violacoes": 399,
+            "parametros": {
+              "min": 15.0,
+              "max": 100.0
+            }
+          },
+          {
+            "id": "SEN-11",
+            "regra": "intervalo",
+            "severidade": "alerta",
+            "campos": [
+              "rssi_dbm"
+            ],
+            "avaliados": 34646,
+            "violacoes": 286,
+            "parametros": {
+              "min": -95.0,
+              "max": 0.0
+            }
+          },
+          {
+            "id": "SEN-02",
+            "regra": "unicidade",
+            "severidade": "critica",
+            "campos": [
+              "sensor_id",
+              "medido_em"
+            ],
+            "avaliados": 34460,
+            "violacoes": 205,
+            "parametros": {
+              "estrategia": "evento",
+              "substituidos": 0
+            }
+          },
+          {
+            "id": "SEN-12",
+            "regra": "freshness",
+            "severidade": "alerta",
+            "campos": [],
+            "avaliados": 34255,
+            "violacoes": 12,
+            "parametros": {
+              "max_atraso_min": 30,
+              "detectar_lacunas": true
+            }
+          }
+        ],
+        "alertas_tabela": [
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0101",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0102",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0201",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0202",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0301",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0302",
+            "lacunas": 2,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0401",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0402",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0501",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0502",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0601",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          },
+          {
+            "regra": "SEN-12",
+            "tipo": "lacuna",
+            "entidade": "SNS-0602",
+            "lacunas": 1,
+            "maior_lacuna_min": 53908.9,
+            "maior_lacuna_inicio": "2026-09-01T02:45:00+00:00",
+            "maior_lacuna_fim": "2026-10-08T13:13:56+00:00",
+            "limite_min": 30
+          }
+        ]
+      }
+    }
+  },
+  "totais": {
+    "lotes": 2895,
+    "declarados": 34646,
+    "lidos": 34646,
+    "aprovados": 34255,
+    "quarentena": 391,
+    "substituidos": 0,
+    "duplicatas": 205,
+    "registros_com_alerta": 675,
+    "reconciliacao_ok": true,
+    "alertas_tabela": 12
+  },
+  "defeitos_injetados": {
+    "total": 391,
+    "localizados": 391,
+    "cobertura": 1.0,
+    "por_tipo": {
+      "SEN-DUP": {
+        "injetados": 207,
+        "localizados": 207
+      },
+      "SEN-NUL": {
+        "injetados": 25,
+        "localizados": 25
+      },
+      "SEN-UMI": {
+        "injetados": 75,
+        "localizados": 75
+      },
+      "SEN-FUT": {
+        "injetados": 29,
+        "localizados": 29
+      },
+      "SEN-TLH": {
+        "injetados": 45,
+        "localizados": 45
+      },
+      "SEN-ID": {
+        "injetados": 10,
+        "localizados": 10
+      }
+    },
+    "faltantes": [],
+    "faltantes_total": 0,
+    "fontes_sem_resultado": []
+  },
+  "duracao_s": 16.95,
+  "arquivo": "dq_report.json"
+}

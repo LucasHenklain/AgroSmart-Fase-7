@@ -1,0 +1,64 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "irrigacao",
+  "talhao_id": "TLH-02",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "alta",
+  "tipos": [
+    "irrigacao"
+  ],
+  "recomenda_irrigar": true,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.0,
+  "saida": {
+    "caso": "irrigacao",
+    "talhao_id": "TLH-02",
+    "diagnostico": "Talhão TLH-02 (milho DKB 390 PRO3, 12,4 ha, pivo_central) em VT, 58 dias após o plantio. Umidade média de 21,2 % em 2026-09-01, fração de água disponível 0,480, déficit de 26,5 mm. Nos últimos 14 dias: 17,2 mm de chuva, 54,7 mm de ETc, 0,0 mm irrigados, 0 dia(s) em estresse.",
+    "recomendacoes": [
+      {
+        "prioridade": "alta",
+        "tipo": "irrigacao",
+        "acao": "Irrigar 22,5 mm no talhão TLH-02",
+        "detalhe": "Fração de água disponível em 0,480, abaixo do limiar de 0,50 para irrigar; déficit de 26,5 mm até a capacidade de campo. Lâmina sugerida de 22,5 mm ao custo de R$ 404,55 (1,45 R$/mm/ha). O talhão está em VT, estádio crítico para água: cada dia de estresse custa 2,0 % do potencial (R$ 2591,60).",
+        "janela_execucao": "próxima madrugada, 04h–07h (menor evapotranspiração)",
+        "dados_usados": [
+          "hidrico.fracao_agua_disponivel_atual",
+          "limiares.fracao_irrigacao",
+          "hidrico.deficit_atual_mm",
+          "hidrico.lamina_sugerida_mm",
+          "hidrico.custo_lamina_sugerida_brl",
+          "economia.perda_por_dia_estresse_brl"
+        ]
+      }
+    ],
+    "custo_estimado_brl": 404.55,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado",
+      "sem laudo de solo 0–20 cm aprovado para o talhão"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "serie_hidrica_14d",
+      "limiares.fracao_irrigacao",
+      "sensores"
+    ]
+  },
+  "saida_rejeitada": null
+}

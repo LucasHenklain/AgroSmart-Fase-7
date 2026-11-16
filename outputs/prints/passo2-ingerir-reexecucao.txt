@@ -1,0 +1,27 @@
+﻿12:53:48 INFO     31 lote(s) descobertos em landing                                                                                                  
+12:53:48 INFO     0 gravados · 0 atualizados · 31 pulados · 0 rejeitados · 0 registros · 0.2s                                                        
+12:53:48 INFO     60 lote(s) descobertos em landing                                                                                                  
+12:53:48 INFO     0 gravados · 0 atualizados · 60 pulados · 0 rejeitados · 0 registros · 0.3s                                                        
+12:53:48 INFO     30 lote(s) descobertos em landing                                                                                                  
+12:53:48 INFO     0 gravados · 0 atualizados · 30 pulados · 0 rejeitados · 0 registros · 0.1s                                                        
+12:53:48 INFO     60 lote(s) descobertos em landing                                                                                                  
+12:53:49 INFO     0 gravados · 0 atualizados · 60 pulados · 0 rejeitados · 0 registros · 0.3s                                                        
+12:53:49 INFO     8 lote(s) descobertos em landing                                                                                                   
+12:53:49 INFO     0 gravados · 0 atualizados · 8 pulados · 0 rejeitados · 0 registros · 0.1s                                                         
+12:53:49 INFO     2892 lote(s) descobertos em landing                                                                                                
+12:54:05 INFO     0 gravados · 0 atualizados · 2892 pulados · 0 rejeitados · 0 registros · 15.8s                                                     
+12:54:05 INFO     [concluida] 6 fontes · 3081 lotes · lotes=3081 gravados=0 atualizados=0 pulados=3081 rejeitados=0 registros=0 duracao_s=17.73      
+12:54:05 INFO     bronze com 6230 objetos · quarentena com 0                                                                                         
+                                           Ingestão → bronze (minio)                                            
+                                                                                                                
+  fonte           modo           lotes   gravados   atualizados   pulados   rejeitados   registros   KB      s  
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  erp_talhoes     batch             31          0             0        31            0           0    0    0.1  
+  clima           api_pull          60          0             0        60            0           0    0    0.3  
+  erp_operacoes   batch             30          0             0        30            0           0    0    0.1  
+  imagens_ndvi    watch_folder      60          0             0        60            0           0    0    0.3  
+  laudos_solo     watch_folder       8          0             0         8            0           0    0    0.1  
+  sensores        streaming       2892          0             0      2892            0           0    0   15.8  
+                                                                                                                
+bronze: 6230 objetos · quarentena: 0 · exemplos exportados: nenhum · 17.73s
+✔ resumo em outputs/ingestao.json

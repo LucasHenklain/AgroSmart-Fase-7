@@ -1,0 +1,35 @@
+{
+  "batch_id": "4467259180ef7a2c",
+  "fonte": "imagens_ndvi",
+  "schema_version": "imagens_ndvi.v1",
+  "modo": "watch_folder",
+  "coletor": "ColetorPastaObservada",
+  "janela": {
+    "inicio": "2026-08-03T13:24:00+00:00",
+    "fim": "2026-08-03T13:24:00+00:00"
+  },
+  "particao": "2026-08-03",
+  "origem": "imagens/IMG-2026-0801.json",
+  "arquivos": [
+    {
+      "chave": "imagens_ndvi/ano=2026/mes=08/dia=03/IMG-2026-0801.json",
+      "nome": "IMG-2026-0801.json",
+      "papel": "principal",
+      "bytes": 365,
+      "checksum_sha256": "dcbbdb4dd64e79e11014dfeda00516cdf703474c49723272f7be58294eb389eb"
+    },
+    {
+      "chave": "imagens_ndvi/ano=2026/mes=08/dia=03/IMG-2026-0801.jpg",
+      "nome": "IMG-2026-0801.jpg",
+      "papel": "anexo",
+      "bytes": 5685,
+      "checksum_sha256": "37af083b7adfc53d21e54ecac9ca927acba187d2851384bf7ac4c5c53fd3e384"
+    }
+  ],
+  "registros": 1,
+  "bytes": 6050,
+  "checksum_sha256": "625f34283b8925c2d8a953039fe8c896e706a99a59abf952b985f5bd03d1ad73",
+  "ingerido_em": "2026-09-03T15:53:12+00:00",
+  "versao": 1,
+  "versao_anterior_checksum": null
+}

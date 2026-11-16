@@ -1,0 +1,218 @@
+# =============================================================================
+# CONTRATO DE DADOS - Sensores de campo (IoT)
+#
+# O contrato é a fonte única da verdade sobre uma origem de dados: descreve o
+# schema, como o dado chega, onde ele mora em cada camada e o que precisa ser
+# verdade para ele ser considerado confiável. Coletor, motor de qualidade,
+# catálogo e dicionário de dados são todos gerados a partir daqui.
+# =============================================================================
+fonte: sensores
+versao: v1
+titulo: Leituras de sensores de solo e ar
+descricao: >
+  Telemetria das estações de sensoriamento instaladas nos talhões. Cada
+  dispositivo publica uma leitura consolidada a cada 15 minutos por MQTT.
+  É a fonte de maior volume do lake e a base do balanço hídrico diário.
+responsavel: Engenharia de Dados (E1)
+tipo_dado: estruturado
+classificacao_lgpd: interno   # telemetria de equipamento, sem dado pessoal
+
+ingestao:
+  modo: streaming
+  origem: mqtt://broker.agrosmart.local/agrosmart/sensores/+/leitura
+  formato_bruto: jsonl
+  janela: 15 minutos
+  sla_freshness_min: 30
+  observacao: >
+    O gateway do campo tem buffer local de 48 h. Quando a conectividade cai,
+    as leituras chegam atrasadas e fora de ordem - por isso a deduplicação por
+    chave natural no silver é obrigatória, e não uma otimização.
+
+particionamento:
+  estrategia: fonte/ano/mes/dia
+  coluna_evento: medido_em
+  colunas: [ano, mes, dia]
+
+chave_natural: [sensor_id, medido_em]
+
+dedup:
+  estrategia: evento     # leitura é fato imutável: repetição é duplicata do gateway
+
+destino:
+  silver_tabela: sensores_leitura
+  gold_contribui: [fato_leitura_diaria_talhao, dim_sensor]
+
+retencao:
+  bronze_dias: 90        # depois: transição para armazenamento frio
+  silver_dias: 730
+  gold_dias: null        # permanente
+
+campos:
+  - nome: sensor_id
+    tipo: string
+    obrigatorio: true
+    descricao: Identificador único do dispositivo de campo.
+    exemplo: SNS-0142
+  - nome: talhao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Talhão onde o sensor está instalado. Chave conformada com o ERP.
+    exemplo: TLH-03
+  - nome: medido_em
+    tipo: timestamp
+    unidade: UTC
+    obrigatorio: true
+    descricao: Instante da medição no relógio do dispositivo, normalizado para UTC.
+    exemplo: "2026-08-28T09:15:00Z"
+  - nome: umidade_solo_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: true
+    descricao: Umidade volumétrica do solo a 20 cm de profundidade.
+    exemplo: 18.4
+  - nome: temperatura_solo_c
+    tipo: float
+    unidade: "°C"
+    obrigatorio: true
+    descricao: Temperatura do solo a 20 cm.
+    exemplo: 27.9
+  - nome: temperatura_ar_c
+    tipo: float
+    unidade: "°C"
+    obrigatorio: false
+    descricao: Temperatura do ar a 1,5 m do solo.
+    exemplo: 31.2
+  - nome: umidade_ar_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: false
+    descricao: Umidade relativa do ar. Entra no cálculo de risco fitossanitário.
+    exemplo: 62.0
+  - nome: condutividade_ds_m
+    tipo: float
+    unidade: dS/m
+    obrigatorio: false
+    descricao: Condutividade elétrica do solo, indicador indireto de salinidade.
+    exemplo: 1.12
+  - nome: ph
+    tipo: float
+    unidade: pH
+    obrigatorio: false
+    descricao: pH do solo medido em água.
+    exemplo: 6.3
+  - nome: bateria_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: true
+    descricao: Carga da bateria do dispositivo. Aciona ordem de manutenção.
+    exemplo: 74.0
+  - nome: rssi_dbm
+    tipo: int
+    unidade: dBm
+    obrigatorio: false
+    descricao: Intensidade do sinal de rádio no momento do envio.
+    exemplo: -78
+
+qualidade:
+  - id: SEN-01
+    regra: nao_nulo
+    campos: [sensor_id, talhao_id, medido_em, umidade_solo_pct, bateria_pct]
+    severidade: critica
+    justificativa: Sem identificação, instante ou medida principal a leitura é inútil.
+
+  - id: SEN-02
+    regra: unicidade
+    campos: [sensor_id, medido_em]
+    severidade: critica
+    justificativa: >
+      O buffer offline do gateway reenvia leituras já entregues. Sem esta regra
+      o balanço hídrico conta a mesma medição duas vezes.
+
+  - id: SEN-03
+    regra: regex
+    campos: [sensor_id]
+    padrao: '^SNS-\d{4}$'
+    severidade: critica
+    justificativa: Detecta dispositivo não homologado publicando no tópico.
+
+  - id: SEN-04
+    regra: intervalo
+    campos: [umidade_solo_pct]
+    min: 0
+    max: 100
+    severidade: critica
+    justificativa: Fora da faixa física indica sensor descalibrado ou seco no ar.
+
+  - id: SEN-05
+    regra: intervalo
+    campos: [temperatura_solo_c]
+    min: -10
+    max: 70
+    severidade: critica
+    justificativa: Faixa plausível para solo agrícola no Brasil.
+
+  - id: SEN-06
+    regra: intervalo
+    campos: [ph]
+    min: 3.0
+    max: 10.0
+    severidade: critica
+    justificativa: Fora disso o eletrodo está com falha, não é solo real.
+
+  - id: SEN-07
+    regra: intervalo
+    campos: [condutividade_ds_m]
+    min: 0
+    max: 10
+    severidade: alerta
+    justificativa: Valores altos podem ser salinidade real - alerta, não descarte.
+
+  - id: SEN-08
+    regra: nao_futuro
+    campos: [medido_em]
+    tolerancia_min: 5
+    referencia: lote       # leitura à frente do corte do micro-batch = relógio adiantado
+    severidade: critica
+    justificativa: >
+      Relógio do dispositivo dessincronizado corrompe qualquer série temporal.
+      A comparação é com o fim da janela do lote, não com o "agora" do
+      pipeline: é assim que se detecta o relógio adiantado no momento em que
+      a leitura chega. A tolerância de 5 min cobre a deriva normal de RTC sem NTP.
+
+  - id: SEN-09
+    regra: referencia
+    campos: [talhao_id]
+    tabela_referencia: erp_talhoes
+    campo_referencia: talhao_id
+    severidade: critica
+    justificativa: Sensor apontando para talhão inexistente quebra toda agregação.
+
+  - id: SEN-10
+    regra: intervalo
+    campos: [bateria_pct]
+    min: 15
+    max: 100
+    severidade: alerta
+    justificativa: >
+      Abaixo de 15% o dispositivo ainda mede corretamente, mas vai calar em
+      poucos dias. O alerta vira ordem de manutenção preventiva - é exatamente
+      o tipo de insight que a IA transforma em recomendação acionável.
+
+  - id: SEN-11
+    regra: intervalo
+    campos: [rssi_dbm]
+    min: -95
+    max: 0
+    severidade: alerta
+    justificativa: Sinal fraco antecipa perda de dados; entra no plano de rede.
+
+  - id: SEN-12
+    regra: freshness
+    max_atraso_min: 30
+    detectar_lacunas: true   # série periódica: buraco > 30 min entre leituras é sensor calado
+    severidade: alerta
+    justificativa: >
+      Dado velho leva a recomendação de irrigação errada. Por sensor: atraso da
+      última leitura em relação ao "agora" do pipeline, e lacunas na série —
+      é o que detecta um dispositivo calado (INC-01) mesmo quando os outros
+      do talhão continuam publicando.

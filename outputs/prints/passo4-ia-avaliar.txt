@@ -1,0 +1,27 @@
+﻿13:57:12 WARNING  motor 'claude' pedido, mas indisponível — usando regras                                                                            
+13:57:12 INFO     TLH-01/irrigacao avaliado                                                                                                          
+13:57:12 INFO     TLH-01/fitossanitario avaliado                                                                                                     
+13:57:12 INFO     TLH-01/executivo avaliado                                                                                                          
+13:57:12 INFO     TLH-02/irrigacao avaliado                                                                                                          
+13:57:12 INFO     TLH-02/fitossanitario avaliado                                                                                                     
+13:57:12 INFO     TLH-02/executivo avaliado                                                                                                          
+13:57:12 INFO     TLH-03/irrigacao avaliado                                                                                                          
+13:57:12 INFO     TLH-03/fitossanitario avaliado                                                                                                     
+13:57:12 INFO     TLH-03/executivo avaliado                                                                                                          
+13:57:12 INFO     TLH-04/irrigacao avaliado                                                                                                          
+13:57:12 INFO     TLH-04/fitossanitario avaliado                                                                                                     
+13:57:12 INFO     TLH-04/executivo avaliado                                                                                                          
+13:57:12 INFO     TLH-05/irrigacao avaliado                                                                                                          
+13:57:12 INFO     TLH-05/fitossanitario avaliado                                                                                                     
+13:57:12 INFO     TLH-05/executivo avaliado                                                                                                          
+13:57:12 INFO     TLH-06/irrigacao avaliado                                                                                                          
+13:57:12 INFO     TLH-06/fitossanitario avaliado                                                                                                     
+13:57:12 INFO     TLH-06/executivo avaliado                                                                                                          
+                                         Avaliação por motor                                          
+                                                                                                      
+  motor    execuções   aprovadas   ajustes   fallbacks   latência média   alta/média/baixa   irrigar  
+ ──────────────────────────────────────────────────────────────────────────────────────────────────── 
+  regras          18          18         0           0            0.0 s             15/0/3         2  
+                                                                                                      
+! motor generativo inativo (sem ANTHROPIC_API_KEY): só o motor de regras foi avaliado
+✔ relatório em outputs/avaliacao_ia.json e outputs/relatorios/avaliacao_ia.md · 1.21s

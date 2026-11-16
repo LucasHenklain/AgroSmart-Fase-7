@@ -1,0 +1,212 @@
+# =============================================================================
+# CONTRATO DE DADOS - Laudos de análise de solo (documentos PDF)
+#
+# Segunda fonte NÃO ESTRUTURADA do lake, e a que melhor demonstra o padrão
+# "documento + extração": o PDF assinado pelo laboratório é o registro legal e
+# fica imutável no bronze; os valores extraídos dele viram tabela no silver.
+# A extração é rastreável - todo campo aponta para o laudo de origem.
+# =============================================================================
+fonte: laudos_solo
+versao: v1
+titulo: Laudos laboratoriais de fertilidade do solo
+descricao: >
+  Análises químicas de solo emitidas por laboratório credenciado, uma a duas
+  vezes por safra por talhão. Definem a recomendação de calagem e adubação -
+  são o dado de menor volume e maior valor por registro do lake inteiro.
+responsavel: Analytics (E2)
+tipo_dado: nao_estruturado
+classificacao_lgpd: pessoal   # o laudo identifica produtor e propriedade
+
+ingestao:
+  modo: watch_folder
+  origem: ./landing/laudos/
+  formato_bruto: pdf + sidecar json
+  janela: sob demanda (1 a 2 vezes por safra)
+  sla_freshness_min: 43200    # 30 dias
+  campos_derivados: [arquivo_bruto, checksum_sha256]
+  observacao: >
+    O PDF original nunca é alterado nem regravado: ele é a prova documental
+    usada em auditoria de crédito rural e certificação. A extração dos valores
+    é versionada em separado, de modo que melhorar o extrator não exige pedir
+    o laudo de novo ao laboratório.
+
+particionamento:
+  estrategia: fonte/ano/mes/dia
+  coluna_evento: coletado_em
+  colunas: [ano, mes, dia]
+
+chave_natural: [laudo_id]
+
+dedup:
+  estrategia: evento
+
+destino:
+  silver_tabela: laudos_solo
+  gold_contribui: [fato_fertilidade_talhao, dim_talhao]
+
+retencao:
+  bronze_dias: null    # documento legal: retenção permanente
+  silver_dias: null
+  gold_dias: null
+
+campos:
+  - nome: laudo_id
+    tipo: string
+    obrigatorio: true
+    descricao: Número do laudo emitido pelo laboratório.
+    exemplo: LAU-2026-00471
+  - nome: talhao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Talhão amostrado.
+    exemplo: TLH-03
+  - nome: laboratorio
+    tipo: string
+    obrigatorio: true
+    descricao: Laboratório emissor. Metodologias diferentes não são comparáveis.
+    exemplo: LabSolo Campinas
+  - nome: coletado_em
+    tipo: date
+    obrigatorio: true
+    descricao: Data da coleta da amostra no campo.
+    exemplo: "2026-07-18"
+  - nome: emitido_em
+    tipo: date
+    obrigatorio: true
+    descricao: Data de emissão do laudo pelo laboratório.
+    exemplo: "2026-07-29"
+  - nome: profundidade_cm
+    tipo: string
+    obrigatorio: true
+    descricao: Faixa de profundidade amostrada.
+    exemplo: 0-20
+  - nome: arquivo_bruto
+    tipo: string
+    obrigatorio: true
+    descricao: Chave do PDF na camada bruta.
+    exemplo: laudos_solo/2026/07/29/LAU-2026-00471.pdf
+  - nome: checksum_sha256
+    tipo: string
+    obrigatorio: true
+    descricao: Impressão digital do PDF. Prova de não adulteração.
+    exemplo: "c17e…4d90"
+  - nome: ph_cacl2
+    tipo: float
+    unidade: pH
+    obrigatorio: true
+    descricao: pH em cloreto de cálcio, padrão do sistema IAC.
+    exemplo: 5.4
+  - nome: materia_organica_g_dm3
+    tipo: float
+    unidade: g/dm³
+    obrigatorio: true
+    descricao: Teor de matéria orgânica.
+    exemplo: 28.0
+  - nome: fosforo_mg_dm3
+    tipo: float
+    unidade: mg/dm³
+    obrigatorio: true
+    descricao: Fósforo disponível (resina).
+    exemplo: 17.0
+  - nome: potassio_mmolc_dm3
+    tipo: float
+    unidade: mmolc/dm³
+    obrigatorio: true
+    descricao: Potássio trocável.
+    exemplo: 3.1
+  - nome: calcio_mmolc_dm3
+    tipo: float
+    unidade: mmolc/dm³
+    obrigatorio: false
+    descricao: Cálcio trocável.
+    exemplo: 31.0
+  - nome: magnesio_mmolc_dm3
+    tipo: float
+    unidade: mmolc/dm³
+    obrigatorio: false
+    descricao: Magnésio trocável.
+    exemplo: 12.0
+  - nome: ctc_mmolc_dm3
+    tipo: float
+    unidade: mmolc/dm³
+    obrigatorio: true
+    descricao: Capacidade de troca catiônica a pH 7.
+    exemplo: 74.0
+  - nome: saturacao_bases_pct
+    tipo: float
+    unidade: "%"
+    obrigatorio: true
+    descricao: Saturação por bases (V%). Dispara a recomendação de calagem.
+    exemplo: 62.0
+  - nome: extrator_versao
+    tipo: string
+    obrigatorio: true
+    descricao: Versão do extrator que leu o PDF. Torna a extração reproduzível.
+    exemplo: extrator-laudo-v1.2
+
+qualidade:
+  - id: LAU-01
+    regra: nao_nulo
+    campos: [laudo_id, talhao_id, coletado_em, arquivo_bruto, checksum_sha256, ph_cacl2, saturacao_bases_pct]
+    severidade: critica
+    justificativa: Laudo sem ponteiro para o PDF perde o valor probatório.
+
+  - id: LAU-02
+    regra: unicidade
+    campos: [laudo_id]
+    severidade: critica
+    justificativa: Reprocessar a pasta observada não pode duplicar o laudo.
+
+  - id: LAU-03
+    regra: intervalo
+    campos: [ph_cacl2]
+    min: 3.0
+    max: 9.0
+    severidade: critica
+    justificativa: Fora da faixa é erro de leitura do extrator, não solo real.
+
+  - id: LAU-04
+    regra: intervalo
+    campos: [saturacao_bases_pct]
+    min: 0
+    max: 100
+    severidade: critica
+    justificativa: V% é percentual por definição.
+
+  - id: LAU-05
+    regra: intervalo
+    campos: [materia_organica_g_dm3, fosforo_mg_dm3, potassio_mmolc_dm3, ctc_mmolc_dm3]
+    min: 0
+    severidade: critica
+    justificativa: Teor negativo é impossível; indica campo mal recortado no PDF.
+
+  - id: LAU-06
+    regra: comparacao
+    campo_a: coletado_em
+    operador: "<="
+    campo_b: emitido_em
+    severidade: critica
+    justificativa: Laudo emitido antes da coleta é troca de campos na extração.
+
+  - id: LAU-07
+    regra: referencia
+    campos: [talhao_id]
+    tabela_referencia: erp_talhoes
+    campo_referencia: talhao_id
+    severidade: critica
+    justificativa: Laudo de talhão inexistente é erro de rotulagem da amostra.
+
+  - id: LAU-08
+    regra: nao_futuro
+    campos: [coletado_em, emitido_em]
+    tolerancia_min: 0
+    severidade: critica
+    justificativa: Data futura em documento legal invalida a auditoria.
+
+  - id: LAU-09
+    regra: nao_nulo
+    campos: [extrator_versao]
+    severidade: alerta
+    justificativa: >
+      Sem a versão do extrator não é possível saber quais laudos precisam ser
+      relidos quando o extrator melhora.

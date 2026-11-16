@@ -1,0 +1,15 @@
+# Usado pelo Wokwi for VS Code / wokwi-cli, que simulam um binário compilado
+# localmente (arduino-cli ou PlatformIO). No site wokwi.com este arquivo não é
+# necessário: o próprio site compila sketch.ino com as bibliotecas de libraries.txt.
+#
+# Compilar localmente, por exemplo:
+#   arduino-cli compile --fqbn esp32:esp32:esp32 --output-dir build .
+[wokwi]
+version = 1
+firmware = "build/sketch.ino.bin"
+elf = "build/sketch.ino.elf"
+
+# Para apontar o ESP32 simulado ao mosquitto local (infra/docker-compose.yml)
+# em vez do broker público, suba o Wokwi Private Gateway (`wokwigw`) e troque
+# MQTT_HOST para "host.wokwi.internal" no topo do sketch. Nenhum forward é
+# necessário: o gateway dá ao ESP32 acesso de saída à máquina do desenvolvedor.

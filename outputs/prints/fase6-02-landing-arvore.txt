@@ -1,0 +1,19 @@
+$ tree landing/sensores
+landing/sensores
+└── 20261008/
+    ├── leituras_20261008T1313Z.jsonl
+    ├── leituras_20261008T1314Z.jsonl
+    ├── leituras_20261008T1315Z.jsonl
+
+$ wc -l landing/sensores/*/*.jsonl
+    12  landing/sensores/20261008/leituras_20261008T1313Z.jsonl
+   144  landing/sensores/20261008/leituras_20261008T1314Z.jsonl
+    59  landing/sensores/20261008/leituras_20261008T1315Z.jsonl
+   215  total
+
+$ head -n 5 landing/sensores/20261008/leituras_20261008T1313Z.jsonl
+{"sensor_id":"SNS-0101","talhao_id":"TLH-01","medido_em":"2026-10-08T13:13:56Z","umidade_solo_pct":26.0,"temperatura_solo_c":26.0,"temperatura_ar_c":30.5,"umidade_ar_pct":40.3,"condutividade_ds_m":null,"ph":null,"bateria_pct":92.0,"rssi_dbm":-78}
+{"sensor_id":"SNS-0102","talhao_id":"TLH-01","medido_em":"2026-10-08T13:13:56Z","umidade_solo_pct":25.7,"temperatura_solo_c":26.1,"temperatura_ar_c":30.1,"umidade_ar_pct":40.7,"condutividade_ds_m":null,"ph":null,"bateria_pct":94.0,"rssi_dbm":-77}
+{"sensor_id":"SNS-0201","talhao_id":"TLH-02","medido_em":"2026-10-08T13:13:56Z","umidade_solo_pct":21.3,"temperatura_solo_c":26.1,"temperatura_ar_c":30.8,"umidade_ar_pct":40.8,"condutividade_ds_m":null,"ph":null,"bateria_pct":95.0,"rssi_dbm":-74}
+{"sensor_id":"SNS-0202","talhao_id":"TLH-02","medido_em":"2026-10-08T13:13:56Z","umidade_solo_pct":21.3,"temperatura_solo_c":26.2,"temperatura_ar_c":30.4,"umidade_ar_pct":41.8,"condutividade_ds_m":null,"ph":null,"bateria_pct":88.0,"rssi_dbm":-72}
+{"sensor_id":"SNS-0301","talhao_id":"TLH-03","medido_em":"2026-10-08T13:13:56Z","umidade_solo_pct":30.0,"temperatura_solo_c":26.0,"temperatura_ar_c":30.4,"umidade_ar_pct":41.9,"condutividade_ds_m":null,"ph":null,"bateria_pct":89.0,"rssi_dbm":-67}

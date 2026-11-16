@@ -1,0 +1,84 @@
+$ python -m agrosmart processar --camada silver --fonte sensores
+10:16:51 INFO     2895 lotes · 34646 registros lidos do bronze                                               
+10:16:51 INFO     34646 lidos → 34255 aprovados · 391 quarentena (205 duplicatas) · 0 substituídos · 12      
+                  alertas de tabela                                                                          
+10:16:53 INFO     [fonte_processada] sensores_leitura: 34255 aprovados · 391 quarentena · lidos=34646        
+                  aprovados=34255 quarentena=391 substituidos=0 arquivos=32 reconciliacao_ok=True            
+10:16:54 INFO     silver: 34255 aprovados · 391 quarentena · 0 substituídos · reconciliação ok · defeitos    
+                  localizados 391/391                                                                        
+                                             Qualidade por fonte                                             
+                                                                                                             
+                                                                                        alertas              
+  fonte       lidos   aprovados   quarentena   duplicatas   substituí…   c/ alerta       tabela   reconcil…  
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  sensores   34,646      34,255          391          205            0         675           12   ✔ fecha    
+                                                                                                             
+                   Regras acionadas (violações > 0)                    
+                                                                       
+  fonte      regra    tipo         severidade   avaliados   violações  
+ ───────────────────────────────────────────────────────────────────── 
+  sensores   SEN-01   nao_nulo     critica         34,646          25  
+  sensores   SEN-03   regex        critica         34,646          11  
+  sensores   SEN-04   intervalo    critica         34,646          76  
+  sensores   SEN-08   nao_futuro   critica         34,646          29  
+  sensores   SEN-09   referencia   critica         34,646          45  
+  sensores   SEN-10   intervalo    alerta          34,646         399  
+  sensores   SEN-11   intervalo    alerta          34,646         286  
+  sensores   SEN-02   unicidade    critica         34,460         205  
+  sensores   SEN-12   freshness    alerta          34,255          12  
+                                                                       
+                                      Alertas de frescor (por entidade)                                      
+                                                                                                             
+  fonte      regra    tipo     entidade   detalhe                                                            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  sensores   SEN-12   lacuna   SNS-0101   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0102   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0201   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0202   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0301   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0302   {'lacunas': 2, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0401   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0402   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0501   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0502   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0601   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+  sensores   SEN-12   lacuna   SNS-0602   {'lacunas': 1, 'maior_lacuna_min': 53908.9,                        
+                                          'maior_lacuna_inicio': '2026-09-01T02:45:00+00:00',                
+                                          'maior_lacuna_fim': '2026-10-08T13:13:56+00:00', 'limite_min':     
+                                          30}                                                                
+                                                                                                             
+✔ defeitos injetados localizados: 391/391 (cobertura 100.0%)
+totais: 34,646 lidos · 34,255 aprovados · 391 quarentena · 0 substituídos · reconciliação ok

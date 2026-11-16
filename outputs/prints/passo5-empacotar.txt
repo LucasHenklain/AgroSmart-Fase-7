@@ -1,0 +1,44 @@
+﻿equipeagrosmart_rm00000_1tdsa_fase5_atividade.zip
+242 arquivos · 3,155 KB originais (simulação)
+  .env.example
+  .gitignore
+  app/dashboard.py
+  contratos/clima.v1.yaml
+  contratos/erp_operacoes.v1.yaml
+  contratos/erp_talhoes.v1.yaml
+  contratos/imagens_ndvi.v1.yaml
+  contratos/laudos_solo.v1.yaml
+  contratos/sensores.v1.yaml
+  data/exemplos/.gitkeep
+  data/exemplos/bronze/clima/_manifest.json
+  data/exemplos/bronze/clima/EST-SP-014_20260802.json
+  data/exemplos/bronze/erp_operacoes/_manifest.json
+  data/exemplos/bronze/erp_operacoes/operacoes_20260803.csv
+  data/exemplos/bronze/erp_talhoes/_manifest.json
+  data/exemplos/bronze/erp_talhoes/talhoes_20260802.csv
+  data/exemplos/bronze/imagens_ndvi/_manifest.json
+  data/exemplos/bronze/imagens_ndvi/IMG-2026-0801.jpg
+  data/exemplos/bronze/imagens_ndvi/IMG-2026-0801.json
+  data/exemplos/bronze/laudos_solo/_manifest.json
+  data/exemplos/bronze/laudos_solo/LAU-2026-00471.json
+  data/exemplos/bronze/laudos_solo/LAU-2026-00471.pdf
+  data/exemplos/bronze/sensores/_manifest.json
+  data/exemplos/bronze/sensores/leituras_20260802T0000Z.jsonl
+  docs/01-arquitetura-datalake.md
+  docs/02-ingestao-e-manutencao.md
+  docs/03-ia-generativa.md
+  docs/04-modelo-de-negocio.md
+  docs/adr/0001-object-store-s3-com-minio.md
+  docs/adr/0002-parquet-sem-formato-de-tabela.md
+  docs/adr/0003-duckdb-e-polars-em-vez-de-spark.md
+  docs/adr/0004-quarentena-como-quarta-camada.md
+  docs/adr/0005-contratos-yaml-como-fonte-unica.md
+  docs/adr/0006-bronze-imutavel-metadados-no-manifest.md
+  docs/adr/0007-dedup-evento-versus-versao.md
+  docs/adr/0008-recomputo-total-do-silver.md
+  docs/adr/0009-ia-le-o-gold-com-saida-estruturada-e-guardrails.md
+  docs/adr/0010-orquestracao-cli-e-backfill-por-intervalo.md
+  docs/adr/README.md
+  docs/diagramas/.gitkeep
+  … e mais 202
+  ! entrega/LINK_VIDEO.txt ausente ou vazio — o vídeo vai por link, fora do zip

@@ -1,0 +1,57 @@
+$ python -m agrosmart dispositivo --broker localhost --n 12 --intervalo-s 5 --duracao-s 90 --seed 1
+10:13:56 INFO     12 dispositivos · intervalo 5.0 s · conectando a localhost:1883                            
+10:13:56 INFO     conectado a localhost:1883 · ouvindo comandos em agrosmart/atuadores/+/irrigacao           
+10:13:56 INFO     ciclo 1 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 26.0 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:01 INFO     ciclo 2 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.8 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:06 INFO     ciclo 3 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.8 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:11 INFO     ciclo 4 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 26.2 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:16 INFO     ciclo 5 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.4 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:21 INFO     ciclo 6 · 12 publicadas · pendentes 1 · ex.: SNS-0101 umid 26.0 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:26 INFO     ciclo 7 · 13 publicadas · pendentes 0 · ex.: SNS-0201 umid 21.4 % · bat 95.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:31 INFO     ciclo 8 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.7 % · bat 92.0 % · irrigando 
+                  ninguém                                                                                    
+10:14:35 INFO     irrigação ligada em TLH-03 por 2 min                                                       
+10:14:36 INFO     ciclo 9 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.8 % · bat 92.0 % · irrigando 
+                  ['TLH-03']                                                                                 
+10:14:41 INFO     ciclo 10 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.8 % · bat 92.0 % · irrigando
+                  ['TLH-03']                                                                                 
+10:14:46 INFO     ciclo 11 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.9 % · bat 92.0 % · irrigando
+                  ['TLH-03']                                                                                 
+10:14:51 INFO     ciclo 12 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.6 % · bat 92.0 % · irrigando
+                  ['TLH-03']                                                                                 
+10:14:56 INFO     ciclo 13 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 26.0 % · bat 92.0 % · irrigando
+                  ['TLH-03']                                                                                 
+10:15:01 INFO     irrigação desligada em TLH-03                                                              
+10:15:01 INFO     ciclo 14 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.8 % · bat 92.0 % · irrigando
+                  ninguém                                                                                    
+10:15:06 INFO     ciclo 15 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.4 % · bat 92.0 % · irrigando
+                  ninguém                                                                                    
+10:15:11 INFO     ciclo 16 · 12 publicadas · pendentes 0 · ex.: SNS-0101 umid 25.3 % · bat 92.0 % · irrigando
+                  ninguém                                                                                    
+10:15:16 INFO     ciclo 17 · 11 publicadas · pendentes 1 · ex.: SNS-0101 umid 25.7 % · bat 92.0 % · irrigando
+                  ninguém                                                                                    
+10:15:21 INFO     ciclo 18 · 12 publicadas · pendentes 1 · ex.: SNS-0101 umid 25.4 % · bat 92.0 % · irrigando
+                  ninguém                                                                                    
+10:15:26 INFO     duração de 90 s atingida — encerrando                                                      
+  Dispositivos emulados · localhost:1883   
+                                           
+  métrica                           valor  
+ ───────────────────────────────────────── 
+  dispositivos                         12  
+  ciclos                               18  
+  leituras publicadas                 216  
+    · atrasadas (buffer)                1  
+    · duplicadas (reenvio)              1  
+  comandos de irrigação recebidos       2  
+                                           
+
+--- comandos publicados durante a execução, de outro terminal (paho.mqtt.publish.single) ---
+publicado em agrosmart/atuadores/TLH-03/irrigacao: {"acao": "ligar", "minutos": 2}
+publicado em agrosmart/atuadores/TLH-03/irrigacao: {"acao": "desligar"}

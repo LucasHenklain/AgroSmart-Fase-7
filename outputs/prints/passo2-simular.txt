@@ -1,0 +1,44 @@
+﻿12:52:19 INFO     janela 2026-08-02 → 2026-08-31 · 30 dias · 6 talhões · 12 sensores · seed 20260905                                                 
+12:52:19 INFO     erp_talhoes        31 arquivos ·     186 registros ·     34.2 KB · 0.1s                                                            
+12:52:19 INFO     clima              60 arquivos ·      60 registros ·     58.2 KB · 0.1s                                                            
+12:52:19 INFO     erp_operacoes      30 arquivos ·      49 registros ·      9.3 KB · 0.0s                                                            
+12:52:26 INFO     sensores         2892 arquivos ·   34431 registros ·   8299.7 KB · 3.7s                                                            
+12:52:30 INFO     imagens_ndvi      120 arquivos ·      60 registros ·    313.3 KB · 4.0s                                                            
+12:52:30 INFO     laudos_solo        16 arquivos ·       8 registros ·     20.7 KB · 0.0s                                                            
+12:52:30 INFO     [concluida] 6 fontes geradas em landing/ · arquivos=3149 registros=34794 defeitos=406 duracao_s=11.07                              
+                 Landing gerada                 
+                                                
+  fonte           arquivos   registros      KB  
+ ────────────────────────────────────────────── 
+  clima                 60          60      58  
+  erp_operacoes         30          49       9  
+  erp_talhoes           31         186      34  
+  imagens_ndvi         120          60     313  
+  laudos_solo           16           8      21  
+  sensores            2892       34431   8,300  
+                                                
+ Defeitos injetados (verdade-terreno  
+          para a qualidade)           
+                                      
+  tipo      regra alvo   ocorrências  
+ ──────────────────────────────────── 
+  CLI-INV   CLI-03                 2  
+  CLI-UR    CLI-05                 1  
+  IMG-NDV   IMG-03                 1  
+  IMG-TRU   IMG-10                 1  
+  LAU-DAT   LAU-06                 1  
+  LAU-PH    LAU-03                 1  
+  OPR-CEN   OPR-06                 3  
+  OPR-FUT   OPR-08                 1  
+  OPR-TLH   OPR-07                 1  
+  OPR-UNI   OPR-04                 2  
+  SEN-DUP   SEN-02               207  
+  SEN-FUT   SEN-08                29  
+  SEN-ID    SEN-03                10  
+  SEN-NUL   SEN-01                25  
+  SEN-TLH   SEN-09                45  
+  SEN-UMI   SEN-04                75  
+  TLH-GEO   TLH-04                 1  
+                                      
+trajetória: 49 operações (15 irrigações, 2 correções retroativas) · 8 laudos · chuva {'EST-SP-014': 35.2, 'EST-SP-027': 102.8} mm · 11.07s
+✔ resumo em outputs/simulacao.json

@@ -1,0 +1,11 @@
+﻿                                                                                              
+  _motivo                                                                                n    
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
+  SEN-02 unicidade sensor_id,medido_em                                                   205  
+  SEN-04 intervalo umidade_solo_pct min=0.0 max=100.0                                    76   
+  SEN-09 referencia talhao_id tabela_referencia=erp_talhoes campo_referencia=talhao_id   45   
+  SEN-08 nao_futuro medido_em tolerancia_min=5 referencia=lote                           29   
+  SEN-01 nao_nulo sensor_id,talhao_id,medido_em,umidade_solo_pct,bateria_pct             25   
+  SEN-03 regex sensor_id padrao=^SNS-\d{4}$                                              11   
+                                                                                              
+6 linha(s)

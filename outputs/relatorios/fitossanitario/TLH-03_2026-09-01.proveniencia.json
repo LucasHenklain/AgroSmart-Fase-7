@@ -1,0 +1,60 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "fitossanitario",
+  "talhao_id": "TLH-03",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "baixa",
+  "prioridade_maxima": "baixa",
+  "tipos": [
+    "monitoramento"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "fitossanitario",
+    "talhao_id": "TLH-03",
+    "diagnostico": "Risco fitossanitário do talhão TLH-03 (feijao, R7). Última semana: 7 dia(s) de clima, UR média 57,6 %, 0 dia(s) acima de 80,0 %, temperatura máxima média 29,8 °C, 0 dia(s) de chuva. Vegetação: NDVI 0,775 (confiança media), variação de 0,453 em 30 dias, 2 de 10 cenas com nuvem alta.",
+    "recomendacoes": [
+      {
+        "prioridade": "baixa",
+        "tipo": "monitoramento",
+        "acao": "Manter o monitoramento semanal do talhão TLH-03",
+        "detalhe": "Sem janela climática de risco (0 dia(s) de UR alta em 7) e NDVI estável (0,775, variação de 0,453 em 30 dias).",
+        "janela_execucao": null,
+        "dados_usados": [
+          "clima_recente.dias_ur_alta_7d",
+          "vegetacao.ndvi_ultimo",
+          "vegetacao.variacao_30d"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "baixa",
+    "justificativa_confianca": "cobertura de leituras de 50,0 % em pelo menos um dia da semana; lacuna recente em sensor do talhão (SEN-12)",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "clima_recente",
+      "vegetacao",
+      "cenas_ndvi_30d",
+      "custos.dias_desde_pulverizacao",
+      "limiares"
+    ]
+  },
+  "saida_rejeitada": null
+}

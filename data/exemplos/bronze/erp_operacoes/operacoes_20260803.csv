@@ -1,0 +1,4 @@
+operacao_id,talhao_id,data,tipo_operacao,insumo,quantidade,unidade,custo_brl,responsavel_id,observacao,extraido_em
+OPR-2026-018001,TLH-02,2026-08-02,adubacao,ureia 45%,1984.0,kg,6051.2,OPE-013,cobertura em V8,2026-08-03T02:45:00Z
+OPR-2026-018002,TLH-04,2026-09-11,irrigacao,água,23.0,mm,860.2,OPE-022,janela 04h-07h,2026-08-03T02:45:00Z
+OPR-2026-018003,TLH-05,2026-08-02,adubacao,formulado 20-05-20,3000.0,kg,10200.0,OPE-022,adubação de pré-florada,2026-08-03T02:45:00Z

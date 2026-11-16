@@ -1,0 +1,51 @@
+﻿                                                    Qualidade por fonte                                                     
+                                                                                                                            
+  fonte            lidos   aprovados   quarentena   duplicatas   substituídos   c/ alerta   alertas tabela   reconciliação  
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  erp_talhoes        186           6            1            0            179           0                0   ✔ fecha        
+  clima               60          57            3            0              0           0                1   ✔ fecha        
+  erp_operacoes       49          40            7            0              2           0                0   ✔ fecha        
+  imagens_ndvi        60          59            1            0              0           9                0   ✔ fecha        
+  laudos_solo          8           6            2            0              0           0                0   ✔ fecha        
+  sensores        34,431      34,040          391          205              0         673                1   ✔ fecha        
+                                                                                                                            
+                      Regras acionadas (violações > 0)                      
+                                                                            
+  fonte           regra    tipo         severidade   avaliados   violações  
+ ────────────────────────────────────────────────────────────────────────── 
+  erp_talhoes     TLH-04   intervalo    critica            186           1  
+  erp_talhoes     TLH-05   intervalo    critica            186           1  
+  clima           CLI-03   comparacao   critica             60           2  
+  clima           CLI-05   intervalo    critica             60           1  
+  clima           CLI-08   freshness    alerta              57           1  
+  erp_operacoes   OPR-04   dominio      critica             49           2  
+  erp_operacoes   OPR-06   intervalo    critica             49           3  
+  erp_operacoes   OPR-07   referencia   critica             49           1  
+  erp_operacoes   OPR-08   nao_futuro   critica             49           1  
+  imagens_ndvi    IMG-03   intervalo    critica             60           1  
+  imagens_ndvi    IMG-07   intervalo    alerta              60           9  
+  imagens_ndvi    IMG-10   intervalo    alerta              60           1  
+  laudos_solo     LAU-03   intervalo    critica              8           1  
+  laudos_solo     LAU-06   comparacao   critica              8           1  
+  sensores        SEN-01   nao_nulo     critica         34,431          25  
+  sensores        SEN-03   regex        critica         34,431          11  
+  sensores        SEN-04   intervalo    critica         34,431          76  
+  sensores        SEN-08   nao_futuro   critica         34,431          29  
+  sensores        SEN-09   referencia   critica         34,431          45  
+  sensores        SEN-10   intervalo    alerta          34,431         399  
+  sensores        SEN-11   intervalo    alerta          34,431         284  
+  sensores        SEN-02   unicidade    critica         34,245         205  
+  sensores        SEN-12   freshness    alerta          34,040           1  
+                                                                            
+                                                          Alertas de frescor (por entidade)                                                          
+                                                                                                                                                     
+  fonte      regra    tipo     entidade     detalhe                                                                                                  
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  clima      CLI-08   lacuna   EST-SP-027   {'lacunas': 2, 'maior_lacuna_min': 1440.0, 'maior_lacuna_inicio': '2026-08-09T00:00:00+00:00',           
+                                            'maior_lacuna_fim': '2026-08-11T00:00:00+00:00', 'limite_min': 360}                                      
+  sensores   SEN-12   lacuna   SNS-0302     {'lacunas': 1, 'maior_lacuna_min': 7215.0, 'maior_lacuna_inicio': '2026-08-20T23:45:00+00:00',           
+                                            'maior_lacuna_fim': '2026-08-26T00:00:00+00:00', 'limite_min': 30}                                       
+                                                                                                                                                     
+✔ defeitos injetados localizados: 406/406 (cobertura 100.0%)
+totais: 34,794 lidos · 34,208 aprovados · 405 quarentena · 181 substituídos · reconciliação ok
+✔ relatório em outputs/dq_report.json

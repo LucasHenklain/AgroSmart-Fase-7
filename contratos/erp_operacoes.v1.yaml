@@ -1,0 +1,189 @@
+# =============================================================================
+# CONTRATO DE DADOS - Operações de campo e custos (ERP do produtor)
+#
+# É a fonte que dá dimensão financeira ao lake. Sem ela o copiloto recomenda
+# irrigar, mas não consegue dizer quanto custa irrigar nem quanto se evita
+# de perda - que é exatamente o que transforma insight em decisão.
+# =============================================================================
+fonte: erp_operacoes
+versao: v1
+titulo: Operações executadas no talhão com insumo e custo
+descricao: >
+  Lançamentos incrementais de tudo que acontece no campo: irrigação, adubação,
+  pulverização, plantio, colheita e manutenção. Carga incremental diária pela
+  data de lançamento, com correções retroativas permitidas em até 7 dias.
+responsavel: Engenharia de Dados (E1)
+tipo_dado: estruturado
+classificacao_lgpd: pessoal   # responsavel_id identifica um trabalhador
+
+ingestao:
+  modo: batch
+  origem: sftp://erp.produtor.local/exports/operacoes_YYYYMMDD.csv
+  formato_bruto: csv
+  janela: diária (02h45, incremental por data_lancamento)
+  sla_freshness_min: 1440
+  observacao: >
+    A janela de ingestão cobre D-7 a D-1, não apenas D-1. O ERP permite estorno
+    e correção retroativa; ignorar isso é o caminho mais rápido para um custo
+    por hectare errado no relatório executivo.
+
+particionamento:
+  estrategia: fonte/ano/mes/dia
+  coluna_evento: data
+  colunas: [ano, mes, dia]
+
+chave_natural: [operacao_id]
+
+dedup:
+  estrategia: versao     # o ERP relança com correção: vale a extração mais recente
+  campo_ordem: extraido_em
+
+destino:
+  silver_tabela: erp_operacoes
+  gold_contribui: [fato_operacao_custo, fato_irrigacao, dim_insumo]
+
+retencao:
+  bronze_dias: 365
+  silver_dias: 2555     # 7 anos: exigência fiscal e de auditoria de crédito rural
+  gold_dias: null
+
+campos:
+  - nome: operacao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Chave primária do lançamento no ERP.
+    exemplo: OPR-2026-018342
+  - nome: talhao_id
+    tipo: string
+    obrigatorio: true
+    descricao: Talhão onde a operação foi executada.
+    exemplo: TLH-03
+  - nome: data
+    tipo: date
+    obrigatorio: true
+    descricao: Data de execução da operação no campo.
+    exemplo: "2026-08-24"
+  - nome: tipo_operacao
+    tipo: string
+    obrigatorio: true
+    descricao: Natureza da operação.
+    exemplo: irrigacao
+  - nome: insumo
+    tipo: string
+    obrigatorio: false
+    descricao: Insumo aplicado, quando houver.
+    exemplo: ureia 45%
+  - nome: quantidade
+    tipo: float
+    obrigatorio: true
+    descricao: Quantidade aplicada ou volume da operação.
+    exemplo: 22.0
+  - nome: unidade
+    tipo: string
+    obrigatorio: true
+    descricao: Unidade da quantidade. Normalizada para o SI no silver.
+    exemplo: mm
+  - nome: custo_brl
+    tipo: float
+    unidade: BRL
+    obrigatorio: true
+    descricao: Custo total da operação, já com insumo, energia e mão de obra.
+    exemplo: 412.50
+  - nome: responsavel_id
+    tipo: string
+    obrigatorio: false
+    descricao: >
+      Operador responsável. DADO PESSOAL - pseudonimizado no silver e nunca
+      exposto na camada gold nem em qualquer produto de dados agregado.
+    exemplo: OPE-014
+    lgpd: pessoal
+    tratamento: pseudonimizar
+  - nome: observacao
+    tipo: string
+    obrigatorio: false
+    descricao: Texto livre digitado no campo. Fonte não estruturada secundária.
+    exemplo: bomba 2 desligou 20 min por queda de energia
+  - nome: extraido_em
+    tipo: timestamp
+    unidade: UTC
+    obrigatorio: true
+    descricao: Momento da extração no ERP.
+    exemplo: "2026-08-28T05:45:00Z"
+
+qualidade:
+  - id: OPR-01
+    regra: nao_nulo
+    campos: [operacao_id, talhao_id, data, tipo_operacao, quantidade, unidade, custo_brl]
+    severidade: critica
+    justificativa: Sem estes campos o lançamento não entra em nenhum indicador financeiro.
+
+  - id: OPR-02
+    regra: unicidade
+    campos: [operacao_id]
+    severidade: critica
+    justificativa: >
+      A janela de reingestão de 7 dias reenvia lançamentos já processados.
+      Sem esta regra, o custo por hectare é contado várias vezes.
+
+  - id: OPR-03
+    regra: dominio
+    campos: [tipo_operacao]
+    valores: [plantio, irrigacao, adubacao, pulverizacao, colheita, manutencao, amostragem, monitoramento]
+    severidade: critica
+    justificativa: Tipo desconhecido não tem regra de agregação definida no gold.
+
+  - id: OPR-04
+    regra: dominio
+    campos: [unidade]
+    valores: [mm, L, m3, kg, t, ha, h, un]
+    severidade: critica
+    justificativa: >
+      Unidade fora do domínio impede a conversão para o SI. Misturar litro com
+      milímetro em irrigação é erro de ordem de grandeza, não de arredondamento.
+
+  - id: OPR-05
+    regra: intervalo
+    campos: [quantidade]
+    min: 0
+    severidade: critica
+    justificativa: Quantidade negativa deve virar estorno explícito, não valor negativo.
+
+  - id: OPR-06
+    regra: intervalo
+    campos: [custo_brl]
+    min: 0
+    max: 25000
+    severidade: critica
+    justificativa: >
+      Teto detecta erro de centavos versus reais na exportação do ERP. A maior
+      operação plausível nestes talhões (adubação de 400 kg/ha em 41 ha) fica
+      abaixo de R$ 20 mil; acima de R$ 25 mil é erro de unidade monetária ou
+      lançamento consolidado indevido. Limitação conhecida: um teto por registro
+      não captura o erro de centavos em operações pequenas — isso exige a regra
+      de custo por hectare, que depende do cadastro e vive no gold.
+
+  - id: OPR-07
+    regra: referencia
+    campos: [talhao_id]
+    tabela_referencia: erp_talhoes
+    campo_referencia: talhao_id
+    severidade: critica
+    justificativa: Custo lançado em talhão inexistente some do rateio.
+
+  - id: OPR-08
+    regra: nao_futuro
+    campos: [data]
+    tolerancia_min: 0
+    referencia: lote       # executada depois da extração que a reportou = planejamento
+    severidade: critica
+    justificativa: Operação futura é planejamento, e planejamento não é custo realizado.
+
+  - id: OPR-09
+    regra: freshness
+    max_atraso_min: 2880
+    severidade: alerta
+    justificativa: >
+      Custo defasado distorce o relatório executivo semanal. Um dia sem
+      operação lançada é normal na fazenda; dois dias seguidos sem nenhum
+      lançamento é sinal de exportação do ERP parada — daí o limite de 48 h,
+      avaliado sobre a tabela inteira (uma operação não é uma série).

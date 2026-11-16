@@ -1,0 +1,35 @@
+﻿13:55:06 INFO     catálogo: 6 fontes · 14 tabelas gold · 2.2s                                                                                        
+                                                                  Catálogo · silver                                                                  
+                                                                                                                                                     
+  fonte           tabela              registros   arquivos   lotes   quarentena   gold que consome                                                   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  erp_talhoes     erp_talhoes                 6          1       1            1   dim_talhao, dim_fazenda, fato_balanco_hidrico,                     
+                                                                                  fato_operacao_custo, fato_custo_diario_talhao,                     
+                                                                                  fato_fertilidade_talhao, benchmark_regional                        
+  clima           clima_diario               57         30      57            3   dim_fazenda, dim_estacao, fato_clima_diario, fato_balanco_hidrico  
+  erp_operacoes   erp_operacoes              40         25      24            7   fato_balanco_hidrico, fato_operacao_custo,                         
+                                                                                  fato_custo_diario_talhao                                           
+  imagens_ndvi    imagens_ndvi_meta          59          9      59            1   fato_ndvi_talhao                                                   
+  laudos_solo     laudos_solo                 6          5       6            2   fato_fertilidade_talhao                                            
+  sensores        sensores_leitura       34,040         31    2892          391   dim_sensor, fato_leitura_diaria_talhao, fato_balanco_hidrico       
+                                                                                                                                                     
+                                             Catálogo · gold                                             
+                                                                                                         
+  tabela                       grão                                                 registros   colunas  
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  dim_fenologia                um estádio por cultura (ou um mês, para perenes)            48         7  
+  dim_talhao                   um talhão                                                    6        16  
+  dim_fazenda                  uma fazenda                                                  2         5  
+  dim_estacao                  uma estação meteorológica                                    2         6  
+  dim_sensor                   um sensor de campo                                          12        12  
+  fato_clima_diario            uma estação em um dia                                       57        13  
+  fato_leitura_diaria_talhao   um talhão em um dia                                        186        18  
+  fato_balanco_hidrico         um talhão em um dia                                        186        17  
+  fato_ndvi_talhao             uma cena (drone ou satélite) de um talhão                   59        15  
+  fato_operacao_custo          uma operação de campo                                       40        11  
+  fato_custo_diario_talhao     um talhão, um dia, um tipo de operação                      40         6  
+  fato_fertilidade_talhao      um laudo de solo                                             6        17  
+  benchmark_regional           uma cultura                                                  5        11  
+  fato_alerta_qualidade        um alerta de qualidade (por regra ou por entidade)           6         7  
+                                                                                                         
+✔ catálogo em outputs/catalogo.json · dicionário em docs/dicionario-de-dados.md

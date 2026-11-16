@@ -1,0 +1,314 @@
+{
+  "gerado_em": "2026-10-08T13:05:32+00:00",
+  "data_ref": "2026-09-01",
+  "fonte": "gold.fato_balanco_hidrico + fato_leitura_diaria_talhao + dim_sensor",
+  "resumo": {
+    "talhoes": 6,
+    "acoes": 3,
+    "por_tipo": {
+      "irrigar": 1,
+      "inspecionar_sensor": 2,
+      "nenhuma": 3
+    },
+    "por_prioridade": {
+      "alta": 1,
+      "media": 1,
+      "baixa": 1
+    }
+  },
+  "talhoes": [
+    {
+      "talhao_id": "TLH-01",
+      "risco": "atencao",
+      "indicadores": {
+        "cultura": "milho",
+        "sistema_irrigacao": "pivo_central",
+        "area_ha": 18.6,
+        "irrigado": true,
+        "dia_leitura": "2026-09-01",
+        "umidade_media_pct": 25.39,
+        "fracao_agua_disponivel": 0.522,
+        "deficit_mm": 25.8,
+        "estadio": "R1",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "programar",
+        "dias_balanco_14d": 14,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": 57.5,
+        "temp_media_7d_c": 22.7,
+        "sensores": 2,
+        "bateria_min_pct": 92.0,
+        "cobertura_min_7d_pct": 99.0,
+        "acoes": 0
+      },
+      "copiloto": {
+        "motor": "regras",
+        "fallback": false,
+        "confianca": "alta",
+        "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+        "guardrails_aprovados": true,
+        "diagnostico": "Talhão TLH-01 (milho AG 8088 PRO4, 18,6 ha, pivo_central) em R1, 79 dias após o plantio. Umidade média de 25,4 % em 2026-09-01, fração de água disponível 0,522, déficit de 25,8 mm. Nos últimos 14 dias: 17,2 mm de chuva, 62,5 mm de ETc, 23,0 mm irrigados, 0 dia(s) em estresse.",
+        "recomendacoes": [
+          "[MEDIA] Programar irrigação do talhão TLH-01 para os próximos dias (irrigacao)"
+        ]
+      }
+    },
+    {
+      "talhao_id": "TLH-02",
+      "risco": "critico",
+      "indicadores": {
+        "cultura": "milho",
+        "sistema_irrigacao": "pivo_central",
+        "area_ha": 12.4,
+        "irrigado": true,
+        "dia_leitura": "2026-09-01",
+        "umidade_media_pct": 21.16,
+        "fracao_agua_disponivel": 0.48,
+        "deficit_mm": 26.5,
+        "estadio": "VT",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "irrigar",
+        "dias_balanco_14d": 14,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": 57.5,
+        "temp_media_7d_c": 22.8,
+        "sensores": 2,
+        "bateria_min_pct": 88.0,
+        "cobertura_min_7d_pct": 98.4,
+        "acoes": 1
+      },
+      "copiloto": {
+        "motor": "regras",
+        "fallback": false,
+        "confianca": "alta",
+        "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+        "guardrails_aprovados": true,
+        "diagnostico": "Talhão TLH-02 (milho DKB 390 PRO3, 12,4 ha, pivo_central) em VT, 58 dias após o plantio. Umidade média de 21,2 % em 2026-09-01, fração de água disponível 0,480, déficit de 26,5 mm. Nos últimos 14 dias: 17,2 mm de chuva, 54,7 mm de ETc, 0,0 mm irrigados, 0 dia(s) em estresse.",
+        "recomendacoes": [
+          "[ALTA] Irrigar 22,5 mm no talhão TLH-02 (irrigacao)"
+        ]
+      }
+    },
+    {
+      "talhao_id": "TLH-03",
+      "risco": "atencao",
+      "indicadores": {
+        "cultura": "feijao",
+        "sistema_irrigacao": "aspersao",
+        "area_ha": 9.8,
+        "irrigado": true,
+        "dia_leitura": "2026-09-01",
+        "umidade_media_pct": 29.79,
+        "fracao_agua_disponivel": 0.655,
+        "deficit_mm": 18.6,
+        "estadio": "R7",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "ok",
+        "dias_balanco_14d": 14,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": 57.5,
+        "temp_media_7d_c": 22.7,
+        "sensores": 2,
+        "bateria_min_pct": 89.0,
+        "cobertura_min_7d_pct": 50.0,
+        "acoes": 1
+      },
+      "copiloto": {
+        "motor": "regras",
+        "fallback": false,
+        "confianca": "baixa",
+        "justificativa_confianca": "cobertura de leituras de 50,0 % em pelo menos um dia da semana; lacuna recente em sensor do talhão (SEN-12)",
+        "guardrails_aprovados": true,
+        "diagnostico": "Talhão TLH-03 (feijao IPR Tangará, 9,8 ha, aspersao) em R7, 43 dias após o plantio. Umidade média de 29,8 % em 2026-09-01, fração de água disponível 0,655, déficit de 18,6 mm. Nos últimos 14 dias: 17,2 mm de chuva, 54,9 mm de ETc, 46,5 mm irrigados, 0 dia(s) em estresse.",
+        "recomendacoes": [
+          "[BAIXA] Manter o manejo atual do talhão TLH-03 (monitoramento)"
+        ]
+      }
+    },
+    {
+      "talhao_id": "TLH-04",
+      "risco": "normal",
+      "indicadores": {
+        "cultura": "trigo",
+        "sistema_irrigacao": "aspersao",
+        "area_ha": 22.0,
+        "irrigado": true,
+        "dia_leitura": "2026-09-01",
+        "umidade_media_pct": 28.16,
+        "fracao_agua_disponivel": 0.833,
+        "deficit_mm": 8.5,
+        "estadio": "maturacao",
+        "estadio_critico_para_agua": false,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "ok",
+        "dias_balanco_14d": 14,
+        "dias_ur_alta_7d": 1,
+        "ur_media_7d_pct": 57.6,
+        "temp_media_7d_c": 22.2,
+        "sensores": 2,
+        "bateria_min_pct": 92.0,
+        "cobertura_min_7d_pct": 99.0,
+        "acoes": 0
+      },
+      "copiloto": {
+        "motor": "regras",
+        "fallback": false,
+        "confianca": "alta",
+        "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+        "guardrails_aprovados": true,
+        "diagnostico": "Talhão TLH-04 (trigo TBIO Sonic, 22,0 ha, aspersao) em maturacao, 114 dias após o plantio. Umidade média de 28,2 % em 2026-09-01, fração de água disponível 0,833, déficit de 8,5 mm. Nos últimos 14 dias: 9,0 mm de chuva, 34,6 mm de ETc, 23,0 mm irrigados, 0 dia(s) em estresse.",
+        "recomendacoes": [
+          "[BAIXA] Manter o manejo atual do talhão TLH-04 (monitoramento)"
+        ]
+      }
+    },
+    {
+      "talhao_id": "TLH-05",
+      "risco": "normal",
+      "indicadores": {
+        "cultura": "cafe",
+        "sistema_irrigacao": "gotejamento",
+        "area_ha": 7.5,
+        "irrigado": true,
+        "dia_leitura": "2026-09-01",
+        "umidade_media_pct": 28.97,
+        "fracao_agua_disponivel": 0.776,
+        "deficit_mm": 12.1,
+        "estadio": "florada",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "ok",
+        "dias_balanco_14d": 14,
+        "dias_ur_alta_7d": 1,
+        "ur_media_7d_pct": 57.6,
+        "temp_media_7d_c": 22.2,
+        "sensores": 2,
+        "bateria_min_pct": 88.0,
+        "cobertura_min_7d_pct": 99.0,
+        "acoes": 0
+      },
+      "copiloto": {
+        "motor": "regras",
+        "fallback": false,
+        "confianca": "alta",
+        "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+        "guardrails_aprovados": true,
+        "diagnostico": "Talhão TLH-05 (cafe Catuaí Vermelho IAC 144, 7,5 ha, gotejamento) em florada, 1996 dias após o plantio. Umidade média de 29,0 % em 2026-09-01, fração de água disponível 0,776, déficit de 12,1 mm. Nos últimos 14 dias: 9,0 mm de chuva, 45,2 mm de ETc, 49,0 mm irrigados, 0 dia(s) em estresse.",
+        "recomendacoes": [
+          "[BAIXA] Manter o manejo atual do talhão TLH-05 (monitoramento)"
+        ]
+      }
+    },
+    {
+      "talhao_id": "TLH-06",
+      "risco": "critico",
+      "indicadores": {
+        "cultura": "cana",
+        "sistema_irrigacao": "sequeiro",
+        "area_ha": 41.3,
+        "irrigado": false,
+        "dia_leitura": "2026-09-01",
+        "umidade_media_pct": 12.03,
+        "fracao_agua_disponivel": 0.002,
+        "deficit_mm": 50.9,
+        "estadio": "maturacao",
+        "estadio_critico_para_agua": false,
+        "estresse_hidrico": true,
+        "situacao_hidrica": "sequeiro_estresse",
+        "dias_balanco_14d": 14,
+        "dias_ur_alta_7d": 1,
+        "ur_media_7d_pct": 57.7,
+        "temp_media_7d_c": 22.2,
+        "sensores": 2,
+        "bateria_min_pct": 89.0,
+        "cobertura_min_7d_pct": 99.5,
+        "acoes": 1
+      },
+      "copiloto": {
+        "motor": "regras",
+        "fallback": false,
+        "confianca": "alta",
+        "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+        "guardrails_aprovados": true,
+        "diagnostico": "Talhão TLH-06 (cana, 41,3 ha) é de sequeiro: não há sistema de irrigação, então a decisão é de acompanhamento. Fração de água disponível em 0,002 e umidade média de 12,0 % em 2026-09-01; 10 dia(s) em estresse nos últimos 14, chuva acumulada de 9,0 mm.",
+        "recomendacoes": [
+          "[MEDIA] Acompanhar o estresse hídrico do canavial pelo NDVI e pelos sensores (monitoramento)",
+          "[BAIXA] Reposicionar antena ou gateway para o sensor SNS-0602 (manutencao)"
+        ]
+      }
+    }
+  ],
+  "acoes": [
+    {
+      "id": "ACT-0001",
+      "talhao_id": "TLH-02",
+      "sensor_id": null,
+      "tipo": "irrigar",
+      "prioridade": "alta",
+      "parametros": {
+        "lamina_mm": 22.5,
+        "minutos": 170,
+        "janela": "04:00-07:00",
+        "fracao_agua_disponivel": 0.48,
+        "limiar_fracao_irrigacao": 0.5,
+        "deficit_mm": 26.5,
+        "sistema_irrigacao": "pivo_central",
+        "taxa_aplicacao_mm_h": 8.0
+      },
+      "motivo": "Fração de água disponível em 0,480, abaixo do limiar de 0,50 para irrigar; déficit de 26,5 mm até a capacidade de campo. Lâmina de 22,5 mm (85 % do déficit, máx. 30 mm) = 170 min de pivo_central a 8,0 mm/h. Estádio VT é crítico para água.",
+      "evidencias": [
+        "fato_balanco_hidrico:TLH-02:2026-09-01"
+      ],
+      "comando_mqtt": {
+        "topico": "agrosmart/atuadores/TLH-02/irrigacao",
+        "payload": {
+          "acao": "ligar",
+          "minutos": 170
+        }
+      },
+      "status": "publicado"
+    },
+    {
+      "id": "ACT-0002",
+      "talhao_id": "TLH-03",
+      "sensor_id": "SNS-0302",
+      "tipo": "inspecionar_sensor",
+      "prioridade": "media",
+      "parametros": {
+        "motivo_tecnico": "cobertura_baixa",
+        "cobertura_min_7d_pct": 50.0,
+        "dias_abaixo": 1,
+        "limiar_cobertura_pct": 80.0
+      },
+      "motivo": "Cobertura de leituras de 50,0 % em 1 dia(s) da última semana, abaixo de 80 %: lacuna de sensor que rebaixa a confiança das decisões hídricas. Sensor com menos dias de leitura: SNS-0302.",
+      "evidencias": [
+        "fato_leitura_diaria_talhao:TLH-03:2026-08-25"
+      ],
+      "comando_mqtt": null,
+      "status": "simulado"
+    },
+    {
+      "id": "ACT-0003",
+      "talhao_id": "TLH-06",
+      "sensor_id": "SNS-0602",
+      "tipo": "inspecionar_sensor",
+      "prioridade": "baixa",
+      "parametros": {
+        "motivo_tecnico": "sinal_fraco",
+        "rssi_medio_dbm": -90.2,
+        "leituras_sinal_fraco": 276,
+        "fracao_sinal_fraco": 0.096,
+        "limiar_rssi_dbm": -95
+      },
+      "motivo": "Sensor SNS-0602 com sinal médio de -90,2 dBm e 276 leitura(s) abaixo de -95 dBm (fração 0,096): reposicionar antena ou gateway para evitar perda de leituras.",
+      "evidencias": [
+        "dim_sensor:SNS-0602:2026-09-01"
+      ],
+      "comando_mqtt": null,
+      "status": "simulado"
+    }
+  ]
+}

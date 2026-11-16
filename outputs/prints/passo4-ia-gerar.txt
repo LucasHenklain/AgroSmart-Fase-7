@@ -1,0 +1,23 @@
+﻿                                                              Copiloto · motor regras                                                              
+                                                                                                                                                   
+  talhão   caso             motor    confiança   prioridade   recomendações   guardrails   arquivo                                                 
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+  TLH-01   irrigacao        regras   alta        media        1               ✔            outputs/relatorios/irrigacao/TLH-01_2026-09-01.md       
+  TLH-01   fitossanitario   regras   alta        baixa        1               ✔            outputs/relatorios/fitossanitario/TLH-01_2026-09-01.md  
+  TLH-01   executivo        regras   alta        media        2               ✔            outputs/relatorios/executivo/TLH-01_2026-09-01.md       
+  TLH-02   irrigacao        regras   alta        alta         1               ✔            outputs/relatorios/irrigacao/TLH-02_2026-09-01.md       
+  TLH-02   fitossanitario   regras   alta        baixa        1               ✔            outputs/relatorios/fitossanitario/TLH-02_2026-09-01.md  
+  TLH-02   executivo        regras   alta        baixa        1               ✔            outputs/relatorios/executivo/TLH-02_2026-09-01.md       
+  TLH-03   irrigacao        regras   baixa       baixa        1               ✔            outputs/relatorios/irrigacao/TLH-03_2026-09-01.md       
+  TLH-03   fitossanitario   regras   baixa       baixa        1               ✔            outputs/relatorios/fitossanitario/TLH-03_2026-09-01.md  
+  TLH-03   executivo        regras   baixa       media        2               ✔            outputs/relatorios/executivo/TLH-03_2026-09-01.md       
+  TLH-04   irrigacao        regras   alta        baixa        1               ✔            outputs/relatorios/irrigacao/TLH-04_2026-09-01.md       
+  TLH-04   fitossanitario   regras   alta        media        1               ✔            outputs/relatorios/fitossanitario/TLH-04_2026-09-01.md  
+  TLH-04   executivo        regras   alta        media        2               ✔            outputs/relatorios/executivo/TLH-04_2026-09-01.md       
+  TLH-05   irrigacao        regras   alta        baixa        1               ✔            outputs/relatorios/irrigacao/TLH-05_2026-09-01.md       
+  TLH-05   fitossanitario   regras   alta        baixa        1               ✔            outputs/relatorios/fitossanitario/TLH-05_2026-09-01.md  
+  TLH-05   executivo        regras   alta        media        2               ✔            outputs/relatorios/executivo/TLH-05_2026-09-01.md       
+  TLH-06   irrigacao        regras   alta        media        2               ✔            outputs/relatorios/irrigacao/TLH-06_2026-09-01.md       
+  TLH-06   fitossanitario   regras   alta        media        1               ✔            outputs/relatorios/fitossanitario/TLH-06_2026-09-01.md  
+  TLH-06   executivo        regras   alta        media        3               ✔            outputs/relatorios/executivo/TLH-06_2026-09-01.md       
+                                                                                                                                                   

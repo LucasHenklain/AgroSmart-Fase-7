@@ -1,0 +1,168 @@
+﻿
+=== verificação antes do backfill: agrosmart sql ===
+                                       
+  tabela              linhas   chaves  
+ ───────────────────────────────────── 
+  sensores_leitura    34040    34040   
+  clima_diario        57       57      
+  imagens_ndvi_meta   59       59      
+  laudos_solo         6        6       
+                                       
+4 linha(s)
+
+=== agrosmart run --from 2026-08-21 --to 2026-08-25 ===
+15:33:32 INFO     31 lote(s) descobertos em landing                            
+15:33:32 INFO     0 gravados · 0 atualizados · 31 pulados · 0 rejeitados · 0   
+                  registros · 0.2s                                             
+15:33:32 INFO     60 lote(s) descobertos em landing                            
+15:33:32 INFO     0 gravados · 0 atualizados · 60 pulados · 0 rejeitados · 0   
+                  registros · 0.3s                                             
+15:33:32 INFO     30 lote(s) descobertos em landing                            
+15:33:32 INFO     0 gravados · 0 atualizados · 30 pulados · 0 rejeitados · 0   
+                  registros · 0.2s                                             
+15:33:32 INFO     60 lote(s) descobertos em landing                            
+15:33:33 INFO     0 gravados · 0 atualizados · 60 pulados · 0 rejeitados · 0   
+                  registros · 0.4s                                             
+15:33:33 INFO     8 lote(s) descobertos em landing                             
+15:33:33 INFO     0 gravados · 0 atualizados · 8 pulados · 0 rejeitados · 0    
+                  registros · 0.1s                                             
+15:33:33 INFO     2892 lote(s) descobertos em landing                          
+15:33:50 INFO     0 gravados · 0 atualizados · 2892 pulados · 0 rejeitados · 0 
+                  registros · 16.9s                                            
+15:33:50 INFO     [concluida] 6 fontes · 3081 lotes · lotes=3081 gravados=0    
+                  atualizados=0 pulados=3081 rejeitados=0 registros=0          
+                  duracao_s=18.88                                              
+15:33:50 INFO     bronze com 6230 objetos · quarentena com 6                   
+15:33:50 INFO     etapa ingerir    ok      20.0s {'lotes': 3081, 'gravados': 0,
+                  'atualizados': 0, 'pulados': 3081, 'rejeitados': 0,          
+                  'objetos_bronze': 6230}                                      
+15:33:51 INFO     31 lotes · 186 registros lidos do bronze                     
+15:33:51 INFO     186 lidos → 6 aprovados · 1 quarentena (0 duplicatas) · 179  
+                  substituídos · 0 alertas de tabela                           
+15:33:51 INFO     [fonte_processada] erp_talhoes: 6 aprovados · 1 quarentena · 
+                  lidos=186 aprovados=6 quarentena=1 substituidos=179          
+                  arquivos=1 reconciliacao_ok=True                             
+15:33:51 INFO     backfill 2026-08-21 → 2026-08-25 (só partições do intervalo) 
+15:33:51 INFO     10 lotes · 10 registros lidos do bronze                      
+15:33:51 INFO     10 lidos → 10 aprovados · 0 quarentena (0 duplicatas) · 0    
+                  substituídos · 2 alertas de tabela                           
+15:33:52 INFO     [fonte_processada] clima_diario: 10 aprovados · 0 quarentena 
+                  · lidos=10 aprovados=10 quarentena=0 substituidos=0          
+                  arquivos=7 reconciliacao_ok=True                             
+15:33:52 INFO     30 lotes · 49 registros lidos do bronze                      
+15:33:52 INFO     49 lidos → 40 aprovados · 7 quarentena (0 duplicatas) · 2    
+                  substituídos · 0 alertas de tabela                           
+15:33:52 INFO     [fonte_processada] erp_operacoes: 40 aprovados · 7 quarentena
+                  · lidos=49 aprovados=40 quarentena=7 substituidos=2          
+                  arquivos=25 reconciliacao_ok=True                            
+15:33:52 INFO     backfill 2026-08-21 → 2026-08-25 (só partições do intervalo) 
+15:33:53 INFO     12 lotes · 12 registros lidos do bronze                      
+15:33:53 INFO     12 lidos → 12 aprovados · 0 quarentena (0 duplicatas) · 0    
+                  substituídos · 0 alertas de tabela                           
+15:33:53 INFO     [fonte_processada] imagens_ndvi_meta: 12 aprovados · 0       
+                  quarentena · lidos=12 aprovados=12 quarentena=0              
+                  substituidos=0 arquivos=2 reconciliacao_ok=True              
+15:33:53 INFO     backfill 2026-08-21 → 2026-08-25 (só partições do intervalo) 
+15:33:53 INFO     0 lotes · 0 registros lidos do bronze                        
+15:33:53 INFO     [fonte_processada] laudos_solo: 0 aprovados · 0 quarentena · 
+                  lidos=0 aprovados=0 quarentena=0 substituidos=0 arquivos=0   
+                  reconciliacao_ok=True                                        
+15:33:53 INFO     backfill 2026-08-21 → 2026-08-25 (só partições do intervalo) 
+15:34:01 INFO     480 lotes · 5306 registros lidos do bronze                   
+15:34:01 INFO     5306 lidos → 5256 aprovados · 50 quarentena (26 duplicatas) ·
+                  0 substituídos · 11 alertas de tabela                        
+15:34:02 INFO     [fonte_processada] sensores_leitura: 5256 aprovados · 50     
+                  quarentena · lidos=5306 aprovados=5256 quarentena=50         
+                  substituidos=0 arquivos=7 reconciliacao_ok=True              
+15:34:02 INFO     silver: 5324 aprovados · 58 quarentena · 181 substituídos ·  
+                  reconciliação ok · defeitos localizados 58/406               
+15:34:02 INFO     etapa silver     ok      11.6s {'lidos': 5563, 'aprovados':  
+                  5324, 'quarentena': 58, 'substituidos': 181,                 
+                  'reconciliacao_ok': True, 'defeitos_localizados': '58/406',  
+                  'intervalo': ['2026-08-21', '2026-08-25']}                   
+15:34:04 INFO     dim_fenologia                    48 linhas ·  7 colunas ·    
+                  3.0 KB                                                       
+15:34:04 INFO     dim_talhao                        6 linhas · 16 colunas ·    
+                  6.2 KB                                                       
+15:34:04 INFO     dim_fazenda                       2 linhas ·  5 colunas ·    
+                  2.0 KB                                                       
+15:34:04 INFO     dim_estacao                       2 linhas ·  6 colunas ·    
+                  2.3 KB                                                       
+15:34:05 INFO     dim_sensor                       12 linhas · 12 colunas ·    
+                  5.0 KB                                                       
+15:34:05 INFO     fato_clima_diario                57 linhas · 13 colunas ·    
+                  6.0 KB                                                       
+15:34:05 INFO     fato_leitura_diaria_talhao      186 linhas · 18 colunas ·    
+                  12.5 KB                                                      
+15:34:05 INFO     fato_balanco_hidrico            186 linhas · 17 colunas ·    
+                  9.6 KB                                                       
+15:34:05 INFO     fato_ndvi_talhao                 59 linhas · 15 colunas ·    
+                  8.4 KB                                                       
+15:34:05 INFO     fato_operacao_custo              40 linhas · 11 colunas ·    
+                  5.5 KB                                                       
+15:34:05 INFO     fato_custo_diario_talhao         40 linhas ·  6 colunas ·    
+                  2.6 KB                                                       
+15:34:05 INFO     fato_fertilidade_talhao           6 linhas · 17 colunas ·    
+                  6.9 KB                                                       
+15:34:05 INFO     benchmark_regional                5 linhas · 11 colunas ·    
+                  4.0 KB                                                       
+15:34:05 INFO     fato_alerta_qualidade             6 linhas ·  7 colunas ·    
+                  3.0 KB                                                       
+15:34:05 INFO     [concluida] 14 tabelas materializadas · tabelas=14 puladas=0 
+                  duracao_s=2.6                                                
+15:34:05 INFO     etapa gold       ok       2.6s {'tabelas': 14, 'puladas': 0} 
+15:34:07 INFO     catálogo: 6 fontes · 14 tabelas gold · 2.17s                 
+15:34:07 INFO     etapa catalogo   ok       2.2s {'fontes': 6, 'tabelas_gold': 
+                  14}                                                          
+15:34:08 WARNING  motor 'claude' pedido, mas indisponível — usando regras      
+15:34:08 INFO     TLH-01/irrigacao avaliado                                    
+15:34:08 INFO     TLH-01/fitossanitario avaliado                               
+15:34:08 INFO     TLH-01/executivo avaliado                                    
+15:34:08 INFO     TLH-02/irrigacao avaliado                                    
+15:34:08 INFO     TLH-02/fitossanitario avaliado                               
+15:34:08 INFO     TLH-02/executivo avaliado                                    
+15:34:08 INFO     TLH-03/irrigacao avaliado                                    
+15:34:08 INFO     TLH-03/fitossanitario avaliado                               
+15:34:08 INFO     TLH-03/executivo avaliado                                    
+15:34:08 INFO     TLH-04/irrigacao avaliado                                    
+15:34:08 INFO     TLH-04/fitossanitario avaliado                               
+15:34:08 INFO     TLH-04/executivo avaliado                                    
+15:34:08 INFO     TLH-05/irrigacao avaliado                                    
+15:34:08 INFO     TLH-05/fitossanitario avaliado                               
+15:34:08 INFO     TLH-05/executivo avaliado                                    
+15:34:08 INFO     TLH-06/irrigacao avaliado                                    
+15:34:08 INFO     TLH-06/fitossanitario avaliado                               
+15:34:08 INFO     TLH-06/executivo avaliado                                    
+15:34:08 INFO     etapa copiloto   ok       1.2s {'execucoes': 18, 'aprovadas':
+                  18, 'fallbacks': 0, 'motor_generativo': None, 'concordancia':
+                  None}                                                        
+15:34:08 INFO     [concluida] backfill · 5 etapas ok · duracao_s=38.05 etapas=6
+                           agrosmart run · backfill                            
+                                                                               
+  etapa      status      s   resumo                                            
+ ───────────────────────────────────────────────────────────────────────────── 
+  simular    pulada    0.0   motivo=backfill reprocessa o bronze existente     
+  ingerir    ok       20.0   lotes=3081 · gravados=0 · atualizados=0 ·         
+                             pulados=3081 · rejeitados=0 ·                     
+                             objetos_bronze=6230                               
+  silver     ok       11.6   lidos=5563 · aprovados=5324 · quarentena=58 ·     
+                             substituidos=181 · reconciliacao_ok=True ·        
+                             defeitos_localizados=58/406 ·                     
+                             intervalo=['2026-08-21', '2026-08-25']            
+  gold       ok        2.6   tabelas=14 · puladas=0                            
+  catalogo   ok        2.2   fontes=6 · tabelas_gold=14                        
+  copiloto   ok        1.2   execucoes=18 · aprovadas=18 · fallbacks=0 ·       
+                             motor_generativo=None · concordancia=None         
+                                                                               
+✔ backfill em 38.05s · resumo em outputs/run.json
+
+=== verificação depois do backfill: agrosmart sql ===
+                                       
+  tabela              linhas   chaves  
+ ───────────────────────────────────── 
+  sensores_leitura    34040    34040   
+  clima_diario        57       57      
+  imagens_ndvi_meta   59       59      
+  laudos_solo         6        6       
+                                       
+4 linha(s)

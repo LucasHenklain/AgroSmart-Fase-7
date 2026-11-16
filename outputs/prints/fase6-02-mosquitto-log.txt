@@ -1,0 +1,85 @@
+$ docker logs --since <início da demonstração> agrosmart-mosquitto
+(clientes: agrosmart-gateway-* = coletar-mqtt · agrosmart-dispositivos-* = emulador · auto-* = healthcheck e publicador de comandos)
+1791465220: New connection from ::1:54488 on port 1883.
+1791465220: New client connected from ::1:54488 as auto-2D8CC670-7FA4-404C-C231-26D0C866D1D8 (p4, c1, k60).
+1791465220: Client auto-2D8CC670-7FA4-404C-C231-26D0C866D1D8 [::1:54488] disconnected.
+1791465223: New connection from 172.22.0.1:52600 on port 1883.
+1791465223: Client 172.22.0.1 [172.22.0.1:52600] disconnected: connection closed by client.
+1791465225: New connection from ::1:40804 on port 1883.
+1791465225: New client connected from ::1:40804 as auto-59BA61BA-B8B7-B257-3C34-57A6F12D12D2 (p4, c1, k60).
+1791465225: Client auto-59BA61BA-B8B7-B257-3C34-57A6F12D12D2 [::1:40804] disconnected.
+1791465230: New connection from ::1:40808 on port 1883.
+1791465230: New client connected from ::1:40808 as auto-1BD2E2C4-BC48-55F5-F7BB-55EFE3B2EF12 (p4, c1, k60).
+1791465230: Client auto-1BD2E2C4-BC48-55F5-F7BB-55EFE3B2EF12 [::1:40808] disconnected.
+1791465232: New connection from 172.22.0.1:57012 on port 1883.
+1791465232: New client connected from 172.22.0.1:57012 as agrosmart-gateway-7d8e5ead (p4, c1, k30).
+1791465235: New connection from ::1:54634 on port 1883.
+1791465235: New client connected from ::1:54634 as auto-19628055-CBB1-4F51-AE7D-6C5DA00D65FD (p4, c1, k60).
+1791465236: Client auto-19628055-CBB1-4F51-AE7D-6C5DA00D65FD [::1:54634] disconnected.
+1791465236: New connection from 172.22.0.1:52602 on port 1883.
+1791465236: New client connected from 172.22.0.1:52602 as agrosmart-dispositivos-1f35539d (p4, c1, k30).
+1791465241: New connection from ::1:54658 on port 1883.
+1791465241: New client connected from ::1:54658 as auto-723A4A4C-0D19-1824-1F71-9C3A74AA122B (p4, c1, k60).
+1791465241: Client auto-723A4A4C-0D19-1824-1F71-9C3A74AA122B [::1:54658] disconnected.
+1791465246: New connection from ::1:44476 on port 1883.
+1791465246: New client connected from ::1:44476 as auto-9A1D9E86-9632-9194-6914-39440DBC6D2F (p4, c1, k60).
+1791465246: Client auto-9A1D9E86-9632-9194-6914-39440DBC6D2F [::1:44476] disconnected.
+1791465251: New connection from ::1:44478 on port 1883.
+1791465251: New client connected from ::1:44478 as auto-DD32F4C4-F905-B629-F08D-D73D292FDE97 (p4, c1, k60).
+1791465251: Client auto-DD32F4C4-F905-B629-F08D-D73D292FDE97 [::1:44478] disconnected.
+1791465256: New connection from ::1:34080 on port 1883.
+1791465256: New client connected from ::1:34080 as auto-525B940B-7A2A-81D5-7548-B4889CEE9F6D (p4, c1, k60).
+1791465256: Client auto-525B940B-7A2A-81D5-7548-B4889CEE9F6D [::1:34080] disconnected.
+1791465261: New connection from ::1:34086 on port 1883.
+1791465261: New client connected from ::1:34086 as auto-142C0311-5209-B1D1-7857-29E732B508FC (p4, c1, k60).
+1791465261: Client auto-142C0311-5209-B1D1-7857-29E732B508FC [::1:34086] disconnected.
+1791465266: New connection from ::1:56238 on port 1883.
+1791465266: New client connected from ::1:56238 as auto-33ECCAE5-3B80-D60B-9854-EA582C5E5E83 (p4, c1, k60).
+1791465266: Client auto-33ECCAE5-3B80-D60B-9854-EA582C5E5E83 [::1:56238] disconnected.
+1791465271: New connection from ::1:56246 on port 1883.
+1791465271: New client connected from ::1:56246 as auto-27869D3C-3368-50C5-1962-70CF18D485ED (p4, c1, k60).
+1791465271: Client auto-27869D3C-3368-50C5-1962-70CF18D485ED [::1:56246] disconnected.
+1791465275: New connection from 172.22.0.1:57938 on port 1883.
+1791465275: New client connected from 172.22.0.1:57938 as auto-0B57D0BA-4C1C-728D-E177-C4AE2ED1B192 (p4, c1, k60).
+1791465275: Client auto-0B57D0BA-4C1C-728D-E177-C4AE2ED1B192 [172.22.0.1:57938] disconnected.
+1791465276: New connection from ::1:43434 on port 1883.
+1791465276: New client connected from ::1:43434 as auto-4363E6F0-6634-6B1A-8676-70BA1FDA5887 (p4, c1, k60).
+1791465276: Client auto-4363E6F0-6634-6B1A-8676-70BA1FDA5887 [::1:43434] disconnected.
+1791465281: New connection from ::1:43442 on port 1883.
+1791465281: New client connected from ::1:43442 as auto-17583C47-7D05-3E53-0F1C-E9A62844DEC1 (p4, c1, k60).
+1791465281: Client auto-17583C47-7D05-3E53-0F1C-E9A62844DEC1 [::1:43442] disconnected.
+1791465286: New connection from ::1:38098 on port 1883.
+1791465286: New client connected from ::1:38098 as auto-DCAA7457-1BAA-E8ED-6042-E556A7539964 (p4, c1, k60).
+1791465286: Client auto-DCAA7457-1BAA-E8ED-6042-E556A7539964 [::1:38098] disconnected.
+1791465291: New connection from ::1:38114 on port 1883.
+1791465291: New client connected from ::1:38114 as auto-2B6559C3-1647-1A00-91CB-29A27EE47364 (p4, c1, k60).
+1791465291: Client auto-2B6559C3-1647-1A00-91CB-29A27EE47364 [::1:38114] disconnected.
+1791465296: New connection from ::1:40556 on port 1883.
+1791465296: New client connected from ::1:40556 as auto-D8FE158E-CDE4-92D4-1F58-C9A1A26DF7A6 (p4, c1, k60).
+1791465296: Client auto-D8FE158E-CDE4-92D4-1F58-C9A1A26DF7A6 [::1:40556] disconnected.
+1791465301: New connection from 172.22.0.1:49782 on port 1883.
+1791465301: New client connected from 172.22.0.1:49782 as auto-2EF3AEEA-0C12-6C08-C139-AB212EE6BDE6 (p4, c1, k60).
+1791465301: Client auto-2EF3AEEA-0C12-6C08-C139-AB212EE6BDE6 [172.22.0.1:49782] disconnected.
+1791465301: New connection from ::1:40576 on port 1883.
+1791465301: New client connected from ::1:40576 as auto-8DDD5DB0-61E2-1614-F50F-8E1596A1A106 (p4, c1, k60).
+1791465302: Client auto-8DDD5DB0-61E2-1614-F50F-8E1596A1A106 [::1:40576] disconnected.
+1791465307: New connection from ::1:35132 on port 1883.
+1791465307: New client connected from ::1:35132 as auto-984E2592-F699-CC24-877E-1BEFAC8A53ED (p4, c1, k60).
+1791465307: Client auto-984E2592-F699-CC24-877E-1BEFAC8A53ED [::1:35132] disconnected.
+1791465312: New connection from ::1:35148 on port 1883.
+1791465312: New client connected from ::1:35148 as auto-AB47A73A-CE4E-BE35-CBDB-39EADDBEBF64 (p4, c1, k60).
+1791465312: Client auto-AB47A73A-CE4E-BE35-CBDB-39EADDBEBF64 [::1:35148] disconnected.
+1791465317: New connection from ::1:46596 on port 1883.
+1791465317: New client connected from ::1:46596 as auto-7802806F-5C97-5D6A-2772-1D1021183212 (p4, c1, k60).
+1791465317: Client auto-7802806F-5C97-5D6A-2772-1D1021183212 [::1:46596] disconnected.
+1791465322: New connection from ::1:46598 on port 1883.
+1791465322: New client connected from ::1:46598 as auto-9C546B40-63E3-668C-A310-676ED9B3C88E (p4, c1, k60).
+1791465322: Client auto-9C546B40-63E3-668C-A310-676ED9B3C88E [::1:46598] disconnected.
+1791465326: Client agrosmart-dispositivos-1f35539d [172.22.0.1:52602] disconnected.
+1791465327: New connection from ::1:60910 on port 1883.
+1791465327: New client connected from ::1:60910 as auto-41590CCB-B214-737A-EEDD-0E56EB5DA47C (p4, c1, k60).
+1791465327: Client auto-41590CCB-B214-737A-EEDD-0E56EB5DA47C [::1:60910] disconnected.
+1791465332: New connection from ::1:60924 on port 1883.
+1791465332: New client connected from ::1:60924 as auto-463F73E1-13B7-A96A-CE29-1AF2376177AC (p4, c1, k60).
+1791465332: Client auto-463F73E1-13B7-A96A-CE29-1AF2376177AC [::1:60924] disconnected.
+1791465332: Client agrosmart-gateway-7d8e5ead [172.22.0.1:57012] disconnected.

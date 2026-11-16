@@ -1,0 +1,28 @@
+{
+  "batch_id": "74b3d3e4653062ae",
+  "fonte": "sensores",
+  "schema_version": "sensores.v1",
+  "modo": "streaming",
+  "coletor": "ColetorStreaming",
+  "janela": {
+    "inicio": "2026-08-02T00:00:00+00:00",
+    "fim": "2026-08-02T00:15:00+00:00"
+  },
+  "particao": "2026-08-02",
+  "origem": "sensores/20260802/leituras_20260802T0000Z.jsonl",
+  "arquivos": [
+    {
+      "chave": "sensores/ano=2026/mes=08/dia=02/leituras_20260802T0000Z.jsonl",
+      "nome": "leituras_20260802T0000Z.jsonl",
+      "papel": "principal",
+      "bytes": 2962,
+      "checksum_sha256": "0b700cb1d6c17a502429a809448e5aba163eefc4034a30e1060596b947afe043"
+    }
+  ],
+  "registros": 12,
+  "bytes": 2962,
+  "checksum_sha256": "c0f8b3b214bca86cae4d19186865875a23e4bfa0ddcb8d076d197547b0a9c749",
+  "ingerido_em": "2026-09-03T15:53:14+00:00",
+  "versao": 1,
+  "versao_anterior_checksum": null
+}

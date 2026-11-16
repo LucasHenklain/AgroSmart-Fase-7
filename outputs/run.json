@@ -1,0 +1,84 @@
+{
+  "iniciado_em": "2026-09-05T23:04:33+00:00",
+  "instante_referencia": "2026-09-01T03:00:00+00:00",
+  "backend": "minio",
+  "modo": "completo",
+  "intervalo": null,
+  "sucesso": true,
+  "etapas": [
+    {
+      "nome": "simular",
+      "status": "ok",
+      "duracao_s": 12.77,
+      "resumo": {
+        "arquivos": 3149,
+        "registros": 34794,
+        "defeitos": 406
+      },
+      "erro": null
+    },
+    {
+      "nome": "ingerir",
+      "status": "ok",
+      "duracao_s": 16.08,
+      "resumo": {
+        "lotes": 3081,
+        "gravados": 0,
+        "atualizados": 0,
+        "pulados": 3081,
+        "rejeitados": 0,
+        "objetos_bronze": 6230
+      },
+      "erro": null
+    },
+    {
+      "nome": "silver",
+      "status": "ok",
+      "duracao_s": 14.62,
+      "resumo": {
+        "lidos": 34794,
+        "aprovados": 34208,
+        "quarentena": 405,
+        "substituidos": 181,
+        "reconciliacao_ok": true,
+        "defeitos_localizados": "406/406",
+        "intervalo": null
+      },
+      "erro": null
+    },
+    {
+      "nome": "gold",
+      "status": "ok",
+      "duracao_s": 5.01,
+      "resumo": {
+        "tabelas": 14,
+        "puladas": 0
+      },
+      "erro": null
+    },
+    {
+      "nome": "catalogo",
+      "status": "ok",
+      "duracao_s": 1.75,
+      "resumo": {
+        "fontes": 6,
+        "tabelas_gold": 14
+      },
+      "erro": null
+    },
+    {
+      "nome": "copiloto",
+      "status": "ok",
+      "duracao_s": 1.01,
+      "resumo": {
+        "execucoes": 18,
+        "aprovadas": 18,
+        "fallbacks": 0,
+        "motor_generativo": null,
+        "concordancia": null
+      },
+      "erro": null
+    }
+  ],
+  "duracao_s": 53.77
+}

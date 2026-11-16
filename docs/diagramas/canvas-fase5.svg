@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">
+  <defs>
+    <style>
+      .bloco { fill: #ffffff; stroke: #2e7d32; stroke-width: 1.4; }
+      .novo { fill: #f1f8e9; }
+      .titulo { font-size: 13px; font-weight: 700; fill: #1b5e20; }
+      .item { fill: #263238; }
+      .tag { font-size: 10px; fill: #ef6c00; font-weight: 700; }
+      .rodape { font-size: 11px; fill: #546e7a; }
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#fafafa"/>
+  <text x="24" y="34" font-size="20" font-weight="700" fill="#1b5e20">AgroSmart · Business Model Canvas · Fase 5 (dado como ativo)</text>
+  <text x="24" y="54" class="rodape">Destaque verde = bloco que mudou em relação às fases anteriores. Fonte dos números: execução de referência do lake (docs/02, docs/03).</text>
+
+  <!-- linha 1 -->
+  <rect x="24" y="70" width="224" height="330" class="bloco"/>
+  <text x="36" y="92" class="titulo">Parcerias-chave</text>
+  <text x="36" y="114" class="item">• Cooperativas e revendas (canal e dados)</text>
+  <text x="36" y="132" class="item">• Fabricantes de sensores e gateways</text>
+  <text x="36" y="150" class="item">• Conectividade rural (LoRa, satélite)</text>
+  <text x="36" y="168" class="item">• Embrapa / universidades (limiares Kc,</text>
+  <text x="46" y="184" class="item">calibração agronômica)</text>
+  <text x="36" y="202" class="item">• Bancos e seguradoras (degrau 3)</text>
+  <text x="36" y="220" class="item">• Provedor de nuvem S3 e de modelo de IA</text>
+  <text x="36" y="238" class="item">• Laboratórios de solo (laudos digitais)</text>
+
+  <rect x="256" y="70" width="224" height="160" class="bloco novo"/>
+  <text x="268" y="92" class="titulo">Atividades-chave</text>
+  <text x="268" y="114" class="item">• Ingestão com contrato e qualidade medida</text>
+  <text x="268" y="132" class="item">• Curadoria agronômica (limiares, Kc)</text>
+  <text x="268" y="150" class="item">• Copiloto: prompts, guardrails, avaliação</text>
+  <text x="268" y="168" class="item">• Operação do lake (runbook, retenção)</text>
+  <text x="268" y="186" class="item">• Gestão de consentimento LGPD</text>
+  <text x="268" y="204" class="item">• Produtos de dados anonimizados</text>
+
+  <rect x="256" y="240" width="224" height="160" class="bloco novo"/>
+  <text x="268" y="262" class="titulo">Recursos-chave</text>
+  <text x="268" y="284" class="item">• Data Lake bronze/silver/gold + quarentena</text>
+  <text x="268" y="302" class="item">• Contratos de dados (6 fontes, 58 regras)</text>
+  <text x="268" y="320" class="item">• Base de conhecimento agronômico</text>
+  <text x="268" y="338" class="item">• Prompts versionados e motor de regras</text>
+  <text x="268" y="356" class="item">• Rede de sensores instalada</text>
+  <text x="268" y="374" class="item">• Histórico multi-safra (barreira de entrada)</text>
+
+  <rect x="488" y="70" width="224" height="330" class="bloco novo"/>
+  <text x="500" y="92" class="titulo">Proposta de valor</text>
+  <text x="500" y="114" class="item">Produtor: decidir hoje com custo e</text>
+  <text x="500" y="130" class="item">benefício explícitos — "irrigar 22,5 mm</text>
+  <text x="500" y="146" class="item">custa R$ 405; um dia de estresse em VT</text>
+  <text x="500" y="162" class="item">custa R$ 2.592" — com dados rastreáveis.</text>
+  <text x="500" y="186" class="item">Cooperativa: visão da safra por talhão,</text>
+  <text x="500" y="202" class="item">alertas de qualidade e manutenção.</text>
+  <text x="500" y="226" class="item">Consultoria: relatório pronto, agrônomo</text>
+  <text x="500" y="242" class="item">valida em vez de compilar.</text>
+  <text x="500" y="266" class="item">Seguradora/banco: benchmark regional</text>
+  <text x="500" y="282" class="item">anonimizado (k ≥ 3) com consentimento.</text>
+  <text x="500" y="306" class="item">Indústria: demanda de insumos por</text>
+  <text x="500" y="322" class="item">estádio e região, sem identificar ninguém.</text>
+  <text x="500" y="350" class="tag">A IA recomenda, o produtor decide.</text>
+  <text x="500" y="366" class="tag">Todo número tem origem no lake.</text>
+
+  <rect x="720" y="70" width="224" height="160" class="bloco"/>
+  <text x="732" y="92" class="titulo">Relacionamento</text>
+  <text x="732" y="114" class="item">• Copiloto no dia a dia (app / WhatsApp)</text>
+  <text x="732" y="132" class="item">• Agrônomo parceiro revisa recomendações</text>
+  <text x="732" y="150" class="item">• Relatório semanal executivo</text>
+  <text x="732" y="168" class="item">• Transparência: proveniência de cada saída</text>
+  <text x="732" y="186" class="item">• Comunidade de produtores por cultura</text>
+
+  <rect x="720" y="240" width="224" height="160" class="bloco"/>
+  <text x="732" y="262" class="titulo">Canais</text>
+  <text x="732" y="284" class="item">• Cooperativas e revendas de insumos</text>
+  <text x="732" y="302" class="item">• Venda direta (médio produtor irrigado)</text>
+  <text x="732" y="320" class="item">• API e dashboard (camada de consumo)</text>
+  <text x="732" y="338" class="item">• Portal de dados para parceiros (degrau 3)</text>
+
+  <rect x="952" y="70" width="224" height="330" class="bloco"/>
+  <text x="964" y="92" class="titulo">Segmentos de clientes</text>
+  <text x="964" y="114" class="item">• Pequeno e médio produtor irrigado</text>
+  <text x="974" y="130" class="item">(10–500 ha) — cliente principal</text>
+  <text x="964" y="154" class="item">• Cooperativas agrícolas</text>
+  <text x="964" y="178" class="item">• Consultorias agronômicas</text>
+  <text x="964" y="202" class="item">• Seguradoras e bancos (crédito rural)</text>
+  <text x="964" y="226" class="item">• Indústria de insumos e tradings</text>
+  <text x="964" y="258" class="tag">Degrau 1–2: produtor e cooperativa</text>
+  <text x="964" y="274" class="tag">Degrau 3: seguradora, banco, indústria</text>
+
+  <!-- linha 2 -->
+  <rect x="24" y="416" width="568" height="200" class="bloco"/>
+  <text x="36" y="438" class="titulo">Estrutura de custos</text>
+  <text x="36" y="460" class="item">• Infraestrutura de dados: object storage e processamento — o lake de referência</text>
+  <text x="46" y="476" class="item">(6 talhões, 30 dias, 34 mil registros) roda por inteiro em um notebook em ~1 minuto</text>
+  <text x="36" y="496" class="item">• Hardware de sensores (CAPEX) e manutenção em campo (bateria, antena)</text>
+  <text x="36" y="514" class="item">• Chamadas ao modelo de IA — ~10 KB de contexto por talhão por dia, saída estruturada</text>
+  <text x="36" y="532" class="item">• Equipe: dados/IA, agronomia, sucesso do cliente</text>
+  <text x="36" y="550" class="item">• Aquisição de clientes (via cooperativas reduz o CAC)</text>
+  <text x="36" y="568" class="item">• Conformidade LGPD (DPO, consentimento, auditoria)</text>
+  <text x="36" y="596" class="tag">Custo marginal por hectare tende a zero; o custo é dominado por sensores e pessoas.</text>
+
+  <rect x="608" y="416" width="568" height="200" class="bloco novo"/>
+  <text x="620" y="438" class="titulo">Fontes de receita</text>
+  <text x="620" y="460" class="item">• SaaS por hectare/safra — copiloto + dashboard (recorrente, base)</text>
+  <text x="620" y="478" class="item">• Sensores como serviço — mensalidade por talhão inclui instalação e manutenção</text>
+  <text x="620" y="496" class="item">• Créditos de IA — casos adicionais (fitossanitário avançado, planejamento de safra)</text>
+  <text x="620" y="514" class="item">• API de insights para cooperativas e consultorias</text>
+  <text x="620" y="532" class="item">• Relatórios ESG / rastreabilidade de uso de água por talhão</text>
+  <text x="620" y="550" class="item">• Data-as-a-service: benchmark regional anonimizado (degrau 3, com consentimento)</text>
+  <text x="620" y="578" class="tag">Degrau 1 (interno): dado reduz o próprio custo · Degrau 2: produto · Degrau 3: externo</text>
+  <text x="620" y="596" class="tag">Métrica-norte: hectares sob recomendação ativa.</text>
+
+  <text x="24" y="650" class="rodape">Escada de monetização: 1 · Interno — a recomendação de irrigar só quando FAD &lt; 0,50 e a detecção do sensor mudo (INC-01) reduzem custo e perda.</text>
+  <text x="24" y="668" class="rodape">2 · Produto — copiloto com guardrails, dashboard e relatórios com proveniência, cobrados por hectare. 3 · Externo — benchmark_regional: agregado por cultura,</text>
+  <text x="24" y="686" class="rodape">sem identificador, publicável só com k ≥ 3 talhões e consentimento registrado. Pseudonimização (HMAC com sal) e retenção por contrato desde o silver.</text>
+  <text x="24" y="720" class="rodape">docs/04-modelo-de-negocio.md · AgroSmart Fase 5 · setembro/2026</text>
+</svg>

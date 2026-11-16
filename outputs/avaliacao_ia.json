@@ -1,0 +1,499 @@
+{
+  "gerado_em": "2026-09-05T23:04:33+00:00",
+  "instante_referencia": "2026-09-01T03:00:00+00:00",
+  "modelo_generativo": null,
+  "motor_generativo_ativo": false,
+  "talhoes": [
+    "TLH-01",
+    "TLH-02",
+    "TLH-03",
+    "TLH-04",
+    "TLH-05",
+    "TLH-06"
+  ],
+  "casos": [
+    "irrigacao",
+    "fitossanitario",
+    "executivo"
+  ],
+  "por_motor": {
+    "regras": {
+      "execucoes": 18,
+      "aprovados_guardrails": 18,
+      "com_ajustes": 0,
+      "fallbacks": 0,
+      "latencia_media_s": 0.01,
+      "confianca": {
+        "alta": 15,
+        "media": 0,
+        "baixa": 3
+      },
+      "recomenda_irrigar": 2,
+      "violacoes_por_codigo": {},
+      "tokens_entrada": null,
+      "tokens_saida": null
+    }
+  },
+  "concordancia_regras_vs_modelo": null,
+  "concordancias": [],
+  "execucoes": [
+    {
+      "caso": "irrigacao",
+      "talhao_id": "TLH-01",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "irrigacao"
+      ],
+      "recomenda_irrigar": true,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "fitossanitario",
+      "talhao_id": "TLH-01",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "executivo",
+      "talhao_id": "TLH-01",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "gestao",
+        "nutricao"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 2,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "irrigacao",
+      "talhao_id": "TLH-02",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "alta",
+      "tipos": [
+        "irrigacao"
+      ],
+      "recomenda_irrigar": true,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "fitossanitario",
+      "talhao_id": "TLH-02",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "executivo",
+      "talhao_id": "TLH-02",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "gestao"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "irrigacao",
+      "talhao_id": "TLH-03",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "baixa",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "fitossanitario",
+      "talhao_id": "TLH-03",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "baixa",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "executivo",
+      "talhao_id": "TLH-03",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "baixa",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "gestao",
+        "nutricao"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 2,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "irrigacao",
+      "talhao_id": "TLH-04",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "fitossanitario",
+      "talhao_id": "TLH-04",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "executivo",
+      "talhao_id": "TLH-04",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "gestao",
+        "nutricao"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 2,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "irrigacao",
+      "talhao_id": "TLH-05",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "fitossanitario",
+      "talhao_id": "TLH-05",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "baixa",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "executivo",
+      "talhao_id": "TLH-05",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "gestao",
+        "nutricao"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 2,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "irrigacao",
+      "talhao_id": "TLH-06",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "manutencao",
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 2,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.0
+    },
+    {
+      "caso": "fitossanitario",
+      "talhao_id": "TLH-06",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "monitoramento"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 1,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    },
+    {
+      "caso": "executivo",
+      "talhao_id": "TLH-06",
+      "motor": "regras",
+      "fallback": false,
+      "erro_motor": null,
+      "confianca": "alta",
+      "prioridade_maxima": "media",
+      "tipos": [
+        "gestao",
+        "manutencao",
+        "nutricao"
+      ],
+      "recomenda_irrigar": false,
+      "recomendacoes": 3,
+      "guardrails": {
+        "aprovado": true,
+        "criticas": [],
+        "ajustes": [],
+        "numeros_nao_aterrados": []
+      },
+      "guardrails_rejeitados": null,
+      "prompt_sistema": null,
+      "prompt_caso": null,
+      "uso": null,
+      "latencia_s": 0.01
+    }
+  ],
+  "duracao_s": 0.52
+}

@@ -1,0 +1,11 @@
+﻿                                                                          
+  fonte          regra    tipo       subtipo     entidade     quantidade  
+ ──────────────────────────────────────────────────────────────────────── 
+  clima          CLI-08   tabela     lacuna      EST-SP-027   2           
+  imagens_ndvi   IMG-07   registro   intervalo   None         9           
+  imagens_ndvi   IMG-10   registro   intervalo   None         1           
+  sensores       SEN-10   registro   intervalo   None         399         
+  sensores       SEN-11   registro   intervalo   None         284         
+  sensores       SEN-12   tabela     lacuna      SNS-0302     1           
+                                                                          
+6 linha(s)

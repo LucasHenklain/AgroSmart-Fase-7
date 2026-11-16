@@ -1,0 +1,17 @@
+{
+  "laudo_id": "LAU-2026-00471",
+  "talhao_id": "TLH-01",
+  "laboratorio": "LabSolo Campinas Análises Agronômicas",
+  "coletado_em": "2026-07-21",
+  "emitido_em": "2026-08-02",
+  "profundidade_cm": "0-20",
+  "ph_cacl2": 5.4,
+  "materia_organica_g_dm3": 28.0,
+  "fosforo_mg_dm3": 16.7,
+  "potassio_mmolc_dm3": 2.7,
+  "calcio_mmolc_dm3": 31.1,
+  "magnesio_mmolc_dm3": 12.1,
+  "ctc_mmolc_dm3": 76.0,
+  "saturacao_bases_pct": 60.4,
+  "extrator_versao": "extrator-laudo-v1.2"
+}

@@ -1,0 +1,75 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "executivo",
+  "talhao_id": "TLH-04",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "media",
+  "tipos": [
+    "gestao",
+    "nutricao"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 2,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "executivo",
+    "talhao_id": "TLH-04",
+    "diagnostico": "Resumo executivo do talhão TLH-04 — Espigão (trigo, 22,0 ha, maturacao). Água: 0 dia(s) em estresse em 14, 9,0 mm de chuva e 23,0 mm irrigados; fração de água disponível atual 0,833. Vegetação: NDVI 0,620 (alta), variação -0,184 em 30 dias. Custos: R$ 3341,80 no período (R$ 151,90/ha). Valor de produção de referência: R$ 98560,00. 5 alerta(s) de qualidade de dados relevante(s).",
+    "recomendacoes": [
+      {
+        "prioridade": "media",
+        "tipo": "nutricao",
+        "acao": "Planejar calagem de 1,22 t/ha no talhão TLH-04",
+        "detalhe": "Laudo LAU-2026-00475 (2026-07-24, 0-20 cm): saturação por bases de 52,6 % (classe media), pH 5,0. Fósforo medio (15,7 mg/dm³).",
+        "janela_execucao": "entressafra, antes do próximo plantio",
+        "dados_usados": [
+          "fertilidade.necessidade_calagem_t_ha",
+          "fertilidade.saturacao_bases_pct",
+          "fertilidade.ph_cacl2"
+        ]
+      },
+      {
+        "prioridade": "baixa",
+        "tipo": "gestao",
+        "acao": "Acompanhar o custo por hectare do talhão TLH-04",
+        "detalhe": "R$ 3341,80 em 6 operação(ões) nos últimos 30 dias (R$ 151,90/ha); maior item: irrigacao com R$ 1757,80.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "custos.custo_total_brl",
+          "custos.custo_por_ha_brl",
+          "custos.por_tipo_brl"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "vegetacao",
+      "custos",
+      "fertilidade",
+      "economia",
+      "alertas"
+    ]
+  },
+  "saida_rejeitada": null
+}

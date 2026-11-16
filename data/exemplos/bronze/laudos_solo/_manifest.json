@@ -1,0 +1,35 @@
+{
+  "batch_id": "7221996043e14b03",
+  "fonte": "laudos_solo",
+  "schema_version": "laudos_solo.v1",
+  "modo": "watch_folder",
+  "coletor": "ColetorPastaObservada",
+  "janela": {
+    "inicio": "2026-07-21T00:00:00+00:00",
+    "fim": "2026-07-21T00:00:00+00:00"
+  },
+  "particao": "2026-07-21",
+  "origem": "laudos/LAU-2026-00471.json",
+  "arquivos": [
+    {
+      "chave": "laudos_solo/ano=2026/mes=07/dia=21/LAU-2026-00471.json",
+      "nome": "LAU-2026-00471.json",
+      "papel": "principal",
+      "bytes": 475,
+      "checksum_sha256": "181925113015b32f379524c75b2040b7b31b12b3f5559a0734513804d5861ac9"
+    },
+    {
+      "chave": "laudos_solo/ano=2026/mes=07/dia=21/LAU-2026-00471.pdf",
+      "nome": "LAU-2026-00471.pdf",
+      "papel": "anexo",
+      "bytes": 2215,
+      "checksum_sha256": "983ec0af7dde369799c2cc74d6fed0ed5899b7f0a661906751c175d7c11cbd6b"
+    }
+  ],
+  "registros": 1,
+  "bytes": 2690,
+  "checksum_sha256": "b3e16f3a0d8407ddd11ea11878d32e3f3af1b4fa2054ecf8fa42ba05a63bd620",
+  "ingerido_em": "2026-09-03T18:24:08+00:00",
+  "versao": 2,
+  "versao_anterior_checksum": "65664a0ed79b84aa471e8253bb816ca0bdbc7095cbb43c0ab3c2878cfaf731fc"
+}

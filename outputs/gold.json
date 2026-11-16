@@ -1,0 +1,105 @@
+{
+  "tabelas": {
+    "dim_fenologia": {
+      "registros": 48,
+      "colunas": 7,
+      "bytes": 3112,
+      "chave": "dim_fenologia/dim_fenologia.parquet",
+      "grao": "um estádio por cultura (ou um mês, para perenes)"
+    },
+    "dim_talhao": {
+      "registros": 6,
+      "colunas": 16,
+      "bytes": 6394,
+      "chave": "dim_talhao/dim_talhao.parquet",
+      "grao": "um talhão"
+    },
+    "dim_fazenda": {
+      "registros": 2,
+      "colunas": 5,
+      "bytes": 2077,
+      "chave": "dim_fazenda/dim_fazenda.parquet",
+      "grao": "uma fazenda"
+    },
+    "dim_estacao": {
+      "registros": 2,
+      "colunas": 6,
+      "bytes": 2331,
+      "chave": "dim_estacao/dim_estacao.parquet",
+      "grao": "uma estação meteorológica"
+    },
+    "dim_sensor": {
+      "registros": 12,
+      "colunas": 12,
+      "bytes": 5114,
+      "chave": "dim_sensor/dim_sensor.parquet",
+      "grao": "um sensor de campo"
+    },
+    "fato_clima_diario": {
+      "registros": 57,
+      "colunas": 13,
+      "bytes": 6124,
+      "chave": "fato_clima_diario/fato_clima_diario.parquet",
+      "grao": "uma estação em um dia"
+    },
+    "fato_leitura_diaria_talhao": {
+      "registros": 186,
+      "colunas": 18,
+      "bytes": 12786,
+      "chave": "fato_leitura_diaria_talhao/fato_leitura_diaria_talhao.parquet",
+      "grao": "um talhão em um dia"
+    },
+    "fato_balanco_hidrico": {
+      "registros": 186,
+      "colunas": 17,
+      "bytes": 9852,
+      "chave": "fato_balanco_hidrico/fato_balanco_hidrico.parquet",
+      "grao": "um talhão em um dia"
+    },
+    "fato_ndvi_talhao": {
+      "registros": 59,
+      "colunas": 15,
+      "bytes": 8606,
+      "chave": "fato_ndvi_talhao/fato_ndvi_talhao.parquet",
+      "grao": "uma cena (drone ou satélite) de um talhão"
+    },
+    "fato_operacao_custo": {
+      "registros": 40,
+      "colunas": 11,
+      "bytes": 5608,
+      "chave": "fato_operacao_custo/fato_operacao_custo.parquet",
+      "grao": "uma operação de campo"
+    },
+    "fato_custo_diario_talhao": {
+      "registros": 40,
+      "colunas": 6,
+      "bytes": 2712,
+      "chave": "fato_custo_diario_talhao/fato_custo_diario_talhao.parquet",
+      "grao": "um talhão, um dia, um tipo de operação"
+    },
+    "fato_fertilidade_talhao": {
+      "registros": 6,
+      "colunas": 17,
+      "bytes": 7034,
+      "chave": "fato_fertilidade_talhao/fato_fertilidade_talhao.parquet",
+      "grao": "um laudo de solo"
+    },
+    "benchmark_regional": {
+      "registros": 5,
+      "colunas": 11,
+      "bytes": 4129,
+      "chave": "benchmark_regional/benchmark_regional.parquet",
+      "grao": "uma cultura"
+    },
+    "fato_alerta_qualidade": {
+      "registros": 6,
+      "colunas": 7,
+      "bytes": 3116,
+      "chave": "fato_alerta_qualidade/fato_alerta_qualidade.parquet",
+      "grao": "um alerta de qualidade (por regra ou por entidade)"
+    }
+  },
+  "puladas": [],
+  "gerado_em": "2026-09-05T23:04:30+00:00",
+  "duracao_s": 5.01
+}

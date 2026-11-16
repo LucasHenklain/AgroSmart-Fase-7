@@ -1,0 +1,60 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "fitossanitario",
+  "talhao_id": "TLH-05",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "baixa",
+  "tipos": [
+    "monitoramento"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 1,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "fitossanitario",
+    "talhao_id": "TLH-05",
+    "diagnostico": "Risco fitossanitário do talhão TLH-05 (cafe, florada). Última semana: 7 dia(s) de clima, UR média 57,9 %, 1 dia(s) acima de 80,0 %, temperatura máxima média 29,2 °C, 1 dia(s) de chuva. Vegetação: NDVI 0,697 (confiança media), variação de -0,003 em 30 dias, 0 de 9 cenas com nuvem alta.",
+    "recomendacoes": [
+      {
+        "prioridade": "baixa",
+        "tipo": "monitoramento",
+        "acao": "Manter o monitoramento semanal do talhão TLH-05",
+        "detalhe": "Sem janela climática de risco (1 dia(s) de UR alta em 7) e NDVI estável (0,697, variação de -0,003 em 30 dias).",
+        "janela_execucao": null,
+        "dados_usados": [
+          "clima_recente.dias_ur_alta_7d",
+          "vegetacao.ndvi_ultimo",
+          "vegetacao.variacao_30d"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "clima_recente",
+      "vegetacao",
+      "cenas_ndvi_30d",
+      "custos.dias_desde_pulverizacao",
+      "limiares"
+    ]
+  },
+  "saida_rejeitada": null
+}

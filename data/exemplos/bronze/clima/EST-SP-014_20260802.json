@@ -1,0 +1,50 @@
+{
+  "latitude": -22.7402,
+  "longitude": -47.3241,
+  "elevation": 640.0,
+  "timezone": "UTC",
+  "provedor": "open-meteo",
+  "estacao_id": "EST-SP-014",
+  "fazenda_id": "FAZ-01",
+  "consultado_em": "2026-08-03T03:00:00Z",
+  "daily_units": {
+    "time": "iso8601",
+    "temperature_2m_max": "°C",
+    "temperature_2m_min": "°C",
+    "temperature_2m_mean": "°C",
+    "relative_humidity_2m_mean": "%",
+    "precipitation_sum": "mm",
+    "wind_speed_10m_max": "m/s",
+    "shortwave_radiation_sum": "MJ/m²",
+    "et0_fao_evapotranspiration": "mm"
+  },
+  "daily": {
+    "time": [
+      "2026-08-02"
+    ],
+    "temperature_2m_max": [
+      13.8
+    ],
+    "temperature_2m_min": [
+      27.0
+    ],
+    "temperature_2m_mean": [
+      20.0
+    ],
+    "relative_humidity_2m_mean": [
+      63.8
+    ],
+    "precipitation_sum": [
+      0.0
+    ],
+    "wind_speed_10m_max": [
+      1.6
+    ],
+    "shortwave_radiation_sum": [
+      14.9
+    ],
+    "et0_fao_evapotranspiration": [
+      3.35
+    ]
+  }
+}

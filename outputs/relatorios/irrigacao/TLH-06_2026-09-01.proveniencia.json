@@ -1,0 +1,73 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "irrigacao",
+  "talhao_id": "TLH-06",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "media",
+  "tipos": [
+    "manutencao",
+    "monitoramento"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 2,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "irrigacao",
+    "talhao_id": "TLH-06",
+    "diagnostico": "Talhão TLH-06 (cana, 41,3 ha) é de sequeiro: não há sistema de irrigação, então a decisão é de acompanhamento. Fração de água disponível em 0,002 e umidade média de 12,0 % em 2026-09-01; 10 dia(s) em estresse nos últimos 14, chuva acumulada de 9,0 mm.",
+    "recomendacoes": [
+      {
+        "prioridade": "media",
+        "tipo": "monitoramento",
+        "acao": "Acompanhar o estresse hídrico do canavial pelo NDVI e pelos sensores",
+        "detalhe": "Sem irrigação disponível, a resposta possível é operacional: com 10 dia(s) em estresse e NDVI de 0,635, priorizar o monitoramento da desuniformidade e planejar a colheita conforme a maturação.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "talhao.irrigado",
+          "hidrico.dias_em_estresse_14d",
+          "vegetacao.ndvi_ultimo"
+        ]
+      },
+      {
+        "prioridade": "baixa",
+        "tipo": "manutencao",
+        "acao": "Reposicionar antena ou gateway para o sensor SNS-0602",
+        "detalhe": "Sinal médio de -90,2 dBm e 276 leitura(s) abaixo de -95 dBm no período (fração 0,096): risco de perda de leituras.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "sensores.sensores[1].rssi_medio_dbm",
+          "sensores.sensores[1].leituras_sinal_fraco",
+          "limiares.rssi_fraco_dbm"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "serie_hidrica_14d",
+      "limiares.fracao_irrigacao",
+      "sensores"
+    ]
+  },
+  "saida_rejeitada": null
+}

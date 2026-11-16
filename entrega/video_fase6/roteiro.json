@@ -1,0 +1,42 @@
+{
+  "fps": 30, "largura": 1920, "altura": 1080, "fonte_legenda": "Segoe UI", "tamanho_legenda": 40,
+  "cenas": [
+    {"id": "01", "tipo": "sequencia", "audio": "audio/01.mp3", "pausa_fim": 0.7,
+     "narracao": "Somos a equipe AgroSmart, turma 4ESOA. Na Fase 5 construímos um data lake e um copiloto de inteligência artificial que recomenda. Na Fase 6 fechamos o ciclo: o dado nasce em um ESP32, viaja por MQTT, passa pelas camadas bronze, silver e gold, e um motor de decisão transforma indicadores em ação: irrigar, alertar, trocar bateria, inspecionar sensor. E a ação volta ao campo como comando para o atuador. Tudo o que vamos mostrar foi executado e está no pacote, com evidências.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/01_capa.html", "duracao": 11, "movimento": "zoom_in"},
+       {"tipo": "imagem", "imagem": "img/arquitetura.png", "movimento": "zoom_out", "ajuste": "conter", "cor_fundo": "#FFFFFF"}
+     ]},
+    {"id": "02", "tipo": "sequencia", "audio": "audio/02.mp3", "pausa_fim": 0.7,
+     "narracao": "Da esquerda para a direita: os dispositivos, o ESP32 simulado no Wokwi ou o emulador local, que publicam o mesmo payload; o broker MQTT; o gateway coletar-mqtt, que materializa as leituras em arquivos de quinze minutos na landing; e daí o lake da Fase 5, sem uma linha alterada, porque o contrato da fonte de sensores é a fronteira: schema, regras de qualidade, deduplicação e retenção. No gold, a automação lê o balanço hídrico e a cobertura dos sensores, decide, grava o plano de ações e publica o comando. O dashboard mostra o mesmo gold e o mesmo plano.",
+     "itens": [
+       {"tipo": "imagem", "imagem": "img/arquitetura.png", "duracao": 24, "movimento": "pan_right", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "slide", "html": "slides/02_contrato.html", "movimento": "static"}
+     ]},
+    {"id": "03", "tipo": "sequencia", "audio": "audio/03.mp3", "pausa_fim": 0.7,
+     "narracao": "A coleta é real. Este é o ESP32 no Wokwi: DHT22 para o ar, sonda de umidade do solo, NTC para a temperatura do solo, LDR, nível de bateria e dois LEDs, irrigação e alerta. Ele sincroniza o relógio por NTP e publica a cada cinco segundos no tópico agrosmart/sensores/SNS-0301/leitura, no broker público HiveMQ. Na nossa máquina, o gateway assinou o tópico e recebeu as leituras: umidade do solo em 41%, 27 graus no ar, bateria em 84. Descartou a chave luminosidade, que não está no contrato, e gravou o JSONL exatamente no formato que a Fase 5 já ingeria. O emulador local faz o mesmo para os doze sensores do catálogo: 216 leituras publicadas, 215 gravadas, uma duplicata ignorada e nenhuma leitura real reprovada no silver.",
+     "itens": [
+       {"tipo": "imagem", "imagem": "img/wokwi.png", "duracao": 26, "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#1B1B1B"},
+       {"tipo": "slide", "html": "slides/03_gateway.html", "movimento": "static"}
+     ]},
+    {"id": "04", "tipo": "sequencia", "audio": "audio/04.mp3", "pausa_fim": 0.7,
+     "narracao": "O motor de decisão lê o gold e compara com os mesmos limiares do copiloto. Fração de água disponível abaixo do limiar em talhão irrigado: irrigar, com lâmina e minutos de válvula calculados. Umidade alta e temperatura na faixa de fungo: alerta fitossanitário. Bateria baixa: trocar bateria. Cobertura abaixo de 80%: inspecionar o sensor. Na execução sobre o gold de primeiro de setembro: seis talhões e três ações. Irrigar o talhão 2 com 22,5 milímetros, 170 minutos, prioridade alta; e inspecionar dois sensores, um com cobertura de 50% e outro com sinal fraco. Cada ação tem motivo e evidência: a tabela, a chave e a data do gold. Com o flag publicar, o comando sai por MQTT com QoS 1, o status muda para publicado e o ESP32 liga a irrigação. Sem o flag, nada age no campo.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/04_automacao.html", "duracao": 34, "movimento": "static"},
+       {"tipo": "slide", "html": "slides/04b_acao.html", "movimento": "static"}
+     ]},
+    {"id": "05", "tipo": "sequencia", "audio": "audio/05.mp3", "pausa_fim": 0.7,
+     "narracao": "O dashboard lê só o gold: o que o produtor vê é o que a automação leu. Água: o balanço hídrico com os limiares de irrigação e estresse. Sensores: cobertura de leituras por dia e a situação de cada dispositivo. E a aba nova, Automação: o plano mais recente, ações por tipo e prioridade, risco por talhão, e cada ação com motivo, parâmetros e status. Indicadores do ambiente, evolução no tempo e alertas saem do mesmo lugar.",
+     "itens": [
+       {"tipo": "imagem", "imagem": "img/dash_agua.png", "duracao": 12, "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "imagem", "imagem": "img/dash_sensores.png", "duracao": 9, "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "imagem", "imagem": "img/dash_automacao.png", "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#FFFFFF"}
+     ]},
+    {"id": "06", "tipo": "sequencia", "audio": "audio/06.mp3", "pausa_fim": 1.2,
+     "narracao": "Contrato antes de código, bronze imutável, dado ruim quarentenado com motivo. E agora, nada age sem evidência. Código, firmware, documentos, capturas e evidências estão no pacote da Fase 6 e são reproduzíveis com um comando. Equipe AgroSmart: Lucas Dalmas, Lucas Emanuel, Kayque Moraes, Lucas Henklain e Vinicius Pinheiro. Obrigado.",
+     "itens": [
+       {"tipo": "imagem", "imagem": "img/arquitetura.png", "duracao": 7, "movimento": "zoom_out", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "slide", "html": "slides/06_fechamento.html", "movimento": "zoom_in"}
+     ]}
+  ]
+}

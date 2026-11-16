@@ -1,0 +1,130 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Title (Recomendação de irrigação · TLH-05 — Encosta do Café) /Author (AgroSmart Copiloto) /Producer (agrosmart-pdf) >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2345 >>
+stream
+BT
+/F1 15 Tf
+56 790 Td
+(Recomendação de irrigação · TLH-05 — Encosta do Café) Tj
+/F1 10 Tf
+0 -25 Td
+() Tj
+0 -14 Td
+(Cultura: cafe Catuaí Vermelho IAC 144 · Área: 7.5 ha · Estádio: florada \(1996 dias após o plantio\)) Tj
+0 -14 Td
+(· Irrigação: gotejamento) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Referência: 2026-09-01 · Confiança: alta — dados completos: sensores com cobertura plena, clima em) Tj
+0 -14 Td
+(toda a série e sem alertas abertos) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Diagnóstico) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Talhão TLH-05 \(cafe Catuaí Vermelho IAC 144, 7,5 ha, gotejamento\) em florada, 1996 dias após o) Tj
+0 -14 Td
+(plantio. Umidade média de 29,0 % em 2026-09-01, fração de água disponível 0,776, déficit de 12,1) Tj
+0 -14 Td
+(mm. Nos últimos 14 dias: 9,0 mm de chuva, 45,2 mm de ETc, 49,0 mm irrigados, 0 dia\(s\) em estresse.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Recomendações) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(1. [BAIXA] Manter o manejo atual do talhão TLH-05 \(monitoramento\)) Tj
+0 -14 Td
+(Fração de água disponível em 0,776, acima do limiar de 0,50; umidade média de 29,0 % e 49,0 mm) Tj
+0 -14 Td
+(irrigados em 14 dias. Nenhuma ação de irrigação necessária hoje.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Custo estimado das ações: não estimado · Perda evitada / economia: não estimado) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Limitações) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(- previsão meteorológica não disponível nesta fase — decidir com base no observado) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Dados usados) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Tabelas do gold: dim_sensor, dim_talhao, fato_alerta_qualidade, fato_balanco_hidrico,) Tj
+0 -14 Td
+(fato_clima_diario, fato_custo_diario_talhao, fato_fertilidade_talhao, fato_leitura_diaria_talhao,) Tj
+0 -14 Td
+(fato_ndvi_talhao) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Campos do contexto: talhao, hidrico, serie_hidrica_14d, limiares.fracao_irrigacao, sensores) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Proveniência) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(- Motor: regras) Tj
+0 -14 Td
+(- Guardrails: aprovado, sem ajustes) Tj
+0 -14 Td
+(- Context Pack context-pack.v1 gerado em 2026-09-06T00:02:05+00:00 · instante de referência) Tj
+0 -14 Td
+(2026-09-01T03:00:00+00:00) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(O copiloto recomenda; o produtor decide. Toda cifra e medida acima vem do Data Lake da fazenda;) Tj
+0 -14 Td
+(nenhuma foi estimada pelo modelo.) Tj
+0 -14 Td
+/F1 8 Tf
+0 -14 Td
+(página 1 de 1) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000356 00000 n 
+0000000482 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R /Info 4 0 R >>
+startxref
+2878
+%%EOF

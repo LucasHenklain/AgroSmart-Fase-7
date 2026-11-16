@@ -1,0 +1,88 @@
+{
+  "gerado_em": "2026-09-06T00:02:05+00:00",
+  "caso": "executivo",
+  "talhao_id": "TLH-06",
+  "motor": "regras",
+  "fallback": false,
+  "erro_motor": null,
+  "confianca": "alta",
+  "prioridade_maxima": "media",
+  "tipos": [
+    "gestao",
+    "manutencao",
+    "nutricao"
+  ],
+  "recomenda_irrigar": false,
+  "recomendacoes": 3,
+  "guardrails": {
+    "aprovado": true,
+    "criticas": [],
+    "ajustes": [],
+    "numeros_nao_aterrados": []
+  },
+  "guardrails_rejeitados": null,
+  "prompt_sistema": null,
+  "prompt_caso": null,
+  "uso": null,
+  "latencia_s": 0.01,
+  "saida": {
+    "caso": "executivo",
+    "talhao_id": "TLH-06",
+    "diagnostico": "Resumo executivo do talhão TLH-06 — Canavial da Estrada (cana, 41,3 ha, maturacao). Água: 10 dia(s) em estresse em 14, 9,0 mm de chuva e 0,0 mm irrigados; fração de água disponível atual 0,002. Vegetação: NDVI 0,635 (alta), variação -0,199 em 30 dias. Custos: R$ 3003,34 no período (R$ 72,72/ha). Valor de produção de referência: R$ 491470,00. 5 alerta(s) de qualidade de dados relevante(s).",
+    "recomendacoes": [
+      {
+        "prioridade": "media",
+        "tipo": "nutricao",
+        "acao": "Planejar calagem de 1,91 t/ha no talhão TLH-06",
+        "detalhe": "Laudo LAU-2026-00477 (2026-07-26, 0-20 cm): saturação por bases de 42,1 % (classe baixa), pH 4,9. Fósforo baixo (11,3 mg/dm³).",
+        "janela_execucao": "entressafra, antes do próximo plantio",
+        "dados_usados": [
+          "fertilidade.necessidade_calagem_t_ha",
+          "fertilidade.saturacao_bases_pct",
+          "fertilidade.ph_cacl2"
+        ]
+      },
+      {
+        "prioridade": "baixa",
+        "tipo": "gestao",
+        "acao": "Acompanhar o custo por hectare do talhão TLH-06",
+        "detalhe": "R$ 3003,34 em 4 operação(ões) nos últimos 30 dias (R$ 72,72/ha); maior item: monitoramento com R$ 3003,34.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "custos.custo_total_brl",
+          "custos.custo_por_ha_brl",
+          "custos.por_tipo_brl"
+        ]
+      },
+      {
+        "prioridade": "baixa",
+        "tipo": "manutencao",
+        "acao": "Reposicionar antena ou gateway para o sensor SNS-0602",
+        "detalhe": "Sinal médio de -90,2 dBm e 276 leitura(s) abaixo de -95 dBm no período (fração 0,096): risco de perda de leituras.",
+        "janela_execucao": null,
+        "dados_usados": [
+          "sensores.sensores[1].rssi_medio_dbm",
+          "sensores.sensores[1].leituras_sinal_fraco",
+          "limiares.rssi_fraco_dbm"
+        ]
+      }
+    ],
+    "custo_estimado_brl": null,
+    "economia_estimada_brl": null,
+    "confianca": "alta",
+    "justificativa_confianca": "dados completos: sensores com cobertura plena, clima em toda a série e sem alertas abertos",
+    "limitacoes": [
+      "previsão meteorológica não disponível nesta fase — decidir com base no observado"
+    ],
+    "dados_usados": [
+      "talhao",
+      "hidrico",
+      "vegetacao",
+      "custos",
+      "fertilidade",
+      "economia",
+      "alertas"
+    ]
+  },
+  "saida_rejeitada": null
+}

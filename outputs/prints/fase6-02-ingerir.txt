@@ -1,0 +1,14 @@
+$ python -m agrosmart ingerir --fonte sensores --sem-exemplos
+10:16:32 INFO     3 lote(s) descobertos em landing                                                           
+10:16:32 INFO     3 gravados · 0 atualizados · 0 pulados · 0 rejeitados · 215 registros · 0.3s               
+10:16:34 INFO     [concluida] 1 fontes · 3 lotes · lotes=3 gravados=3 atualizados=0 pulados=0 rejeitados=0   
+                  registros=215 duracao_s=2.08                                                               
+10:16:34 INFO     bronze com 6236 objetos · quarentena com 0                                                 
+                                       Ingestão → bronze (minio)                                       
+                                                                                                       
+  fonte      modo        lotes   gravados   atualizados   pulados   rejeitados   registros   KB     s  
+ ───────────────────────────────────────────────────────────────────────────────────────────────────── 
+  sensores   streaming       3          3             0         0            0         215   52   0.3  
+                                                                                                       
+bronze: 6236 objetos · quarentena: 0 · exemplos exportados: nenhum · 2.08s
+✔ resumo em outputs/ingestao.json

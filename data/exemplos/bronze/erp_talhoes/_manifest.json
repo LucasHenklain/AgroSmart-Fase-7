@@ -1,0 +1,28 @@
+{
+  "batch_id": "5acda387a73baac9",
+  "fonte": "erp_talhoes",
+  "schema_version": "erp_talhoes.v1",
+  "modo": "batch",
+  "coletor": "ColetorBatch",
+  "janela": {
+    "inicio": "2026-08-02T02:30:00+00:00",
+    "fim": "2026-08-02T02:30:00+00:00"
+  },
+  "particao": "2026-08-02",
+  "origem": "erp/talhoes_20260802.csv",
+  "arquivos": [
+    {
+      "chave": "erp_talhoes/ano=2026/mes=08/dia=02/talhoes_20260802.csv",
+      "nome": "talhoes_20260802.csv",
+      "papel": "principal",
+      "bytes": 1129,
+      "checksum_sha256": "a8b760a2992658432afd6fb7ed860fdf6ce4c98e3044ad440c3206b893f5c452"
+    }
+  ],
+  "registros": 6,
+  "bytes": 1129,
+  "checksum_sha256": "3ed211e6679f28c78043733c8c0e451f41912b10ce675786f84d684dd96cb35e",
+  "ingerido_em": "2026-09-03T15:53:10+00:00",
+  "versao": 1,
+  "versao_anterior_checksum": null
+}
