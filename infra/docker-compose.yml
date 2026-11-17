@@ -38,6 +38,10 @@ x-app: &app
   volumes:
     - landing:/app/landing
     - outputs:/app/outputs
+  # init (tini) como PID 1: repassa SIGTERM ao Python e recolhe processos-filho.
+  # Achado real: sem ele, um `docker compose up` recriando o worker travou com
+  # "PID is zombie and can not be killed".
+  init: true
   security_opt:
     - no-new-privileges:true
   cap_drop:
