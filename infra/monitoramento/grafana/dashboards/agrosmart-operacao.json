@@ -875,9 +875,9 @@
     },
     {
       "id": 17,
-      "type": "bargauge",
-      "title": "Objetos por bucket do lake (MinIO)",
-      "description": "",
+      "type": "timeseries",
+      "title": "Data Lake (MinIO): objetos e versões",
+      "description": "Cresce a cada ciclo: lotes novos no bronze, Parquet do silver/gold.",
       "datasource": {
         "type": "prometheus",
         "uid": "prometheus-agrosmart"
@@ -894,36 +894,50 @@
             "type": "prometheus",
             "uid": "prometheus-agrosmart"
           },
-          "expr": "sum by (bucket) (minio_bucket_usage_object_total)",
-          "legendFormat": "{{bucket}}",
+          "expr": "max(minio_cluster_usage_object_total)",
+          "legendFormat": "objetos",
           "refId": "A",
-          "instant": true,
-          "range": false
+          "instant": false,
+          "range": true
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus-agrosmart"
+          },
+          "expr": "max(minio_cluster_usage_version_total)",
+          "legendFormat": "versões",
+          "refId": "B",
+          "instant": false,
+          "range": true
         }
       ],
       "options": {
-        "orientation": "horizontal",
-        "displayMode": "gradient",
-        "reduceOptions": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
           "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+            "lastNotNull",
+            "mean"
+          ]
         },
-        "showUnfilled": true
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       },
       "fieldConfig": {
         "defaults": {
           "unit": "none",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "stacking": {
+              "mode": "none"
+            },
+            "showPoints": "never",
+            "spanNulls": true
           }
         },
         "overrides": []

@@ -282,13 +282,16 @@ def montar() -> dict:
             h=8,
             limiares=[{"color": "blue", "value": None}],
         ),
-        barras(
-            "Objetos por bucket do lake (MinIO)",
-            "sum by (bucket) (minio_bucket_usage_object_total)",
-            "{{bucket}}",
+        serie(
+            "Data Lake (MinIO): objetos e versões",
+            [
+                alvo("max(minio_cluster_usage_object_total)", "objetos", "A"),
+                alvo("max(minio_cluster_usage_version_total)", "versões", "B"),
+            ],
             0,
             31,
             w=12,
+            descricao="Cresce a cada ciclo: lotes novos no bronze, Parquet do silver/gold.",
         ),
         serie(
             "Arquivos de sensores na landing",
