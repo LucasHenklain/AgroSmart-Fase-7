@@ -25,6 +25,20 @@ from agrosmart import __version__
 ARQUIVO_STATUS = Path("status") / "operacao.json"
 
 
+def _valor(valor: float) -> str:
+    """Número no formato do Prometheus sem perder precisão.
+
+    Achado real da Fase 7: com ``{:g}`` o epoch 1794932319 virava ``1.79493e+09`` e o
+    alerta ``SemCicloBemSucedido`` disparava com o worker saudável. ``repr`` de float
+    preserva todos os dígitos significativos.
+    """
+    if isinstance(valor, bool):
+        return "1" if valor else "0"
+    if isinstance(valor, int):
+        return str(valor)
+    return repr(float(valor))
+
+
 def _rotulos(**rotulos: str) -> str:
     if not rotulos:
         return ""
@@ -169,7 +183,7 @@ class EstadoOperacao:
                 linhas.append(f"# HELP {nome} {ajuda}")
                 linhas.append(f"# TYPE {nome} {tipo}")
                 for rotulos, valor in amostras:
-                    linhas.append(f"{nome}{_rotulos(**rotulos)} {valor:g}")
+                    linhas.append(f"{nome}{_rotulos(**rotulos)} {_valor(valor)}")
 
             metrica(
                 "agrosmart_worker_info",
