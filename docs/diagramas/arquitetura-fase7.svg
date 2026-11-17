@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1224 806" width="1224" height="806" role="img" aria-label="Arquitetura final do AgroSmart — Fase 7">
+  <title>Arquitetura final do AgroSmart — Fase 7: IoT, processamento contínuo, Data Lake, consumo, observabilidade e DevSecOps</title>
+  <style>
+    .fundo { fill: #FBFCFA; }
+    .box { fill: #E9ECE6; stroke: #B9C1B5; }
+    .band { fill: #DDEAE1; stroke: #2C6A4C; stroke-opacity: .45; }
+    .auto { fill: #E4E8F3; stroke: #2F4A8A; stroke-opacity: .5; }
+    .quar { fill: #F6E3DE; stroke: #9E3320; stroke-opacity: .5; }
+    .chip { fill: #FBFCFA; stroke: #D5DAD1; }
+    .chipnovo { fill: #FBFCFA; stroke: #2F4A8A; stroke-opacity: .55; }
+    .titulo { font-family: Georgia, "Times New Roman", serif; font-size: 14px; font-weight: 600;
+              fill: #191E1A; }
+    .sub { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.6px; letter-spacing: .09em;
+           fill: #616B62; }
+    .chiptxt { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #3D463F; }
+    .stage { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.6px; letter-spacing: .14em;
+             fill: #616B62; }
+    .nota { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.2px; letter-spacing: .06em;
+            fill: #2F4A8A; }
+    .arrow { stroke: #B9C1B5; stroke-width: 1.4; fill: none; }
+    .retorno { stroke: #2F4A8A; stroke-width: 1.4; fill: none;
+               stroke-dasharray: 5 4; stroke-opacity: .8; }
+    .head { fill: #B9C1B5; }
+    .headretorno { fill: #2F4A8A; fill-opacity: .8; }
+    .r-campo { fill: #2C6A4C; } .r-coleta { fill: #2F4A8A; }
+    .r-bronze { fill: #8A5A2B; } .r-prata { fill: #6F7C77; }
+    .r-ouro { fill: #9C7A1E; } .r-quar { fill: #9E3320; }
+    .obs { fill: #F3ECDD; stroke: #9C7A1E; stroke-opacity: .5; }
+    .dev { fill: #E7E4F0; stroke: #5B4A8A; stroke-opacity: .5; }
+    .r-obs { fill: #9C7A1E; } .r-dev { fill: #5B4A8A; }
+    .sim { fill: #FFF7E6; stroke: #C77700; stroke-dasharray: 4 3; }
+    .metr { stroke: #9C7A1E; stroke-width: 1.3; fill: none; stroke-dasharray: 3 3; }
+    .headmetr { fill: #9C7A1E; }
+    .rot { font-family: Consolas, monospace; font-size: 8.4px; fill: #616B62; }
+  </style>
+  <rect class="fundo" x="0" y="0" width="1224" height="806"/>
+  <text class="stage" x="40" y="20">CAMPO</text>
+  <rect class="box" x="40" y="30" width="208" height="318" rx="9"/>
+  <rect class="r-campo" x="40" y="30" width="208" height="3.5" rx="1.75"/>
+  <text class="titulo" x="54" y="56">Dispositivos</text>
+  <text class="sub" x="54" y="71">SENSORES + ATUADOR + ORIGENS</text>
+  <rect class="chip" x="54" y="84" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="102">ESP32 no Wokwi (firmware/)</text>
+  <rect class="sim" x="54" y="119" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="137">dispositivos · 12 sensores</text>
+  <rect class="sim" x="54" y="154" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="172">  (emulador · SIMULAÇÃO)</text>
+  <rect class="chip" x="54" y="189" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="207">Atuador de irrigação (relé)</text>
+  <rect class="chip" x="54" y="224" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="242">Clima API · ERP CSV</text>
+  <rect class="chip" x="54" y="259" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="277">Drone JPEG · Laudos PDF</text>
+  <rect class="sim" x="54" y="294" width="180" height="28" rx="5"/><text class="chiptxt" x="64" y="312">(carga inicial simulada)</text>
+  <text class="stage" x="274" y="20">TRANSPORTE E COLETA</text>
+  <rect class="box" x="274" y="30" width="208" height="318" rx="9"/>
+  <rect class="r-coleta" x="274" y="30" width="208" height="3.5" rx="1.75"/>
+  <text class="titulo" x="288" y="56">Broker + gateway</text>
+  <text class="sub" x="288" y="71">MQTT · LANDING JSONL</text>
+  <rect class="chip" x="288" y="84" width="180" height="28" rx="5"/><text class="chiptxt" x="298" y="102">mosquitto :1883</text>
+  <rect class="chip" x="288" y="119" width="180" height="28" rx="5"/><text class="chiptxt" x="298" y="137">sensores/+/leitura (QoS 0)</text>
+  <rect class="chip" x="288" y="154" width="180" height="28" rx="5"/><text class="chiptxt" x="298" y="172">atuadores/+/irrigacao (QoS 1)</text>
+  <rect class="chip" x="288" y="189" width="180" height="28" rx="5"/><text class="chiptxt" x="298" y="207">gateway · coletar-mqtt</text>
+  <rect class="chip" x="288" y="224" width="180" height="28" rx="5"/><text class="chiptxt" x="298" y="242">janela 15 min · dedup chave</text>
+  <rect class="chip" x="288" y="259" width="180" height="28" rx="5"/><text class="chiptxt" x="298" y="277">volume landing/</text>
+  <text class="stage" x="508" y="20">PROCESSAMENTO CONTÍNUO</text>
+  <rect class="box" x="508" y="30" width="208" height="318" rx="9"/>
+  <rect class="r-coleta" x="508" y="30" width="208" height="3.5" rx="1.75"/>
+  <text class="titulo" x="522" y="56">worker :8000</text>
+  <text class="sub" x="522" y="71">agrosmart operar · CICLO 60 s</text>
+  <rect class="chipnovo" x="522" y="84" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="102">1 ingerir → bronze</text>
+  <rect class="chipnovo" x="522" y="119" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="137">2 silver (58 regras · LGPD)</text>
+  <rect class="chipnovo" x="522" y="154" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="172">3 gold (14 tabelas · SQL)</text>
+  <rect class="chipnovo" x="522" y="189" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="207">4 catálogo + linhagem</text>
+  <rect class="chipnovo" x="522" y="224" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="242">5 decidir (motor de regras)</text>
+  <rect class="chipnovo" x="522" y="259" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="277">6 atuar (MQTT QoS 1)</text>
+  <rect class="chipnovo" x="522" y="294" width="180" height="28" rx="5"/><text class="chiptxt" x="532" y="312">v2 incremental · /metrics</text>
+  <text class="stage" x="742" y="20">DATA LAKE</text>
+  <rect class="box" x="742" y="30" width="208" height="318" rx="9"/>
+  <rect class="r-bronze" x="742" y="30" width="208" height="3.5" rx="1.75"/>
+  <text class="titulo" x="756" y="56">minio :9000</text>
+  <text class="sub" x="756" y="71">S3 · PARQUET · VERSIONADO</text>
+  <rect class="chip" x="756" y="84" width="180" height="28" rx="5"/><text class="chiptxt" x="766" y="102">agrosmart-bronze (imutável)</text>
+  <rect class="chip" x="756" y="119" width="180" height="28" rx="5"/><text class="chiptxt" x="766" y="137">agrosmart-silver (Parquet)</text>
+  <rect class="chip" x="756" y="154" width="180" height="28" rx="5"/><text class="chiptxt" x="766" y="172">agrosmart-quarentena</text>
+  <rect class="chip" x="756" y="189" width="180" height="28" rx="5"/><text class="chiptxt" x="766" y="207">agrosmart-gold (dimensional)</text>
+  <rect class="chip" x="756" y="224" width="180" height="28" rx="5"/><text class="chiptxt" x="766" y="242">manifest por lote · sha256</text>
+  <rect class="chip" x="756" y="259" width="180" height="28" rx="5"/><text class="chiptxt" x="766" y="277">ILM: retenção por camada</text>
+  <text class="stage" x="976" y="20">SAÍDA E CONSUMO</text>
+  <rect class="box" x="976" y="30" width="208" height="318" rx="9"/>
+  <rect class="r-ouro" x="976" y="30" width="208" height="3.5" rx="1.75"/>
+  <text class="titulo" x="990" y="56">dashboard :8501</text>
+  <text class="sub" x="990" y="71">STREAMLIT · RELATÓRIOS</text>
+  <rect class="chip" x="990" y="84" width="180" height="28" rx="5"/><text class="chiptxt" x="1000" y="102">10 seções sobre o gold</text>
+  <rect class="chip" x="990" y="119" width="180" height="28" rx="5"/><text class="chiptxt" x="1000" y="137">aba Automação (ações)</text>
+  <rect class="chipnovo" x="990" y="154" width="180" height="28" rx="5"/><text class="chiptxt" x="1000" y="172">aba Operação (ciclos)</text>
+  <rect class="chip" x="990" y="189" width="180" height="28" rx="5"/><text class="chiptxt" x="1000" y="207">plano outputs/acoes/*.json</text>
+  <rect class="chip" x="990" y="224" width="180" height="28" rx="5"/><text class="chiptxt" x="1000" y="242">copiloto IA + guardrails</text>
+  <rect class="chip" x="990" y="259" width="180" height="28" rx="5"/><text class="chiptxt" x="1000" y="277">SQL ad hoc (DuckDB)</text>
+  <path class="arrow" d="M250 133 H266"/><polygon class="head" points="266,129 274,133 266,137"/>
+  <text class="rot" x="261.0" y="127" text-anchor="middle">MQTT</text>
+  <path class="arrow" d="M484 273 H500"/><polygon class="head" points="500,269 508,273 500,277"/>
+  <text class="rot" x="495.0" y="267" text-anchor="middle">landing</text>
+  <path class="arrow" d="M718 133 H734"/><polygon class="head" points="734,129 742,133 734,137"/>
+  <text class="rot" x="729.0" y="127" text-anchor="middle">S3 put</text>
+  <path class="arrow" d="M742 203 H726"/><polygon class="head" points="726,199 718,203 726,207"/>
+  <text class="rot" x="729.0" y="197" text-anchor="middle">gold</text>
+  <path class="arrow" d="M952 203 H968"/><polygon class="head" points="968,199 976,203 968,207"/>
+  <text class="rot" x="963.0" y="197" text-anchor="middle">lê gold</text>
+  <path class="retorno" d="M522 273 H515 V340 H22 V203 H46"/><polygon class="headretorno" points="46,199 54,203 46,207"/>
+  <text class="nota" x="284" y="336">comando {acao: ligar, minutos} → broker → relé (QoS 1)</text>
+  <rect class="obs" x="40" y="382" width="1144" height="132" rx="9"/>
+  <rect class="r-obs" x="40" y="382" width="1144" height="3.5" rx="1.75"/>
+  <text class="titulo" x="56" y="408">Observabilidade e análise de processo</text>
+  <text class="sub" x="56" y="423">MONITORAMENTO CONTÍNUO · MINERAÇÃO DE PROCESSOS</text>
+  <rect class="chip" x="232" y="436" width="190" height="28" rx="5"/><text class="chiptxt" x="242" y="454">prometheus :9090 (15 s)</text>
+  <rect class="chip" x="232" y="472" width="190" height="28" rx="5"/><text class="chiptxt" x="242" y="490">6 regras de alerta</text>
+  <rect class="chip" x="436" y="436" width="190" height="28" rx="5"/><text class="chiptxt" x="446" y="454">grafana :3000 · painel</text>
+  <rect class="chip" x="436" y="472" width="190" height="28" rx="5"/><text class="chiptxt" x="446" y="490">saúde · etapas · lake</text>
+  <rect class="chipnovo" x="640" y="436" width="200" height="28" rx="5"/><text class="chiptxt" x="650" y="454">eventos.jsonl (case id)</text>
+  <rect class="chipnovo" x="640" y="472" width="200" height="28" rx="5"/><text class="chiptxt" x="650" y="490">status/operacao.json</text>
+  <rect class="chipnovo" x="854" y="436" width="162" height="28" rx="5"/><text class="chiptxt" x="864" y="454">event log CSV / XES</text>
+  <rect class="chipnovo" x="854" y="472" width="162" height="28" rx="5"/><text class="chiptxt" x="864" y="490">DFG · variantes · pm4py</text>
+  <rect class="chipnovo" x="1030" y="436" width="146" height="28" rx="5"/><text class="chiptxt" x="1040" y="454">insight → v2</text>
+  <rect class="chipnovo" x="1030" y="472" width="146" height="28" rx="5"/><text class="chiptxt" x="1040" y="490">(ciclo incremental)</text>
+  <path class="arrow" d="M422 450 H428"/><polygon class="head" points="428,446 436,450 428,454"/>
+  <path class="arrow" d="M840 450 H846"/><polygon class="head" points="846,446 854,450 846,454"/>
+  <path class="arrow" d="M1016 450 H1022"/><polygon class="head" points="1022,446 1030,450 1022,454"/>
+  <path class="metr" d="M548 348 V374"/><polygon class="headmetr" points="544,374 548,382 552,374"/>
+  <text class="rot" x="554" y="372" text-anchor="start">/metrics · eventos</text>
+  <path class="metr" d="M1100 382 V366 H686 V356"/><polygon class="headmetr" points="682,356 686,348 690,356"/>
+  <text class="rot" x="1094" y="362" text-anchor="end">melhoria aplicada</text>
+  <rect class="dev" x="40" y="538" width="1144" height="120" rx="9"/>
+  <rect class="r-dev" x="40" y="538" width="1144" height="3.5" rx="1.75"/>
+  <text class="titulo" x="56" y="564">DevSecOps</text>
+  <text class="sub" x="56" y="579">GITHUB ACTIONS = RUNNER LOCAL</text>
+  <rect class="chip" x="232" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="242" y="614">git · commits</text>
+  <path class="arrow" d="M342 611 H343"/><polygon class="head" points="343,607 351,611 343,615"/>
+  <rect class="chipnovo" x="351" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="361" y="614">ruff · complexidade</text>
+  <path class="arrow" d="M461 611 H462"/><polygon class="head" points="462,607 470,611 462,615"/>
+  <rect class="chipnovo" x="470" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="480" y="614">pytest + cobertura</text>
+  <path class="arrow" d="M580 611 H581"/><polygon class="head" points="581,607 589,611 581,615"/>
+  <rect class="chipnovo" x="589" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="599" y="614">bandit (SAST)</text>
+  <path class="arrow" d="M699 611 H700"/><polygon class="head" points="700,607 708,611 700,615"/>
+  <rect class="chipnovo" x="708" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="718" y="614">pip-audit (SCA)</text>
+  <path class="arrow" d="M818 611 H819"/><polygon class="head" points="819,607 827,611 819,615"/>
+  <rect class="chipnovo" x="827" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="837" y="614">docker build</text>
+  <path class="arrow" d="M937 611 H938"/><polygon class="head" points="938,607 946,611 938,615"/>
+  <rect class="chipnovo" x="946" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="956" y="614">trivy (imagem)</text>
+  <path class="arrow" d="M1056 611 H1057"/><polygon class="head" points="1057,607 1065,611 1057,615"/>
+  <rect class="chipnovo" x="1065" y="596" width="110" height="30" rx="5"/><text class="chiptxt" x="1075" y="614">agrosmart:7.0.0</text>
+  <text class="rot" x="232" y="644" text-anchor="start">não-root (UID 10001) · sem pip · cap_drop ALL · no-new-privileges · CA corporativa só como build secret</text>
+  <rect class="box" x="40" y="682" width="1144" height="96" rx="9"/>
+  <rect class="r-prata" x="40" y="682" width="1144" height="3.5" rx="1.75"/>
+  <text class="titulo" x="56" y="708">Governança transversal</text>
+  <text class="sub" x="56" y="723">ATRAVESSA TUDO</text>
+  <rect class="chip" x="232" y="704" width="180" height="28" rx="5"/><text class="chiptxt" x="242" y="722">Contratos YAML por fonte</text>
+  <rect class="chip" x="232" y="740" width="180" height="26" rx="5"/><text class="chiptxt" x="242" y="758">LGPD por campo</text>
+  <rect class="chip" x="422" y="704" width="180" height="28" rx="5"/><text class="chiptxt" x="432" y="722">Quarentena com motivo</text>
+  <rect class="chip" x="422" y="740" width="180" height="26" rx="5"/><text class="chiptxt" x="432" y="758">Reconciliação por fonte</text>
+  <rect class="chip" x="612" y="704" width="180" height="28" rx="5"/><text class="chiptxt" x="622" y="722">Linhagem por lote</text>
+  <rect class="chip" x="612" y="740" width="180" height="26" rx="5"/><text class="chiptxt" x="622" y="758">Retenção e ciclo de vida</text>
+  <rect class="chip" x="802" y="704" width="180" height="28" rx="5"/><text class="chiptxt" x="812" y="722">Portas só em 127.0.0.1</text>
+  <rect class="chip" x="802" y="740" width="180" height="26" rx="5"/><text class="chiptxt" x="812" y="758">Segredos fora da imagem</text>
+  <rect class="chip" x="992" y="704" width="180" height="28" rx="5"/><text class="chiptxt" x="1002" y="722">Testes pytest + cobertura</text>
+  <rect class="chip" x="992" y="740" width="180" height="26" rx="5"/><text class="chiptxt" x="1002" y="758">Semente fixa · reprodutível</text>
+  <text class="sub" x="40" y="794">CAIXA COM :PORTA = CONTAINER DO infra/docker-compose.yml · BORDA AZUL = NOVO NA FASE 7 · TRACEJADO LARANJA = SIMULAÇÃO ROTULADA · SETA AZUL = COMANDO AO CAMPO · docs/fase7/01-arquitetura-final.md</text>
+</svg>
