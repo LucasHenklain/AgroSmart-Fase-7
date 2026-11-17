@@ -1,0 +1,10 @@
+# Allowlist do SCA (pip-audit) — pipeline DevSecOps do AgroSmart.
+#
+# Um ID (PYSEC/GHSA/CVE) por linha, seguido de comentário com motivo e prazo de revisão:
+#   GHSA-xxxx-xxxx-xxxx   # motivo — revisar até AAAA-MM-DD — responsável
+#
+# Lido pelo runner local (scripts/pipeline_local.py) e pelo workflow
+# (.github/workflows/devsecops.yml), que passam cada ID como --ignore-vuln.
+#
+# Situação atual: nenhuma exceção necessária (todas as vulnerabilidades encontradas
+# tinham correção e foram resolvidas subindo o piso das dependências no pyproject.toml).

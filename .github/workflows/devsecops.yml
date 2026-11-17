@@ -1,0 +1,332 @@
+# ---------------------------------------------------------------------------------------
+# AgroSmart Fase 7 — pipeline DevSecOps
+#
+#   qualidade ─┐
+#   testes ────┼─► (sonarcloud, opcional)
+#   sast ──────┤
+#   sca ───────┘
+#   build ──► imagem (scan Trivy)
+#
+# Os mesmos estágios, comandos e critérios rodam localmente com
+#   python scripts/pipeline_local.py
+# (evidência em outputs/pipeline/). Detalhes: docs/fase7/03-pipeline-devsecops.md
+# Critérios aqui e em scripts/pipeline_local.py devem andar juntos.
+# ---------------------------------------------------------------------------------------
+name: devsecops
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1" # segunda, 06:17 UTC: pega CVEs novas mesmo sem commit
+
+# Nada é concedido por padrão; cada job pede só o que usa.
+permissions: {}
+
+concurrency:
+  group: devsecops-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.13"
+  RUFF_VERSION: "0.16.10"
+  BANDIT_VERSION: "1.9.4"
+  PIP_AUDIT_VERSION: "2.10.1"
+  TRIVY_IMAGE: "aquasec/trivy:0.76.2"
+  COMPLEXIDADE_MAX: "30"
+  COMPLEXIDADE_ALERTA: "20"
+  COBERTURA_MIN: "70" # linhas+ramos; medido localmente: 77%
+  EXTRAS_RUNTIME: "app,iot,ia"
+  IMAGEM_CI: "agrosmart:ci"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  # -------------------------------------------------------------------------------------
+  qualidade:
+    name: Qualidade de código (ruff + complexidade)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: python -m pip install "ruff==${RUFF_VERSION}"
+      - name: Lint (ruff check)
+        run: python -m ruff check src tests app scripts --output-format github
+      - name: Formatação (ruff format --check)
+        run: python -m ruff format --check src tests app scripts
+      - name: Complexidade ciclomática (McCabe <= ${{ env.COMPLEXIDADE_MAX }})
+        run: >-
+          python -m ruff check src app scripts --select C901
+          --config "lint.mccabe.max-complexity=${COMPLEXIDADE_MAX}" --output-format github
+      - name: Funções acima de ${{ env.COMPLEXIDADE_ALERTA }} (informativo)
+        run: >-
+          python -m ruff check src app scripts --select C901
+          --config "lint.mccabe.max-complexity=${COMPLEXIDADE_ALERTA}"
+          --output-format concise --exit-zero | tee -a "$GITHUB_STEP_SUMMARY"
+
+  # -------------------------------------------------------------------------------------
+  testes:
+    name: Testes + cobertura
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e ".[dev,ia,app,iot]"
+      - name: pytest (cobertura mínima ${{ env.COBERTURA_MIN }}%)
+        run: >-
+          python -m pytest -q -p no:cacheprovider
+          --cov=agrosmart --cov-branch
+          --cov-report=xml:coverage.xml --cov-report=term
+          --junitxml=junit.xml --cov-fail-under="${COBERTURA_MIN}"
+      - name: Resumo da cobertura
+        if: always()
+        run: |
+          python - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          import xml.etree.ElementTree as ET
+          r = ET.parse("coverage.xml").getroot()
+          print(f"**Cobertura**: linhas {float(r.get('line-rate'))*100:.1f}% · "
+                f"ramos {float(r.get('branch-rate'))*100:.1f}%")
+          EOF
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: testes-relatorios
+          path: |
+            junit.xml
+            coverage.xml
+          retention-days: 30
+
+  # -------------------------------------------------------------------------------------
+  sast:
+    name: SAST (bandit)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write # upload do SARIF para o Code Scanning
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: python -m pip install "bandit[toml,sarif]==${BANDIT_VERSION}"
+      - name: Relatórios completos (todas as severidades)
+        run: |
+          python -m bandit -r src app -c pyproject.toml -f json -o bandit.json --exit-zero
+          python -m bandit -r src app -c pyproject.toml -f sarif -o bandit.sarif --exit-zero
+      - name: Gate — severidade HIGH reprova
+        run: python -m bandit -r src app -c pyproject.toml --severity-level high
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('bandit.sarif') != ''
+        continue-on-error: true # repositório privado sem GHAS não tem Code Scanning
+        with:
+          sarif_file: bandit.sarif
+          category: bandit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sast-bandit
+          path: bandit.*
+          retention-days: 30
+
+  # -------------------------------------------------------------------------------------
+  sca:
+    name: SCA (pip-audit)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install ".[${EXTRAS_RUNTIME}]" "pip-audit==${PIP_AUDIT_VERSION}"
+      - name: Fecho das dependências de runtime
+        run: python scripts/requisitos_auditoria.py requisitos-runtime.txt --extras "${EXTRAS_RUNTIME}"
+      - name: pip-audit — qualquer vulnerabilidade conhecida reprova
+        run: |
+          IGNORAR=$(sed -e 's/#.*//' -e '/^[[:space:]]*$/d' .pip-audit-ignore | awk '{printf "--ignore-vuln %s ", $1}')
+          # shellcheck disable=SC2086
+          python -m pip_audit -r requisitos-runtime.txt --no-deps --disable-pip \
+            --progress-spinner off --desc off $IGNORAR -f json -o pip-audit.json
+      - name: Resumo do pip-audit
+        if: always() && hashFiles('pip-audit.json') != ''
+        run: |
+          python - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          deps = json.load(open("pip-audit.json"))["dependencies"]
+          vuln = {d["name"]: [v["id"] for v in d.get("vulns", [])] for d in deps if d.get("vulns")}
+          print(f"**pip-audit**: {len(deps)} dependências, "
+                f"{sum(map(len, vuln.values()))} vulnerabilidades em {len(vuln)} pacotes")
+          for nome, ids in sorted(vuln.items()):
+              print(f"- {nome}: {', '.join(sorted(set(ids)))}")
+          EOF
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sca-pip-audit
+          path: |
+            requisitos-runtime.txt
+            pip-audit.json
+          retention-days: 30
+
+  # -------------------------------------------------------------------------------------
+  build:
+    name: Build da imagem + smoke test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@v3
+      - name: docker buildx build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          push: false
+          tags: ${{ env.IMAGEM_CI }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Imagem — tamanho e usuário (não pode ser root)
+        run: |
+          docker image inspect -f 'tamanho={{.Size}} usuario={{.Config.User}}' "$IMAGEM_CI" | tee -a "$GITHUB_STEP_SUMMARY"
+          USUARIO=$(docker image inspect -f '{{.Config.User}}' "$IMAGEM_CI")
+          case "$USUARIO" in ""|0|root|0:0) echo "::error::imagem roda como root"; exit 1;; esac
+      - name: "Smoke: versao"
+        run: docker run --rm "$IMAGEM_CI" versao
+      - name: "Smoke: doctor (backend filesystem)"
+        run: docker run --rm -e AGROSMART_BACKEND=filesystem "$IMAGEM_CI" doctor
+      - name: "Smoke: init + contratos (backend filesystem)"
+        run: >-
+          docker run --rm -e AGROSMART_BACKEND=filesystem --entrypoint sh "$IMAGEM_CI"
+          -c "python -m agrosmart init && python -m agrosmart contratos"
+      - name: "Smoke: não-root e sem pip"
+        run: >-
+          docker run --rm --entrypoint python "$IMAGEM_CI" -c
+          "import importlib.util,os,sys;
+          print('uid', os.getuid(), 'pip', importlib.util.find_spec('pip') is not None);
+          sys.exit(os.getuid() == 0 or importlib.util.find_spec('pip') is not None)"
+      - name: Exportar imagem para o scan
+        run: docker save "$IMAGEM_CI" -o imagem.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: imagem-ci
+          path: imagem.tar
+          retention-days: 1
+          compression-level: 6
+
+  # -------------------------------------------------------------------------------------
+  imagem:
+    name: Scan da imagem (Trivy)
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: imagem-ci
+      - name: Cache do banco de vulnerabilidades do Trivy
+        uses: actions/cache@v4
+        with:
+          path: .cache/trivy
+          key: trivy-db-${{ github.run_id }}
+          restore-keys: trivy-db-
+      # Trivy roda pela imagem oficial com tag fixa (não pela action), mesmo comando do
+      # runner local. A tag fixa evita puxar um "latest" alterado por terceiros.
+      - name: Relatório completo (JSON + SARIF)
+        run: |
+          mkdir -p .cache/trivy
+          T="docker run --rm -v $PWD:/w -w /w -v $PWD/.cache/trivy:/root/.cache/trivy $TRIVY_IMAGE"
+          $T image --input imagem.tar --scanners vuln --ignorefile .trivyignore --format json -o trivy.json
+          $T image --input imagem.tar --scanners vuln --ignorefile .trivyignore --skip-db-update --format sarif -o trivy.sarif
+      - name: Gate — CRITICAL com correção disponível reprova
+        run: >-
+          docker run --rm -v "$PWD:/w" -w /w -v "$PWD/.cache/trivy:/root/.cache/trivy" "$TRIVY_IMAGE"
+          image --input imagem.tar --scanners vuln --ignorefile .trivyignore --skip-db-update
+          --severity CRITICAL --ignore-unfixed --exit-code 1 --format table
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy.sarif') != ''
+        continue-on-error: true
+        with:
+          sarif_file: trivy.sarif
+          category: trivy-imagem
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: imagem-trivy
+          path: trivy.*
+          retention-days: 30
+
+  # -------------------------------------------------------------------------------------
+  # SonarCloud é opcional: só roda quando o secret SONAR_TOKEN existe. `secrets` não pode
+  # ser lido no `if` de um job, então um job mínimo publica a decisão como output.
+  sonar-habilitado:
+    name: SonarCloud configurado?
+    runs-on: ubuntu-24.04
+    permissions: {}
+    outputs:
+      habilitado: ${{ steps.verifica.outputs.habilitado }}
+    steps:
+      - id: verifica
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: echo "habilitado=$([ -n "$SONAR_TOKEN" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  sonarcloud:
+    name: SonarCloud (opcional)
+    needs: [sonar-habilitado, testes]
+    if: needs.sonar-habilitado.outputs.habilitado == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # análise de blame/novo código
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: testes-relatorios
+      - uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >-
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}

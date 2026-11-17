@@ -1,0 +1,12 @@
+# Allowlist do scan de imagem (Trivy) — pipeline DevSecOps do AgroSmart.
+#
+# Regra da casa: só entra aqui vulnerabilidade que o gate barraria (CRITICAL com
+# correção disponível) e que não pode ser corrigida agora. Cada linha precisa de:
+#   - o ID (CVE/GHSA),
+#   - o motivo (por que não afeta ou por que não dá para corrigir),
+#   - o prazo de revisão (exp:AAAA-MM-DD faz o Trivy voltar a reprovar após a data).
+#
+# Formato:
+#   CVE-AAAA-NNNNN exp:AAAA-MM-DD   # motivo — responsável
+#
+# Situação atual: nenhuma exceção necessária (a imagem passa no gate sem allowlist).

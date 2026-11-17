@@ -32,6 +32,7 @@ landing/**
 # --- Saídas geradas ---
 outputs/logs/
 outputs/tmp/
+# outputs/pipeline/ É versionado de propósito: evidência do pipeline DevSecOps.
 
 # --- Pacote de entrega ---
 entrega/*.zip
@@ -44,3 +45,7 @@ entrega/*.mp4
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# --- DevSecOps local (bundle de CA da rede corporativa, cache do Trivy) ---
+.certs/
+.cache/
