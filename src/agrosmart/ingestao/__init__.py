@@ -18,6 +18,7 @@ Responsável: E1 (Engenharia de Dados).
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import time
 from collections.abc import Iterable
@@ -93,6 +94,9 @@ def ingerir(
             "registros": sum(r.registros for r in resultados),
             "bytes": sum(r.bytes for r in resultados),
         },
+        # Fase 7: partições (dias) que receberam lote novo nesta execução — é o que o
+        # ciclo incremental usa para reprocessar só o intervalo afetado no silver.
+        "datas_novas": datas_com_lote_novo(resultados),
         "objetos_no_bronze": armazenamento.contar(Camada.BRONZE),
         "objetos_na_quarentena": armazenamento.contar(Camada.QUARENTENA),
         "exemplos": exemplos,
@@ -123,6 +127,22 @@ def ingerir(
         resumo["objetos_na_quarentena"],
     )
     return resumo
+
+
+_PADRAO_PARTICAO = re.compile(r"ano=(\d{4})/mes=(\d{2})/dia=(\d{2})")
+
+
+def datas_com_lote_novo(resultados: Iterable[ResultadoIngestao]) -> list[str]:
+    """Dias (AAAA-MM-DD) das partições que receberam lote gravado ou atualizado."""
+    dias: set[str] = set()
+    for resultado in resultados:
+        for lote in resultado.lotes:
+            if lote.status not in {"gravado", "atualizado"} or not lote.chave:
+                continue
+            achado = _PADRAO_PARTICAO.search(lote.chave)
+            if achado:
+                dias.add("-".join(achado.groups()))
+    return sorted(dias)
 
 
 def exportar_exemplos_bronze(

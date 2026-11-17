@@ -1,9 +1,915 @@
 {
-  "gerado_em": "2026-10-08T13:16:54+00:00",
+  "gerado_em": "2026-11-16T20:25:56+00:00",
   "instante_referencia": "2026-09-01T03:00:00+00:00",
   "backend": "minio",
   "intervalo": null,
   "fontes": {
+    "erp_talhoes": {
+      "fonte": "erp_talhoes",
+      "tabela": "erp_talhoes",
+      "lotes": 31,
+      "declarados": 186,
+      "lidos": 186,
+      "aprovados": 6,
+      "quarentena": 1,
+      "substituidos": 179,
+      "duplicatas": 0,
+      "falhas_tipagem": 0,
+      "registros_com_alerta": 0,
+      "arquivos_silver": 1,
+      "arquivos_quarentena": 1,
+      "reconciliacao_ok": true,
+      "duracao_s": 0.47,
+      "qualidade": {
+        "fonte": "erp_talhoes",
+        "tabela": "erp_talhoes",
+        "lidos": 186,
+        "aprovados": 6,
+        "quarentena": 1,
+        "substituidos": 179,
+        "duplicatas": 0,
+        "falhas_tipagem": 0,
+        "registros_com_alerta": 0,
+        "quarentena_por_regra": {
+          "TLH-04": 1,
+          "TLH-05": 1
+        },
+        "regras": [
+          {
+            "id": "TIP-01",
+            "regra": "tipagem",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "TLH-01",
+            "regra": "nao_nulo",
+            "severidade": "critica",
+            "campos": [
+              "talhao_id",
+              "fazenda_id",
+              "area_ha",
+              "cultura",
+              "data_plantio",
+              "latitude",
+              "longitude"
+            ],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "TLH-03",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "area_ha"
+            ],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.1,
+              "max": 5000.0
+            }
+          },
+          {
+            "id": "TLH-04",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "latitude"
+            ],
+            "avaliados": 186,
+            "violacoes": 1,
+            "parametros": {
+              "min": -34.0,
+              "max": 6.0
+            }
+          },
+          {
+            "id": "TLH-05",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "longitude"
+            ],
+            "avaliados": 186,
+            "violacoes": 1,
+            "parametros": {
+              "min": -74.5,
+              "max": -33.0
+            }
+          },
+          {
+            "id": "TLH-07",
+            "regra": "dominio",
+            "severidade": "critica",
+            "campos": [
+              "sistema_irrigacao"
+            ],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {
+              "valores": [
+                "pivo_central",
+                "gotejamento",
+                "aspersao",
+                "sulco",
+                "sequeiro"
+              ]
+            }
+          },
+          {
+            "id": "TLH-08",
+            "regra": "comparacao",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {
+              "campo_a": "data_plantio",
+              "operador": "<=",
+              "campo_b": "data_colheita_prevista"
+            }
+          },
+          {
+            "id": "TLH-09",
+            "regra": "comparacao",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {
+              "campo_a": "ponto_murcha_pct",
+              "operador": "<=",
+              "campo_b": "capacidade_campo_pct"
+            }
+          },
+          {
+            "id": "TLH-06",
+            "regra": "dominio",
+            "severidade": "alerta",
+            "campos": [
+              "cultura"
+            ],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {
+              "valores": [
+                "milho",
+                "soja",
+                "cafe",
+                "cana",
+                "algodao",
+                "feijao",
+                "trigo"
+              ]
+            }
+          },
+          {
+            "id": "TLH-10",
+            "regra": "nao_futuro",
+            "severidade": "alerta",
+            "campos": [
+              "data_plantio"
+            ],
+            "avaliados": 186,
+            "violacoes": 0,
+            "parametros": {
+              "tolerancia_min": 0
+            }
+          },
+          {
+            "id": "TLH-02",
+            "regra": "unicidade",
+            "severidade": "critica",
+            "campos": [
+              "talhao_id"
+            ],
+            "avaliados": 185,
+            "violacoes": 0,
+            "parametros": {
+              "estrategia": "versao",
+              "substituidos": 179
+            }
+          }
+        ],
+        "alertas_tabela": []
+      }
+    },
+    "clima": {
+      "fonte": "clima",
+      "tabela": "clima_diario",
+      "lotes": 60,
+      "declarados": 60,
+      "lidos": 60,
+      "aprovados": 57,
+      "quarentena": 3,
+      "substituidos": 0,
+      "duplicatas": 0,
+      "falhas_tipagem": 0,
+      "registros_com_alerta": 0,
+      "arquivos_silver": 30,
+      "arquivos_quarentena": 1,
+      "reconciliacao_ok": true,
+      "duracao_s": 1.33,
+      "qualidade": {
+        "fonte": "clima",
+        "tabela": "clima_diario",
+        "lidos": 60,
+        "aprovados": 57,
+        "quarentena": 3,
+        "substituidos": 0,
+        "duplicatas": 0,
+        "falhas_tipagem": 0,
+        "registros_com_alerta": 0,
+        "quarentena_por_regra": {
+          "CLI-03": 2,
+          "CLI-05": 1
+        },
+        "regras": [
+          {
+            "id": "TIP-01",
+            "regra": "tipagem",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "CLI-01",
+            "regra": "nao_nulo",
+            "severidade": "critica",
+            "campos": [
+              "estacao_id",
+              "fazenda_id",
+              "data",
+              "temp_media_c",
+              "precipitacao_mm",
+              "eto_mm"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "CLI-03",
+            "regra": "comparacao",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 60,
+            "violacoes": 2,
+            "parametros": {
+              "campo_a": "temp_min_c",
+              "operador": "<=",
+              "campo_b": "temp_max_c"
+            }
+          },
+          {
+            "id": "CLI-04",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "precipitacao_mm"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0,
+              "max": 500.0
+            }
+          },
+          {
+            "id": "CLI-05",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "umidade_relativa_pct"
+            ],
+            "avaliados": 60,
+            "violacoes": 1,
+            "parametros": {
+              "min": 0.0,
+              "max": 100.0
+            }
+          },
+          {
+            "id": "CLI-06",
+            "regra": "intervalo",
+            "severidade": "alerta",
+            "campos": [
+              "eto_mm"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0,
+              "max": 15.0
+            }
+          },
+          {
+            "id": "CLI-07",
+            "regra": "nao_futuro",
+            "severidade": "alerta",
+            "campos": [
+              "data"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "tolerancia_min": 0
+            }
+          },
+          {
+            "id": "CLI-02",
+            "regra": "unicidade",
+            "severidade": "critica",
+            "campos": [
+              "estacao_id",
+              "data"
+            ],
+            "avaliados": 57,
+            "violacoes": 0,
+            "parametros": {
+              "estrategia": "evento",
+              "substituidos": 0
+            }
+          },
+          {
+            "id": "CLI-08",
+            "regra": "freshness",
+            "severidade": "alerta",
+            "campos": [],
+            "avaliados": 57,
+            "violacoes": 1,
+            "parametros": {
+              "max_atraso_min": 360,
+              "detectar_lacunas": true
+            }
+          }
+        ],
+        "alertas_tabela": [
+          {
+            "regra": "CLI-08",
+            "tipo": "lacuna",
+            "entidade": "EST-SP-027",
+            "lacunas": 2,
+            "maior_lacuna_min": 1440.0,
+            "maior_lacuna_inicio": "2026-08-09T00:00:00+00:00",
+            "maior_lacuna_fim": "2026-08-11T00:00:00+00:00",
+            "limite_min": 360
+          }
+        ]
+      }
+    },
+    "erp_operacoes": {
+      "fonte": "erp_operacoes",
+      "tabela": "erp_operacoes",
+      "lotes": 30,
+      "declarados": 49,
+      "lidos": 49,
+      "aprovados": 40,
+      "quarentena": 7,
+      "substituidos": 2,
+      "duplicatas": 0,
+      "falhas_tipagem": 0,
+      "registros_com_alerta": 0,
+      "arquivos_silver": 25,
+      "arquivos_quarentena": 1,
+      "reconciliacao_ok": true,
+      "duracao_s": 0.87,
+      "qualidade": {
+        "fonte": "erp_operacoes",
+        "tabela": "erp_operacoes",
+        "lidos": 49,
+        "aprovados": 40,
+        "quarentena": 7,
+        "substituidos": 2,
+        "duplicatas": 0,
+        "falhas_tipagem": 0,
+        "registros_com_alerta": 0,
+        "quarentena_por_regra": {
+          "OPR-04": 2,
+          "OPR-06": 3,
+          "OPR-07": 1,
+          "OPR-08": 1
+        },
+        "regras": [
+          {
+            "id": "TIP-01",
+            "regra": "tipagem",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 49,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "OPR-01",
+            "regra": "nao_nulo",
+            "severidade": "critica",
+            "campos": [
+              "operacao_id",
+              "talhao_id",
+              "data",
+              "tipo_operacao",
+              "quantidade",
+              "unidade",
+              "custo_brl"
+            ],
+            "avaliados": 49,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "OPR-03",
+            "regra": "dominio",
+            "severidade": "critica",
+            "campos": [
+              "tipo_operacao"
+            ],
+            "avaliados": 49,
+            "violacoes": 0,
+            "parametros": {
+              "valores": [
+                "plantio",
+                "irrigacao",
+                "adubacao",
+                "pulverizacao",
+                "colheita",
+                "manutencao",
+                "amostragem",
+                "monitoramento"
+              ]
+            }
+          },
+          {
+            "id": "OPR-04",
+            "regra": "dominio",
+            "severidade": "critica",
+            "campos": [
+              "unidade"
+            ],
+            "avaliados": 49,
+            "violacoes": 2,
+            "parametros": {
+              "valores": [
+                "mm",
+                "L",
+                "m3",
+                "kg",
+                "t",
+                "ha",
+                "h",
+                "un"
+              ]
+            }
+          },
+          {
+            "id": "OPR-05",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "quantidade"
+            ],
+            "avaliados": 49,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0
+            }
+          },
+          {
+            "id": "OPR-06",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "custo_brl"
+            ],
+            "avaliados": 49,
+            "violacoes": 3,
+            "parametros": {
+              "min": 0.0,
+              "max": 25000.0
+            }
+          },
+          {
+            "id": "OPR-07",
+            "regra": "referencia",
+            "severidade": "critica",
+            "campos": [
+              "talhao_id"
+            ],
+            "avaliados": 49,
+            "violacoes": 1,
+            "parametros": {
+              "tabela_referencia": "erp_talhoes",
+              "campo_referencia": "talhao_id"
+            }
+          },
+          {
+            "id": "OPR-08",
+            "regra": "nao_futuro",
+            "severidade": "critica",
+            "campos": [
+              "data"
+            ],
+            "avaliados": 49,
+            "violacoes": 1,
+            "parametros": {
+              "tolerancia_min": 0,
+              "referencia": "lote"
+            }
+          },
+          {
+            "id": "OPR-02",
+            "regra": "unicidade",
+            "severidade": "critica",
+            "campos": [
+              "operacao_id"
+            ],
+            "avaliados": 42,
+            "violacoes": 0,
+            "parametros": {
+              "estrategia": "versao",
+              "substituidos": 2
+            }
+          },
+          {
+            "id": "OPR-09",
+            "regra": "freshness",
+            "severidade": "alerta",
+            "campos": [],
+            "avaliados": 40,
+            "violacoes": 0,
+            "parametros": {
+              "max_atraso_min": 2880,
+              "detectar_lacunas": false
+            }
+          }
+        ],
+        "alertas_tabela": []
+      }
+    },
+    "imagens_ndvi": {
+      "fonte": "imagens_ndvi",
+      "tabela": "imagens_ndvi_meta",
+      "lotes": 60,
+      "declarados": 60,
+      "lidos": 60,
+      "aprovados": 59,
+      "quarentena": 1,
+      "substituidos": 0,
+      "duplicatas": 0,
+      "falhas_tipagem": 0,
+      "registros_com_alerta": 9,
+      "arquivos_silver": 9,
+      "arquivos_quarentena": 1,
+      "reconciliacao_ok": true,
+      "duracao_s": 0.82,
+      "qualidade": {
+        "fonte": "imagens_ndvi",
+        "tabela": "imagens_ndvi_meta",
+        "lidos": 60,
+        "aprovados": 59,
+        "quarentena": 1,
+        "substituidos": 0,
+        "duplicatas": 0,
+        "falhas_tipagem": 0,
+        "registros_com_alerta": 9,
+        "quarentena_por_regra": {
+          "IMG-03": 1
+        },
+        "regras": [
+          {
+            "id": "TIP-01",
+            "regra": "tipagem",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "IMG-01",
+            "regra": "nao_nulo",
+            "severidade": "critica",
+            "campos": [
+              "imagem_id",
+              "talhao_id",
+              "capturada_em",
+              "arquivo_bruto",
+              "checksum_sha256",
+              "ndvi_medio"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "IMG-03",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "ndvi_medio",
+              "ndvi_min",
+              "ndvi_max"
+            ],
+            "avaliados": 60,
+            "violacoes": 1,
+            "parametros": {
+              "min": -1.0,
+              "max": 1.0
+            }
+          },
+          {
+            "id": "IMG-04",
+            "regra": "comparacao",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "campo_a": "ndvi_min",
+              "operador": "<=",
+              "campo_b": "ndvi_max"
+            }
+          },
+          {
+            "id": "IMG-05",
+            "regra": "dominio",
+            "severidade": "critica",
+            "campos": [
+              "plataforma"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "valores": [
+                "drone",
+                "satelite"
+              ]
+            }
+          },
+          {
+            "id": "IMG-06",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "nuvem_pct"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0,
+              "max": 100.0
+            }
+          },
+          {
+            "id": "IMG-08",
+            "regra": "referencia",
+            "severidade": "critica",
+            "campos": [
+              "talhao_id"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "tabela_referencia": "erp_talhoes",
+              "campo_referencia": "talhao_id"
+            }
+          },
+          {
+            "id": "IMG-09",
+            "regra": "nao_futuro",
+            "severidade": "critica",
+            "campos": [
+              "capturada_em"
+            ],
+            "avaliados": 60,
+            "violacoes": 0,
+            "parametros": {
+              "tolerancia_min": 60
+            }
+          },
+          {
+            "id": "IMG-07",
+            "regra": "intervalo",
+            "severidade": "alerta",
+            "campos": [
+              "nuvem_pct"
+            ],
+            "avaliados": 60,
+            "violacoes": 9,
+            "parametros": {
+              "max": 30.0
+            }
+          },
+          {
+            "id": "IMG-10",
+            "regra": "intervalo",
+            "severidade": "alerta",
+            "campos": [
+              "tamanho_bytes"
+            ],
+            "avaliados": 60,
+            "violacoes": 1,
+            "parametros": {
+              "min": 2048.0
+            }
+          },
+          {
+            "id": "IMG-02",
+            "regra": "unicidade",
+            "severidade": "critica",
+            "campos": [
+              "imagem_id"
+            ],
+            "avaliados": 59,
+            "violacoes": 0,
+            "parametros": {
+              "estrategia": "evento",
+              "substituidos": 0
+            }
+          }
+        ],
+        "alertas_tabela": []
+      }
+    },
+    "laudos_solo": {
+      "fonte": "laudos_solo",
+      "tabela": "laudos_solo",
+      "lotes": 8,
+      "declarados": 8,
+      "lidos": 8,
+      "aprovados": 6,
+      "quarentena": 2,
+      "substituidos": 0,
+      "duplicatas": 0,
+      "falhas_tipagem": 0,
+      "registros_com_alerta": 0,
+      "arquivos_silver": 5,
+      "arquivos_quarentena": 1,
+      "reconciliacao_ok": true,
+      "duracao_s": 0.33,
+      "qualidade": {
+        "fonte": "laudos_solo",
+        "tabela": "laudos_solo",
+        "lidos": 8,
+        "aprovados": 6,
+        "quarentena": 2,
+        "substituidos": 0,
+        "duplicatas": 0,
+        "falhas_tipagem": 0,
+        "registros_com_alerta": 0,
+        "quarentena_por_regra": {
+          "LAU-03": 1,
+          "LAU-06": 1
+        },
+        "regras": [
+          {
+            "id": "TIP-01",
+            "regra": "tipagem",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "LAU-01",
+            "regra": "nao_nulo",
+            "severidade": "critica",
+            "campos": [
+              "laudo_id",
+              "talhao_id",
+              "coletado_em",
+              "arquivo_bruto",
+              "checksum_sha256",
+              "ph_cacl2",
+              "saturacao_bases_pct"
+            ],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "LAU-03",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "ph_cacl2"
+            ],
+            "avaliados": 8,
+            "violacoes": 1,
+            "parametros": {
+              "min": 3.0,
+              "max": 9.0
+            }
+          },
+          {
+            "id": "LAU-04",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "saturacao_bases_pct"
+            ],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0,
+              "max": 100.0
+            }
+          },
+          {
+            "id": "LAU-05",
+            "regra": "intervalo",
+            "severidade": "critica",
+            "campos": [
+              "materia_organica_g_dm3",
+              "fosforo_mg_dm3",
+              "potassio_mmolc_dm3",
+              "ctc_mmolc_dm3"
+            ],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {
+              "min": 0.0
+            }
+          },
+          {
+            "id": "LAU-06",
+            "regra": "comparacao",
+            "severidade": "critica",
+            "campos": [],
+            "avaliados": 8,
+            "violacoes": 1,
+            "parametros": {
+              "campo_a": "coletado_em",
+              "operador": "<=",
+              "campo_b": "emitido_em"
+            }
+          },
+          {
+            "id": "LAU-07",
+            "regra": "referencia",
+            "severidade": "critica",
+            "campos": [
+              "talhao_id"
+            ],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {
+              "tabela_referencia": "erp_talhoes",
+              "campo_referencia": "talhao_id"
+            }
+          },
+          {
+            "id": "LAU-08",
+            "regra": "nao_futuro",
+            "severidade": "critica",
+            "campos": [
+              "coletado_em",
+              "emitido_em"
+            ],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {
+              "tolerancia_min": 0
+            }
+          },
+          {
+            "id": "LAU-09",
+            "regra": "nao_nulo",
+            "severidade": "alerta",
+            "campos": [
+              "extrator_versao"
+            ],
+            "avaliados": 8,
+            "violacoes": 0,
+            "parametros": {}
+          },
+          {
+            "id": "LAU-02",
+            "regra": "unicidade",
+            "severidade": "critica",
+            "campos": [
+              "laudo_id"
+            ],
+            "avaliados": 6,
+            "violacoes": 0,
+            "parametros": {
+              "estrategia": "evento",
+              "substituidos": 0
+            }
+          }
+        ],
+        "alertas_tabela": []
+      }
+    },
     "sensores": {
       "fonte": "sensores",
       "tabela": "sensores_leitura",
@@ -19,7 +925,7 @@
       "arquivos_silver": 32,
       "arquivos_quarentena": 1,
       "reconciliacao_ok": true,
-      "duracao_s": 16.06,
+      "duracao_s": 25.64,
       "qualidade": {
         "fonte": "sensores",
         "tabela": "sensores_leitura",
@@ -342,22 +1248,50 @@
     }
   },
   "totais": {
-    "lotes": 2895,
-    "declarados": 34646,
-    "lidos": 34646,
-    "aprovados": 34255,
-    "quarentena": 391,
-    "substituidos": 0,
+    "lotes": 3084,
+    "declarados": 35009,
+    "lidos": 35009,
+    "aprovados": 34423,
+    "quarentena": 405,
+    "substituidos": 181,
     "duplicatas": 205,
-    "registros_com_alerta": 675,
+    "registros_com_alerta": 684,
     "reconciliacao_ok": true,
-    "alertas_tabela": 12
+    "alertas_tabela": 13
   },
   "defeitos_injetados": {
-    "total": 391,
-    "localizados": 391,
+    "total": 406,
+    "localizados": 406,
     "cobertura": 1.0,
     "por_tipo": {
+      "TLH-GEO": {
+        "injetados": 1,
+        "localizados": 1
+      },
+      "CLI-INV": {
+        "injetados": 2,
+        "localizados": 2
+      },
+      "CLI-UR": {
+        "injetados": 1,
+        "localizados": 1
+      },
+      "OPR-FUT": {
+        "injetados": 1,
+        "localizados": 1
+      },
+      "OPR-UNI": {
+        "injetados": 2,
+        "localizados": 2
+      },
+      "OPR-CEN": {
+        "injetados": 3,
+        "localizados": 3
+      },
+      "OPR-TLH": {
+        "injetados": 1,
+        "localizados": 1
+      },
       "SEN-DUP": {
         "injetados": 207,
         "localizados": 207
@@ -381,12 +1315,28 @@
       "SEN-ID": {
         "injetados": 10,
         "localizados": 10
+      },
+      "IMG-NDV": {
+        "injetados": 1,
+        "localizados": 1
+      },
+      "IMG-TRU": {
+        "injetados": 1,
+        "localizados": 1
+      },
+      "LAU-DAT": {
+        "injetados": 1,
+        "localizados": 1
+      },
+      "LAU-PH": {
+        "injetados": 1,
+        "localizados": 1
       }
     },
     "faltantes": [],
     "faltantes_total": 0,
     "fontes_sem_resultado": []
   },
-  "duracao_s": 16.95,
+  "duracao_s": 30.74,
   "arquivo": "dq_report.json"
 }

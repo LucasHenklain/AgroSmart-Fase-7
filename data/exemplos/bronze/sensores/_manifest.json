@@ -1,28 +1,28 @@
 {
-  "batch_id": "74b3d3e4653062ae",
+  "batch_id": "a53733f67ba012a1",
   "fonte": "sensores",
   "schema_version": "sensores.v1",
   "modo": "streaming",
   "coletor": "ColetorStreaming",
   "janela": {
-    "inicio": "2026-08-02T00:00:00+00:00",
-    "fim": "2026-08-02T00:15:00+00:00"
+    "inicio": "2026-10-08T13:13:00+00:00",
+    "fim": "2026-10-08T13:28:00+00:00"
   },
-  "particao": "2026-08-02",
-  "origem": "sensores/20260802/leituras_20260802T0000Z.jsonl",
+  "particao": "2026-10-08",
+  "origem": "sensores/20261008/leituras_20261008T1313Z.jsonl",
   "arquivos": [
     {
-      "chave": "sensores/ano=2026/mes=08/dia=02/leituras_20260802T0000Z.jsonl",
-      "nome": "leituras_20260802T0000Z.jsonl",
+      "chave": "sensores/ano=2026/mes=10/dia=08/leituras_20261008T1313Z.jsonl",
+      "nome": "leituras_20261008T1313Z.jsonl",
       "papel": "principal",
-      "bytes": 2962,
-      "checksum_sha256": "0b700cb1d6c17a502429a809448e5aba163eefc4034a30e1060596b947afe043"
+      "bytes": 2964,
+      "checksum_sha256": "4f69009faab71e77b8a2aea40487d41cf4ac79eccd2d4ba0507dc5a17efc85d4"
     }
   ],
   "registros": 12,
-  "bytes": 2962,
-  "checksum_sha256": "c0f8b3b214bca86cae4d19186865875a23e4bfa0ddcb8d076d197547b0a9c749",
-  "ingerido_em": "2026-09-03T15:53:14+00:00",
+  "bytes": 2964,
+  "checksum_sha256": "849722a7d1b205558d40acbb2e97d28bee42c079ecacdce327dacf1a3c065e9c",
+  "ingerido_em": "2026-10-08T13:16:32+00:00",
   "versao": 1,
   "versao_anterior_checksum": null
 }

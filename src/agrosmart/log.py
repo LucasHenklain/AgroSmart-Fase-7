@@ -31,6 +31,35 @@ _configurado = False
 # Coletores gravam eventos de várias threads; a trilha precisa de uma linha inteira por evento.
 _trava_eventos = threading.Lock()
 
+# Fase 7 — correlação para mineração de processos. Todo evento emitido enquanto uma
+# execução está aberta carrega o seu ``execucao_id`` (o *case id* do event log) e os
+# atributos do caso (origem, versão do processo). É um estado de processo, não um
+# ContextVar, de propósito: os coletores emitem eventos de threads do pool, que não
+# herdam ContextVars, e um processo roda uma execução por vez.
+_contexto_execucao: dict[str, Any] = {}
+_trava_contexto = threading.Lock()
+
+
+def abrir_execucao(execucao_id: str, **atributos: Any) -> None:
+    """Marca o início de um caso: os próximos eventos levam ``execucao_id`` e atributos."""
+    with _trava_contexto:
+        _contexto_execucao.clear()
+        _contexto_execucao.update({"execucao_id": execucao_id, **atributos})
+
+
+def fechar_execucao() -> None:
+    with _trava_contexto:
+        _contexto_execucao.clear()
+
+
+def execucao_atual() -> dict[str, Any]:
+    with _trava_contexto:
+        return dict(_contexto_execucao)
+
+
+def _agora_ms() -> str:
+    return datetime.now(UTC).isoformat(timespec="milliseconds")
+
 
 def configurar_logging(config: Config | None = None, *, forcar: bool = False) -> None:
     """Instala o handler de console. Seguro para chamar várias vezes."""
@@ -78,12 +107,13 @@ class Evento:
     status: str = "ok"
     mensagem: str = ""
     metricas: dict[str, Any] = field(default_factory=dict)
-    ocorrido_em: str = field(
-        default_factory=lambda: datetime.now(UTC).isoformat(timespec="seconds")
-    )
+    # Milissegundos: etapas curtas (gold, catálogo) precisam de ordem e duração
+    # confiáveis no event log da mineração de processos.
+    ocorrido_em: str = field(default_factory=_agora_ms)
+    contexto: dict[str, Any] = field(default_factory=execucao_atual)
 
     def para_dict(self) -> dict[str, Any]:
-        return {
+        dados = {
             "ocorrido_em": self.ocorrido_em,
             "etapa": self.etapa,
             "acao": self.acao,
@@ -94,6 +124,9 @@ class Evento:
             "mensagem": self.mensagem,
             "metricas": self.metricas,
         }
+        if self.contexto:
+            dados.update(self.contexto)
+        return dados
 
 
 def registrar_evento(

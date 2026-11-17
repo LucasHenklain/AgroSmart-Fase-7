@@ -1,14 +1,14 @@
 {
-  "gerado_em": "2026-09-05T23:04:31+00:00",
+  "gerado_em": "2026-11-16T20:26:07+00:00",
   "backend": "minio",
   "camadas": {
     "bronze": {
       "proposito": "Preserva o dado exatamente como chegou. Imutável, append-only, particionado por fonte e data. É a única fonte da verdade para reprocessar o lake inteiro quando uma regra muda.",
-      "objetos": 6230
+      "objetos": 6236
     },
     "silver": {
       "proposito": "Dado validado, tipado, deduplicado e com unidades no SI. Aqui o lake deixa de ser um pântano: nada entra sem passar pelas regras do contrato da fonte.",
-      "objetos": 103
+      "objetos": 104
     },
     "gold": {
       "proposito": "Modelo dimensional e indicadores prontos para consumo. Serve dashboard, API e o Context Pack do copiloto de IA a partir do mesmo conjunto de tabelas.",
@@ -74,7 +74,7 @@
         "registros": 6,
         "colunas": 19,
         "arquivos": 1,
-        "bytes": 7696,
+        "bytes": 7768,
         "particoes": [
           "ano=2026/mes=09/dia=01"
         ],
@@ -117,7 +117,7 @@
         "registros": 1,
         "colunas": 25,
         "arquivos": 1,
-        "bytes": 10096,
+        "bytes": 10168,
         "particoes": [
           "ano=2026/mes=09/dia=03"
         ],
@@ -227,7 +227,7 @@
         "registros": 57,
         "colunas": 16,
         "arquivos": 30,
-        "bytes": 178181,
+        "bytes": 180341,
         "particoes": [
           "ano=2026/mes=08/dia=02",
           "ano=2026/mes=08/dia=03",
@@ -526,7 +526,7 @@
         "registros": 3,
         "colunas": 22,
         "arquivos": 1,
-        "bytes": 8731,
+        "bytes": 8803,
         "particoes": [
           "ano=2026/mes=09/dia=03"
         ],
@@ -634,7 +634,7 @@
         "registros": 40,
         "colunas": 15,
         "arquivos": 25,
-        "bytes": 150109,
+        "bytes": 151909,
         "particoes": [
           "ano=2026/mes=08/dia=02",
           "ano=2026/mes=08/dia=03",
@@ -866,7 +866,7 @@
         "registros": 7,
         "colunas": 21,
         "arquivos": 1,
-        "bytes": 9366,
+        "bytes": 9438,
         "particoes": [
           "ano=2026/mes=09/dia=03"
         ],
@@ -949,7 +949,7 @@
         "registros": 59,
         "colunas": 21,
         "arquivos": 9,
-        "bytes": 84734,
+        "bytes": 85382,
         "particoes": [
           "ano=2026/mes=08/dia=03",
           "ano=2026/mes=08/dia=04",
@@ -1076,7 +1076,7 @@
         "registros": 1,
         "colunas": 27,
         "arquivos": 1,
-        "bytes": 11413,
+        "bytes": 11485,
         "particoes": [
           "ano=2026/mes=09/dia=03"
         ],
@@ -1158,7 +1158,7 @@
         "registros": 6,
         "colunas": 21,
         "arquivos": 5,
-        "bytes": 45830,
+        "bytes": 46190,
         "particoes": [
           "ano=2026/mes=07/dia=21",
           "ano=2026/mes=07/dia=23",
@@ -1236,7 +1236,7 @@
         "registros": 2,
         "colunas": 27,
         "arquivos": 1,
-        "bytes": 11928,
+        "bytes": 12000,
         "particoes": [
           "ano=2026/mes=09/dia=03"
         ],
@@ -1301,9 +1301,9 @@
       "classificacao_lgpd": "interno",
       "campos_lgpd": [],
       "bronze": {
-        "objetos": 2892,
-        "bytes": 8498918,
-        "lotes": 2892,
+        "objetos": 2895,
+        "bytes": 8552023,
+        "lotes": 2895,
         "particoes": [
           "ano=2026/mes=08/dia=02",
           "ano=2026/mes=08/dia=03",
@@ -1335,16 +1335,17 @@
           "ano=2026/mes=08/dia=29",
           "ano=2026/mes=08/dia=30",
           "ano=2026/mes=08/dia=31",
-          "ano=2026/mes=09/dia=01"
+          "ano=2026/mes=09/dia=01",
+          "ano=2026/mes=10/dia=08"
         ]
       },
       "silver": {
         "tabela": "sensores_leitura",
         "existe": true,
-        "registros": 34040,
+        "registros": 34255,
         "colunas": 15,
-        "arquivos": 31,
-        "bytes": 690888,
+        "arquivos": 32,
+        "bytes": 700972,
         "particoes": [
           "ano=2026/mes=08/dia=02",
           "ano=2026/mes=08/dia=03",
@@ -1376,7 +1377,8 @@
           "ano=2026/mes=08/dia=29",
           "ano=2026/mes=08/dia=30",
           "ano=2026/mes=08/dia=31",
-          "ano=2026/mes=09/dia=01"
+          "ano=2026/mes=09/dia=01",
+          "ano=2026/mes=10/dia=08"
         ],
         "schema": {
           "sensor_id": "String",
@@ -1395,7 +1397,7 @@
           "_schema_version": "String",
           "_alertas": "List(String)"
         },
-        "lotes_distintos": 2892,
+        "lotes_distintos": 2895,
         "linhagem_por_arquivo": {
           "sensores_leitura/ano=2026/mes=08/dia=02/sensores_leitura-20260802.parquet": {
             "registros": 1145,
@@ -1675,17 +1677,26 @@
               "30fa40d6653743f3",
               "3ea0e45d77768789"
             ]
+          },
+          "sensores_leitura/ano=2026/mes=10/dia=08/sensores_leitura-20261008.parquet": {
+            "registros": 215,
+            "lotes": 3,
+            "amostra_lotes": [
+              "11960754245ee046",
+              "1bf479e31063d577",
+              "a53733f67ba012a1"
+            ]
           }
         },
         "primeiro_evento": "2026-08-02 00:00:00+00:00",
-        "ultimo_evento": "2026-09-01 02:45:00+00:00"
+        "ultimo_evento": "2026-10-08 13:15:21+00:00"
       },
       "quarentena": {
         "existe": true,
         "registros": 391,
         "colunas": 21,
         "arquivos": 1,
-        "bytes": 23340,
+        "bytes": 23412,
         "particoes": [
           "ano=2026/mes=09/dia=03"
         ],
@@ -1726,7 +1737,7 @@
         }
       },
       "linhagem": {
-        "bronze_lotes": 2892,
+        "bronze_lotes": 2895,
         "silver_tabela": "sensores_leitura",
         "gold_tabelas": [
           "dim_sensor",
@@ -1750,7 +1761,7 @@
       "registros": 48,
       "colunas": 7,
       "arquivos": 1,
-      "bytes": 3112,
+      "bytes": 3184,
       "particoes": [],
       "schema": {
         "cultura": "String",
@@ -1772,7 +1783,7 @@
       "registros": 6,
       "colunas": 16,
       "arquivos": 1,
-      "bytes": 6394,
+      "bytes": 6466,
       "particoes": [],
       "schema": {
         "talhao_id": "String",
@@ -1804,7 +1815,7 @@
       "registros": 2,
       "colunas": 5,
       "arquivos": 1,
-      "bytes": 2077,
+      "bytes": 2149,
       "particoes": [],
       "schema": {
         "fazenda_id": "String",
@@ -1824,7 +1835,7 @@
       "registros": 2,
       "colunas": 6,
       "arquivos": 1,
-      "bytes": 2331,
+      "bytes": 2403,
       "particoes": [],
       "schema": {
         "estacao_id": "String",
@@ -1845,7 +1856,7 @@
       "registros": 12,
       "colunas": 12,
       "arquivos": 1,
-      "bytes": 5114,
+      "bytes": 5188,
       "particoes": [],
       "schema": {
         "sensor_id": "String",
@@ -1872,7 +1883,7 @@
       "registros": 57,
       "colunas": 13,
       "arquivos": 1,
-      "bytes": 6124,
+      "bytes": 6196,
       "particoes": [],
       "schema": {
         "estacao_id": "String",
@@ -1897,10 +1908,10 @@
         "sensores_leitura"
       ],
       "existe": true,
-      "registros": 186,
+      "registros": 192,
       "colunas": 18,
       "arquivos": 1,
-      "bytes": 12786,
+      "bytes": 12924,
       "particoes": [],
       "schema": {
         "talhao_id": "String",
@@ -1933,10 +1944,10 @@
         "sensores_leitura"
       ],
       "existe": true,
-      "registros": 186,
+      "registros": 192,
       "colunas": 17,
       "arquivos": 1,
-      "bytes": 9852,
+      "bytes": 9986,
       "particoes": [],
       "schema": {
         "talhao_id": "String",
@@ -1968,7 +1979,7 @@
       "registros": 59,
       "colunas": 15,
       "arquivos": 1,
-      "bytes": 8606,
+      "bytes": 8678,
       "particoes": [],
       "schema": {
         "imagem_id": "String",
@@ -1999,7 +2010,7 @@
       "registros": 40,
       "colunas": 11,
       "arquivos": 1,
-      "bytes": 5608,
+      "bytes": 5680,
       "particoes": [],
       "schema": {
         "operacao_id": "String",
@@ -2026,7 +2037,7 @@
       "registros": 40,
       "colunas": 6,
       "arquivos": 1,
-      "bytes": 2712,
+      "bytes": 2784,
       "particoes": [],
       "schema": {
         "talhao_id": "String",
@@ -2048,7 +2059,7 @@
       "registros": 6,
       "colunas": 17,
       "arquivos": 1,
-      "bytes": 7034,
+      "bytes": 7106,
       "particoes": [],
       "schema": {
         "laudo_id": "String",
@@ -2083,7 +2094,7 @@
       "registros": 5,
       "colunas": 11,
       "arquivos": 1,
-      "bytes": 4129,
+      "bytes": 4200,
       "particoes": [],
       "schema": {
         "cultura": "String",
@@ -2104,10 +2115,10 @@
       "descricao": "Alertas do último relatório de qualidade, prontos para o dashboard e para o Context Pack do copiloto: regras de alerta acionadas por fonte e alertas de frescor por entidade (sensor atrasado, lacuna na série).",
       "fontes_silver": [],
       "existe": true,
-      "registros": 6,
+      "registros": 17,
       "colunas": 7,
       "arquivos": 1,
-      "bytes": 3116,
+      "bytes": 3277,
       "particoes": [],
       "schema": {
         "fonte": "String",
@@ -2120,5 +2131,5 @@
       }
     }
   },
-  "duracao_s": 1.74
+  "duracao_s": 3.57
 }

@@ -91,6 +91,22 @@ def _resumir_ia(r: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _escalares(resumo: dict[str, Any]) -> dict[str, Any]:
+    """Só o que cabe numa coluna do event log (números, textos curtos, booleanos)."""
+    return {
+        k: v
+        for k, v in resumo.items()
+        if isinstance(v, int | float | bool) or (isinstance(v, str) and len(v) <= 60)
+    }
+
+
+def novo_execucao_id(prefixo: str = "run") -> str:
+    """``run-20261116T153012-4f2a``: ordenável no tempo e único entre processos."""
+    import secrets
+
+    return f"{prefixo}-{datetime.now(UTC):%Y%m%dT%H%M%S}-{secrets.token_hex(2)}"
+
+
 def executar(
     config: Config | None = None,
     *,
@@ -99,18 +115,45 @@ def executar(
     backfill: tuple[date, date] | None = None,
     forcar_ingestao: bool = False,
     parar_no_erro: bool = True,
+    automacao: bool = False,
+    publicar: bool = False,
+    broker: str = "localhost",
+    porta: int = 1883,
+    copiloto_automacao: str | None = None,
+    incremental: bool = False,
 ) -> dict[str, Any]:
-    """Roda o pipeline completo (ou o backfill de um intervalo) e devolve o resumo."""
+    """Roda o pipeline completo (ou o backfill de um intervalo) e devolve o resumo.
+
+    Fase 7: ``automacao=True`` acrescenta as etapas ``decidir`` (plano de ações sobre o
+    gold) e ``atuar`` (comandos MQTT, com ``publicar=True``), fechando o ciclo
+    sensor → lake → decisão → atuador dentro do mesmo caso do event log.
+    ``incremental=True`` é a melhoria nascida da mineração de processos
+    (``docs/fase7/05``): quando a ingestão não grava lote novo, silver, gold e
+    catálogo são pulados (nada mudou no bronze); quando grava, o silver reprocessa
+    só o intervalo de datas dos lotes novos.
+    """
+    from agrosmart.log import abrir_execucao, execucao_atual, fechar_execucao
+
     cfg = config or carregar_config()
     logger = obter_logger("run")
     inicio_total = time.perf_counter()
     etapas: list[Etapa] = []
+    execucao_propria = not execucao_atual()
+    if execucao_propria:
+        abrir_execucao(novo_execucao_id(), origem="cli", versao_processo="v1")
+    contexto = execucao_atual()
+    registrar_evento(
+        Evento(etapa="run", acao="iniciada", mensagem="backfill" if backfill else "completo"),
+        cfg,
+        eco_console=False,
+    )
 
     Resumidor = Callable[[dict[str, Any]], dict[str, Any]]
 
     def rodar(nome: str, funcao: Callable[[], dict[str, Any]], resumir: Resumidor) -> bool:
         etapa = Etapa(nome)
         etapas.append(etapa)
+        registrar_evento(Evento(etapa=nome, acao="etapa_iniciada"), cfg, eco_console=False)
         inicio = time.perf_counter()
         try:
             etapa.resumo = resumir(funcao())
@@ -121,11 +164,27 @@ def executar(
             logger.error("etapa %s falhou: %s", nome, etapa.erro)
         etapa.duracao_s = round(time.perf_counter() - inicio, 2)
         logger.info("etapa %-10s %-5s %6.1fs %s", nome, etapa.status, etapa.duracao_s, etapa.resumo)
+        registrar_evento(
+            Evento(
+                etapa=nome,
+                acao="etapa_concluida" if etapa.status == "ok" else "etapa_falhou",
+                status="ok" if etapa.status == "ok" else "erro",
+                mensagem=(etapa.erro or "")[:300],
+                metricas={"duracao_s": etapa.duracao_s, **_escalares(etapa.resumo)},
+            ),
+            cfg,
+            eco_console=False,
+        )
         return etapa.status == "ok" or not parar_no_erro
 
+    def pular(nome: str, motivo: str) -> None:
+        etapas.append(Etapa(nome, "pulada", resumo={"motivo": motivo}))
+        registrar_evento(
+            Evento(etapa=nome, acao="etapa_pulada", mensagem=motivo), cfg, eco_console=False
+        )
+
     if backfill and simular_fontes:
-        motivo = {"motivo": "backfill reprocessa o bronze existente"}
-        etapas.append(Etapa("simular", "pulada", resumo=motivo))
+        pular("simular", "backfill reprocessa o bronze existente")
         simular_fontes = False
 
     continuar = True
@@ -135,27 +194,47 @@ def executar(
         continuar = rodar("simular", lambda: simular(cfg), _resumir_simulacao)
     else:
         if not backfill:
-            etapas.append(Etapa("simular", "pulada", resumo={"motivo": "--sem-simular"}))
+            pular("simular", "--sem-simular")
 
+    ingestao: dict[str, Any] = {}
     if continuar:
         from agrosmart.ingestao import ingerir
 
-        continuar = rodar(
-            "ingerir",
-            lambda: ingerir(cfg, forcar=forcar_ingestao, exportar_exemplos=not backfill),
-            _resumir_ingestao,
-        )
-    if continuar:
+        def _ingerir() -> dict[str, Any]:
+            ingestao.update(
+                ingerir(
+                    cfg, forcar=forcar_ingestao, exportar_exemplos=not (backfill or incremental)
+                )
+            )
+            return ingestao
+
+        continuar = rodar("ingerir", _ingerir, _resumir_ingestao)
+
+    # Ciclo incremental (melhoria da Fase 7): sem lote novo no bronze, silver/gold/
+    # catálogo dariam exatamente o mesmo resultado — pulá-los é seguro.
+    intervalo_silver = backfill
+    sem_novidade = False
+    if continuar and incremental and not backfill:
+        datas = ingestao.get("datas_novas") or []
+        if not datas:
+            sem_novidade = True
+        else:
+            intervalo_silver = (date.fromisoformat(datas[0]), date.fromisoformat(datas[-1]))
+
+    if continuar and sem_novidade:
+        for nome in ("silver", "gold", "catalogo"):
+            pular(nome, "incremental: nenhum lote novo no bronze")
+    if continuar and not sem_novidade:
         from agrosmart.processamento.silver import construir_silver
 
         continuar = rodar(
-            "silver", lambda: construir_silver(cfg, intervalo=backfill), _resumir_silver
+            "silver", lambda: construir_silver(cfg, intervalo=intervalo_silver), _resumir_silver
         )
-    if continuar:
+    if continuar and not sem_novidade:
         from agrosmart.processamento.gold import construir_gold
 
         continuar = rodar("gold", lambda: construir_gold(cfg), _resumir_gold)
-    if continuar:
+    if continuar and not sem_novidade:
         from agrosmart.catalogo import construir_catalogo, gerar_dicionario
 
         def _catalogo() -> dict[str, Any]:
@@ -188,9 +267,15 @@ def executar(
 
         continuar = rodar("copiloto", _copiloto, _resumir_ia)
     elif continuar:
-        etapas.append(Etapa("copiloto", "pulada", resumo={"motivo": "--sem-ia"}))
+        pular("copiloto", "--sem-ia")
+
+    if continuar and automacao:
+        continuar = _etapas_automacao(
+            cfg, rodar, publicar=publicar, broker=broker, porta=porta, copiloto=copiloto_automacao
+        )
 
     resumo = {
+        "execucao_id": contexto.get("execucao_id"),
         "iniciado_em": datetime.now(UTC).isoformat(timespec="seconds"),
         "instante_referencia": cfg.instante_referencia.isoformat(),
         "backend": cfg.backend.value,
@@ -214,4 +299,55 @@ def executar(
         ),
         cfg,
     )
+    if execucao_propria:
+        fechar_execucao()
     return resumo
+
+
+def _etapas_automacao(
+    cfg: Config,
+    rodar: Callable[..., bool],
+    *,
+    publicar: bool,
+    broker: str,
+    porta: int,
+    copiloto: str | None,
+) -> bool:
+    """``decidir`` (gold → plano) e ``atuar`` (plano → MQTT), como etapas do mesmo caso."""
+    from agrosmart.automacao.atuadores import PublicadorPaho, publicar_plano
+    from agrosmart.automacao.motor import executar as executar_automacao
+    from agrosmart.automacao.motor import salvar_plano
+
+    estado: dict[str, Any] = {}
+
+    def _decidir() -> dict[str, Any]:
+        saida = executar_automacao(cfg, publicar=False, copiloto=copiloto)
+        estado["plano"] = saida["plano"]
+        r = saida["plano"].resumo
+        return {
+            "data_ref": str(saida["plano"].data_ref),
+            "talhoes": r.talhoes,
+            "acoes": r.acoes,
+            "comandos": len(saida["plano"].comandos_pendentes()),
+        }
+
+    if not rodar("decidir", _decidir, lambda r: r):
+        return False
+    if not publicar:
+        return True
+
+    def _atuar() -> dict[str, Any]:
+        plano = estado["plano"]
+        pendentes = plano.comandos_pendentes()
+        if not pendentes:
+            return {"publicadas": 0, "falhas": 0}
+        with PublicadorPaho(broker, porta) as paho:
+            publicacao = publicar_plano(plano, paho, config=cfg)
+        salvar_plano(plano, cfg)
+        if publicacao["falhas"]:
+            raise RuntimeError(
+                f"{len(publicacao['falhas'])} comando(s) sem confirmação do broker {broker}:{porta}"
+            )
+        return {"publicadas": publicacao["publicadas"], "falhas": 0}
+
+    return rodar("atuar", _atuar, lambda r: r)

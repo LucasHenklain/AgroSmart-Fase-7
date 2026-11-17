@@ -253,6 +253,10 @@ def carregar_config() -> Config:
         ) from erro
 
     chave_ia = os.getenv("ANTHROPIC_API_KEY", "").strip()
+    # Fase 7: no container o pacote é instalado como wheel (site-packages), então a
+    # raiz do projeto (contratos/, landing/, outputs/) vem de AGROSMART_RAIZ.
+    raiz_env = os.getenv("AGROSMART_RAIZ", "").strip()
+    raiz = Path(raiz_env).resolve() if raiz_env else RAIZ_PROJETO
 
     return Config(
         backend=backend,
@@ -261,7 +265,7 @@ def carregar_config() -> Config:
         minio_secret_key=_env_texto("AGROSMART_MINIO_SECRET_KEY", "agrosmart123"),
         minio_region=_env_texto("AGROSMART_MINIO_REGION", "us-east-1"),
         prefixo_bucket=_env_texto("AGROSMART_PREFIXO_BUCKET", "agrosmart"),
-        raiz=RAIZ_PROJETO,
+        raiz=raiz,
         seed=_env_inteiro("AGROSMART_SEED", 20260905),
         dias_historico=_env_inteiro("AGROSMART_DIAS_HISTORICO", 30),
         qtd_talhoes=_env_inteiro("AGROSMART_QTD_TALHOES", 6),

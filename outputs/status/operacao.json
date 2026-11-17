@@ -1,0 +1,101 @@
+{
+  "versao": "5.0.0",
+  "modo": "completo",
+  "versao_processo": "v1",
+  "publicar": true,
+  "intervalo_s": 60.0,
+  "iniciado_em": 1794860717.843684,
+  "fase": "parado",
+  "saudavel": true,
+  "motivo": "ok",
+  "ciclos": {
+    "ok": 1
+  },
+  "duracao_media_ciclo_s": 46.68,
+  "duracao_ultima_etapa_s": {
+    "ingerir": 1.8,
+    "silver": 30.75,
+    "gold": 8.0,
+    "catalogo": 3.59,
+    "decidir": 0.12,
+    "atuar": 1.4
+  },
+  "ultimo_ciclo": {
+    "execucao_id": "ciclo-20261116T202523-f540",
+    "sucesso": true,
+    "duracao_s": 46.68,
+    "terminado_em": 1794860770.3070824,
+    "etapas": [
+      {
+        "nome": "simular",
+        "status": "pulada",
+        "duracao_s": 0.0,
+        "erro": null
+      },
+      {
+        "nome": "ingerir",
+        "status": "ok",
+        "duracao_s": 1.8,
+        "erro": null
+      },
+      {
+        "nome": "silver",
+        "status": "ok",
+        "duracao_s": 30.75,
+        "erro": null
+      },
+      {
+        "nome": "gold",
+        "status": "ok",
+        "duracao_s": 8.0,
+        "erro": null
+      },
+      {
+        "nome": "catalogo",
+        "status": "ok",
+        "duracao_s": 3.59,
+        "erro": null
+      },
+      {
+        "nome": "copiloto",
+        "status": "pulada",
+        "duracao_s": 0.0,
+        "erro": null
+      },
+      {
+        "nome": "decidir",
+        "status": "ok",
+        "duracao_s": 0.12,
+        "erro": null
+      },
+      {
+        "nome": "atuar",
+        "status": "ok",
+        "duracao_s": 1.4,
+        "erro": null
+      }
+    ]
+  },
+  "ultimo_sucesso_em": 1794860770.3070815,
+  "lotes": {
+    "gravado": 0,
+    "atualizado": 0,
+    "pulado": 3,
+    "rejeitado": 0
+  },
+  "silver": {
+    "lidos": 35009,
+    "aprovados": 34423,
+    "quarentena": 405
+  },
+  "acoes": {
+    "talhoes": 6,
+    "acoes": 2,
+    "comandos": 1
+  },
+  "comandos_publicados": 1,
+  "landing": {
+    "arquivos": 3,
+    "idade_ultima_s": 3395448.6
+  }
+}

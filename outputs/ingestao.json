@@ -2,30 +2,101 @@
   "backend": "minio",
   "fontes": [
     {
-      "fonte": "sensores",
-      "modo": "streaming",
-      "lotes": 3,
-      "gravados": 3,
+      "fonte": "erp_talhoes",
+      "modo": "batch",
+      "lotes": 0,
+      "gravados": 0,
       "atualizados": 0,
       "pulados": 0,
       "rejeitados": 0,
-      "registros": 215,
-      "bytes": 53105,
-      "duracao_s": 0.29,
+      "registros": 0,
+      "bytes": 0,
+      "duracao_s": 0.0,
+      "rejeicoes": []
+    },
+    {
+      "fonte": "clima",
+      "modo": "api_pull",
+      "lotes": 0,
+      "gravados": 0,
+      "atualizados": 0,
+      "pulados": 0,
+      "rejeitados": 0,
+      "registros": 0,
+      "bytes": 0,
+      "duracao_s": 0.0,
+      "rejeicoes": []
+    },
+    {
+      "fonte": "erp_operacoes",
+      "modo": "batch",
+      "lotes": 0,
+      "gravados": 0,
+      "atualizados": 0,
+      "pulados": 0,
+      "rejeitados": 0,
+      "registros": 0,
+      "bytes": 0,
+      "duracao_s": 0.0,
+      "rejeicoes": []
+    },
+    {
+      "fonte": "imagens_ndvi",
+      "modo": "watch_folder",
+      "lotes": 0,
+      "gravados": 0,
+      "atualizados": 0,
+      "pulados": 0,
+      "rejeitados": 0,
+      "registros": 0,
+      "bytes": 0,
+      "duracao_s": 0.0,
+      "rejeicoes": []
+    },
+    {
+      "fonte": "laudos_solo",
+      "modo": "watch_folder",
+      "lotes": 0,
+      "gravados": 0,
+      "atualizados": 0,
+      "pulados": 0,
+      "rejeitados": 0,
+      "registros": 0,
+      "bytes": 0,
+      "duracao_s": 0.0,
+      "rejeicoes": []
+    },
+    {
+      "fonte": "sensores",
+      "modo": "streaming",
+      "lotes": 3,
+      "gravados": 0,
+      "atualizados": 0,
+      "pulados": 3,
+      "rejeitados": 0,
+      "registros": 0,
+      "bytes": 0,
+      "duracao_s": 0.11,
       "rejeicoes": []
     }
   ],
   "totais": {
     "lotes": 3,
-    "gravados": 3,
+    "gravados": 0,
     "atualizados": 0,
-    "pulados": 0,
+    "pulados": 3,
     "rejeitados": 0,
-    "registros": 215,
-    "bytes": 53105
+    "registros": 0,
+    "bytes": 0
   },
+  "datas_novas": [],
   "objetos_no_bronze": 6236,
   "objetos_na_quarentena": 0,
-  "exemplos": {},
-  "duracao_s": 2.08
+  "exemplos": {
+    "sensores": [
+      "leituras_20261008T1313Z.jsonl",
+      "_manifest.json"
+    ]
+  },
+  "duracao_s": 1.39
 }

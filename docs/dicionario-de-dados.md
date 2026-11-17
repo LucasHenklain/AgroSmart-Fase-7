@@ -4,7 +4,7 @@
 > definições do gold em `src/agrosmart/processamento/gold.py`. Não edite à mão:
 > altere o contrato ou a definição e regenere.
 
-Gerado em 2026-09-05T23:04:31+00:00 a partir do catálogo de 2026-09-05T23:04:31+00:00.
+Gerado em 2026-11-16T20:26:08+00:00 a partir do catálogo de 2026-11-16T20:26:07+00:00.
 
 ## Camadas
 
@@ -244,7 +244,7 @@ Contrato `sensores.v1` · tipo **estruturado** · LGPD **interno** · ingestão 
 
 Telemetria das estações de sensoriamento instaladas nos talhões. Cada dispositivo publica uma leitura consolidada a cada 15 minutos por MQTT. É a fonte de maior volume do lake e a base do balanço hídrico diário.
 
-No lake: **34,040** registros em 31 arquivo(s), 2892 lotes do bronze, eventos de 2026-08-02 00:00:00+00:00 a 2026-09-01 02:45:00+00:00.
+No lake: **34,255** registros em 32 arquivo(s), 2895 lotes do bronze, eventos de 2026-08-02 00:00:00+00:00 a 2026-10-08 13:15:21+00:00.
 
 | Campo | Tipo | Unidade | Obrig. | LGPD | Descrição |
 |---|---|---|---|---|---|
@@ -428,7 +428,7 @@ Agregação diária das leituras de sensores por talhão, com cobertura e alerta
 
 Fontes silver: `sensores_leitura`
 
-No lake: **186** registros, 18 colunas.
+No lake: **192** registros, 18 colunas.
 
 | Coluna | Tipo | Descrição |
 |---|---|---|
@@ -459,7 +459,7 @@ Balanço hídrico diário: clima da fazenda, Kc do estádio, irrigação lançad
 
 Fontes silver: `erp_talhoes`, `clima_diario`, `erp_operacoes`, `sensores_leitura`
 
-No lake: **186** registros, 17 colunas.
+No lake: **192** registros, 17 colunas.
 
 | Coluna | Tipo | Descrição |
 |---|---|---|
@@ -612,7 +612,7 @@ No lake: **5** registros, 11 colunas.
 
 Alertas do último relatório de qualidade, prontos para o dashboard e para o Context Pack do copiloto: regras de alerta acionadas por fonte e alertas de frescor por entidade (sensor atrasado, lacuna na série).
 
-No lake: **6** registros, 7 colunas.
+No lake: **17** registros, 7 colunas.
 
 | Coluna | Tipo | Descrição |
 |---|---|---|

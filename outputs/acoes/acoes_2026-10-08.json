@@ -1,0 +1,228 @@
+{
+  "gerado_em": "2026-11-16T20:26:08+00:00",
+  "data_ref": "2026-10-08",
+  "fonte": "gold.fato_balanco_hidrico + fato_leitura_diaria_talhao + dim_sensor",
+  "resumo": {
+    "talhoes": 6,
+    "acoes": 2,
+    "por_tipo": {
+      "irrigar": 1,
+      "inspecionar_sensor": 1,
+      "nenhuma": 4
+    },
+    "por_prioridade": {
+      "alta": 1,
+      "media": 0,
+      "baixa": 1
+    }
+  },
+  "talhoes": [
+    {
+      "talhao_id": "TLH-01",
+      "risco": "atencao",
+      "indicadores": {
+        "cultura": "milho",
+        "sistema_irrigacao": "pivo_central",
+        "area_ha": 18.6,
+        "irrigado": true,
+        "dia_leitura": "2026-10-08",
+        "umidade_media_pct": 25.74,
+        "fracao_agua_disponivel": 0.541,
+        "deficit_mm": 24.8,
+        "estadio": "R5",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "programar",
+        "dias_balanco_14d": 1,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": null,
+        "temp_media_7d_c": null,
+        "sensores": 2,
+        "bateria_min_pct": 92.0,
+        "cobertura_min_7d_pct": null,
+        "acoes": 0
+      }
+    },
+    {
+      "talhao_id": "TLH-02",
+      "risco": "critico",
+      "indicadores": {
+        "cultura": "milho",
+        "sistema_irrigacao": "pivo_central",
+        "area_ha": 12.4,
+        "irrigado": true,
+        "dia_leitura": "2026-10-08",
+        "umidade_media_pct": 21.19,
+        "fracao_agua_disponivel": 0.482,
+        "deficit_mm": 26.4,
+        "estadio": "R3",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "irrigar",
+        "dias_balanco_14d": 1,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": null,
+        "temp_media_7d_c": null,
+        "sensores": 2,
+        "bateria_min_pct": 88.0,
+        "cobertura_min_7d_pct": null,
+        "acoes": 1
+      }
+    },
+    {
+      "talhao_id": "TLH-03",
+      "risco": "normal",
+      "indicadores": {
+        "cultura": "feijao",
+        "sistema_irrigacao": "aspersao",
+        "area_ha": 9.8,
+        "irrigado": true,
+        "dia_leitura": "2026-10-08",
+        "umidade_media_pct": 30.62,
+        "fracao_agua_disponivel": 0.701,
+        "deficit_mm": 16.1,
+        "estadio": "R9",
+        "estadio_critico_para_agua": false,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "ok",
+        "dias_balanco_14d": 1,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": null,
+        "temp_media_7d_c": null,
+        "sensores": 2,
+        "bateria_min_pct": 89.0,
+        "cobertura_min_7d_pct": null,
+        "acoes": 0
+      }
+    },
+    {
+      "talhao_id": "TLH-04",
+      "risco": "normal",
+      "indicadores": {
+        "cultura": "trigo",
+        "sistema_irrigacao": "aspersao",
+        "area_ha": 22.0,
+        "irrigado": true,
+        "dia_leitura": "2026-10-08",
+        "umidade_media_pct": 27.98,
+        "fracao_agua_disponivel": 0.822,
+        "deficit_mm": 9.1,
+        "estadio": "maturacao",
+        "estadio_critico_para_agua": false,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "ok",
+        "dias_balanco_14d": 1,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": null,
+        "temp_media_7d_c": null,
+        "sensores": 2,
+        "bateria_min_pct": 92.0,
+        "cobertura_min_7d_pct": null,
+        "acoes": 0
+      }
+    },
+    {
+      "talhao_id": "TLH-05",
+      "risco": "normal",
+      "indicadores": {
+        "cultura": "cafe",
+        "sistema_irrigacao": "gotejamento",
+        "area_ha": 7.5,
+        "irrigado": true,
+        "dia_leitura": "2026-10-08",
+        "umidade_media_pct": 29.01,
+        "fracao_agua_disponivel": 0.778,
+        "deficit_mm": 12.0,
+        "estadio": "chumbinho",
+        "estadio_critico_para_agua": true,
+        "estresse_hidrico": false,
+        "situacao_hidrica": "ok",
+        "dias_balanco_14d": 1,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": null,
+        "temp_media_7d_c": null,
+        "sensores": 2,
+        "bateria_min_pct": 88.0,
+        "cobertura_min_7d_pct": null,
+        "acoes": 0
+      }
+    },
+    {
+      "talhao_id": "TLH-06",
+      "risco": "critico",
+      "indicadores": {
+        "cultura": "cana",
+        "sistema_irrigacao": "sequeiro",
+        "area_ha": 41.3,
+        "irrigado": false,
+        "dia_leitura": "2026-10-08",
+        "umidade_media_pct": 11.79,
+        "fracao_agua_disponivel": 0.0,
+        "deficit_mm": 51.6,
+        "estadio": "maturacao",
+        "estadio_critico_para_agua": false,
+        "estresse_hidrico": true,
+        "situacao_hidrica": "sequeiro_estresse",
+        "dias_balanco_14d": 1,
+        "dias_ur_alta_7d": 0,
+        "ur_media_7d_pct": null,
+        "temp_media_7d_c": null,
+        "sensores": 2,
+        "bateria_min_pct": 89.0,
+        "cobertura_min_7d_pct": null,
+        "acoes": 1
+      }
+    }
+  ],
+  "acoes": [
+    {
+      "id": "ACT-0001",
+      "talhao_id": "TLH-02",
+      "sensor_id": null,
+      "tipo": "irrigar",
+      "prioridade": "alta",
+      "parametros": {
+        "lamina_mm": 22.5,
+        "minutos": 170,
+        "janela": "04:00-07:00",
+        "fracao_agua_disponivel": 0.482,
+        "limiar_fracao_irrigacao": 0.5,
+        "deficit_mm": 26.4,
+        "sistema_irrigacao": "pivo_central",
+        "taxa_aplicacao_mm_h": 8.0
+      },
+      "motivo": "Fração de água disponível em 0,482, abaixo do limiar de 0,50 para irrigar; déficit de 26,4 mm até a capacidade de campo. Lâmina de 22,5 mm (85 % do déficit, máx. 30 mm) = 170 min de pivo_central a 8,0 mm/h. Estádio R3 é crítico para água.",
+      "evidencias": [
+        "fato_balanco_hidrico:TLH-02:2026-10-08"
+      ],
+      "comando_mqtt": {
+        "topico": "agrosmart/atuadores/TLH-02/irrigacao",
+        "payload": {
+          "acao": "ligar",
+          "minutos": 170
+        }
+      },
+      "status": "publicado"
+    },
+    {
+      "id": "ACT-0002",
+      "talhao_id": "TLH-06",
+      "sensor_id": "SNS-0602",
+      "tipo": "inspecionar_sensor",
+      "prioridade": "baixa",
+      "parametros": {
+        "motivo_tecnico": "sinal_fraco",
+        "rssi_medio_dbm": -90.2,
+        "leituras_sinal_fraco": 278,
+        "fracao_sinal_fraco": 0.096,
+        "limiar_rssi_dbm": -95
+      },
+      "motivo": "Sensor SNS-0602 com sinal médio de -90,2 dBm e 278 leitura(s) abaixo de -95 dBm (fração 0,096): reposicionar antena ou gateway para evitar perda de leituras.",
+      "evidencias": [
+        "dim_sensor:SNS-0602:2026-10-08"
+      ],
+      "comando_mqtt": null,
+      "status": "simulado"
+    }
+  ]
+}

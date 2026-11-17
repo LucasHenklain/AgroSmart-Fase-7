@@ -1,5 +1,6 @@
 {
-  "iniciado_em": "2026-09-05T23:04:33+00:00",
+  "execucao_id": "ciclo-20261116T202523-f540",
+  "iniciado_em": "2026-11-16T20:26:10+00:00",
   "instante_referencia": "2026-09-01T03:00:00+00:00",
   "backend": "minio",
   "modo": "completo",
@@ -8,36 +9,34 @@
   "etapas": [
     {
       "nome": "simular",
-      "status": "ok",
-      "duracao_s": 12.77,
+      "status": "pulada",
+      "duracao_s": 0.0,
       "resumo": {
-        "arquivos": 3149,
-        "registros": 34794,
-        "defeitos": 406
+        "motivo": "--sem-simular"
       },
       "erro": null
     },
     {
       "nome": "ingerir",
       "status": "ok",
-      "duracao_s": 16.08,
+      "duracao_s": 1.8,
       "resumo": {
-        "lotes": 3081,
+        "lotes": 3,
         "gravados": 0,
         "atualizados": 0,
-        "pulados": 3081,
+        "pulados": 3,
         "rejeitados": 0,
-        "objetos_bronze": 6230
+        "objetos_bronze": 6236
       },
       "erro": null
     },
     {
       "nome": "silver",
       "status": "ok",
-      "duracao_s": 14.62,
+      "duracao_s": 30.75,
       "resumo": {
-        "lidos": 34794,
-        "aprovados": 34208,
+        "lidos": 35009,
+        "aprovados": 34423,
         "quarentena": 405,
         "substituidos": 181,
         "reconciliacao_ok": true,
@@ -49,7 +48,7 @@
     {
       "nome": "gold",
       "status": "ok",
-      "duracao_s": 5.01,
+      "duracao_s": 8.0,
       "resumo": {
         "tabelas": 14,
         "puladas": 0
@@ -59,7 +58,7 @@
     {
       "nome": "catalogo",
       "status": "ok",
-      "duracao_s": 1.75,
+      "duracao_s": 3.59,
       "resumo": {
         "fontes": 6,
         "tabelas_gold": 14
@@ -68,17 +67,35 @@
     },
     {
       "nome": "copiloto",
-      "status": "ok",
-      "duracao_s": 1.01,
+      "status": "pulada",
+      "duracao_s": 0.0,
       "resumo": {
-        "execucoes": 18,
-        "aprovadas": 18,
-        "fallbacks": 0,
-        "motor_generativo": null,
-        "concordancia": null
+        "motivo": "--sem-ia"
+      },
+      "erro": null
+    },
+    {
+      "nome": "decidir",
+      "status": "ok",
+      "duracao_s": 0.12,
+      "resumo": {
+        "data_ref": "2026-10-08",
+        "talhoes": 6,
+        "acoes": 2,
+        "comandos": 1
+      },
+      "erro": null
+    },
+    {
+      "nome": "atuar",
+      "status": "ok",
+      "duracao_s": 1.4,
+      "resumo": {
+        "publicadas": 1,
+        "falhas": 0
       },
       "erro": null
     }
   ],
-  "duracao_s": 53.77
+  "duracao_s": 46.68
 }

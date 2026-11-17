@@ -1143,9 +1143,7 @@ def coletar_mqtt(
     topico: Annotated[
         str, typer.Option(help="Tópico a assinar (aceita curingas).")
     ] = "agrosmart/sensores/+/leitura",
-    janela_min: Annotated[
-        int, typer.Option(help="Minutos por arquivo JSONL (contrato: 15).")
-    ] = 15,
+    janela_min: Annotated[int, typer.Option(help="Minutos por arquivo JSONL (contrato: 15).")] = 15,
     duracao_s: Annotated[
         int | None, typer.Option(help="Encerrar após N segundos (padrão: até Ctrl+C).")
     ] = None,
@@ -1226,6 +1224,132 @@ def dispositivo(
 
 
 # --- fim Fase 6: coleta IoT ---
+
+
+# ---------------------------------------------------------------------------
+# --- Fase 7: operação contínua e monitoramento ---
+# ---------------------------------------------------------------------------
+
+
+@app.command()
+def operar(
+    intervalo_s: Annotated[
+        float, typer.Option(help="Segundos entre o início de dois ciclos.")
+    ] = 60,
+    ciclos: Annotated[
+        int | None, typer.Option(help="Parar após N ciclos (padrão: até SIGTERM/Ctrl+C).")
+    ] = None,
+    publicar: Annotated[
+        bool, typer.Option("--publicar/--sem-publicar", help="Publicar comandos MQTT ao atuador.")
+    ] = True,
+    broker: Annotated[str, typer.Option(help="Host do broker MQTT.")] = "localhost",
+    porta: Annotated[int, typer.Option(help="Porta do broker MQTT.")] = 1883,
+    porta_metricas: Annotated[
+        int, typer.Option(help="Porta HTTP de /health, /metrics e /status (0 desliga).")
+    ] = 8000,
+    incremental: Annotated[
+        bool,
+        typer.Option(
+            "--incremental/--completo",
+            help="v2: pula silver/gold sem lote novo e reprocessa só o intervalo afetado.",
+        ),
+    ] = False,
+    carga_inicial: Annotated[
+        str, typer.Option(help="auto (se o gold estiver vazio) | sempre | nunca.")
+    ] = "auto",
+) -> None:
+    """Worker: roda o ciclo ingestão → silver → gold → decisão → atuação em intervalo fixo."""
+    from agrosmart.operacao.worker import operar as executar_worker
+
+    if carga_inicial not in {"auto", "sempre", "nunca"}:
+        console.print(f"{_FALHA} --carga-inicial inválida: {carga_inicial!r}")
+        raise typer.Exit(code=2)
+    estado = executar_worker(
+        carregar_config(),
+        intervalo_s=intervalo_s,
+        ciclos=ciclos,
+        publicar=publicar,
+        broker=broker,
+        porta=porta,
+        porta_metricas=porta_metricas or None,
+        incremental=incremental,
+        carga_inicial=carga_inicial,
+    )
+    resumo = estado.para_dict()
+    console.print(
+        f"{_OK if resumo['saudavel'] else _FALHA} worker encerrado · ciclos {resumo['ciclos']} · "
+        f"média {resumo['duracao_media_ciclo_s']}s · status em "
+        "[bold]outputs/status/operacao.json[/bold]"
+    )
+
+
+@app.command()
+def status(
+    url: Annotated[
+        str | None,
+        typer.Option(help="Consultar o worker por HTTP (ex.: http://localhost:8000/status)."),
+    ] = None,
+) -> None:
+    """Como está a operação: saúde, último ciclo, etapas e indicadores do worker."""
+    import json
+    from datetime import UTC, datetime
+
+    cfg = carregar_config()
+    if url:
+        import urllib.request
+
+        if not url.startswith(("http://", "https://")):
+            console.print(f"{_FALHA} URL precisa começar com http:// ou https://")
+            raise typer.Exit(code=2)
+        with urllib.request.urlopen(url, timeout=5) as resposta:  # noqa: S310 - esquema validado
+            dados = json.loads(resposta.read().decode("utf-8"))
+    else:
+        caminho = cfg.dir_outputs / "status" / "operacao.json"
+        if not caminho.exists():
+            console.print(f"{_AVISO} sem {caminho.relative_to(cfg.raiz)}: o worker ainda não rodou")
+            raise typer.Exit(code=1)
+        dados = json.loads(caminho.read_text(encoding="utf-8"))
+
+    def _quando(epoch: float | None) -> str:
+        if not epoch:
+            return "—"
+        return datetime.fromtimestamp(epoch, UTC).isoformat(timespec="seconds")
+
+    estado = _OK if dados["saudavel"] else _FALHA
+    console.print(
+        f"{estado} [bold]{'saudável' if dados['saudavel'] else 'degradado'}[/bold] · "
+        f"{dados['motivo']} · fase {dados['fase']} · modo {dados['modo']} "
+        f"({dados['versao_processo']}) · intervalo {dados['intervalo_s']:.0f}s"
+    )
+    console.print(
+        f"ciclos {dados['ciclos']} · duração média {dados['duracao_media_ciclo_s']}s · "
+        f"último sucesso {_quando(dados.get('ultimo_sucesso_em'))} · "
+        f"comandos publicados {dados['comandos_publicados']}"
+    )
+    ultimo = dados.get("ultimo_ciclo") or {}
+    if ultimo:
+        tabela = Table(title=f"Último ciclo · {ultimo['execucao_id']}", box=box.SIMPLE_HEAD)
+        for coluna in ("etapa", "status", "s", "erro"):
+            tabela.add_column(coluna)
+        cores = {"ok": "green", "erro": "red", "pulada": "yellow"}
+        for e in ultimo["etapas"]:
+            cor = cores.get(e["status"], "white")
+            tabela.add_row(
+                e["nome"],
+                f"[{cor}]{e['status']}[/{cor}]",
+                f"{e['duracao_s']:.1f}",
+                (e.get("erro") or "")[:80],
+            )
+        console.print(tabela)
+    console.print(
+        f"lotes {dados['lotes']} · silver {dados['silver']} · plano {dados['acoes']} · "
+        f"landing {dados['landing']}"
+    )
+    if not dados["saudavel"]:
+        raise typer.Exit(code=1)
+
+
+# --- fim Fase 7 ---
 
 
 @app.command()
