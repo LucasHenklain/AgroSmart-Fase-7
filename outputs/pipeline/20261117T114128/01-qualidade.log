@@ -1,0 +1,1173 @@
+# estágio: qualidade
+# início: 2026-11-17T11:41:29.963523
+
+$ C:\Python313\python.exe -m ruff --version
+ruff 0.16.10
+# código de saída: 0 (1.7s)
+
+$ C:\Python313\python.exe -m ruff check src tests app scripts
+E501 Line too long (103 > 100)
+ --> scripts\capturar_operacao.py:4:101
+  |
+3 |     python scripts/capturar_operacao.py --prefixo fase7-04            # uma rodada de prints
+4 |     python scripts/capturar_operacao.py --timelapse 60 --duracao 1800  # um print do Grafana por minuto
+  |                                                                                                     ^^^
+5 |
+6 | Usa o Chromium do Playwright (ou o Edge da máquina). Só lê páginas locais
+  |
+
+E501 Line too long (102 > 100)
+  --> scripts\capturar_operacao.py:27:101
+   |
+25 |     "worker-metrics": ("http://127.0.0.1:8000/metrics", 1100, 1400, 800),
+26 |     "dashboard-operacao": ("http://127.0.0.1:8501/?secao=operacao", 1440, 1700, 9000),
+27 |     "dashboard-automacao": ("http://127.0.0.1:8501/?talhao=TLH-02&secao=automacao", 1440, 1800, 9000),
+   |                                                                                                     ^^
+28 | }
+   |
+
+E501 Line too long (102 > 100)
+  --> scripts\gerar_painel_grafana.py:69:101
+   |
+69 | def serie(titulo, alvos, x, y, w=12, h=8, unidade="none", empilhar=False, descricao="", barras=False):
+   |                                                                                                     ^^
+70 |     return {
+71 |         "id": _id(),
+   |
+
+E501 Line too long (103 > 100)
+  --> scripts\gerar_painel_grafana.py:79:101
+   |
+77 |         "targets": alvos,
+78 |         "options": {
+79 |             "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "mean"]},
+   |                                                                                                     ^^^
+80 |             "tooltip": {"mode": "multi", "sort": "desc"},
+81 |         },
+   |
+
+E501 Line too long (106 > 100)
+  --> scripts\injetar_falhas.py:49:101
+   |
+47 |         anotar(f"$ docker {' '.join(comando)} -> rc={r.returncode} {r.stdout.strip()}")
+48 |
+49 |     anotar(f"experimento '{args.rotulo}': atraso {args.atraso}s, queda {args.queda}s, alvos {args.alvos}")
+   |                                                                                                     ^^^^^^
+50 |     time.sleep(args.atraso)
+51 |     for i, alvo in enumerate(args.alvos):
+   |
+
+E501 Line too long (101 > 100)
+   --> src\agrosmart\mineracao\analise.py:129:101
+    |
+127 |             if ativ.falhou:
+128 |                 falhas[ativ.etapa] += 1
+129 |                 erros.setdefault(ativ.etapa, Counter())[ativ.mensagem[:140] or "(sem mensagem)"] += 1
+    |                                                                                                     ^
+130 |     saida = [
+131 |         {
+    |
+
+E501 Line too long (112 > 100)
+   --> src\agrosmart\mineracao\analise.py:136:101
+    |
+134 |             "falhas": falhas[etapa],
+135 |             "taxa_falha_pct": round(100 * falhas[etapa] / n, 1),
+136 |             "erros": [{"mensagem": m, "ocorrencias": q} for m, q in erros.get(etapa, Counter()).most_common(3)],
+    |                                                                                                     ^^^^^^^^^^^^
+137 |         }
+138 |         for etapa, n in execucoes.items()
+    |
+
+E501 Line too long (101 > 100)
+   --> src\agrosmart\mineracao\analise.py:293:101
+    |
+291 |     ordenados = sorted(casos, key=lambda c: c.inicio)
+292 |     intervalos = [
+293 |         (b.inicio - a.inicio).total_seconds() for a, b in zip(ordenados, ordenados[1:], strict=False)
+    |                                                                                                     ^
+294 |     ]
+295 |     sucesso = sum(1 for c in casos if not c.falhou)
+    |
+
+E501 Line too long (103 > 100)
+   --> src\agrosmart\mineracao\eventlog.py:471:101
+    |
+469 |     ET.SubElement(raiz, "classifier", {"name": "Activity", "keys": "concept:name"})
+470 |     ET.SubElement(
+471 |         raiz, "classifier", {"name": "Activity lifecycle", "keys": "concept:name lifecycle:transition"}
+    |                                                                                                     ^^^
+472 |     )
+    |
+
+E501 Line too long (102 > 100)
+   --> src\agrosmart\mineracao\eventlog.py:493:101
+    |
+491 |                 {"key": "lifecycle:transition", "value": linha["lifecycle:transition"]},
+492 |             )
+493 |             ET.SubElement(evento, "date", {"key": "time:timestamp", "value": linha["time:timestamp"]})
+    |                                                                                                     ^^
+494 |             ET.SubElement(evento, "string", {"key": "org:resource", "value": linha["org:resource"]})
+495 |             ET.SubElement(evento, "string", {"key": "etapa", "value": linha["etapa"]})
+    |
+
+E501 Line too long (102 > 100)
+  --> src\agrosmart\mineracao\relatorio.py:19:101
+   |
+17 |     "silver": "reprocessar só as partições dos lotes novos e pular silver/gold/catálogo quando a "
+18 |     "ingestão não grava lote novo (ciclo incremental, v2)",
+19 |     "gold": "materializar o gold de forma incremental (só as tabelas afetadas pelas partições novas)",
+   |                                                                                                     ^^
+20 |     "catalogo": "regenerar o catálogo só quando o schema ou as contagens mudarem",
+21 |     "ingerir": "listar só objetos novos na landing (watermark) e paralelizar os uploads",
+   |
+
+E501 Line too long (101 > 100)
+  --> src\agrosmart\mineracao\relatorio.py:80:101
+   |
+78 |                 "Concentração",
+79 |                 f"`{g[0]['atividade']}` + `{g[1]['atividade']}` somam {_pct(dois)} do lead time.",
+80 |                 SUGESTOES_GARGALO.get(g[1]["atividade"], "atacar a segunda maior fatia em seguida."),
+   |                                                                                                     ^
+81 |             )
+82 |     ocio = a["ociosidade"]
+   |
+
+E501 Line too long (102 > 100)
+  --> src\agrosmart\mineracao\relatorio.py:95:101
+   |
+93 |             add(
+94 |                 "Retrabalho de processamento",
+95 |                 f"{_pct(sn['pct_sem_lote_novo'])} dos ciclos com ingestão OK não gravaram lote novo, "
+   |                                                                                                     ^^
+96 |                 f"e {sn['reprocessaram_derivadas']} deles reprocessaram silver/gold/catálogo "
+97 |                 f"mesmo assim ({fd(sn['tempo_reprocessado_s'])} no total).",
+   |
+
+E501 Line too long (101 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:125:101
+    |
+123 |             f"{f['falhas']} de {f['execucoes']} execuções ({_pct(f['taxa_falha_pct'])}); "
+124 |             f"causa mais frequente: \"{causa}\".",
+125 |             SUGESTOES_FALHA.get(f["etapa"], "retentativa com backoff e alerta na métrica de falha."),
+    |                                                                                                     ^
+126 |         )
+127 |     inc = a["incidentes"]
+    |
+
+E501 Line too long (104 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:175:101
+    |
+173 |             "Antes × depois (v1 → v2)",
+174 |             f"lead time mediano dos casos OK {fd(v1['lead_time_casos_ok']['mediana'])} → "
+175 |             f"{fd(v2['lead_time_casos_ok']['mediana'])} ({_pct(comp['delta_lead_time_mediano_pct'])}); "
+    |                                                                                                     ^^^^
+176 |             f"p95 {_pct(comp['delta_p95_pct'])}; sucesso {_pct(v1['taxa_sucesso_pct'])} → "
+177 |             f"{_pct(v2['taxa_sucesso_pct'])}; etapas por caso {v1['etapas_por_caso']} → "
+    |
+
+E501 Line too long (124 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:214:101
+    |
+212 |         ["linhas inválidas", esc["linhas_invalidas"]],
+213 |         ["casos analisados", esc["casos"]],
+214 |         ["casos em regime (ciclos) / carga inicial", f"{a['casos_em_regime']} / {esc['por_tipo'].get('carga_inicial', 0)}"],
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+215 |         ["casos por versão", ", ".join(f"{k}: {v}" for k, v in esc["por_versao"].items()) or "—"],
+216 |         ["casos por status", ", ".join(f"{k}: {v}" for k, v in esc["por_status"].items()) or "—"],
+    |
+
+E501 Line too long (105 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:258:101
+    |
+256 |                  f"{len(petri['transicoes_visiveis'])} transições visíveis, "
+257 |                  f"{petri['transicoes_silenciosas']} silenciosas, {petri['arcos']} arcos. "
+258 |                  f"BPMN: {', '.join(f'{k}={v}' for k, v in pm['bpmn_inductive']['elementos'].items())}.")
+    |                                                                                                     ^^^^^
+259 |         s.append("")
+260 |         s.append(_tabela(["token replay", "fitness", "% casos conformes"], [
+    |
+
+E501 Line too long (102 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:283:101
+    |
+281 |     if arq.get("variantes_png"):
+282 |         s += [f"![Variantes]({Path(arq['variantes_png']).name})", ""]
+283 |     s.append(_tabela(["id", "variante", "casos", "% casos", "lead time médio", "desvio", "versões"], [
+    |                                                                                                     ^^
+284 |         [v["id"], v["variante"], v["casos"], _pct(v["pct_casos"]), fd(v["lead_time"]["media"]),
+285 |          fd(v["lead_time"]["desvio"]), ", ".join(f"{k}:{q}" for k, q in v["versoes"].items())]
+    |
+
+E501 Line too long (102 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:307:101
+    |
+305 |         s += [f"![Lead time por caso]({Path(arq['lead_time_png']).name})", ""]
+306 |     lt = var["lead_time"]
+307 |     s.append(f"Lead time: média {fd(lt['media'])}, mediana {fd(lt['mediana'])}, p95 {fd(lt['p95'])}, "
+    |                                                                                                     ^^
+308 |              f"máx. {fd(lt['max'])}, desvio {fd(lt['desvio'])} (CV {var['cv_lead_time']:.2f}).")
+309 |     tp = a["throughput"]
+    |
+
+E501 Line too long (102 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:310:101
+    |
+308 |              f"máx. {fd(lt['max'])}, desvio {fd(lt['desvio'])} (CV {var['cv_lead_time']:.2f}).")
+309 |     tp = a["throughput"]
+310 |     s.append(f"\nThroughput: {tp.get('casos_por_hora') or '—'} casos/hora em {tp.get('janela_h')} h; "
+    |                                                                                                     ^^
+311 |              f"intervalo mediano entre inícios "
+312 |              f"{fd(tp.get('intervalo_entre_inicios', {}).get('mediana'))}.")
+    |
+
+E501 Line too long (104 > 100)
+   --> src\agrosmart\mineracao\relatorio.py:352:101
+    |
+350 |     s += ["", "## 10. Insights e oportunidades", ""]
+351 |     for i, ins in enumerate(m["insights"], start=1):
+352 |         s.append(f"{i}. **{ins['tema']}** — {ins['evidencia']} → *Oportunidade:* {ins['oportunidade']}")
+    |                                                                                                     ^^^^
+353 |     return "\n".join(s) + "\n"
+    |
+
+E501 Line too long (101 > 100)
+   --> src\agrosmart\mineracao\visual.py:108:101
+    |
+106 |     ordem = [e for e in ETAPAS if e in bases]
+107 |     if ATIVIDADE_COMANDO in bases:
+108 |         ordem.insert(ordem.index("atuar") + 1 if "atuar" in ordem else len(ordem), ATIVIDADE_COMANDO)
+    |                                                                                                     ^
+109 |     ordem += sorted(bases - set(ordem))
+110 |     return [INICIO, *ordem, FIM]
+    |
+
+E501 Line too long (101 > 100)
+   --> src\agrosmart\mineracao\visual.py:153:101
+    |
+151 |     def centro(nome: str) -> tuple[float, float]:
+152 |         coluna, camada = posicao(nome)
+153 |         return (x_falha if coluna == "falha" else x_principal), topo + ALTURA_NO / 2 + camada * PASSO
+    |                                                                                                     ^
+154 |
+155 |     # ---- cores dos nós
+    |
+
+F541 [*] f-string without any placeholders
+   --> src\agrosmart\mineracao\visual.py:291:19
+    |
+289 |         )
+290 |     partes.append("</defs>")
+291 |     partes.append(f'<rect width="100%" height="100%" fill="#ffffff"/>')
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+292 |     for traco in desenho.tracos:
+293 |         pontos = " ".join(f"{_num(x)},{_num(y)}" for x, y in traco.pontos)
+    |
+help: Remove extraneous `f` prefix
+    |
+290 |     partes.append("</defs>")
+    -     partes.append(f'<rect width="100%" height="100%" fill="#ffffff"/>')
+291 +     partes.append('<rect width="100%" height="100%" fill="#ffffff"/>')
+292 |     for traco in desenho.tracos:
+    |
+
+E501 Line too long (103 > 100)
+  --> tests\test_mineracao.py:46:101
+   |
+45 | T0 = datetime(2026, 11, 16, 20, 0, tzinfo=UTC)
+46 | DURACOES = {"ingerir": 2.0, "silver": 30.0, "gold": 8.0, "catalogo": 3.5, "decidir": 0.2, "atuar": 1.0}
+   |                                                                                                     ^^^
+47 | IRRIGAR = [("TLH-02", {"acao": "ligar", "minutos": 170})]
+   |
+
+E501 Line too long (101 > 100)
+   --> tests\test_mineracao.py:122:101
+    |
+120 |         metricas: dict[str, Any] = {"duracao_s": dur[etapa]}
+121 |         if etapa == "ingerir":
+122 |             metricas |= {"lotes": 3, "gravados": gravados, "atualizados": 0, "pulados": 3 - gravados}
+    |                                                                                                     ^
+123 |         if etapa == "atuar":
+124 |             metricas |= {"publicadas": len(comandos), "falhas": 0}
+    |
+
+E501 Line too long (109 > 100)
+   --> tests\test_mineracao.py:216:101
+    |
+214 | def test_etapa_sem_conclusao_vira_falha() -> None:
+215 |     eventos, _ = caso_eventos("ciclo-x", T0)
+216 |     corte = next(i for i, e in enumerate(eventos) if e["acao"] == "etapa_concluida" and e["etapa"] == "gold")
+    |                                                                                                     ^^^^^^^^^
+217 |     (caso,) = _log(eventos[:corte]).casos
+218 |     assert caso.variante[-1] == "gold (falha)"
+    |
+
+E501 Line too long (101 > 100)
+   --> tests\test_mineracao.py:286:101
+    |
+284 |     c, t = caso_eventos("ciclo-3", t + timedelta(seconds=30))
+285 |     d, _ = caso_eventos(
+286 |         "ciclo-4", t + timedelta(seconds=30), comandos=[("TLH-02", {"acao": "ligar", "minutos": 90})]
+    |                                                                                                     ^
+287 |     )
+288 |     log = _log(a + b + c + d)
+    |
+
+E501 Line too long (105 > 100)
+   --> tests\test_mineracao.py:320:101
+    |
+318 |     assert inc["mttr_s"] == pytest.approx((fim_ok - primeira_falha).total_seconds())
+319 |
+320 |     aberto = incidentes(_log(c + caso_eventos("ciclo-9", fim_ok + timedelta(1), falha="atuar")[0]).casos)
+    |                                                                                                     ^^^^^
+321 |     assert aberto["quantidade"] == 1 and aberto["em_aberto"] and aberto["mttr_s"] is None
+    |
+
+F841 Local variable `m2` is assigned to but never used
+   --> tests\test_mineracao.py:399:5
+    |
+397 |     m1 = minerar(fonte, tmp_path / "a", usar_pm4py=False, graficos=False,
+398 |                  exemplo=tmp_path / "ex.csv")
+399 |     m2 = minerar(fonte, tmp_path / "b", usar_pm4py=False, graficos=False,
+    |     ^^
+400 |                  exemplo=tmp_path / "ex.csv")
+401 |     assert m1["escopo"]["casos"] == 16
+    |
+help: Remove assignment to unused variable `m2`
+
+E501 Line too long (101 > 100)
+   --> tests\test_mineracao.py:417:101
+    |
+415 |     assert "silver (falha)" in relatorio
+416 |     cabecalho = (tmp_path / "ex.csv").read_text(encoding="utf-8").splitlines()[0]
+417 |     assert cabecalho.startswith("case:concept:name,concept:name,lifecycle:transition,time:timestamp")
+    |                                                                                                     ^
+
+Found 31 errors.
+[*] 1 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).
+# código de saída: 1 (1.7s)
+
+$ C:\Python313\python.exe -m ruff format --check src tests app scripts
+unformatted: File would be reformatted
+  --> scripts\capturar_operacao.py:27:29
+   |
+26 |     "dashboard-operacao": ("http://127.0.0.1:8501/?secao=operacao", 1440, 1700, 9000),
+   -     "dashboard-automacao": ("http://127.0.0.1:8501/?talhao=TLH-02&secao=automacao", 1440, 1800, 9000),
+27 +     "dashboard-automacao": (
+28 +         "http://127.0.0.1:8501/?talhao=TLH-02&secao=automacao",
+29 +         1440,
+30 +         1800,
+31 +         9000,
+32 +     ),
+33 | }
+   |
+
+unformatted: File would be reformatted
+  --> scripts\gerar_painel_grafana.py:69:11
+   |
+68 |
+   - def serie(titulo, alvos, x, y, w=12, h=8, unidade="none", empilhar=False, descricao="", barras=False):
+69 + def serie(
+70 +     titulo, alvos, x, y, w=12, h=8, unidade="none", empilhar=False, descricao="", barras=False
+71 + ):
+72 |     return {
+--------------------------------------------------------------------------------
+80 |         "options": {
+   -             "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "mean"]},
+81 +             "legend": {
+82 +                 "displayMode": "table",
+83 +                 "placement": "right",
+84 +                 "calcs": ["lastNotNull", "mean"],
+85 +             },
+86 |             "tooltip": {"mode": "multi", "sort": "desc"},
+   |
+
+unformatted: File would be reformatted
+  --> scripts\injetar_falhas.py:49:12
+   |
+48 |
+   -     anotar(f"experimento '{args.rotulo}': atraso {args.atraso}s, queda {args.queda}s, alvos {args.alvos}")
+49 +     anotar(
+50 +         f"experimento '{args.rotulo}': atraso {args.atraso}s, queda {args.queda}s, alvos {args.alvos}"
+51 +     )
+52 |     time.sleep(args.atraso)
+   |
+
+unformatted: File would be reformatted
+   --> src\agrosmart\mineracao\analise.py:129:57
+    |
+128 |                 falhas[ativ.etapa] += 1
+    -                 erros.setdefault(ativ.etapa, Counter())[ativ.mensagem[:140] or "(sem mensagem)"] += 1
+129 +                 erros.setdefault(ativ.etapa, Counter())[
+130 +                     ativ.mensagem[:140] or "(sem mensagem)"
+131 +                 ] += 1
+132 |     saida = [
+--------------------------------------------------------------------------------
+137 |             "taxa_falha_pct": round(100 * falhas[etapa] / n, 1),
+    -             "erros": [{"mensagem": m, "ocorrencias": q} for m, q in erros.get(etapa, Counter()).most_common(3)],
+138 +             "erros": [
+139 +                 {"mensagem": m, "ocorrencias": q}
+140 +                 for m, q in erros.get(etapa, Counter()).most_common(3)
+141 +             ],
+142 |         }
+--------------------------------------------------------------------------------
+297 |     intervalos = [
+    -         (b.inicio - a.inicio).total_seconds() for a, b in zip(ordenados, ordenados[1:], strict=False)
+298 +         (b.inicio - a.inicio).total_seconds()
+299 +         for a, b in zip(ordenados, ordenados[1:], strict=False)
+300 |     ]
+--------------------------------------------------------------------------------
+319 |     ok = [c.lead_time_s for c in casos if not c.falhou]
+    -     derivadas = sum(
+    -         1 for c in casos if any(a.etapa in ETAPAS_DERIVADAS for a in c.etapas())
+    -     )
+320 +     derivadas = sum(1 for c in casos if any(a.etapa in ETAPAS_DERIVADAS for a in c.etapas()))
+321 |     return {
+    |
+
+unformatted: File would be reformatted
+   --> src\agrosmart\mineracao\descoberta.py:132:30
+    |
+131 |
+    - def dependencias_heuristicas(
+    -     casos: Iterable[Caso], limiar: float = 0.5
+    - ) -> list[dict[str, Any]]:
+132 + def dependencias_heuristicas(casos: Iterable[Caso], limiar: float = 0.5) -> list[dict[str, Any]]:
+133 |     """Medida de dependência do Heuristics Miner: (|a>b| − |b>a|) / (|a>b| + |b>a| + 1).
+--------------------------------------------------------------------------------
+188 |
+    - def conformidade_por_arestas(
+    -     casos: Sequence[Caso], referencia: Sequence[Caso]
+    - ) -> dict[str, Any]:
+189 + def conformidade_por_arestas(casos: Sequence[Caso], referencia: Sequence[Caso]) -> dict[str, Any]:
+190 |     """Fallback do token replay: o modelo de referência é o DFG dos casos de ``referencia``
+--------------------------------------------------------------------------------
+328 |
+    - def descobrir(
+    -     casos: Sequence[Caso], *, usar_pm4py: bool | None = None
+    - ) -> dict[str, Any]:
+329 + def descobrir(casos: Sequence[Caso], *, usar_pm4py: bool | None = None) -> dict[str, Any]:
+330 |     """Tudo o que é descoberta. ``usar_pm4py=None`` usa pm4py se ele for importável."""
+    |
+
+unformatted: File would be reformatted
+   --> src\agrosmart\mineracao\eventlog.py:461:14
+    |
+460 |             "extension",
+    -             {"name": nome, "prefix": prefixo, "uri": f"http://www.xes-standard.org/{prefixo}.xesext"},
+461 +             {
+462 +                 "name": nome,
+463 +                 "prefix": prefixo,
+464 +                 "uri": f"http://www.xes-standard.org/{prefixo}.xesext",
+465 +             },
+466 |         )
+--------------------------------------------------------------------------------
+474 |     ET.SubElement(
+    -         raiz, "classifier", {"name": "Activity lifecycle", "keys": "concept:name lifecycle:transition"}
+475 +         raiz,
+476 +         "classifier",
+477 +         {"name": "Activity lifecycle", "keys": "concept:name lifecycle:transition"},
+478 |     )
+--------------------------------------------------------------------------------
+498 |             )
+    -             ET.SubElement(evento, "date", {"key": "time:timestamp", "value": linha["time:timestamp"]})
+499 +             ET.SubElement(
+500 +                 evento, "date", {"key": "time:timestamp", "value": linha["time:timestamp"]}
+501 +             )
+502 |             ET.SubElement(evento, "string", {"key": "org:resource", "value": linha["org:resource"]})
+    |
+
+unformatted: File would be reformatted
+   --> src\agrosmart\mineracao\relatorio.py:59:13
+    |
+58  |     if n == 0:
+    -         add("Dados", "o event log não tem casos do worker com `execucao_id`.",
+    -             "rodar o worker (`agrosmart worker`) para gerar ciclos e repetir a mineração.")
+59  +         add(
+60  +             "Dados",
+61  +             "o event log não tem casos do worker com `execucao_id`.",
+62  +             "rodar o worker (`agrosmart worker`) para gerar ciclos e repetir a mineração.",
+63  +         )
+64  |         return insights
+65  |     if n < 5:
+    -         add("Amostra", f"só {n} caso(s) em regime no log: os números são indicativos.",
+    -             "acumular mais ciclos (inclusive com falhas injetadas) antes de concluir.")
+66  +         add(
+67  +             "Amostra",
+68  +             f"só {n} caso(s) em regime no log: os números são indicativos.",
+69  +             "acumular mais ciclos (inclusive com falhas injetadas) antes de concluir.",
+70  +         )
+71  |
+--------------------------------------------------------------------------------
+85  |                 f"`{g[0]['atividade']}` + `{g[1]['atividade']}` somam {_pct(dois)} do lead time.",
+    -                 SUGESTOES_GARGALO.get(g[1]["atividade"], "atacar a segunda maior fatia em seguida."),
+86  +                 SUGESTOES_GARGALO.get(
+87  +                     g[1]["atividade"], "atacar a segunda maior fatia em seguida."
+88  +                 ),
+89  |             )
+--------------------------------------------------------------------------------
+131 |             f"{f['falhas']} de {f['execucoes']} execuções ({_pct(f['taxa_falha_pct'])}); "
+    -             f"causa mais frequente: \"{causa}\".",
+    -             SUGESTOES_FALHA.get(f["etapa"], "retentativa com backoff e alerta na métrica de falha."),
+132 +             f'causa mais frequente: "{causa}".',
+133 +             SUGESTOES_FALHA.get(
+134 +                 f["etapa"], "retentativa com backoff e alerta na métrica de falha."
+135 +             ),
+136 |         )
+--------------------------------------------------------------------------------
+146 |             texto += f"; intervalo mediano entre ciclos {fd(cadencia)}"
+    -         add("Recuperação (MTTR)", texto + ".",
+147 +         add(
+148 +             "Recuperação (MTTR)",
+149 +             texto + ".",
+150 |             "a recuperação depende do próximo ciclo: retentativa dentro do ciclo e alerta "
+    -             "(Prometheus) na primeira falha encurtam o MTTR.")
+151 +             "(Prometheus) na primeira falha encurtam o MTTR.",
+152 +         )
+153 |     ret = a["retentativas"]
+154 |     if ret:
+155 |         ok = sum(1 for r in ret if r["sucesso"])
+    -         add("Retentativas", f"{len(ret)} etapa(s) com falha foram reexecutadas no caso seguinte; "
+    -             f"{ok} com sucesso.",
+    -             "tornar as etapas idempotentes (já são no bronze) e registrar a retentativa como tal.")
+156 +         add(
+157 +             "Retentativas",
+158 +             f"{len(ret)} etapa(s) com falha foram reexecutadas no caso seguinte; {ok} com sucesso.",
+159 +             "tornar as etapas idempotentes (já são no bronze) e registrar a retentativa como tal.",
+160 +         )
+161 |     rep = a["republicacoes"]
+--------------------------------------------------------------------------------
+173 |     if conf["fitness"] < 1:
+    -         add("Conformidade",
+174 +         add(
+175 +             "Conformidade",
+176 |             f"fitness {conf['fitness']:.3f} contra o caminho feliz; "
+177 |             f"{_pct(conf['pct_casos_conformes'])} dos casos conformes.",
+    -             "os desvios são exatamente os caminhos de falha: atacar as causas acima.")
+178 +             "os desvios são exatamente os caminhos de falha: atacar as causas acima.",
+179 +         )
+180 |     tp = a["throughput"]
+181 |     if tp.get("casos_por_hora"):
+    -         add("Throughput", f"{tp['casos_por_hora']:.1f} casos/hora "
+182 +         add(
+183 +             "Throughput",
+184 +             f"{tp['casos_por_hora']:.1f} casos/hora "
+185 |             f"({tp['casos_ok_por_hora']:.1f} OK/hora) em {tp['janela_h']:.2f} h de operação.",
+186 |             "com o ciclo mais curto (v2), dá para reduzir o intervalo do worker e decidir mais "
+    -             "perto do tempo real.")
+187 +             "perto do tempo real.",
+188 +         )
+189 |     comp = a["versoes"]["comparacao"]
+--------------------------------------------------------------------------------
+203 |         unica = next(iter(a["versoes"]["versoes"]))
+    -         add("Antes × depois", f"só há casos da versão {unica} no log.",
+    -             "rodar o worker em modo incremental (v2) para medir o ganho.")
+204 +         add(
+205 +             "Antes × depois",
+206 +             f"só há casos da versão {unica} no log.",
+207 +             "rodar o worker em modo incremental (v2) para medir o ganho.",
+208 +         )
+209 |     return insights
+--------------------------------------------------------------------------------
+230 |     s += ["", "## 1. Escopo do event log", ""]
+    -     s.append(_tabela(["item", "valor"], [
+    -         ["eventos lidos", esc["eventos"]],
+    -         ["eventos sem `execucao_id` (anteriores à Fase 7, ignorados)", esc["eventos_sem_caso"]],
+    -         ["eventos de casos fora do escopo (origem ≠ worker)", esc["eventos_fora_do_escopo"]],
+    -         ["linhas inválidas", esc["linhas_invalidas"]],
+    -         ["casos analisados", esc["casos"]],
+    -         ["casos em regime (ciclos) / carga inicial", f"{a['casos_em_regime']} / {esc['por_tipo'].get('carga_inicial', 0)}"],
+    -         ["casos por versão", ", ".join(f"{k}: {v}" for k, v in esc["por_versao"].items()) or "—"],
+    -         ["casos por status", ", ".join(f"{k}: {v}" for k, v in esc["por_status"].items()) or "—"],
+    -         ["instâncias de atividade", esc["instancias_atividade"]],
+    -     ]))
+231 +     s.append(
+232 +         _tabela(
+233 +             ["item", "valor"],
+234 +             [
+235 +                 ["eventos lidos", esc["eventos"]],
+236 +                 [
+237 +                     "eventos sem `execucao_id` (anteriores à Fase 7, ignorados)",
+238 +                     esc["eventos_sem_caso"],
+239 +                 ],
+240 +                 [
+241 +                     "eventos de casos fora do escopo (origem ≠ worker)",
+242 +                     esc["eventos_fora_do_escopo"],
+243 +                 ],
+244 +                 ["linhas inválidas", esc["linhas_invalidas"]],
+245 +                 ["casos analisados", esc["casos"]],
+246 +                 [
+247 +                     "casos em regime (ciclos) / carga inicial",
+248 +                     f"{a['casos_em_regime']} / {esc['por_tipo'].get('carga_inicial', 0)}",
+249 +                 ],
+250 +                 [
+251 +                     "casos por versão",
+252 +                     ", ".join(f"{k}: {v}" for k, v in esc["por_versao"].items()) or "—",
+253 +                 ],
+254 +                 [
+255 +                     "casos por status",
+256 +                     ", ".join(f"{k}: {v}" for k, v in esc["por_status"].items()) or "—",
+257 +                 ],
+258 +                 ["instâncias de atividade", esc["instancias_atividade"]],
+259 +             ],
+260 +         )
+261 +     )
+262 |     s += ["", "## 2. Modelagem", ""]
+--------------------------------------------------------------------------------
+279 |     s += ["## 3. Representação do processo (DFG)", ""]
+    -     for chave, legenda in (("dfg_frequencia_svg", "DFG — frequência"),
+    -                            ("dfg_desempenho_svg", "DFG — desempenho")):
+280 +     for chave, legenda in (
+281 +         ("dfg_frequencia_svg", "DFG — frequência"),
+282 +         ("dfg_desempenho_svg", "DFG — desempenho"),
+283 +     ):
+284 |         if arq.get(chave):
+--------------------------------------------------------------------------------
+288 |     esperas = d["dfg_desempenho"]["esperas"]
+    -     s.append(_tabela(["transição", "frequência", "espera média", "espera p95"], [
+    -         [k, n, fd(esperas.get(k, {}).get("media")), fd(esperas.get(k, {}).get("p95"))]
+    -         for k, n in sorted(arestas.items(), key=lambda kv: (-kv[1], kv[0]))
+    -     ]))
+289 +     s.append(
+290 +         _tabela(
+291 +             ["transição", "frequência", "espera média", "espera p95"],
+292 +             [
+293 +                 [k, n, fd(esperas.get(k, {}).get("media")), fd(esperas.get(k, {}).get("p95"))]
+294 +                 for k, n in sorted(arestas.items(), key=lambda kv: (-kv[1], kv[0]))
+295 +             ],
+296 +         )
+297 +     )
+298 |     s += ["", "## 4. Descoberta e conformidade", ""]
+299 |     pm = d.get("pm4py")
+300 |     if pm and not pm.get("erro"):
+    -         s += [f"Algoritmos via pm4py {pm['versao_pm4py']}.", "",
+    -               "**Inductive Miner (árvore de processo):**", "", "```", pm["arvore_inductive"],
+    -               "```", ""]
+301 +         s += [
+302 +             f"Algoritmos via pm4py {pm['versao_pm4py']}.",
+303 +             "",
+304 +             "**Inductive Miner (árvore de processo):**",
+305 +             "",
+306 +             "```",
+307 +             pm["arvore_inductive"],
+308 +             "```",
+309 +             "",
+310 +         ]
+311 |         petri = pm["petri_inductive"]
+    -         s.append(f"Rede de Petri: {petri['lugares']} lugares, "
+    -                  f"{len(petri['transicoes_visiveis'])} transições visíveis, "
+    -                  f"{petri['transicoes_silenciosas']} silenciosas, {petri['arcos']} arcos. "
+    -                  f"BPMN: {', '.join(f'{k}={v}' for k, v in pm['bpmn_inductive']['elementos'].items())}.")
+312 +         s.append(
+313 +             f"Rede de Petri: {petri['lugares']} lugares, "
+314 +             f"{len(petri['transicoes_visiveis'])} transições visíveis, "
+315 +             f"{petri['transicoes_silenciosas']} silenciosas, {petri['arcos']} arcos. "
+316 +             f"BPMN: {', '.join(f'{k}={v}' for k, v in pm['bpmn_inductive']['elementos'].items())}."
+317 +         )
+318 |         s.append("")
+    -         s.append(_tabela(["token replay", "fitness", "% casos conformes"], [
+    -             ["modelo descoberto (IM)", pm["token_replay_modelo_descoberto"]["fitness"],
+    -              _pct(pm["token_replay_modelo_descoberto"]["pct_casos_conformes"])],
+    -             *([["caminho feliz (IM sobre casos OK)", pm["token_replay_caminho_feliz"]["fitness"],
+    -                 _pct(pm["token_replay_caminho_feliz"]["pct_casos_conformes"])]]
+    -               if pm.get("token_replay_caminho_feliz") else []),
+    -         ]))
+319 +         s.append(
+320 +             _tabela(
+321 +                 ["token replay", "fitness", "% casos conformes"],
+322 +                 [
+323 +                     [
+324 +                         "modelo descoberto (IM)",
+325 +                         pm["token_replay_modelo_descoberto"]["fitness"],
+326 +                         _pct(pm["token_replay_modelo_descoberto"]["pct_casos_conformes"]),
+327 +                     ],
+328 +                     *(
+329 +                         [
+330 +                             [
+331 +                                 "caminho feliz (IM sobre casos OK)",
+332 +                                 pm["token_replay_caminho_feliz"]["fitness"],
+333 +                                 _pct(pm["token_replay_caminho_feliz"]["pct_casos_conformes"]),
+334 +                             ]
+335 +                         ]
+336 +                         if pm.get("token_replay_caminho_feliz")
+337 +                         else []
+338 +                     ),
+339 +                 ],
+340 +             )
+341 +         )
+342 |     else:
+343 |         motivo = pm["erro"] if pm else "pm4py não instalado"
+    -         s += [f"pm4py indisponível ({motivo}): árvore aproximada pelas variantes.", "", "```",
+    -               d["arvore_variantes"], "```", ""]
+344 +         s += [
+345 +             f"pm4py indisponível ({motivo}): árvore aproximada pelas variantes.",
+346 +             "",
+347 +             "```",
+348 +             d["arvore_variantes"],
+349 +             "```",
+350 +             "",
+351 +         ]
+352 |     conf = d["conformidade_caminho_feliz"]
+    -     s.append(f"Conformidade por arestas contra o caminho feliz (casos sem falha): fitness "
+    -              f"**{conf['fitness']:.3f}**, {_pct(conf['pct_casos_conformes'])} dos casos conformes.")
+353 +     s.append(
+354 +         f"Conformidade por arestas contra o caminho feliz (casos sem falha): fitness "
+355 +         f"**{conf['fitness']:.3f}**, {_pct(conf['pct_casos_conformes'])} dos casos conformes."
+356 +     )
+357 |     if conf["desvios"]:
+358 |         s.append("Desvios: " + "; ".join(f"`{k}` ({v})" for k, v in conf["desvios"].items()) + ".")
+359 |     s += ["", "**Heuristics Miner — dependências (≥ 0,5):**", ""]
+    -     s.append(_tabela(["de", "para", "frequência", "dependência"], [
+    -         [h["de"], h["para"], h["frequencia"], f"{h['dependencia']:.3f}"] for h in d["heuristics"]
+    -     ]))
+360 +     s.append(
+361 +         _tabela(
+362 +             ["de", "para", "frequência", "dependência"],
+363 +             [
+364 +                 [h["de"], h["para"], h["frequencia"], f"{h['dependencia']:.3f}"]
+365 +                 for h in d["heuristics"]
+366 +             ],
+367 +         )
+368 +     )
+369 |     s += ["", "## 5. Variantes", ""]
+370 |     if arq.get("variantes_png"):
+371 |         s += [f"![Variantes]({Path(arq['variantes_png']).name})", ""]
+    -     s.append(_tabela(["id", "variante", "casos", "% casos", "lead time médio", "desvio", "versões"], [
+    -         [v["id"], v["variante"], v["casos"], _pct(v["pct_casos"]), fd(v["lead_time"]["media"]),
+    -          fd(v["lead_time"]["desvio"]), ", ".join(f"{k}:{q}" for k, q in v["versoes"].items())]
+    -         for v in d["variantes"]
+    -     ]))
+372 +     s.append(
+373 +         _tabela(
+374 +             ["id", "variante", "casos", "% casos", "lead time médio", "desvio", "versões"],
+375 +             [
+376 +                 [
+377 +                     v["id"],
+378 +                     v["variante"],
+379 +                     v["casos"],
+380 +                     _pct(v["pct_casos"]),
+381 +                     fd(v["lead_time"]["media"]),
+382 +                     fd(v["lead_time"]["desvio"]),
+383 +                     ", ".join(f"{k}:{q}" for k, q in v["versoes"].items()),
+384 +                 ]
+385 +                 for v in d["variantes"]
+386 +             ],
+387 +         )
+388 +     )
+389 |     s += ["", "## 6. Gargalos (participação no lead time)", ""]
+390 |     if arq.get("duracoes_png"):
+391 |         s += [f"![Duração por atividade]({Path(arq['duracoes_png']).name})", ""]
+    -     s.append(_tabela(["atividade", "n", "média", "mediana", "p95", "máx.", "CV", "% lead time"], [
+    -         [g["atividade"], g["n"], fd(g["media"]), fd(g["mediana"]), fd(g["p95"]), fd(g["max"]),
+    -          f"{g['cv']:.2f}", _pct(g["pct_lead_time"])] for g in a["gargalos"]
+    -     ]))
+392 +     s.append(
+393 +         _tabela(
+394 +             ["atividade", "n", "média", "mediana", "p95", "máx.", "CV", "% lead time"],
+395 +             [
+396 +                 [
+397 +                     g["atividade"],
+398 +                     g["n"],
+399 +                     fd(g["media"]),
+400 +                     fd(g["mediana"]),
+401 +                     fd(g["p95"]),
+402 +                     fd(g["max"]),
+403 +                     f"{g['cv']:.2f}",
+404 +                     _pct(g["pct_lead_time"]),
+405 +                 ]
+406 +                 for g in a["gargalos"]
+407 +             ],
+408 +         )
+409 +     )
+410 |     o = a["ociosidade"]
+    -     s.append(f"\nTempo fora das etapas (orquestração/espera): {_pct(o['pct_lead_time'])} do lead "
+    -              f"time (média {fd(o['media'])} por caso).")
+411 +     s.append(
+412 +         f"\nTempo fora das etapas (orquestração/espera): {_pct(o['pct_lead_time'])} do lead "
+413 +         f"time (média {fd(o['media'])} por caso)."
+414 +     )
+415 |     s += ["", "**Maiores esperas entre atividades:**", ""]
+    -     s.append(_tabela(["transição", "n", "média", "mediana", "p95"], [
+    -         [e["aresta"], e["n"], fd(e["media"]), fd(e["mediana"]), fd(e["p95"])] for e in a["esperas"]
+    -     ]))
+416 +     s.append(
+417 +         _tabela(
+418 +             ["transição", "n", "média", "mediana", "p95"],
+419 +             [
+420 +                 [e["aresta"], e["n"], fd(e["media"]), fd(e["mediana"]), fd(e["p95"])]
+421 +                 for e in a["esperas"]
+422 +             ],
+423 +         )
+424 +     )
+425 |     var = a["variacao"]
+--------------------------------------------------------------------------------
+429 |     lt = var["lead_time"]
+    -     s.append(f"Lead time: média {fd(lt['media'])}, mediana {fd(lt['mediana'])}, p95 {fd(lt['p95'])}, "
+    -              f"máx. {fd(lt['max'])}, desvio {fd(lt['desvio'])} (CV {var['cv_lead_time']:.2f}).")
+430 +     s.append(
+431 +         f"Lead time: média {fd(lt['media'])}, mediana {fd(lt['mediana'])}, p95 {fd(lt['p95'])}, "
+432 +         f"máx. {fd(lt['max'])}, desvio {fd(lt['desvio'])} (CV {var['cv_lead_time']:.2f})."
+433 +     )
+434 |     tp = a["throughput"]
+    -     s.append(f"\nThroughput: {tp.get('casos_por_hora') or '—'} casos/hora em {tp.get('janela_h')} h; "
+    -              f"intervalo mediano entre inícios "
+    -              f"{fd(tp.get('intervalo_entre_inicios', {}).get('mediana'))}.")
+435 +     s.append(
+436 +         f"\nThroughput: {tp.get('casos_por_hora') or '—'} casos/hora em {tp.get('janela_h')} h; "
+437 +         f"intervalo mediano entre inícios "
+438 +         f"{fd(tp.get('intervalo_entre_inicios', {}).get('mediana'))}."
+439 +     )
+440 |     s += ["", "## 8. Falhas, MTTR e retrabalho", ""]
+    -     s.append(_tabela(["etapa", "execuções", "falhas", "taxa", "erro mais frequente"], [
+    -         [f["etapa"], f["execucoes"], f["falhas"], _pct(f["taxa_falha_pct"]),
+    -          f["erros"][0]["mensagem"][:90] if f["erros"] else ""] for f in a["falhas"]
+    -     ]))
+441 +     s.append(
+442 +         _tabela(
+443 +             ["etapa", "execuções", "falhas", "taxa", "erro mais frequente"],
+444 +             [
+445 +                 [
+446 +                     f["etapa"],
+447 +                     f["execucoes"],
+448 +                     f["falhas"],
+449 +                     _pct(f["taxa_falha_pct"]),
+450 +                     f["erros"][0]["mensagem"][:90] if f["erros"] else "",
+451 +                 ]
+452 +                 for f in a["falhas"]
+453 +             ],
+454 +         )
+455 +     )
+456 |     inc = a["incidentes"]
+457 |     s.append(f"\nIncidentes: {inc['quantidade']} · MTTR: {fd(inc['mttr_s'])}.")
+458 |     if inc["incidentes"]:
+459 |         s.append("")
+    -         s.append(_tabela(["início", "atividade", "casos afetados", "recuperado por", "TTR"], [
+    -             [i["inicio"], i["atividade"], len(i["casos_afetados"]), i["caso_recuperacao"],
+    -              fd(i["ttr_s"])] for i in inc["incidentes"]
+    -         ]))
+460 +         s.append(
+461 +             _tabela(
+462 +                 ["início", "atividade", "casos afetados", "recuperado por", "TTR"],
+463 +                 [
+464 +                     [
+465 +                         i["inicio"],
+466 +                         i["atividade"],
+467 +                         len(i["casos_afetados"]),
+468 +                         i["caso_recuperacao"],
+469 +                         fd(i["ttr_s"]),
+470 +                     ]
+471 +                     for i in inc["incidentes"]
+472 +                 ],
+473 +             )
+474 +         )
+475 |     ret = a["retentativas"]
+    -     s.append(f"\nRetentativas (etapa que falhou e foi reexecutada no caso seguinte): {len(ret)}, "
+    -              f"{sum(1 for r in ret if r['sucesso'])} com sucesso.")
+476 +     s.append(
+477 +         f"\nRetentativas (etapa que falhou e foi reexecutada no caso seguinte): {len(ret)}, "
+478 +         f"{sum(1 for r in ret if r['sucesso'])} com sucesso."
+479 +     )
+480 |     rep = a["republicacoes"]
+    -     s.append(f"\nComandos de irrigação republicados sem mudança de payload: {rep['republicacoes']} "
+    -              f"de {rep['comandos']} ({_pct(rep['pct_redundante'])}); por talhão: "
+    -              f"{rep['por_talhao'] or '—'}.")
+481 +     s.append(
+482 +         f"\nComandos de irrigação republicados sem mudança de payload: {rep['republicacoes']} "
+483 +         f"de {rep['comandos']} ({_pct(rep['pct_redundante'])}); por talhão: "
+484 +         f"{rep['por_talhao'] or '—'}."
+485 +     )
+486 |     sn = a["sem_novidade"]
+    -     s.append(f"\nCiclos sem lote novo: {sn['sem_lote_novo']} de {sn['casos_com_ingestao_ok']} "
+    -              f"({_pct(sn['pct_sem_lote_novo'])}); reprocessaram silver/gold/catálogo: "
+    -              f"{sn['reprocessaram_derivadas']} ({fd(sn['tempo_reprocessado_s'])}).")
+487 +     s.append(
+488 +         f"\nCiclos sem lote novo: {sn['sem_lote_novo']} de {sn['casos_com_ingestao_ok']} "
+489 +         f"({_pct(sn['pct_sem_lote_novo'])}); reprocessaram silver/gold/catálogo: "
+490 +         f"{sn['reprocessaram_derivadas']} ({fd(sn['tempo_reprocessado_s'])})."
+491 +     )
+492 |     s += ["", "## 9. Antes × depois (v1 × v2)", ""]
+493 |     vers = a["versoes"]["versoes"]
+    -     s.append(_tabela(["versão", "casos", "sucesso", "lead time mediano (OK)", "p95 (OK)",
+    -                       "etapas/caso", "% com silver/gold", "gargalo"], [
+    -         [k, v["casos"], _pct(v["taxa_sucesso_pct"]), fd(v["lead_time_casos_ok"]["mediana"]),
+    -          fd(v["lead_time_casos_ok"]["p95"]), v["etapas_por_caso"],
+    -          _pct(v["pct_casos_com_silver_gold"]), v["gargalo"]] for k, v in vers.items()
+    -     ]))
+494 +     s.append(
+495 +         _tabela(
+496 +             [
+497 +                 "versão",
+498 +                 "casos",
+499 +                 "sucesso",
+500 +                 "lead time mediano (OK)",
+501 +                 "p95 (OK)",
+502 +                 "etapas/caso",
+503 +                 "% com silver/gold",
+504 +                 "gargalo",
+505 +             ],
+506 +             [
+507 +                 [
+508 +                     k,
+509 +                     v["casos"],
+510 +                     _pct(v["taxa_sucesso_pct"]),
+511 +                     fd(v["lead_time_casos_ok"]["mediana"]),
+512 +                     fd(v["lead_time_casos_ok"]["p95"]),
+513 +                     v["etapas_por_caso"],
+514 +                     _pct(v["pct_casos_com_silver_gold"]),
+515 +                     v["gargalo"],
+516 +                 ]
+517 +                 for k, v in vers.items()
+518 +             ],
+519 +         )
+520 +     )
+521 |     comp = a["versoes"]["comparacao"]
+522 |     if comp:
+    -         s.append(f"\nΔ lead time mediano: {_pct(comp['delta_lead_time_mediano_pct'])} · "
+    -                  f"Δ p95: {_pct(comp['delta_p95_pct'])} · Δ sucesso: "
+    -                  f"{comp['delta_taxa_sucesso_pp']} p.p.")
+523 +         s.append(
+524 +             f"\nΔ lead time mediano: {_pct(comp['delta_lead_time_mediano_pct'])} · "
+525 +             f"Δ p95: {_pct(comp['delta_p95_pct'])} · Δ sucesso: "
+526 +             f"{comp['delta_taxa_sucesso_pp']} p.p."
+527 +         )
+528 |     s += ["", "## 10. Insights e oportunidades", ""]
+529 |     for i, ins in enumerate(m["insights"], start=1):
+    -         s.append(f"{i}. **{ins['tema']}** — {ins['evidencia']} → *Oportunidade:* {ins['oportunidade']}")
+530 +         s.append(
+531 +             f"{i}. **{ins['tema']}** — {ins['evidencia']} → *Oportunidade:* {ins['oportunidade']}"
+532 +         )
+533 |     return "\n".join(s) + "\n"
+    |
+
+unformatted: File would be reformatted
+   --> src\agrosmart\mineracao\visual.py:108:22
+    |
+107 |     if ATIVIDADE_COMANDO in bases:
+    -         ordem.insert(ordem.index("atuar") + 1 if "atuar" in ordem else len(ordem), ATIVIDADE_COMANDO)
+108 +         ordem.insert(
+109 +             ordem.index("atuar") + 1 if "atuar" in ordem else len(ordem), ATIVIDADE_COMANDO
+110 +         )
+111 |     ordem += sorted(bases - set(ordem))
+--------------------------------------------------------------------------------
+154 |         coluna, camada = posicao(nome)
+    -         return (x_falha if coluna == "falha" else x_principal), topo + ALTURA_NO / 2 + camada * PASSO
+155 +         return (
+156 +             x_falha if coluna == "falha" else x_principal
+157 +         ), topo + ALTURA_NO / 2 + camada * PASSO
+158 |
+--------------------------------------------------------------------------------
+254 |     escala = ESCALA_FREQ if modo == "frequencia" else ESCALA_DUR
+    -     legenda_cor = "cor do nó = frequência" if modo == "frequencia" else (
+    -         "cor do nó = duração média (escala log)"
+255 +     legenda_cor = (
+256 +         "cor do nó = frequência"
+257 +         if modo == "frequencia"
+258 +         else ("cor do nó = duração média (escala log)")
+259 |     )
+--------------------------------------------------------------------------------
+264 |     desenho.textos.append(Texto(150, y_leg + 40, "maior", 11, "#4a5568", "end"))
+    -     rotulo_aresta = "rótulo = nº de transições" if modo == "frequencia" else (
+    -         "rótulo = espera média entre as atividades"
+265 +     rotulo_aresta = (
+266 +         "rótulo = nº de transições"
+267 +         if modo == "frequencia"
+268 +         else ("rótulo = espera média entre as atividades")
+269 |     )
+--------------------------------------------------------------------------------
+392 |             ha = {"start": "left", "end": "right", "middle": "center"}[traco.ancora]
+    -             ax.text(*traco.rotulo_xy, traco.rotulo, fontsize=11 * pt, color=traco.cor, ha=ha,
+    -                     va="baseline", bbox={"fc": "white", "ec": "none", "pad": 0.5, "alpha": 0.8})
+393 +             ax.text(
+394 +                 *traco.rotulo_xy,
+395 +                 traco.rotulo,
+396 +                 fontsize=11 * pt,
+397 +                 color=traco.cor,
+398 +                 ha=ha,
+399 +                 va="baseline",
+400 +                 bbox={"fc": "white", "ec": "none", "pad": 0.5, "alpha": 0.8},
+401 +             )
+402 |     for caixa in desenho.caixas:
+--------------------------------------------------------------------------------
+416 |         cor = _texto_sobre(caixa.fundo)
+    -         ax.text(caixa.x, caixa.y - 4, caixa.linhas[0], fontsize=13 * pt, weight="bold",
+    -                 ha="center", va="baseline", color=cor, zorder=4)
+417 +         ax.text(
+418 +             caixa.x,
+419 +             caixa.y - 4,
+420 +             caixa.linhas[0],
+421 +             fontsize=13 * pt,
+422 +             weight="bold",
+423 +             ha="center",
+424 +             va="baseline",
+425 +             color=cor,
+426 +             zorder=4,
+427 +         )
+428 |         if len(caixa.linhas) > 1:
+    -             ax.text(caixa.x, caixa.y + 14, caixa.linhas[1], fontsize=11 * pt, ha="center",
+    -                     va="baseline", color=cor, zorder=4)
+429 +             ax.text(
+430 +                 caixa.x,
+431 +                 caixa.y + 14,
+432 +                 caixa.linhas[1],
+433 +                 fontsize=11 * pt,
+434 +                 ha="center",
+435 +                 va="baseline",
+436 +                 color=cor,
+437 +                 zorder=4,
+438 +             )
+439 |     for x, y, w, h, cor in desenho.amostras:
+440 |         ax.add_patch(Rectangle((x, y), w, h, fc=cor, ec="#a0aec0", lw=0.5))
+441 |     for t in desenho.textos:
+442 |         ha = {"start": "left", "end": "right", "middle": "center"}[t.ancora]
+    -         ax.text(t.x, t.y, t.texto, fontsize=t.tamanho * pt, color=t.cor, ha=ha, va="baseline",
+    -                 weight="bold" if t.negrito else "normal")
+443 +         ax.text(
+444 +             t.x,
+445 +             t.y,
+446 +             t.texto,
+447 +             fontsize=t.tamanho * pt,
+448 +             color=t.cor,
+449 +             ha=ha,
+450 +             va="baseline",
+451 +             weight="bold" if t.negrito else "normal",
+452 +         )
+453 |     destino.parent.mkdir(parents=True, exist_ok=True)
+--------------------------------------------------------------------------------
+553 |     for i, v in enumerate(topo):
+    -         ax.text(0.01, i, _abreviar(v["atividades"]), va="center", fontsize=8, color="#1a202c",
+    -                 transform=ax.get_yaxis_transform())
+554 +         ax.text(
+555 +             0.01,
+556 +             i,
+557 +             _abreviar(v["atividades"]),
+558 +             va="center",
+559 +             fontsize=8,
+560 +             color="#1a202c",
+561 +             transform=ax.get_yaxis_transform(),
+562 +         )
+563 |     ax.set_xlabel("casos")
+    |
+
+unformatted: File would be reformatted
+   --> tests\test_mineracao.py:46:13
+    |
+45  | T0 = datetime(2026, 11, 16, 20, 0, tzinfo=UTC)
+    - DURACOES = {"ingerir": 2.0, "silver": 30.0, "gold": 8.0, "catalogo": 3.5, "decidir": 0.2, "atuar": 1.0}
+46  + DURACOES = {
+47  +     "ingerir": 2.0,
+48  +     "silver": 30.0,
+49  +     "gold": 8.0,
+50  +     "catalogo": 3.5,
+51  +     "decidir": 0.2,
+52  +     "atuar": 1.0,
+53  + }
+54  | IRRIGAR = [("TLH-02", {"acao": "ligar", "minutos": 170})]
+--------------------------------------------------------------------------------
+120 |             eventos.append(
+    -                 _ev(t, etapa, "etapa_falhou", ctx, status="erro",
+121 +                 _ev(
+122 +                     t,
+123 +                     etapa,
+124 +                     "etapa_falhou",
+125 +                     ctx,
+126 +                     status="erro",
+127 |                     mensagem=f"ConnectionError: {etapa} indisponível",
+    -                     metricas={"duracao_s": dur[etapa]})
+128 +                     metricas={"duracao_s": dur[etapa]},
+129 +                 )
+130 |             )
+--------------------------------------------------------------------------------
+134 |         if etapa == "ingerir":
+    -             metricas |= {"lotes": 3, "gravados": gravados, "atualizados": 0, "pulados": 3 - gravados}
+135 +             metricas |= {
+136 +                 "lotes": 3,
+137 +                 "gravados": gravados,
+138 +                 "atualizados": 0,
+139 +                 "pulados": 3 - gravados,
+140 +             }
+141 |         if etapa == "atuar":
+--------------------------------------------------------------------------------
+193 |     assert caso.variante == (
+    -         "ingerir", "silver", "gold", "catalogo", "decidir", "atuar", ATIVIDADE_COMANDO
+194 +         "ingerir",
+195 +         "silver",
+196 +         "gold",
+197 +         "catalogo",
+198 +         "decidir",
+199 +         "atuar",
+200 +         ATIVIDADE_COMANDO,
+201 |     )
+--------------------------------------------------------------------------------
+239 |     eventos, _ = caso_eventos("ciclo-x", T0)
+    -     corte = next(i for i, e in enumerate(eventos) if e["acao"] == "etapa_concluida" and e["etapa"] == "gold")
+240 +     corte = next(
+241 +         i for i, e in enumerate(eventos) if e["acao"] == "etapa_concluida" and e["etapa"] == "gold"
+242 +     )
+243 |     (caso,) = _log(eventos[:corte]).casos
+--------------------------------------------------------------------------------
+311 |     d, _ = caso_eventos(
+    -         "ciclo-4", t + timedelta(seconds=30), comandos=[("TLH-02", {"acao": "ligar", "minutos": 90})]
+312 +         "ciclo-4",
+313 +         t + timedelta(seconds=30),
+314 +         comandos=[("TLH-02", {"acao": "ligar", "minutos": 90})],
+315 |     )
+--------------------------------------------------------------------------------
+347 |
+    -     aberto = incidentes(_log(c + caso_eventos("ciclo-9", fim_ok + timedelta(1), falha="atuar")[0]).casos)
+348 +     aberto = incidentes(
+349 +         _log(c + caso_eventos("ciclo-9", fim_ok + timedelta(1), falha="atuar")[0]).casos
+350 +     )
+351 |     assert aberto["quantidade"] == 1 and aberto["em_aberto"] and aberto["mttr_s"] is None
+--------------------------------------------------------------------------------
+426 |     fonte = _gravar(eventos, tmp_path / "eventos.jsonl")
+    -     m1 = minerar(fonte, tmp_path / "a", usar_pm4py=False, graficos=False,
+    -                  exemplo=tmp_path / "ex.csv")
+    -     m2 = minerar(fonte, tmp_path / "b", usar_pm4py=False, graficos=False,
+    -                  exemplo=tmp_path / "ex.csv")
+427 +     m1 = minerar(
+428 +         fonte, tmp_path / "a", usar_pm4py=False, graficos=False, exemplo=tmp_path / "ex.csv"
+429 +     )
+430 +     m2 = minerar(
+431 +         fonte, tmp_path / "b", usar_pm4py=False, graficos=False, exemplo=tmp_path / "ex.csv"
+432 +     )
+433 |     assert m1["escopo"]["casos"] == 16
+434 |     assert m1["escopo"]["linhas_invalidas"] == 1
+435 |     assert m1["escopo"]["eventos_sem_caso"] == 1
+    -     for nome in ("event_log.csv", "event_log_intervalos.csv", "event_log.xes",
+    -                  "dfg_frequencia.svg", "dfg_desempenho.svg", "metricas.json", "relatorio.md"):
+436 +     for nome in (
+437 +         "event_log.csv",
+438 +         "event_log_intervalos.csv",
+439 +         "event_log.xes",
+440 +         "dfg_frequencia.svg",
+441 +         "dfg_desempenho.svg",
+442 +         "metricas.json",
+443 +         "relatorio.md",
+444 +     ):
+445 |         assert (tmp_path / "a" / nome).read_bytes() == (tmp_path / "b" / nome).read_bytes(), nome
+--------------------------------------------------------------------------------
+455 |     cabecalho = (tmp_path / "ex.csv").read_text(encoding="utf-8").splitlines()[0]
+    -     assert cabecalho.startswith("case:concept:name,concept:name,lifecycle:transition,time:timestamp")
+456 +     assert cabecalho.startswith(
+457 +         "case:concept:name,concept:name,lifecycle:transition,time:timestamp"
+458 +     )
+459 |
+    |
+
+9 files would be reformatted, 89 files already formatted
+# código de saída: 1 (1.4s)
+
+$ C:\Python313\python.exe -m ruff check src app scripts --select C901 --config lint.mccabe.max-complexity=30
+All checks passed!
+# código de saída: 0 (2.9s)
+
+$ C:\Python313\python.exe -m ruff check src app scripts --select C901 --config lint.mccabe.max-complexity=20 --output-format concise --exit-zero
+src\agrosmart\ia\guardrails.py:119:5: C901 `validar` is too complex (26 > 20)
+src\agrosmart\mineracao\relatorio.py:49:5: C901 `gerar_insights` is too complex (21 > 20)
+src\agrosmart\orquestracao.py:110:5: C901 `executar` is too complex (25 > 20)
+Found 3 errors.
+# código de saída: 0 (1.5s)
+
+# resultado: FALHOU
+#   - ruff check (lint)
+#   - ruff format --check (formatação)

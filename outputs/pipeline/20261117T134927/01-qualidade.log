@@ -1,0 +1,27 @@
+# estágio: qualidade
+# início: 2026-11-17T13:49:27.942313
+
+$ C:\Python313\python.exe -m ruff --version
+ruff 0.16.10
+# código de saída: 0 (1.1s)
+
+$ C:\Python313\python.exe -m ruff check src tests app scripts
+All checks passed!
+# código de saída: 0 (2.3s)
+
+$ C:\Python313\python.exe -m ruff format --check src tests app scripts
+100 files already formatted
+# código de saída: 0 (2.9s)
+
+$ C:\Python313\python.exe -m ruff check src app scripts --select C901 --config lint.mccabe.max-complexity=30
+All checks passed!
+# código de saída: 0 (2.6s)
+
+$ C:\Python313\python.exe -m ruff check src app scripts --select C901 --config lint.mccabe.max-complexity=20 --output-format concise --exit-zero
+src\agrosmart\ia\guardrails.py:119:5: C901 `validar` is too complex (26 > 20)
+src\agrosmart\mineracao\relatorio.py:54:5: C901 `gerar_insights` is too complex (21 > 20)
+src\agrosmart\orquestracao.py:110:5: C901 `executar` is too complex (25 > 20)
+Found 3 errors.
+# código de saída: 0 (2.2s)
+
+# resultado: PASSOU

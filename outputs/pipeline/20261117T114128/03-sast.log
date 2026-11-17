@@ -1,0 +1,63 @@
+# estágio: sast
+# início: 2026-11-17T11:56:13.917793
+
+$ C:\Python313\python.exe -m bandit --version
+__main__.py 1.9.4
+  python version = 3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]
+# código de saída: 0 (4.1s)
+
+$ C:\Python313\python.exe -m bandit -r src app -c pyproject.toml -f json -o C:\Users\lmhsilva\Projetos\AgroSmart\outputs\pipeline\20261117T114128\bandit.json --exit-zero
+Working... ---------------------------------------- 100% 0:00:02
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[json]	INFO	JSON output written to file: C:\Users\lmhsilva\Projetos\AgroSmart\outputs\pipeline\20261117T114128\bandit.json
+# código de saída: 0 (3.7s)
+
+$ C:\Python313\python.exe -m bandit -r src app -c pyproject.toml -f sarif -o C:\Users\lmhsilva\Projetos\AgroSmart\outputs\pipeline\20261117T114128\bandit.sarif --exit-zero
+usage: __main__.py [-h] [-r] [-a {file,vuln}] [-n CONTEXT_LINES]
+                   [-c CONFIG_FILE] [-p PROFILE] [-t TESTS] [-s SKIPS] [-l |
+                   --severity-level {all,low,medium,high}] [-i |
+                   --confidence-level {all,low,medium,high}]
+                   [-f {csv,custom,html,json,screen,txt,xml,yaml}]
+                   [--msg-template MSG_TEMPLATE] [-o [OUTPUT_FILE]] [-v] [-d]
+                   [-q] [--ignore-nosec] [-x EXCLUDED_PATHS] [-b BASELINE]
+                   [--ini INI_PATH] [--exit-zero] [--version]
+                   [targets ...]
+__main__.py: error: argument -f/--format: invalid choice: 'sarif' (choose from csv, custom, html, json, screen, txt, xml, yaml)
+# código de saída: 2 (1.2s)
+
+$ C:\Python313\python.exe -m bandit -r src app -c pyproject.toml --severity-level high -f txt
+Working... ---------------------------------------- 100% 0:00:01
+Run started:2026-11-17 14:56:25.700175+00:00
+
+Test results:
+	No issues identified.
+
+Code scanned:
+	Total lines of code: 15945
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 8
+		Medium: 4
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 3
+		Medium: 0
+		High: 9
+Files skipped (0):
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	using config: pyproject.toml
+[main]	INFO	running on Python 3.13.1
+# código de saída: 0 (3.0s)
+
+# resultado: PASSOU

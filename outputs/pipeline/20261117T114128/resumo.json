@@ -1,0 +1,134 @@
+{
+  "execucao": "20261117T114128",
+  "pasta": "outputs/pipeline/20261117T114128",
+  "commit": "5a7745a",
+  "sujo": true,
+  "host": "Windows 11",
+  "python": "3.13.1",
+  "duracao_s": 969.8,
+  "ca_corporativa": true,
+  "criterios": {
+    "complexidade_max": 30,
+    "cobertura_min_pct": 60,
+    "bandit_gate": "severidade HIGH",
+    "pip_audit_gate": "qualquer vulnerabilidade conhecida (exceto .pip-audit-ignore)",
+    "trivy_gate": "CRITICAL com correção (--ignore-unfixed)"
+  },
+  "status_geral": "falhou",
+  "estagios": [
+    {
+      "estagio": "qualidade",
+      "status": "falhou",
+      "duracao_s": 9.1,
+      "log": "01-qualidade.log",
+      "numeros": {
+        "funcoes_complexidade_acima_alerta": 3,
+        "complexidade_alerta": 20,
+        "complexidade_max_gate": 30
+      },
+      "motivo": "ruff check (lint) | ruff format --check (formatação)"
+    },
+    {
+      "estagio": "testes",
+      "status": "passou",
+      "duracao_s": 874.8,
+      "log": "02-testes.log",
+      "numeros": {
+        "testes_total": 252,
+        "testes_passados": 251,
+        "testes_falhas": 0,
+        "testes_erros": 0,
+        "testes_pulados": 1,
+        "testes_tempo_s": 851.7,
+        "cobertura_linhas_pct": 80.39,
+        "cobertura_ramos_pct": 65.5,
+        "linhas_validas": 7464,
+        "linhas_cobertas": 6000,
+        "cobertura_minima_pct": 60
+      },
+      "motivo": ""
+    },
+    {
+      "estagio": "sast",
+      "status": "passou",
+      "duracao_s": 12.0,
+      "log": "03-sast.log",
+      "numeros": {
+        "bandit_high": 0,
+        "bandit_medium": 4,
+        "bandit_low": 8,
+        "bandit_por_regra": {
+          "B101": 3,
+          "B110": 1,
+          "B310": 1,
+          "B311": 2,
+          "B405": 1,
+          "B406": 1,
+          "B608": 3
+        },
+        "bandit_nosec_justificados": 0,
+        "bandit_linhas_analisadas": 15945
+      },
+      "motivo": ""
+    },
+    {
+      "estagio": "sca",
+      "status": "falhou",
+      "duracao_s": 14.0,
+      "log": "04-sca.log",
+      "numeros": {
+        "pip_audit_vulnerabilidades": 92,
+        "pip_audit_pacotes_vulneraveis": 8,
+        "pip_audit_detalhe": {
+          "anyio": 2,
+          "certifi": 1,
+          "gitpython": 34,
+          "pillow": 42,
+          "pygments": 1,
+          "python-multipart": 6,
+          "requests": 1,
+          "urllib3": 5
+        },
+        "dependencias_auditadas": 71
+      },
+      "motivo": "pip-audit"
+    },
+    {
+      "estagio": "build",
+      "status": "passou",
+      "duracao_s": 16.3,
+      "log": "05-build.log",
+      "numeros": {
+        "imagem_bytes": 291520379,
+        "imagem_mb": 291.5,
+        "imagem_usuario": "10001:10001"
+      },
+      "motivo": ""
+    },
+    {
+      "estagio": "imagem",
+      "status": "passou",
+      "duracao_s": 43.0,
+      "log": "06-imagem.log",
+      "numeros": {
+        "trivy_por_severidade": {
+          "CRITICAL": 0,
+          "HIGH": 48,
+          "MEDIUM": 93,
+          "LOW": 65,
+          "UNKNOWN": 5
+        },
+        "trivy_corrigiveis_por_severidade": {
+          "CRITICAL": 0,
+          "HIGH": 1,
+          "MEDIUM": 1,
+          "LOW": 0,
+          "UNKNOWN": 0
+        },
+        "trivy_total": 211,
+        "imagem_so": "debian 13.7"
+      },
+      "motivo": ""
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+# estágio: build
+# início: 2026-11-17T11:56:39.892840
+
+$ docker version --format {{.Server.Version}}
+27.5.1
+# código de saída: 0 (0.4s)
+
+$ docker buildx build --load --progress plain -t agrosmart:ci --secret id=ca_extra,src=C:\Users\lmhsilva\.claude\certs\corporate-ca-chain.pem .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.89kB 0.0s done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 1.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/python:3.13-slim
+#4 DONE 0.7s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 327B 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 DONE 0.0s
+
+#7 [builder 1/6] FROM docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#7 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90 0.0s done
+#7 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 5.01kB done
+#6 DONE 0.0s
+
+#8 [runtime 3/7] WORKDIR /app
+#8 CACHED
+
+#9 [builder 3/6] RUN python -m venv /opt/venv
+#9 CACHED
+
+#10 [builder 2/6] WORKDIR /build
+#10 CACHED
+
+#11 [builder 5/6] COPY src ./src
+#11 CACHED
+
+#12 [builder 6/6] RUN --mount=type=secret,id=ca_extra,required=false     set -eu;     if [ -s /run/secrets/ca_extra ]; then         cat /etc/ssl/certs/ca-certificates.crt /run/secrets/ca_extra > /tmp/ca.pem;         export PIP_CERT=/tmp/ca.pem;     fi;     pip install --upgrade pip;     pip install ".[app,iot]";     pip uninstall -y pip;     rm -f /tmp/ca.pem
+#12 CACHED
+
+#13 [runtime 4/7] COPY --from=builder /opt/venv /opt/venv
+#13 CACHED
+
+#14 [runtime 5/7] COPY --chown=agro:agro contratos ./contratos
+#14 CACHED
+
+#15 [runtime 6/7] COPY --chown=agro:agro app ./app
+#15 CACHED
+
+#16 [runtime 2/7] RUN set -eu;     python -m pip uninstall -y pip setuptools wheel 2>/dev/null || true;     groupadd --system --gid 10001 agro;     useradd --system --uid 10001 --gid agro --home-dir /app --shell /usr/sbin/nologin agro
+#16 CACHED
+
+#17 [builder 4/6] COPY pyproject.toml README.md ./
+#17 CACHED
+
+#18 [runtime 7/7] RUN mkdir -p landing outputs/logs outputs/status outputs/acoes outputs/relatorios              data/exemplos docs     && chown -R agro:agro /app
+#18 CACHED
+
+#19 exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:218ea2047c19a4fd178a7f156c494e24a0b8490d088f2b63f79be60f01e37bfd 0.0s done
+#19 exporting config sha256:063fcb28f612f974d7b99a3ed42d1565ce51a9b5a0fa56f187a5519603fc3984 0.0s done
+#19 exporting attestation manifest sha256:5954a65d6d1584ef1e9eed7bb4d2cae997ea285fdf48a083d75612c1505ba31c 0.1s done
+#19 exporting manifest list sha256:6e6cdc2fc7587b3c5efb82f288b84b25bc35355acccd3413711bc1347f1f04ec 0.0s done
+#19 naming to docker.io/library/agrosmart:ci
+#19 naming to docker.io/library/agrosmart:ci done
+#19 unpacking to docker.io/library/agrosmart:ci 0.0s done
+#19 DONE 0.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/ii6x3z1rhtvi8vdw6i8odkq0a
+# código de saída: 0 (4.9s)
+
+$ docker image inspect -f {{.Size}} agrosmart:ci
+291520379
+# código de saída: 0 (0.4s)
+
+$ docker image inspect -f {{.Config.User}} agrosmart:ci
+10001:10001
+# código de saída: 0 (0.3s)
+
+$ docker run --rm agrosmart:ci versao
+agrosmart 7.0.0 · python 3.13.18
+# código de saída: 0 (2.3s)
+
+$ docker run --rm -e AGROSMART_BACKEND=filesystem agrosmart:ci doctor
+
+╭───────────────────────── agrosmart doctor · v7.0.0 ──────────────────────────╮
+│                                                                              │
+│       verificação           detalhe                                          │
+│  ──────────────────────────────────────────────────────────────────────────  │
+│  ✔    configuração          backend=filesystem · seed=20260905 · talhões=6   │
+│  ✔    dependência polars    2.1.0 · processamento                            │
+│  ✔    dependência duckdb    2.0.0 · consultas SQL sobre Parquet              │
+│  ✔    dependência pyarrow   26.0.1 · escrita Parquet                         │
+│  ✔    dependência boto3     1.44.4 · cliente S3/MinIO                        │
+│  ✔    dependência PIL       13.0.0 · imagens                                 │
+│  ✔    contratos             6 fontes · 58 regras · ordem: erp_talhoes →      │
+│                             clima → erp_operacoes → imagens_ndvi →           │
+│                             laudos_solo → sensores                           │
+│  !    lake (filesystem)     camadas ausentes: ['bronze', 'silver', 'gold',   │
+│                             'quarentena'] — rode `agrosmart init`            │
+│  !    ia generativa         sem ANTHROPIC_API_KEY — copiloto rodará em modo  │
+│                             regras/mock                                      │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+# código de saída: 0 (3.3s)
+
+$ docker run --rm -e AGROSMART_BACKEND=filesystem --entrypoint sh agrosmart:ci -c "python -m agrosmart init && python -m agrosmart contratos"
+14:56:53 INFO     13 diretórios de trabalho garantidos                          
+14:56:53 INFO     camada bronze     → file:///app/datalake/bronze               
+14:56:53 INFO     camada silver     → file:///app/datalake/silver               
+14:56:53 INFO     camada gold       → file:///app/datalake/gold                 
+14:56:53 INFO     camada quarentena → file:///app/datalake/quarentena           
+
+✔ lake pronto no backend filesystem
+                                Fontes de dados                                 
+                                                                                
+                                                                       →        
+  fonte     tipo      lgpd      ingest…       sla   campos    regras   silver   
+ ────────────────────────────────────────────────────────────────────────────── 
+  erp_ta…   estrut…   pessoal   batch        1440       15    8 crít   erp_ta…  
+                                              min                · 2            
+                                                              alerta            
+  clima.…   semies…   publico   api_pu…   360 min       12    5 crít   clima_…  
+                                                                 · 3            
+                                                              alerta            
+  erp_op…   estrut…   pessoal   batch        1440       11    8 crít   erp_op…  
+                                              min                · 1            
+                                                              alerta            
+  imagen…   nao_es…   pessoal   watch_…     10080       17    8 crít   imagen…  
+                                              min                · 2            
+                                                              alerta            
+  laudos…   nao_es…   pessoal   watch_…     43200       17    8 crít   laudos…  
+                                              min                · 1            
+                                                              alerta            
+  sensor…   estrut…   interno   stream…    30 min       11    8 crít   sensor…  
+                                                                 · 4            
+                                                              alerta            
+                                                                                
+# código de saída: 0 (3.2s)
+
+$ docker run --rm --entrypoint python agrosmart:ci -c "import importlib.util,os,sys;print('uid', os.getuid(), 'pip', importlib.util.find_spec('pip') is not None);sys.exit(os.getuid() == 0 or importlib.util.find_spec('pip') is not None)"
+uid 10001 pip False
+# código de saída: 0 (1.5s)
+
+# resultado: PASSOU

@@ -1,0 +1,18 @@
+# estágio: sca
+# início: 2026-11-17T14:03:51.334736
+
+$ C:\Python313\python.exe C:\Users\lmhsilva\Projetos\AgroSmart\scripts\requisitos_auditoria.py C:\Users\lmhsilva\Projetos\AgroSmart\outputs\pipeline\20261117T134927\requisitos-runtime.txt --extras app,iot,ia
+66 dependências de runtime (agrosmart[app,ia,iot])
+# código de saída: 0 (16.1s)
+
+$ C:\Python313\python.exe -m pip_audit --version
+pip-audit 2.10.1
+# código de saída: 0 (16.5s)
+
+$ C:\Python313\python.exe -m pip_audit -r C:\Users\lmhsilva\Projetos\AgroSmart\outputs\pipeline\20261117T134927\requisitos-runtime.txt --no-deps --disable-pip --progress-spinner off --desc off -f json -o C:\Users\lmhsilva\Projetos\AgroSmart\outputs\pipeline\20261117T134927\pip-audit.json
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+No known vulnerabilities found
+# código de saída: 0 (17.3s)
+
+# resultado: PASSOU
