@@ -23,6 +23,7 @@ import polars as pl
 from pydantic import BaseModel, ConfigDict, Field
 
 from agrosmart import agronomia
+from agrosmart.compat import para_arrow
 from agrosmart.config import Config, carregar_config
 from agrosmart.processamento.gold import abrir_conexao
 from agrosmart.storage import Armazenamento, criar_armazenamento
@@ -306,7 +307,7 @@ class ContextPack(Modelo):
 
 
 def _df(con: duckdb.DuckDBPyConnection, sql: str, *params: Any) -> pl.DataFrame:
-    return pl.from_arrow(con.execute(sql, list(params)).fetch_arrow_table())  # type: ignore[return-value]
+    return pl.from_arrow(para_arrow(con.execute(sql, list(params))))  # type: ignore[return-value]
 
 
 def _linhas(df: pl.DataFrame) -> list[dict[str, Any]]:

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agrosmart"
-version = "6.0.0"
-description = "AgroSmart Fase 6 - plataforma integrada: coleta IoT (MQTT), Data Lake, automação inteligente e dashboard"
+version = "7.0.0"
+description = "AgroSmart Fase 7 - plataforma completa: IoT (MQTT), Data Lake, automação, operação contínua monitorada, DevSecOps e mineração de processos"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

@@ -1,0 +1,52 @@
+# AgroSmart Fase 7 — regras de alerta. Cada uma responde a uma pergunta de operação:
+# "a plataforma está viva?", "está decidindo com dado fresco?", "está agindo?".
+groups:
+  - name: agrosmart-operacao
+    rules:
+      - alert: WorkerFora
+        expr: up{job="agrosmart-worker"} == 0
+        for: 1m
+        labels: { severidade: critica }
+        annotations:
+          resumo: "Worker AgroSmart não responde ao /metrics"
+          acao: "docker compose -f infra/docker-compose.yml logs --tail 100 worker"
+
+      - alert: CicloFalhando
+        expr: agrosmart_ultimo_ciclo_sucesso == 0 and agrosmart_ciclos_total{status="erro"} > 0
+        for: 1m
+        labels: { severidade: alta }
+        annotations:
+          resumo: "Último ciclo do worker terminou com erro"
+          acao: "agrosmart status --url http://localhost:8000/status (etapa e erro do último ciclo)"
+
+      - alert: SemCicloBemSucedido
+        expr: (time() - agrosmart_ultimo_sucesso_timestamp_seconds) > 600 and agrosmart_ultimo_sucesso_timestamp_seconds > 0
+        for: 1m
+        labels: { severidade: alta }
+        annotations:
+          resumo: "Nenhum ciclo bem-sucedido há mais de 10 minutos"
+          acao: "conferir MinIO e Mosquitto: docker compose -f infra/docker-compose.yml ps"
+
+      - alert: LandingParada
+        expr: agrosmart_landing_sensores{medida="idade_ultima_s"} > 300
+        for: 2m
+        labels: { severidade: media }
+        annotations:
+          resumo: "Nenhuma leitura nova de sensor na landing há mais de 5 minutos"
+          acao: "gateway ou dispositivos parados: docker compose logs gateway dispositivos mosquitto"
+
+      - alert: QuarentenaAlta
+        expr: agrosmart_silver_registros{resultado="quarentena"} / clamp_min(agrosmart_silver_registros{resultado="lidos"}, 1) > 0.05
+        for: 5m
+        labels: { severidade: media }
+        annotations:
+          resumo: "Mais de 5% dos registros do último silver foram para a quarentena"
+          acao: "agrosmart qualidade (regras acionadas e entidades)"
+
+      - alert: LakeFora
+        expr: up{job="minio"} == 0
+        for: 1m
+        labels: { severidade: critica }
+        annotations:
+          resumo: "MinIO (Data Lake) fora do ar"
+          acao: "docker compose -f infra/docker-compose.yml up -d minio"

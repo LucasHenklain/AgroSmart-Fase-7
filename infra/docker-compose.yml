@@ -14,6 +14,36 @@
 # ---------------------------------------------------------------------------
 name: agrosmart
 
+# Fase 7: configuração comum aos serviços da aplicação (mesma imagem, papéis
+# diferentes). Endurecimento: usuário sem privilégio (no Dockerfile), sem
+# capabilities do kernel e sem escalada de privilégio.
+x-app: &app
+  image: agrosmart:${AGROSMART_VERSAO:-7.0.0}
+  build:
+    context: ..
+    dockerfile: Dockerfile
+    secrets:
+      - ca_extra
+  environment:
+    AGROSMART_BACKEND: minio
+    AGROSMART_MINIO_ENDPOINT: http://minio:9000
+    AGROSMART_MINIO_ACCESS_KEY: ${AGROSMART_MINIO_ACCESS_KEY:-agrosmart}
+    AGROSMART_MINIO_SECRET_KEY: ${AGROSMART_MINIO_SECRET_KEY:-agrosmart123}
+    AGROSMART_MINIO_REGION: ${AGROSMART_MINIO_REGION:-us-east-1}
+    AGROSMART_SEED: ${AGROSMART_SEED:-20260905}
+    AGROSMART_DATA_REFERENCIA: ${AGROSMART_DATA_REFERENCIA:-2026-09-01}
+    AGROSMART_LOG_LEVEL: ${AGROSMART_LOG_LEVEL:-INFO}
+    ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    COLUMNS: "140"
+  volumes:
+    - landing:/app/landing
+    - outputs:/app/outputs
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  restart: unless-stopped
+
 services:
   minio:
     image: minio/minio:latest
@@ -25,6 +55,8 @@ services:
       MINIO_REGION: ${AGROSMART_MINIO_REGION:-us-east-1}
       # Rótulos da console, só para a demonstração ficar legível em print.
       MINIO_BROWSER_REDIRECT_URL: http://localhost:9001
+      # Fase 7: métricas do object store para o Prometheus (só na rede interna).
+      MINIO_PROMETHEUS_AUTH_TYPE: public
     ports:
       - "9000:9000"   # API S3  -> usada pelo pipeline
       - "9001:9001"   # Console -> http://localhost:9001 (prints da entrega)
@@ -101,6 +133,139 @@ services:
       start_period: 3s
     restart: unless-stopped
 
+  # =========================================================================
+  # Fase 7 — a plataforma rodando sozinha
+  #
+  #   docker compose -f infra/docker-compose.yml up -d --build
+  #
+  # Uma imagem (../Dockerfile) e quatro papéis: emulador de campo, gateway MQTT,
+  # worker (ciclo contínuo + /metrics) e dashboard. Prometheus coleta as métricas,
+  # Grafana as mostra e o Prometheus avalia as regras de alerta.
+  # Portas publicadas só em 127.0.0.1: nada fica exposto na rede da máquina.
+  # =========================================================================
+
+  # SIMULAÇÃO: 12 dispositivos de campo emulados publicando no broker (o par local
+  # do firmware ESP32/Wokwi). Em campo, este serviço não existe.
+  dispositivos:
+    <<: *app
+    container_name: agrosmart-dispositivos
+    command: ["dispositivo", "--broker", "mosquitto", "--intervalo-s", "${AGROSMART_DISPOSITIVO_INTERVALO_S:-5}"]
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+    labels:
+      br.fiap.agrosmart.papel: "simulacao-campo"
+
+  # Gateway MQTT → landing: assina agrosmart/sensores/+/leitura e grava os
+  # micro-batches JSONL no volume compartilhado com o worker.
+  gateway:
+    <<: *app
+    container_name: agrosmart-gateway
+    command: ["coletar-mqtt", "--broker", "mosquitto"]
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+
+  # Worker: a cada AGROSMART_INTERVALO_S, um ciclo ingerir → silver → gold →
+  # catálogo → decidir → atuar (MQTT). /health, /metrics e /status na porta 8000.
+  worker:
+    <<: *app
+    container_name: agrosmart-worker
+    command:
+      - "operar"
+      - "--broker"
+      - "mosquitto"
+      - "--intervalo-s"
+      - "${AGROSMART_INTERVALO_S:-60}"
+      - "${AGROSMART_WORKER_MODO:---incremental}"
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      minio:
+        condition: service_healthy
+      bootstrap:
+        condition: service_completed_successfully
+      mosquitto:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 120s
+
+  # Dashboard (Streamlit) sobre o gold + aba Automação + aba Operação.
+  dashboard:
+    <<: *app
+    container_name: agrosmart-dashboard
+    entrypoint: ["streamlit", "run", "app/dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    command: []
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      minio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 30s
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: agrosmart-prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=7d"
+      - "--web.enable-lifecycle"
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./monitoramento/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoramento/alertas.yml:/etc/prometheus/alertas.yml:ro
+      - prometheus-dados:/prometheus
+    depends_on:
+      - worker
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:12.1.1
+    container_name: agrosmart-grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: ${AGROSMART_GRAFANA_USUARIO:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${AGROSMART_GRAFANA_SENHA:-agrosmart123}
+      # Demonstração: leitura anônima (Viewer) para o painel abrir direto.
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/agrosmart-operacao.json
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./monitoramento/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoramento/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-dados:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+# Build da imagem da aplicação; o certificado extra (rede corporativa com
+# inspeção TLS) entra como build secret e nunca numa camada da imagem.
+secrets:
+  ca_extra:
+    file: ${AGROSMART_CA_EXTRA:-./certs/vazio.crt}
+
 volumes:
   minio-dados:
     name: agrosmart-minio-dados
+  landing:
+    name: agrosmart-landing
+  outputs:
+    name: agrosmart-outputs
+  prometheus-dados:
+    name: agrosmart-prometheus-dados
+  grafana-dados:
+    name: agrosmart-grafana-dados

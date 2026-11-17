@@ -1,4 +1,4 @@
-"""AgroSmart Fase 5 — plataforma de dados e IA para decisão no campo.
+"""AgroSmart Fase 7 — plataforma de dados e IA para decisão no campo.
 
 Mapa do pacote (um subpacote por responsabilidade, um dono por subpacote):
 
@@ -12,7 +12,10 @@ Mapa do pacote (um subpacote por responsabilidade, um dono por subpacote):
     processamento   bronze → silver → gold                      (E1/E2)
     catalogo        inventário de tabelas, schemas e linhagem   (E2)
     ia              copiloto: context pack → recomendação       (E3)
+    automacao       motor de decisão → ações → comando MQTT     (E3)
+    operacao        worker contínuo, métricas e saúde           (E4)
+    mineracao       event log → mineração de processos          (E4)
     pipeline        CLI que amarra tudo
 """
 
-__version__ = "5.0.0"
+__version__ = "7.0.0"

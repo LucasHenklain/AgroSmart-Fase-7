@@ -33,6 +33,7 @@ from agrosmart.agronomia import (
     PROFUNDIDADE_RAIZ_MM,
     tabela_fenologia,
 )
+from agrosmart.compat import para_arrow
 from agrosmart.config import Camada, Config, carregar_config
 from agrosmart.contratos import contratos_ativos
 from agrosmart.log import Evento, obter_logger, registrar_evento
@@ -757,7 +758,7 @@ def construir_gold(
             continue
         # to_arrow_table preserva o schema mesmo sem linhas — .arrow() devolve um
         # leitor de lotes que, vazio, não tem schema para o Polars reconstruir.
-        df = pl.from_arrow(con.execute(tabela.sql).fetch_arrow_table())
+        df = pl.from_arrow(para_arrow(con.execute(tabela.sql)))
         assert isinstance(df, pl.DataFrame)
         con.register(nome, df.to_arrow())  # tabelas seguintes podem consumir esta
         limpar_prefixo(lake, Camada.GOLD, f"{nome}/")
