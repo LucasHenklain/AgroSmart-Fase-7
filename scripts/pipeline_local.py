@@ -675,7 +675,7 @@ def main(argv: list[str] | None = None) -> int:
 
     meta = {
         "execucao": carimbo,
-        "pasta": str(pasta.relative_to(RAIZ)).replace("\\", "/"),
+        "pasta": (pasta.relative_to(RAIZ).as_posix() if pasta.is_relative_to(RAIZ) else str(pasta)),
         "commit": _git("rev-parse", "--short", "HEAD"),
         "sujo": bool(_git("status", "--porcelain", "--untracked-files=no")),
         "host": f"{platform.system()} {platform.release()}",

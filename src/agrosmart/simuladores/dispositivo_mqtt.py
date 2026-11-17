@@ -158,7 +158,8 @@ class Frota:
                     nivel if nivel is not None else BATERIA_SENSOR_CALADO_PCT,
                 )
             )
-        self.rng = random.Random(seed)
+        # nosec B311: só emula ruído de sensores (reprodutível por semente), sem uso criptográfico
+        self.rng = random.Random(seed)  # nosec B311
         self.resumo = ResumoFrota(dispositivos=len(self.dispositivos))
         self._pendentes: dict[int, list[tuple[str, str]]] = {}
         self.logger = obter_logger("simuladores.dispositivo")

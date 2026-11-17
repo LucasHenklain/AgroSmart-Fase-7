@@ -119,7 +119,10 @@ def publicar_plano(
     publicadas = 0
     falhas: list[dict[str, str]] = []
     for acao in plano.comandos_pendentes():
-        assert acao.comando_mqtt is not None
+        # Verificação explícita (não `assert`): sobrevive a `python -O` e nunca publica
+        # um comando ausente. `comandos_pendentes` já filtra, então é só defesa.
+        if acao.comando_mqtt is None:
+            continue
         topico, payload = acao.comando_mqtt.topico, acao.comando_mqtt.payload
         try:
             publicador.publicar(topico, payload)

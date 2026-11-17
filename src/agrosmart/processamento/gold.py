@@ -374,7 +374,7 @@ _registrar(
                    irrigado AND fracao_agua_disponivel < {FRACAO_IRRIGACAO} AS recomenda_irrigar,
                    dias_desde_irrigacao, irrigado, clima_disponivel
             FROM indicadores ORDER BY talhao_id, dia
-        """,
+        """,  # nosec B608 - só constantes numéricas do módulo; nenhuma entrada externa
     )
 )
 
@@ -414,7 +414,7 @@ _registrar(
                          AS variacao_vs_anterior,
                    area_analisada_ha, arquivo_bruto, len(_alertas) > 0 AS com_alerta_dq
             FROM imagens_ndvi_meta ORDER BY talhao_id, capturada_em
-        """,
+        """,  # nosec B608 - só constantes numéricas do módulo; nenhuma entrada externa
     )
 )
 
@@ -575,7 +575,7 @@ _registrar(
             LEFT JOIN ndvi n USING (cultura)
             LEFT JOIN custo c USING (cultura)
             ORDER BY tl.cultura
-        """,
+        """,  # nosec B608 - só constantes numéricas do módulo; nenhuma entrada externa
     )
 )
 
@@ -759,7 +759,8 @@ def construir_gold(
         # to_arrow_table preserva o schema mesmo sem linhas — .arrow() devolve um
         # leitor de lotes que, vazio, não tem schema para o Polars reconstruir.
         df = pl.from_arrow(para_arrow(con.execute(tabela.sql)))
-        assert isinstance(df, pl.DataFrame)
+        if not isinstance(df, pl.DataFrame):  # verificação explícita (não some com -O)
+            raise TypeError(f"gold.{nome}: esperado DataFrame, veio {type(df).__name__}")
         con.register(nome, df.to_arrow())  # tabelas seguintes podem consumir esta
         limpar_prefixo(lake, Camada.GOLD, f"{nome}/")
         chave = f"{nome}/{nome}.parquet"

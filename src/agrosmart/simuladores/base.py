@@ -114,7 +114,8 @@ class Contexto:
     def rng(self, fluxo: str) -> random.Random:
         """Gerador dedicado a um fluxo. Mesmo nome → mesma sequência, sempre."""
         if fluxo not in self._rngs:
-            self._rngs[fluxo] = random.Random(semente_fluxo(self.config.seed, fluxo))
+            # nosec B311: dados sintéticos reprodutíveis por semente, nunca uso criptográfico
+            self._rngs[fluxo] = random.Random(semente_fluxo(self.config.seed, fluxo))  # nosec B311
         return self._rngs[fluxo]
 
     # --- consultas ----------------------------------------------------------

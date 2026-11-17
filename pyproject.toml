@@ -27,13 +27,26 @@ dependencies = [
     # Base de fusos IANA: o Windows não a traz, e todo timestamp do lake é tz-aware (UTC)
     "tzdata>=2024.1",
     # Fontes externas
-    "requests>=2.32",
-    "Pillow>=10.3",
+    "requests>=2.33",
+    "Pillow>=13.0",
+    # Pisos de segurança de dependências transitivas (SCA/pip-audit, Fase 7): impedem que
+    # um ambiente antigo continue com versões com CVE corrigida. Ver
+    # docs/fase7/03-pipeline-devsecops.md.
+    "urllib3>=2.8",
+    "certifi>=2026.10.18",
+    "pygments>=2.20",
 ]
 
 [project.optional-dependencies]
-ia = ["anthropic>=0.40"]
-app = ["streamlit>=1.36", "altair>=5.3"]
+ia = ["anthropic>=0.40", "anyio>=4.14.2"]
+app = [
+    "streamlit>=1.36",
+    "altair>=5.3",
+    # pisos de segurança das transitivas do Streamlit (pip-audit)
+    "gitpython>=3.2.1",
+    "python-multipart>=0.0.31",
+    "anyio>=4.14.2",
+]
 iot = ["paho-mqtt>=2.0"]
 dev = ["pytest>=8.2", "pytest-cov>=5.0", "ruff>=0.5"]
 
@@ -67,3 +80,20 @@ select = ["E", "F", "I", "UP", "B"]
 # Dashboard: rótulos, legendas e chamadas declarativas do Streamlit/Altair — quebrar
 # cada argumento em uma linha triplicaria o arquivo sem ganhar clareza.
 "app/dashboard.py" = ["E501"]
+
+# --- DevSecOps (docs/fase7/03-pipeline-devsecops.md) ---------------------------------
+[tool.bandit]
+# SAST roda em src/ e app/ (código que vai para a imagem). Nenhuma regra é desligada
+# globalmente: falsos positivos são justificados linha a linha com `# nosec BXXX`.
+exclude_dirs = ["tests", "scripts", ".venv", "build"]
+
+[tool.coverage.run]
+source = ["agrosmart"]
+branch = true
+
+[tool.coverage.report]
+skip_empty = true
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

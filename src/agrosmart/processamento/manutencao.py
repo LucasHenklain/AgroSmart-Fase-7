@@ -84,7 +84,8 @@ def compactar(
             ]
             unido = pl.concat(partes, how="vertical_relaxed")
             casamento = _PARTICAO_MES.match(prefixo)
-            assert casamento is not None
+            if casamento is None:  # verificação explícita (não some com -O)
+                raise ValueError(f"prefixo fora do padrão de partição mensal: {prefixo!r}")
             ano_mes = f"{casamento.group('ano')}{casamento.group('mes')}"
             destino = f"{prefixo}{tabela}-{ano_mes}-compactado.parquet"
             buffer = io.BytesIO()

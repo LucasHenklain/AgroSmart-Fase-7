@@ -49,8 +49,14 @@ ENV PATH=/opt/venv/bin:$PATH \
     AGROSMART_METRICAS_HOST=0.0.0.0 \
     STREAMLIT_BROWSER_GATHER_USAGE_STATS=false \
     STREAMLIT_SERVER_HEADLESS=true
+# Correções de segurança do Debian já publicadas entram na imagem (o scan de imagem do
+# pipeline DevSecOps apontou zlib1g desatualizada na base). Sem pacotes novos, sem cache.
 # O pip do Python base não é usado em runtime: sai junto com a superfície de ataque.
 RUN set -eu; \
+    apt-get update; \
+    apt-get upgrade -y --no-install-recommends; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*; \
     python -m pip uninstall -y pip setuptools wheel 2>/dev/null || true; \
     groupadd --system --gid 10001 agro; \
     useradd --system --uid 10001 --gid agro --home-dir /app --shell /usr/sbin/nologin agro
