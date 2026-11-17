@@ -49,7 +49,9 @@ SECOES = {
     "sensores": "Sensores",
     "benchmark": "Benchmark",
     "automacao": "Automação",
+    "operacao": "Operação",
 }
+ORDEM_ETAPAS = ["ingerir", "silver", "gold", "catalogo", "decidir", "atuar"]
 ROTULO_RISCO = {"critico": "🔴 crítico", "atencao": "🟠 atenção", "normal": "🟢 normal"}
 ORDEM_PRIORIDADE = ["alta", "media", "baixa"]
 CORES_PRIORIDADE = {"alta": "#c62828", "media": "#f9a825", "baixa": "#2e7d32"}
@@ -102,6 +104,46 @@ def carregar_acoes(pasta: str) -> tuple[str | None, dict]:
         return ultimo.name, json.loads(ultimo.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return ultimo.name, {}
+
+
+@st.cache_data(ttl=15)
+def carregar_ciclos(limite: int = 60) -> pl.DataFrame:
+    """Uma linha por (caso, etapa) dos últimos ``limite`` casos do worker, da trilha JSONL.
+
+    Lê só as linhas de ciclo de vida de etapa (``etapa_concluida|falhou|pulada``) — o
+    mesmo recorte que a mineração de processos usa como event log.
+    """
+    caminho = carregar_config().dir_logs / "eventos.jsonl"
+    if not caminho.exists():
+        return pl.DataFrame()
+    linhas = []
+    with caminho.open(encoding="utf-8") as arquivo:
+        for bruta in arquivo:
+            if '"etapa_' not in bruta or '"execucao_id"' not in bruta:
+                continue
+            e = json.loads(bruta)
+            if e.get("origem") != "worker" or e["acao"] == "etapa_iniciada":
+                continue
+            linhas.append(
+                {
+                    "caso": e["execucao_id"],
+                    "versao": e.get("versao_processo", "v1"),
+                    "etapa": e["etapa"],
+                    "status": e["acao"].removeprefix("etapa_"),
+                    "fim": e["ocorrido_em"],
+                    "duracao_s": float((e.get("metricas") or {}).get("duracao_s") or 0.0),
+                    "erro": e.get("mensagem") or "",
+                }
+            )
+    if not linhas:
+        return pl.DataFrame()
+    df = pl.DataFrame(linhas).with_columns(
+        pl.col("fim").str.to_datetime(time_zone="UTC", strict=False)
+    )
+    ultimos = (
+        df.group_by("caso").agg(pl.col("fim").max()).sort("fim").tail(limite).get_column("caso")
+    )
+    return df.filter(pl.col("caso").is_in(ultimos.to_list()))
 
 
 def pandas(df: pl.DataFrame):
@@ -800,6 +842,124 @@ def secao_automacao() -> None:
     )
 
 
+def secao_operacao() -> None:
+    """Fase 7: a plataforma rodando sozinha — saúde do worker e os últimos ciclos."""
+    st.subheader("Operação contínua da plataforma")
+    status = carregar_json("status/operacao.json")
+    ciclos = carregar_ciclos()
+    if not status and ciclos.is_empty():
+        st.info(
+            "O worker ainda não rodou. Suba a plataforma com "
+            "`docker compose -f infra/docker-compose.yml up -d --build` (ou `agrosmart operar`)."
+        )
+        return
+    if status:
+        ultimo = status.get("ultimo_ciclo") or {}
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric(
+            "Worker",
+            "🟢 ok" if status.get("saudavel") else "🔴 falha",
+            status.get("motivo", ""),
+            delta_color="off",
+        )
+        ok, erro = (status.get("ciclos", {}).get(k, 0) for k in ("ok", "erro"))
+        c2.metric("Ciclos (desde a subida)", ok + erro, f"{erro} com erro", delta_color="inverse")
+        c3.metric(
+            "Duração média do ciclo",
+            f"{status.get('duracao_media_ciclo_s') or 0:.1f} s",
+            f"intervalo {status.get('intervalo_s', 0):.0f} s · {status.get('modo')}",
+            delta_color="off",
+        )
+        c4.metric("Comandos publicados", status.get("comandos_publicados", 0), "QoS 1")
+        idade = (status.get("landing") or {}).get("idade_ultima_s", -1)
+        c5.metric(
+            "Última leitura na landing",
+            f"{idade:.0f} s atrás" if idade is not None and idade >= 0 else "—",
+            f"{(status.get('landing') or {}).get('arquivos', 0):.0f} arquivos",
+            delta_color="off",
+        )
+        if ultimo:
+            st.caption(
+                f"último ciclo **{ultimo.get('execucao_id')}** · "
+                + " → ".join(f"{e['nome']} ({e['status']})" for e in ultimo.get("etapas", []))
+            )
+    if ciclos.is_empty():
+        return
+
+    por_caso = (
+        ciclos.group_by("caso", "versao")
+        .agg(
+            pl.col("fim").max(),
+            pl.col("duracao_s").sum().alias("lead_time_s"),
+            (pl.col("status") == "falhou").any().alias("falhou"),
+            pl.col("etapa").filter(pl.col("status") == "falhou").first().alias("etapa_falha"),
+        )
+        .sort("fim")
+        # Caso ainda em andamento (só a etapa pulada registrada) fica de fora.
+        .filter((pl.col("lead_time_s") > 0) | pl.col("falhou"))
+    )
+    ciclos = ciclos.filter(pl.col("caso").is_in(por_caso.get_column("caso").to_list()))
+    st.markdown("**Duração por etapa nos últimos ciclos** — a barra mais alta é o gargalo")
+    barras = (
+        ciclos.filter(pl.col("status") != "pulada")
+        .join(por_caso.select("caso", pl.col("fim").alias("fim_caso")), on="caso")
+        .with_columns(pl.col("fim_caso").dt.strftime("%H:%M:%S").alias("ciclo"))
+    )
+    grafico = (
+        alt.Chart(pandas(barras))
+        .mark_bar()
+        .encode(
+            x=alt.X("ciclo:N", sort=None, title="ciclo (fim, UTC)"),
+            y=alt.Y("duracao_s:Q", stack=True, title="segundos"),
+            color=alt.Color("etapa:N", sort=ORDEM_ETAPAS, title="etapa"),
+            opacity=alt.condition("datum.status == 'falhou'", alt.value(0.45), alt.value(1.0)),
+            tooltip=["caso", "versao", "etapa", "status", "duracao_s", "erro"],
+        )
+        .properties(height=320)
+    )
+    st.altair_chart(grafico, use_container_width=True)
+
+    c1, c2 = st.columns([3, 2])
+    with c1:
+        st.markdown("**Últimos ciclos**")
+        tabela = por_caso.sort("fim", descending=True).select(
+            pl.col("caso"),
+            pl.col("versao"),
+            pl.col("fim").dt.strftime("%d/%m %H:%M:%S").alias("fim (UTC)"),
+            pl.col("lead_time_s").round(1).alias("lead time (s)"),
+            pl.when(pl.col("falhou"))
+            .then(pl.lit("❌ ") + pl.col("etapa_falha").fill_null(""))
+            .otherwise(pl.lit("✅ ok"))
+            .alias("resultado"),
+        )
+        st.dataframe(pandas(tabela), hide_index=True, use_container_width=True, height=360)
+    with c2:
+        st.markdown("**Participação de cada etapa no tempo de ciclo**")
+        participacao = (
+            ciclos.filter(pl.col("status") == "concluida")
+            .group_by("etapa")
+            .agg(pl.col("duracao_s").mean().alias("media_s"))
+            .with_columns((pl.col("media_s") / pl.col("media_s").sum() * 100).alias("pct"))
+            .sort("pct", descending=True)
+        )
+        st.dataframe(
+            pandas(participacao.with_columns(pl.col("media_s", "pct").round(1))),
+            hide_index=True,
+            use_container_width=True,
+        )
+        processos = carregar_json("processos/metricas.json")
+        if processos:
+            st.caption(
+                "Análise de processo completa em `outputs/processos/relatorio.md` "
+                "(`agrosmart processos`)."
+            )
+    st.caption(
+        "Fonte: `outputs/logs/eventos.jsonl` (trilha de eventos, um caso por ciclo) e "
+        "`outputs/status/operacao.json` (estado do worker). Monitoramento técnico completo no "
+        "Grafana: http://localhost:3000 · alertas no Prometheus: http://localhost:9090/alerts."
+    )
+
+
 {
     "talhao": secao_talhao,
     "agua": secao_agua,
@@ -810,4 +970,5 @@ def secao_automacao() -> None:
     "sensores": secao_sensores,
     "benchmark": secao_benchmark,
     "automacao": secao_automacao,
+    "operacao": secao_operacao,
 }[secao]()

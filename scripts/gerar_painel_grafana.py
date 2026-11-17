@@ -66,7 +66,9 @@ def stat(titulo, expr, x, y, w=4, h=4, unidade="none", limiares=None, mapas=None
     }
 
 
-def serie(titulo, alvos, x, y, w=12, h=8, unidade="none", empilhar=False, descricao="", barras=False):
+def serie(
+    titulo, alvos, x, y, w=12, h=8, unidade="none", empilhar=False, descricao="", barras=False
+):
     return {
         "id": _id(),
         "type": "timeseries",
@@ -76,7 +78,11 @@ def serie(titulo, alvos, x, y, w=12, h=8, unidade="none", empilhar=False, descri
         "gridPos": {"x": x, "y": y, "w": w, "h": h},
         "targets": alvos,
         "options": {
-            "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "mean"]},
+            "legend": {
+                "displayMode": "table",
+                "placement": "right",
+                "calcs": ["lastNotNull", "mean"],
+            },
             "tooltip": {"mode": "multi", "sort": "desc"},
         },
         "fieldConfig": {

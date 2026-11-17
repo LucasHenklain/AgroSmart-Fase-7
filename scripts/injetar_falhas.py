@@ -46,7 +46,10 @@ def main() -> int:
         r = subprocess.run(["docker", *comando], capture_output=True, text=True, check=False)  # noqa: S603,S607
         anotar(f"$ docker {' '.join(comando)} -> rc={r.returncode} {r.stdout.strip()}")
 
-    anotar(f"experimento '{args.rotulo}': atraso {args.atraso}s, queda {args.queda}s, alvos {args.alvos}")
+    anotar(
+        f"experimento '{args.rotulo}': atraso {args.atraso}s, queda {args.queda}s, "
+        f"alvos {args.alvos}"
+    )
     time.sleep(args.atraso)
     for i, alvo in enumerate(args.alvos):
         if i:

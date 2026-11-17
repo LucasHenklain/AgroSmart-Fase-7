@@ -1,7 +1,7 @@
 """Capturas de tela da operação (Fase 7): Grafana, Prometheus, worker e dashboard.
 
     python scripts/capturar_operacao.py --prefixo fase7-04            # uma rodada de prints
-    python scripts/capturar_operacao.py --timelapse 60 --duracao 1800  # um print do Grafana por minuto
+    python scripts/capturar_operacao.py --timelapse 60 --duracao 1800  # Grafana a cada minuto
 
 Usa o Chromium do Playwright (ou o Edge da máquina). Só lê páginas locais
 (127.0.0.1); nada é enviado para fora. As imagens saem de telas reais da
@@ -17,14 +17,20 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
 GRAFANA = "http://127.0.0.1:3000/d/agrosmart-operacao/agrosmart-operacao?orgId=1&kiosk&refresh=10s"
+STREAMLIT = "http://127.0.0.1:8501"
 PAGINAS = {
     "grafana-operacao": (GRAFANA, 1600, 1500, 9000),
     "prometheus-alertas": ("http://127.0.0.1:9090/alerts", 1440, 1100, 2500),
     "prometheus-alvos": ("http://127.0.0.1:9090/targets", 1440, 800, 2500),
     "worker-status": ("http://127.0.0.1:8000/status", 1100, 1400, 800),
     "worker-metrics": ("http://127.0.0.1:8000/metrics", 1100, 1400, 800),
-    "dashboard-operacao": ("http://127.0.0.1:8501/?secao=operacao", 1440, 1700, 9000),
-    "dashboard-automacao": ("http://127.0.0.1:8501/?talhao=TLH-02&secao=automacao", 1440, 1800, 9000),
+    "dashboard-operacao": ("http://127.0.0.1:8501/?secao=operacao", 1440, 1700, 4000),
+    "dashboard-automacao": (
+        "http://127.0.0.1:8501/?talhao=TLH-02&secao=automacao",
+        1440,
+        1800,
+        4000,
+    ),
 }
 
 
@@ -38,6 +44,12 @@ def lancar(p):
 def capturar(pagina, url: str, largura: int, altura: int, espera_ms: int, destino: Path) -> None:
     pagina.set_viewport_size({"width": largura, "height": altura})
     pagina.goto(url, wait_until="domcontentloaded", timeout=60_000)
+    if ":8501" in url:
+        # Streamlit desenha depois do websocket e da leitura do gold: espera o título.
+        pagina.get_by_text("AgroSmart · Camada de consumo").first.wait_for(timeout=120_000)
+        pagina.wait_for_function(
+            "() => !document.querySelector('[data-testid=\"stStatusWidget\"]')", timeout=120_000
+        )
     pagina.wait_for_timeout(espera_ms)
     pagina.screenshot(path=str(destino), full_page=False)
 
