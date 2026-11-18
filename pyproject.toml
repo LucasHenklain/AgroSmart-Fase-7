@@ -39,6 +39,8 @@ dependencies = [
 
 [project.optional-dependencies]
 ia = ["anthropic>=0.40", "anyio>=4.14.2"]
+# Fase 7: mineração de processos (pm4py é AGPL — uso acadêmico; sem ele, fallback em Python puro)
+processos = ["pm4py>=2.7", "pandas>=2.2", "matplotlib>=3.8"]
 app = [
     "streamlit>=1.36",
     "altair>=5.3",
