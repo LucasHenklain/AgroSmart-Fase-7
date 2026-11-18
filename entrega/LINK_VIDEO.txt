@@ -9,4 +9,4 @@ Links no YouTube (não listado), para quem preferir assistir online:
 - vídeo final: [A PREENCHER PELA EQUIPE]
 - pitch:       [A PREENCHER PELA EQUIPE]
 
-Repositório: [A PREENCHER PELA EQUIPE — link do GitHub]
+Repositório (público): https://github.com/LucasHenklain/AgroSmart-Fase-7

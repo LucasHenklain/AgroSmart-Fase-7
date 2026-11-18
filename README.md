@@ -5,7 +5,7 @@ camadas, automação que age no atuador de irrigação, dashboard — e, na Fase
 em containers**, **monitoramento** (Prometheus + Grafana + alertas), **esteira DevSecOps** e
 **mineração de processos** sobre o próprio ciclo. As Fases 5 e 6 continuam documentadas abaixo.
 
-> Entrega em grupo · PBL Fase 7 · Turma **4ESOA** · prazo 24/11/2026
+> Entrega em grupo · PBL Fase 7 · Turma **4ESOA** · prazo 24/11/2026 · repositório: <https://github.com/LucasHenklain/AgroSmart-Fase-7>
 
 ## Fase 7 — em um comando
 
