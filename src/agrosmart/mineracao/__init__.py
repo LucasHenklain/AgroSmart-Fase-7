@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import contextlib
 import io
+import logging
 import warnings
 from collections import Counter
 from pathlib import Path
@@ -39,6 +40,8 @@ from agrosmart.mineracao.eventlog import (
 from agrosmart.mineracao.relatorio import gerar_insights, salvar
 
 __all__ = ["minerar", "carregar_event_log", "exportar_exemplo"]
+
+logger = logging.getLogger(__name__)
 
 
 def _ordenar_extensoes(destino: Path) -> None:
@@ -71,8 +74,10 @@ def _xes(log: EventLog, destino: Path, usar_pm4py: bool) -> str:
                 pm4py.write_xes(df, str(destino), case_id_key="case:concept:name")
             _ordenar_extensoes(destino)
             return "pm4py"
-        except Exception:  # noqa: BLE001 - cai para o XES manual
-            pass
+        except Exception as erro:  # noqa: BLE001 - cai para o XES manual
+            logger.debug(
+                "pm4py.write_xes falhou (%s: %s); usando o XES manual", type(erro).__name__, erro
+            )
     exportar_xes_manual(log, destino)
     return "manual"
 

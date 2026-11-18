@@ -13,7 +13,7 @@ import math
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
-from xml.sax.saxutils import escape
+from xml.sax.saxutils import escape  # nosec B406 - só escapa texto do SVG, sem parsing
 
 from agrosmart.mineracao.eventlog import ATIVIDADE_COMANDO, ETAPAS, FIM, INICIO, SUFIXO_FALHA
 

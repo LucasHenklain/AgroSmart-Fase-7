@@ -1299,7 +1299,7 @@ def status(
         if not url.startswith(("http://", "https://")):
             console.print(f"{_FALHA} URL precisa começar com http:// ou https://")
             raise typer.Exit(code=2)
-        with urllib.request.urlopen(url, timeout=5) as resposta:  # noqa: S310 - esquema validado
+        with urllib.request.urlopen(url, timeout=5) as resposta:  # noqa: S310  # nosec B310 - esquema http(s) validado acima
             dados = json.loads(resposta.read().decode("utf-8"))
     else:
         caminho = cfg.dir_outputs / "status" / "operacao.json"

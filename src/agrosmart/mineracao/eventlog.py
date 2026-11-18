@@ -438,7 +438,8 @@ def exportar_intervalos_csv(log: EventLog, destino: Path) -> Path:
 
 def exportar_xes_manual(log: EventLog, destino: Path) -> Path:
     """XES 1.0 (IEEE 1849) escrito à mão — o fallback quando pm4py não está instalado."""
-    import xml.etree.ElementTree as ET
+    # Só *gera* XML a partir do nosso próprio event log; nunca faz parsing de entrada externa.
+    import xml.etree.ElementTree as ET  # nosec B405 - escrita apenas, sem parsing
 
     raiz = ET.Element(
         "log",
