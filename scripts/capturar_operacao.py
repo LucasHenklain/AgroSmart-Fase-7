@@ -17,10 +17,11 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
 GRAFANA = "http://127.0.0.1:3000/d/agrosmart-operacao/agrosmart-operacao?orgId=1&kiosk&refresh=10s"
+GRAFANA_24H = GRAFANA.replace("refresh=10s", "refresh=1m&from=now-24h&to=now")
 STREAMLIT = "http://127.0.0.1:8501"
 PAGINAS = {
     "grafana-operacao": (GRAFANA, 1600, 1500, 9000),
-    "grafana-24h": (GRAFANA.replace("refresh=10s", "refresh=1m&from=now-24h&to=now"), 1600, 1500, 9000),
+    "grafana-24h": (GRAFANA_24H, 1600, 1500, 9000),
     "prometheus-alertas": ("http://127.0.0.1:9090/alerts", 1440, 1100, 2500),
     "prometheus-alvos": ("http://127.0.0.1:9090/targets", 1440, 800, 2500),
     "worker-status": ("http://127.0.0.1:8000/status", 1100, 1400, 800),

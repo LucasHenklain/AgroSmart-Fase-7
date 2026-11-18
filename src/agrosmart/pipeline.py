@@ -943,9 +943,7 @@ def empacotar(
     nome: Annotated[str, typer.Option(help="Nome completo do integrante (será normalizado).")],
     rm: Annotated[str, typer.Option(help="RM do integrante.")],
     turma: Annotated[str, typer.Option(help="Turma.")],
-    fase: Annotated[
-        int, typer.Option(help="Fase da entrega: 7 (padrão), 6 ou 5.")
-    ] = 7,
+    fase: Annotated[int, typer.Option(help="Fase da entrega: 7 (padrão), 6 ou 5.")] = 7,
     simular: Annotated[
         bool, typer.Option("--simular", help="Só listar o que entraria, sem gravar.")
     ] = False,
