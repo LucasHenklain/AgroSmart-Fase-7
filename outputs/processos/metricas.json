@@ -1,0 +1,1734 @@
+{
+  "escopo": {
+    "fonte": "outputs/plataforma/eventos.jsonl",
+    "eventos": 13733,
+    "eventos_sem_caso": 18,
+    "eventos_fora_do_escopo": 0,
+    "casos_fora_do_escopo": 0,
+    "linhas_invalidas": 0,
+    "casos": 445,
+    "instancias_atividade": 1831,
+    "por_versao": {
+      "v1": 102,
+      "v2": 343
+    },
+    "por_tipo": {
+      "ciclo": 445
+    },
+    "por_status": {
+      "falhou": 44,
+      "ok": 401
+    },
+    "por_origem": {
+      "worker": 445
+    },
+    "etapas_puladas": {
+      "catalogo": 231,
+      "copiloto": 401,
+      "gold": 231,
+      "silver": 231,
+      "simular": 445
+    },
+    "periodo": {
+      "inicio": "2026-11-17T13:06:17+00:00",
+      "fim": "2026-11-17T20:51:20+00:00"
+    }
+  },
+  "configuracao": {
+    "apenas_worker": true,
+    "incluir_dominio": true,
+    "pm4py": true,
+    "xes_gerado_por": "pm4py"
+  },
+  "descoberta": {
+    "dfg_frequencia": {
+      "nos": {
+        "atuar": 401,
+        "catalogo": 170,
+        "catalogo (falha)": 1,
+        "decidir": 401,
+        "gold": 171,
+        "gold (falha)": 32,
+        "ingerir": 437,
+        "ingerir (falha)": 8,
+        "publicar comando": 4,
+        "silver": 203,
+        "silver (falha)": 3
+      },
+      "casos_por_no": {
+        "atuar": 401,
+        "catalogo": 170,
+        "catalogo (falha)": 1,
+        "decidir": 401,
+        "gold": 171,
+        "gold (falha)": 32,
+        "ingerir": 437,
+        "ingerir (falha)": 8,
+        "publicar comando": 4,
+        "silver": 203,
+        "silver (falha)": 3
+      },
+      "arestas": {
+        "atuar -> publicar comando": 4,
+        "atuar -> ■ fim": 397,
+        "catalogo -> decidir": 170,
+        "catalogo (falha) -> ■ fim": 1,
+        "decidir -> atuar": 401,
+        "gold -> catalogo": 170,
+        "gold -> catalogo (falha)": 1,
+        "gold (falha) -> ■ fim": 32,
+        "ingerir -> decidir": 231,
+        "ingerir -> silver": 203,
+        "ingerir -> silver (falha)": 3,
+        "ingerir (falha) -> ■ fim": 8,
+        "publicar comando -> ■ fim": 4,
+        "silver -> gold": 171,
+        "silver -> gold (falha)": 32,
+        "silver (falha) -> ■ fim": 3,
+        "▶ início -> ingerir": 437,
+        "▶ início -> ingerir (falha)": 8
+      }
+    },
+    "dfg_desempenho": {
+      "atividades": {
+        "atuar": {
+          "n": 401,
+          "media": 0.012,
+          "mediana": 0.001,
+          "p95": 0.005,
+          "max": 1.099,
+          "min": 0.0,
+          "desvio": 0.102
+        },
+        "catalogo": {
+          "n": 170,
+          "media": 4.025,
+          "mediana": 2.306,
+          "p95": 14.049,
+          "max": 27.739,
+          "min": 1.56,
+          "desvio": 4.637
+        },
+        "catalogo (falha)": {
+          "n": 1,
+          "media": 4.22,
+          "mediana": 4.22,
+          "p95": 4.22,
+          "max": 4.22,
+          "min": 4.22,
+          "desvio": 0.0
+        },
+        "decidir": {
+          "n": 401,
+          "media": 0.131,
+          "mediana": 0.085,
+          "p95": 0.323,
+          "max": 1.305,
+          "min": 0.059,
+          "desvio": 0.126
+        },
+        "gold": {
+          "n": 171,
+          "media": 2.579,
+          "mediana": 1.26,
+          "p95": 9.52,
+          "max": 26.225,
+          "min": 0.918,
+          "desvio": 3.766
+        },
+        "gold (falha)": {
+          "n": 32,
+          "media": 1.219,
+          "mediana": 0.943,
+          "p95": 2.357,
+          "max": 2.731,
+          "min": 0.61,
+          "desvio": 0.562
+        },
+        "ingerir": {
+          "n": 437,
+          "media": 1.771,
+          "mediana": 0.908,
+          "p95": 5.662,
+          "max": 20.043,
+          "min": 0.597,
+          "desvio": 2.097
+        },
+        "ingerir (falha)": {
+          "n": 8,
+          "media": 22.749,
+          "mediana": 28.149,
+          "p95": 32.634,
+          "max": 32.662,
+          "min": 0.321,
+          "desvio": 11.981
+        },
+        "publicar comando": {
+          "n": 4,
+          "media": 0.0,
+          "mediana": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "min": 0.0,
+          "desvio": 0.0
+        },
+        "silver": {
+          "n": 203,
+          "media": 21.604,
+          "mediana": 17.797,
+          "p95": 58.588,
+          "max": 109.801,
+          "min": 6.134,
+          "desvio": 18.681
+        },
+        "silver (falha)": {
+          "n": 3,
+          "media": 23.14,
+          "mediana": 14.006,
+          "p95": 44.141,
+          "max": 47.489,
+          "min": 7.926,
+          "desvio": 17.395
+        }
+      },
+      "esperas": {
+        "atuar -> publicar comando": {
+          "n": 4,
+          "media": 0.0,
+          "mediana": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "min": 0.0,
+          "desvio": 0.0
+        },
+        "atuar -> ■ fim": {
+          "n": 397,
+          "media": 0.001,
+          "mediana": 0.0,
+          "p95": 0.002,
+          "max": 0.033,
+          "min": 0.0,
+          "desvio": 0.002
+        },
+        "catalogo -> decidir": {
+          "n": 170,
+          "media": 0.001,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 0.01,
+          "min": 0.0,
+          "desvio": 0.001
+        },
+        "catalogo (falha) -> ■ fim": {
+          "n": 1,
+          "media": 0.063,
+          "mediana": 0.063,
+          "p95": 0.063,
+          "max": 0.063,
+          "min": 0.063,
+          "desvio": 0.0
+        },
+        "decidir -> atuar": {
+          "n": 401,
+          "media": 0.0,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 0.01,
+          "min": 0.0,
+          "desvio": 0.001
+        },
+        "gold -> catalogo": {
+          "n": 170,
+          "media": 0.0,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 0.007,
+          "min": 0.0,
+          "desvio": 0.001
+        },
+        "gold -> catalogo (falha)": {
+          "n": 1,
+          "media": 0.0,
+          "mediana": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "min": 0.0,
+          "desvio": 0.0
+        },
+        "gold (falha) -> ■ fim": {
+          "n": 32,
+          "media": 0.001,
+          "mediana": 0.001,
+          "p95": 0.001,
+          "max": 0.001,
+          "min": 0.0,
+          "desvio": 0.0
+        },
+        "ingerir -> decidir": {
+          "n": 231,
+          "media": 0.009,
+          "mediana": 0.001,
+          "p95": 0.002,
+          "max": 1.84,
+          "min": 0.0,
+          "desvio": 0.121
+        },
+        "ingerir -> silver": {
+          "n": 203,
+          "media": 0.006,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 0.515,
+          "min": 0.0,
+          "desvio": 0.049
+        },
+        "ingerir -> silver (falha)": {
+          "n": 3,
+          "media": 0.001,
+          "mediana": 0.001,
+          "p95": 0.001,
+          "max": 0.001,
+          "min": 0.0,
+          "desvio": 0.0
+        },
+        "ingerir (falha) -> ■ fim": {
+          "n": 8,
+          "media": 0.002,
+          "mediana": 0.001,
+          "p95": 0.005,
+          "max": 0.006,
+          "min": 0.0,
+          "desvio": 0.002
+        },
+        "publicar comando -> ■ fim": {
+          "n": 4,
+          "media": 0.015,
+          "mediana": 0.001,
+          "p95": 0.049,
+          "max": 0.057,
+          "min": 0.001,
+          "desvio": 0.024
+        },
+        "silver -> gold": {
+          "n": 171,
+          "media": 0.011,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 1.525,
+          "min": 0.0,
+          "desvio": 0.117
+        },
+        "silver -> gold (falha)": {
+          "n": 32,
+          "media": 0.003,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 0.103,
+          "min": 0.0,
+          "desvio": 0.018
+        },
+        "silver (falha) -> ■ fim": {
+          "n": 3,
+          "media": 0.0,
+          "mediana": 0.0,
+          "p95": 0.001,
+          "max": 0.001,
+          "min": 0.0,
+          "desvio": 0.0
+        },
+        "▶ início -> ingerir": {
+          "n": 437,
+          "media": 0.001,
+          "mediana": 0.001,
+          "p95": 0.002,
+          "max": 0.097,
+          "min": 0.0,
+          "desvio": 0.007
+        },
+        "▶ início -> ingerir (falha)": {
+          "n": 8,
+          "media": 0.001,
+          "mediana": 0.001,
+          "p95": 0.002,
+          "max": 0.002,
+          "min": 0.001,
+          "desvio": 0.0
+        }
+      }
+    },
+    "variantes": [
+      {
+        "variante": "ingerir → decidir → atuar",
+        "atividades": [
+          "ingerir",
+          "decidir",
+          "atuar"
+        ],
+        "casos": 231,
+        "pct_casos": 51.9,
+        "lead_time": {
+          "n": 231,
+          "media": 1.815,
+          "mediana": 1.031,
+          "p95": 4.604,
+          "max": 20.964,
+          "min": 0.806,
+          "desvio": 1.977
+        },
+        "versoes": {
+          "v2": 231
+        },
+        "com_falha": false,
+        "exemplos": [
+          "ciclo-20261117T163103-212e",
+          "ciclo-20261117T165153-0c4f",
+          "ciclo-20261117T165253-9e70"
+        ],
+        "id": "V1"
+      },
+      {
+        "variante": "ingerir → silver → gold → catalogo → decidir → atuar",
+        "atividades": [
+          "ingerir",
+          "silver",
+          "gold",
+          "catalogo",
+          "decidir",
+          "atuar"
+        ],
+        "casos": 166,
+        "pct_casos": 37.3,
+        "lead_time": {
+          "n": 166,
+          "media": 28.617,
+          "mediana": 17.717,
+          "p95": 92.943,
+          "max": 148.112,
+          "min": 9.619,
+          "desvio": 27.918
+        },
+        "versoes": {
+          "v1": 60,
+          "v2": 106
+        },
+        "com_falha": false,
+        "exemplos": [
+          "ciclo-20261117T134442-53ba",
+          "ciclo-20261117T134542-0f50",
+          "ciclo-20261117T134642-3ff1"
+        ],
+        "id": "V2"
+      },
+      {
+        "variante": "ingerir → silver → gold (falha)",
+        "atividades": [
+          "ingerir",
+          "silver",
+          "gold (falha)"
+        ],
+        "casos": 32,
+        "pct_casos": 7.2,
+        "lead_time": {
+          "n": 32,
+          "media": 27.749,
+          "mediana": 21.192,
+          "p95": 51.5,
+          "max": 61.084,
+          "min": 13.621,
+          "desvio": 12.818
+        },
+        "versoes": {
+          "v1": 32
+        },
+        "com_falha": true,
+        "exemplos": [
+          "ciclo-20261117T130617-9ae9",
+          "ciclo-20261117T130717-60ef",
+          "ciclo-20261117T130817-3bad"
+        ],
+        "id": "V3"
+      },
+      {
+        "variante": "ingerir (falha)",
+        "atividades": [
+          "ingerir (falha)"
+        ],
+        "casos": 8,
+        "pct_casos": 1.8,
+        "lead_time": {
+          "n": 8,
+          "media": 22.751,
+          "mediana": 28.151,
+          "p95": 32.636,
+          "max": 32.665,
+          "min": 0.328,
+          "desvio": 11.98
+        },
+        "versoes": {
+          "v1": 3,
+          "v2": 5
+        },
+        "com_falha": true,
+        "exemplos": [
+          "ciclo-20261117T143221-02c7",
+          "ciclo-20261117T143321-1039",
+          "ciclo-20261117T143421-9fbf"
+        ],
+        "id": "V4"
+      },
+      {
+        "variante": "ingerir → silver → gold → catalogo → decidir → atuar → publicar comando",
+        "atividades": [
+          "ingerir",
+          "silver",
+          "gold",
+          "catalogo",
+          "decidir",
+          "atuar",
+          "publicar comando"
+        ],
+        "casos": 4,
+        "pct_casos": 0.9,
+        "lead_time": {
+          "n": 4,
+          "media": 64.862,
+          "mediana": 59.066,
+          "p95": 89.219,
+          "max": 93.021,
+          "min": 48.297,
+          "desvio": 17.907
+        },
+        "versoes": {
+          "v1": 4
+        },
+        "com_falha": false,
+        "exemplos": [
+          "ciclo-20261117T134001-3243",
+          "ciclo-20261117T134134-1b30",
+          "ciclo-20261117T134242-2c8e"
+        ],
+        "id": "V5"
+      },
+      {
+        "variante": "ingerir → silver (falha)",
+        "atividades": [
+          "ingerir",
+          "silver (falha)"
+        ],
+        "casos": 3,
+        "pct_casos": 0.7,
+        "lead_time": {
+          "n": 3,
+          "media": 28.576,
+          "mediana": 24.058,
+          "p95": 48.622,
+          "max": 51.351,
+          "min": 10.32,
+          "desvio": 17.053
+        },
+        "versoes": {
+          "v1": 3
+        },
+        "com_falha": true,
+        "exemplos": [
+          "ciclo-20261117T133818-0dd8",
+          "ciclo-20261117T143121-8875",
+          "ciclo-20261117T145431-56e9"
+        ],
+        "id": "V6"
+      },
+      {
+        "variante": "ingerir → silver → gold → catalogo (falha)",
+        "atividades": [
+          "ingerir",
+          "silver",
+          "gold",
+          "catalogo (falha)"
+        ],
+        "casos": 1,
+        "pct_casos": 0.2,
+        "lead_time": {
+          "n": 1,
+          "media": 58.572,
+          "mediana": 58.572,
+          "p95": 58.572,
+          "max": 58.572,
+          "min": 58.572,
+          "desvio": 0.0
+        },
+        "versoes": {
+          "v2": 1
+        },
+        "com_falha": true,
+        "exemplos": [
+          "ciclo-20261117T161839-decd"
+        ],
+        "id": "V7"
+      }
+    ],
+    "heuristics": [
+      {
+        "de": "decidir",
+        "para": "atuar",
+        "frequencia": 401,
+        "dependencia": 0.998
+      },
+      {
+        "de": "ingerir",
+        "para": "decidir",
+        "frequencia": 231,
+        "dependencia": 0.996
+      },
+      {
+        "de": "ingerir",
+        "para": "silver",
+        "frequencia": 203,
+        "dependencia": 0.995
+      },
+      {
+        "de": "silver",
+        "para": "gold",
+        "frequencia": 171,
+        "dependencia": 0.994
+      },
+      {
+        "de": "catalogo",
+        "para": "decidir",
+        "frequencia": 170,
+        "dependencia": 0.994
+      },
+      {
+        "de": "gold",
+        "para": "catalogo",
+        "frequencia": 170,
+        "dependencia": 0.994
+      },
+      {
+        "de": "silver",
+        "para": "gold (falha)",
+        "frequencia": 32,
+        "dependencia": 0.97
+      },
+      {
+        "de": "atuar",
+        "para": "publicar comando",
+        "frequencia": 4,
+        "dependencia": 0.8
+      },
+      {
+        "de": "ingerir",
+        "para": "silver (falha)",
+        "frequencia": 3,
+        "dependencia": 0.75
+      },
+      {
+        "de": "gold",
+        "para": "catalogo (falha)",
+        "frequencia": 1,
+        "dependencia": 0.5
+      }
+    ],
+    "arvore_variantes": "X( ->( 'ingerir', 'decidir', 'atuar' ), ->( 'ingerir', 'silver', 'gold', 'catalogo', 'decidir', 'atuar' ), ->( 'ingerir', 'silver', 'gold', 'catalogo', 'decidir', 'atuar', 'publicar comando' ), ->( 'ingerir', 'silver', 'gold', 'catalogo (falha)' ), ->( 'ingerir', 'silver', 'gold (falha)' ), ->( 'ingerir', 'silver (falha)' ), 'ingerir (falha)' )",
+    "conformidade_caminho_feliz": {
+      "metodo": "arestas do DFG de referência (fallback sem pm4py)",
+      "fitness": 0.9613,
+      "pct_casos_conformes": 90.1,
+      "desvios": {
+        "silver -> gold (falha)": 32,
+        "gold (falha) -> ■ fim": 32,
+        "▶ início -> ingerir (falha)": 8,
+        "ingerir (falha) -> ■ fim": 8,
+        "ingerir -> silver (falha)": 3,
+        "silver (falha) -> ■ fim": 3,
+        "gold -> catalogo (falha)": 1,
+        "catalogo (falha) -> ■ fim": 1
+      }
+    },
+    "pm4py": {
+      "versao_pm4py": "2.7.23.12",
+      "arvore_inductive": "X( 'ingerir (falha)', ->( 'ingerir', X( 'silver (falha)', ->( X( tau, 'silver' ), X( 'gold (falha)', ->( X( tau, 'gold' ), X( 'catalogo (falha)', ->( X( tau, 'catalogo' ), 'decidir', 'atuar', X( tau, 'publicar comando' ) ) ) ) ) ) ) ) )",
+      "petri_inductive": {
+        "lugares": 10,
+        "transicoes_visiveis": [
+          "atuar",
+          "catalogo",
+          "catalogo (falha)",
+          "decidir",
+          "gold",
+          "gold (falha)",
+          "ingerir",
+          "ingerir (falha)",
+          "publicar comando",
+          "silver",
+          "silver (falha)"
+        ],
+        "transicoes_silenciosas": 6,
+        "arcos": 34
+      },
+      "bpmn_inductive": {
+        "elementos": {
+          "ExclusiveGateway": 16,
+          "NormalEndEvent": 1,
+          "StartEvent": 1,
+          "Task": 11
+        },
+        "tarefas": [
+          "atuar",
+          "catalogo",
+          "catalogo (falha)",
+          "decidir",
+          "gold",
+          "gold (falha)",
+          "ingerir",
+          "ingerir (falha)",
+          "publicar comando",
+          "silver",
+          "silver (falha)"
+        ],
+        "fluxos_diretos_entre_tarefas": [
+          "decidir -> atuar"
+        ],
+        "fluxos": 36
+      },
+      "token_replay_modelo_descoberto": {
+        "fitness": 1.0,
+        "pct_casos_conformes": 100.0
+      },
+      "heuristics_pm4py": [
+        {
+          "de": "atuar",
+          "para": "publicar comando",
+          "dependencia": 0.8
+        },
+        {
+          "de": "catalogo",
+          "para": "decidir",
+          "dependencia": 0.994
+        },
+        {
+          "de": "decidir",
+          "para": "atuar",
+          "dependencia": 0.998
+        },
+        {
+          "de": "gold",
+          "para": "catalogo",
+          "dependencia": 0.994
+        },
+        {
+          "de": "gold",
+          "para": "catalogo (falha)",
+          "dependencia": 0.5
+        },
+        {
+          "de": "ingerir",
+          "para": "decidir",
+          "dependencia": 0.996
+        },
+        {
+          "de": "ingerir",
+          "para": "silver",
+          "dependencia": 0.995
+        },
+        {
+          "de": "ingerir",
+          "para": "silver (falha)",
+          "dependencia": 0.75
+        },
+        {
+          "de": "silver",
+          "para": "gold",
+          "dependencia": 0.994
+        },
+        {
+          "de": "silver",
+          "para": "gold (falha)",
+          "dependencia": 0.97
+        }
+      ],
+      "arvore_caminho_feliz": "->( 'ingerir', X( tau, ->( 'silver', 'gold', 'catalogo' ) ), 'decidir', 'atuar', X( tau, 'publicar comando' ) )",
+      "token_replay_caminho_feliz": {
+        "fitness": 0.9846,
+        "pct_casos_conformes": 90.1
+      }
+    }
+  },
+  "analise": {
+    "casos_em_regime": 445,
+    "gargalos": [
+      {
+        "atividade": "silver",
+        "n": 203,
+        "media": 21.604,
+        "mediana": 17.797,
+        "p95": 58.588,
+        "max": 109.801,
+        "min": 6.134,
+        "desvio": 18.681,
+        "total_s": 4385.696,
+        "pct_lead_time": 66.0,
+        "pct_medio_por_caso": 73.2,
+        "cv": 0.865
+      },
+      {
+        "atividade": "ingerir",
+        "n": 437,
+        "media": 1.771,
+        "mediana": 0.908,
+        "p95": 5.662,
+        "max": 20.043,
+        "min": 0.597,
+        "desvio": 2.097,
+        "total_s": 774.115,
+        "pct_lead_time": 11.7,
+        "pct_medio_por_caso": 51.7,
+        "cv": 1.184
+      },
+      {
+        "atividade": "catalogo",
+        "n": 170,
+        "media": 4.025,
+        "mediana": 2.306,
+        "p95": 14.049,
+        "max": 27.739,
+        "min": 1.56,
+        "desvio": 4.637,
+        "total_s": 684.17,
+        "pct_lead_time": 10.3,
+        "pct_medio_por_caso": 14.4,
+        "cv": 1.152
+      },
+      {
+        "atividade": "gold",
+        "n": 171,
+        "media": 2.579,
+        "mediana": 1.26,
+        "p95": 9.52,
+        "max": 26.225,
+        "min": 0.918,
+        "desvio": 3.766,
+        "total_s": 440.972,
+        "pct_lead_time": 6.6,
+        "pct_medio_por_caso": 8.5,
+        "cv": 1.46
+      },
+      {
+        "atividade": "ingerir (falha)",
+        "n": 8,
+        "media": 22.749,
+        "mediana": 28.149,
+        "p95": 32.634,
+        "max": 32.662,
+        "min": 0.321,
+        "desvio": 11.981,
+        "total_s": 181.989,
+        "pct_lead_time": 2.7,
+        "pct_medio_por_caso": 99.7,
+        "cv": 0.527
+      },
+      {
+        "atividade": "silver (falha)",
+        "n": 3,
+        "media": 23.14,
+        "mediana": 14.006,
+        "p95": 44.141,
+        "max": 47.489,
+        "min": 7.926,
+        "desvio": 17.395,
+        "total_s": 69.421,
+        "pct_lead_time": 1.0,
+        "pct_medio_por_caso": 75.8,
+        "cv": 0.752
+      },
+      {
+        "atividade": "decidir",
+        "n": 401,
+        "media": 0.131,
+        "mediana": 0.085,
+        "p95": 0.323,
+        "max": 1.305,
+        "min": 0.059,
+        "desvio": 0.126,
+        "total_s": 52.617,
+        "pct_lead_time": 0.8,
+        "pct_medio_por_caso": 4.7,
+        "cv": 0.961
+      },
+      {
+        "atividade": "gold (falha)",
+        "n": 32,
+        "media": 1.219,
+        "mediana": 0.943,
+        "p95": 2.357,
+        "max": 2.731,
+        "min": 0.61,
+        "desvio": 0.562,
+        "total_s": 38.994,
+        "pct_lead_time": 0.6,
+        "pct_medio_por_caso": 4.5,
+        "cv": 0.461
+      },
+      {
+        "atividade": "atuar",
+        "n": 401,
+        "media": 0.012,
+        "mediana": 0.001,
+        "p95": 0.005,
+        "max": 1.099,
+        "min": 0.0,
+        "desvio": 0.102,
+        "total_s": 4.772,
+        "pct_lead_time": 0.1,
+        "pct_medio_por_caso": 0.1,
+        "cv": 8.604
+      },
+      {
+        "atividade": "catalogo (falha)",
+        "n": 1,
+        "media": 4.22,
+        "mediana": 4.22,
+        "p95": 4.22,
+        "max": 4.22,
+        "min": 4.22,
+        "desvio": 0.0,
+        "total_s": 4.22,
+        "pct_lead_time": 0.1,
+        "pct_medio_por_caso": 7.2,
+        "cv": 0.0
+      }
+    ],
+    "ociosidade": {
+      "n": 445,
+      "media": 0.015,
+      "mediana": 0.002,
+      "p95": 0.009,
+      "max": 1.897,
+      "min": 0.0,
+      "desvio": 0.125,
+      "pct_lead_time": 0.1
+    },
+    "esperas": [
+      {
+        "aresta": "catalogo (falha) -> ■ fim",
+        "n": 1,
+        "media": 0.063,
+        "mediana": 0.063,
+        "p95": 0.063,
+        "max": 0.063,
+        "min": 0.063,
+        "desvio": 0.0
+      },
+      {
+        "aresta": "publicar comando -> ■ fim",
+        "n": 4,
+        "media": 0.015,
+        "mediana": 0.001,
+        "p95": 0.049,
+        "max": 0.057,
+        "min": 0.001,
+        "desvio": 0.024
+      },
+      {
+        "aresta": "silver -> gold",
+        "n": 171,
+        "media": 0.011,
+        "mediana": 0.0,
+        "p95": 0.001,
+        "max": 1.525,
+        "min": 0.0,
+        "desvio": 0.117
+      },
+      {
+        "aresta": "ingerir -> decidir",
+        "n": 231,
+        "media": 0.009,
+        "mediana": 0.001,
+        "p95": 0.002,
+        "max": 1.84,
+        "min": 0.0,
+        "desvio": 0.121
+      },
+      {
+        "aresta": "ingerir -> silver",
+        "n": 203,
+        "media": 0.006,
+        "mediana": 0.0,
+        "p95": 0.001,
+        "max": 0.515,
+        "min": 0.0,
+        "desvio": 0.049
+      },
+      {
+        "aresta": "silver -> gold (falha)",
+        "n": 32,
+        "media": 0.003,
+        "mediana": 0.0,
+        "p95": 0.001,
+        "max": 0.103,
+        "min": 0.0,
+        "desvio": 0.018
+      },
+      {
+        "aresta": "ingerir (falha) -> ■ fim",
+        "n": 8,
+        "media": 0.002,
+        "mediana": 0.001,
+        "p95": 0.005,
+        "max": 0.006,
+        "min": 0.0,
+        "desvio": 0.002
+      },
+      {
+        "aresta": "atuar -> ■ fim",
+        "n": 397,
+        "media": 0.001,
+        "mediana": 0.0,
+        "p95": 0.002,
+        "max": 0.033,
+        "min": 0.0,
+        "desvio": 0.002
+      },
+      {
+        "aresta": "catalogo -> decidir",
+        "n": 170,
+        "media": 0.001,
+        "mediana": 0.0,
+        "p95": 0.001,
+        "max": 0.01,
+        "min": 0.0,
+        "desvio": 0.001
+      },
+      {
+        "aresta": "gold (falha) -> ■ fim",
+        "n": 32,
+        "media": 0.001,
+        "mediana": 0.001,
+        "p95": 0.001,
+        "max": 0.001,
+        "min": 0.0,
+        "desvio": 0.0
+      }
+    ],
+    "variacao": {
+      "variantes": 7,
+      "casos": 445,
+      "pct_variante_principal": 51.9,
+      "lead_time": {
+        "n": 445,
+        "media": 14.929,
+        "mediana": 4.912,
+        "p95": 57.622,
+        "max": 148.112,
+        "min": 0.328,
+        "desvio": 22.628
+      },
+      "cv_lead_time": 1.516
+    },
+    "falhas": [
+      {
+        "etapa": "gold",
+        "execucoes": 203,
+        "falhas": 32,
+        "taxa_falha_pct": 15.8,
+        "erros": [
+          {
+            "mensagem": "AttributeError: '_duckdb.DuckDBPyConnection' object has no attribute 'fetch_arrow_table'",
+            "ocorrencias": 32
+          }
+        ]
+      },
+      {
+        "etapa": "ingerir",
+        "execucoes": 445,
+        "falhas": 8,
+        "taxa_falha_pct": 1.8,
+        "erros": [
+          {
+            "mensagem": "EndpointConnectionError: Could not connect to the endpoint URL: \"http://minio:9000/agrosmart-bronze\"",
+            "ocorrencias": 7
+          },
+          {
+            "mensagem": "ConnectTimeoutError: Connect timeout on endpoint URL: \"http://minio:9000/agrosmart-bronze\"",
+            "ocorrencias": 1
+          }
+        ]
+      },
+      {
+        "etapa": "silver",
+        "execucoes": 206,
+        "falhas": 3,
+        "taxa_falha_pct": 1.5,
+        "erros": [
+          {
+            "mensagem": "etapa sem evento de conclusão (caso abortado)",
+            "ocorrencias": 2
+          },
+          {
+            "mensagem": "EndpointConnectionError: Could not connect to the endpoint URL: \"http://minio:9000/agrosmart-bronze/_manifests/sensores/ano%3D2026/mes%3D08/",
+            "ocorrencias": 1
+          }
+        ]
+      },
+      {
+        "etapa": "catalogo",
+        "execucoes": 171,
+        "falhas": 1,
+        "taxa_falha_pct": 0.6,
+        "erros": [
+          {
+            "mensagem": "EndpointConnectionError: Could not connect to the endpoint URL: \"http://minio:9000/agrosmart-silver/sensores_leitura/ano%3D2026/mes%3D08/dia",
+            "ocorrencias": 1
+          }
+        ]
+      },
+      {
+        "etapa": "atuar",
+        "execucoes": 401,
+        "falhas": 0,
+        "taxa_falha_pct": 0.0,
+        "erros": []
+      },
+      {
+        "etapa": "decidir",
+        "execucoes": 401,
+        "falhas": 0,
+        "taxa_falha_pct": 0.0,
+        "erros": []
+      }
+    ],
+    "incidentes": {
+      "incidentes": [
+        {
+          "inicio": "2026-11-17T13:06:42.545+00:00",
+          "caso_inicial": "ciclo-20261117T130617-9ae9",
+          "atividade": "gold (falha)",
+          "mensagem": "AttributeError: '_duckdb.DuckDBPyConnection' object has no attribute 'fetch_arrow_table'",
+          "casos_afetados": [
+            "ciclo-20261117T130617-9ae9",
+            "ciclo-20261117T130717-60ef",
+            "ciclo-20261117T130817-3bad",
+            "ciclo-20261117T130917-fda5",
+            "ciclo-20261117T131017-f5aa",
+            "ciclo-20261117T131117-248e",
+            "ciclo-20261117T131217-b64a",
+            "ciclo-20261117T131317-6a83",
+            "ciclo-20261117T131417-3e4f",
+            "ciclo-20261117T131517-74dc",
+            "ciclo-20261117T131617-6d75",
+            "ciclo-20261117T131716-9d5a",
+            "ciclo-20261117T131816-858f",
+            "ciclo-20261117T131916-7cb3",
+            "ciclo-20261117T132016-edfb",
+            "ciclo-20261117T132116-01b8",
+            "ciclo-20261117T132218-ce04",
+            "ciclo-20261117T132318-5feb",
+            "ciclo-20261117T132418-83e9",
+            "ciclo-20261117T132518-2554",
+            "ciclo-20261117T132618-81b2",
+            "ciclo-20261117T132718-9140",
+            "ciclo-20261117T132818-729e",
+            "ciclo-20261117T132918-2138",
+            "ciclo-20261117T133018-45da",
+            "ciclo-20261117T133118-3c9c",
+            "ciclo-20261117T133218-aaf9",
+            "ciclo-20261117T133318-5161",
+            "ciclo-20261117T133418-b07b",
+            "ciclo-20261117T133518-d024",
+            "ciclo-20261117T133618-6bd6",
+            "ciclo-20261117T133718-f71b",
+            "ciclo-20261117T133818-0dd8"
+          ],
+          "versao_processo": "v1",
+          "recuperado_em": "2026-11-17T13:41:34.707+00:00",
+          "caso_recuperacao": "ciclo-20261117T134001-3243",
+          "ttr_s": 2092.162
+        },
+        {
+          "inicio": "2026-11-17T14:32:13.238+00:00",
+          "caso_inicial": "ciclo-20261117T143121-8875",
+          "atividade": "silver (falha)",
+          "mensagem": "EndpointConnectionError: Could not connect to the endpoint URL: \"http://minio:9000/agrosmart-bronze/_manifests/sensores/ano%3D2026/mes%3D08/",
+          "casos_afetados": [
+            "ciclo-20261117T143121-8875",
+            "ciclo-20261117T143221-02c7",
+            "ciclo-20261117T143321-1039",
+            "ciclo-20261117T143421-9fbf"
+          ],
+          "versao_processo": "v1",
+          "recuperado_em": "2026-11-17T14:35:57.527+00:00",
+          "caso_recuperacao": "ciclo-20261117T143521-6bb7",
+          "ttr_s": 224.289
+        },
+        {
+          "inicio": "2026-11-17T14:54:41.401+00:00",
+          "caso_inicial": "ciclo-20261117T145431-56e9",
+          "atividade": "silver (falha)",
+          "mensagem": "etapa sem evento de conclusão (caso abortado)",
+          "casos_afetados": [
+            "ciclo-20261117T145431-56e9"
+          ],
+          "versao_processo": "v1",
+          "recuperado_em": "2026-11-17T14:55:36.290+00:00",
+          "caso_recuperacao": "ciclo-20261117T145510-fa2f",
+          "ttr_s": 54.889
+        },
+        {
+          "inicio": "2026-11-17T16:19:37.707+00:00",
+          "caso_inicial": "ciclo-20261117T161839-decd",
+          "atividade": "catalogo (falha)",
+          "mensagem": "EndpointConnectionError: Could not connect to the endpoint URL: \"http://minio:9000/agrosmart-silver/sensores_leitura/ano%3D2026/mes%3D08/dia",
+          "casos_afetados": [
+            "ciclo-20261117T161839-decd",
+            "ciclo-20261117T161939-9971",
+            "ciclo-20261117T162039-a526",
+            "ciclo-20261117T162139-707f",
+            "ciclo-20261117T162239-1907",
+            "ciclo-20261117T162339-4e7c"
+          ],
+          "versao_processo": "v2",
+          "recuperado_em": "2026-11-17T16:26:45.578+00:00",
+          "caso_recuperacao": "ciclo-20261117T162439-f9af",
+          "ttr_s": 427.871
+        }
+      ],
+      "em_aberto": null,
+      "quantidade": 4,
+      "mttr_s": 699.803,
+      "ttr": {
+        "n": 4,
+        "media": 699.803,
+        "mediana": 326.08,
+        "p95": 1842.518,
+        "max": 2092.162,
+        "min": 54.889,
+        "desvio": 814.653
+      }
+    },
+    "retentativas": [
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T130617-9ae9",
+        "caso_retentativa": "ciclo-20261117T130717-60ef",
+        "sucesso": false,
+        "intervalo_s": 54.372
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T130717-60ef",
+        "caso_retentativa": "ciclo-20261117T130817-3bad",
+        "sucesso": false,
+        "intervalo_s": 57.839
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T130817-3bad",
+        "caso_retentativa": "ciclo-20261117T130917-fda5",
+        "sucesso": false,
+        "intervalo_s": 60.432
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T130917-fda5",
+        "caso_retentativa": "ciclo-20261117T131017-f5aa",
+        "sucesso": false,
+        "intervalo_s": 55.452
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131017-f5aa",
+        "caso_retentativa": "ciclo-20261117T131117-248e",
+        "sucesso": false,
+        "intervalo_s": 59.882
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131117-248e",
+        "caso_retentativa": "ciclo-20261117T131217-b64a",
+        "sucesso": false,
+        "intervalo_s": 55.499
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131217-b64a",
+        "caso_retentativa": "ciclo-20261117T131317-6a83",
+        "sucesso": false,
+        "intervalo_s": 58.285
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131317-6a83",
+        "caso_retentativa": "ciclo-20261117T131417-3e4f",
+        "sucesso": false,
+        "intervalo_s": 66.259
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131417-3e4f",
+        "caso_retentativa": "ciclo-20261117T131517-74dc",
+        "sucesso": false,
+        "intervalo_s": 57.507
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131517-74dc",
+        "caso_retentativa": "ciclo-20261117T131617-6d75",
+        "sucesso": false,
+        "intervalo_s": 59.458
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131617-6d75",
+        "caso_retentativa": "ciclo-20261117T131716-9d5a",
+        "sucesso": false,
+        "intervalo_s": 90.976
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131716-9d5a",
+        "caso_retentativa": "ciclo-20261117T131816-858f",
+        "sucesso": false,
+        "intervalo_s": 36.715
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131816-858f",
+        "caso_retentativa": "ciclo-20261117T131916-7cb3",
+        "sucesso": false,
+        "intervalo_s": 79.412
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T131916-7cb3",
+        "caso_retentativa": "ciclo-20261117T132016-edfb",
+        "sucesso": false,
+        "intervalo_s": 53.477
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132016-edfb",
+        "caso_retentativa": "ciclo-20261117T132116-01b8",
+        "sucesso": false,
+        "intervalo_s": 71.853
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132116-01b8",
+        "caso_retentativa": "ciclo-20261117T132218-ce04",
+        "sucesso": false,
+        "intervalo_s": 32.976
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132218-ce04",
+        "caso_retentativa": "ciclo-20261117T132318-5feb",
+        "sucesso": false,
+        "intervalo_s": 46.333
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132318-5feb",
+        "caso_retentativa": "ciclo-20261117T132418-83e9",
+        "sucesso": false,
+        "intervalo_s": 60.26
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132418-83e9",
+        "caso_retentativa": "ciclo-20261117T132518-2554",
+        "sucesso": false,
+        "intervalo_s": 57.027
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132518-2554",
+        "caso_retentativa": "ciclo-20261117T132618-81b2",
+        "sucesso": false,
+        "intervalo_s": 58.644
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132618-81b2",
+        "caso_retentativa": "ciclo-20261117T132718-9140",
+        "sucesso": false,
+        "intervalo_s": 59.217
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132718-9140",
+        "caso_retentativa": "ciclo-20261117T132818-729e",
+        "sucesso": false,
+        "intervalo_s": 59.289
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132818-729e",
+        "caso_retentativa": "ciclo-20261117T132918-2138",
+        "sucesso": false,
+        "intervalo_s": 59.888
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T132918-2138",
+        "caso_retentativa": "ciclo-20261117T133018-45da",
+        "sucesso": false,
+        "intervalo_s": 57.104
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133018-45da",
+        "caso_retentativa": "ciclo-20261117T133118-3c9c",
+        "sucesso": false,
+        "intervalo_s": 59.337
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133118-3c9c",
+        "caso_retentativa": "ciclo-20261117T133218-aaf9",
+        "sucesso": false,
+        "intervalo_s": 57.973
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133218-aaf9",
+        "caso_retentativa": "ciclo-20261117T133318-5161",
+        "sucesso": false,
+        "intervalo_s": 58.818
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133318-5161",
+        "caso_retentativa": "ciclo-20261117T133418-b07b",
+        "sucesso": false,
+        "intervalo_s": 87.67
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133418-b07b",
+        "caso_retentativa": "ciclo-20261117T133518-d024",
+        "sucesso": false,
+        "intervalo_s": 56.709
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133518-d024",
+        "caso_retentativa": "ciclo-20261117T133618-6bd6",
+        "sucesso": false,
+        "intervalo_s": 55.313
+      },
+      {
+        "etapa": "gold",
+        "caso_com_falha": "ciclo-20261117T133618-6bd6",
+        "caso_retentativa": "ciclo-20261117T133718-f71b",
+        "sucesso": false,
+        "intervalo_s": 50.69
+      },
+      {
+        "etapa": "silver",
+        "caso_com_falha": "ciclo-20261117T133818-0dd8",
+        "caso_retentativa": "ciclo-20261117T134001-3243",
+        "sucesso": true,
+        "intervalo_s": 83.25
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T143221-02c7",
+        "caso_retentativa": "ciclo-20261117T143321-1039",
+        "sucesso": false,
+        "intervalo_s": 27.861
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T143321-1039",
+        "caso_retentativa": "ciclo-20261117T143421-9fbf",
+        "sucesso": false,
+        "intervalo_s": 27.786
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T143421-9fbf",
+        "caso_retentativa": "ciclo-20261117T143521-6bb7",
+        "sucesso": true,
+        "intervalo_s": 35.833
+      },
+      {
+        "etapa": "silver",
+        "caso_com_falha": "ciclo-20261117T145431-56e9",
+        "caso_retentativa": "ciclo-20261117T145510-fa2f",
+        "sucesso": true,
+        "intervalo_s": 30.547
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T161939-9971",
+        "caso_retentativa": "ciclo-20261117T162039-a526",
+        "sucesso": false,
+        "intervalo_s": 59.613
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T162039-a526",
+        "caso_retentativa": "ciclo-20261117T162139-707f",
+        "sucesso": false,
+        "intervalo_s": 27.455
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T162139-707f",
+        "caso_retentativa": "ciclo-20261117T162239-1907",
+        "sucesso": false,
+        "intervalo_s": 27.337
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T162239-1907",
+        "caso_retentativa": "ciclo-20261117T162339-4e7c",
+        "sucesso": false,
+        "intervalo_s": 38.427
+      },
+      {
+        "etapa": "ingerir",
+        "caso_com_falha": "ciclo-20261117T162339-4e7c",
+        "caso_retentativa": "ciclo-20261117T162439-f9af",
+        "sucesso": true,
+        "intervalo_s": 53.652
+      }
+    ],
+    "republicacoes": {
+      "comandos": 4,
+      "republicacoes": 2,
+      "consecutivas": 2,
+      "pct_redundante": 50.0,
+      "por_talhao": {
+        "TLH-02": 2
+      },
+      "minutos_irrigacao_repetidos": 335.0,
+      "exemplos": [
+        {
+          "talhao": "TLH-02",
+          "topico": "agrosmart/atuadores/TLH-02/irrigacao",
+          "payload": {
+            "acao": "ligar",
+            "minutos": 170
+          },
+          "caso": "ciclo-20261117T134134-1b30",
+          "caso_anterior": "ciclo-20261117T134001-3243",
+          "consecutivo": true
+        },
+        {
+          "talhao": "TLH-02",
+          "topico": "agrosmart/atuadores/TLH-02/irrigacao",
+          "payload": {
+            "acao": "ligar",
+            "minutos": 165
+          },
+          "caso": "ciclo-20261117T134342-19d3",
+          "caso_anterior": "ciclo-20261117T134242-2c8e",
+          "consecutivo": true
+        }
+      ]
+    },
+    "sem_novidade": {
+      "casos_com_ingestao_ok": 437,
+      "sem_lote_novo": 232,
+      "pct_sem_lote_novo": 53.1,
+      "reprocessaram_derivadas": 1,
+      "tempo_reprocessado_s": 116.295
+    },
+    "throughput": {
+      "casos": 445,
+      "casos_ok": 401,
+      "inicio": "2026-11-17T13:06:17.041+00:00",
+      "fim": "2026-11-17T20:51:20.832+00:00",
+      "janela_h": 7.751,
+      "casos_por_hora": 57.41,
+      "casos_ok_por_hora": 51.73,
+      "intervalo_entre_inicios": {
+        "n": 444,
+        "media": 62.808,
+        "mediana": 59.997,
+        "p95": 67.737,
+        "max": 241.728,
+        "min": 39.036,
+        "desvio": 16.214
+      }
+    },
+    "versoes": {
+      "versoes": {
+        "v1": {
+          "casos": 102,
+          "taxa_sucesso_pct": 62.7,
+          "lead_time": {
+            "n": 102,
+            "media": 36.393,
+            "mediana": 26.517,
+            "p95": 91.186,
+            "max": 148.112,
+            "min": 10.32,
+            "desvio": 24.643
+          },
+          "lead_time_casos_ok": {
+            "n": 64,
+            "media": 41.405,
+            "mediana": 30.292,
+            "p95": 93.414,
+            "max": 148.112,
+            "min": 16.431,
+            "desvio": 28.352
+          },
+          "etapas_por_caso": 4.79,
+          "pct_casos_com_silver_gold": 97.1,
+          "comandos_por_caso": 0.04,
+          "throughput": {
+            "casos": 102,
+            "casos_ok": 64,
+            "inicio": "2026-11-17T13:06:17.041+00:00",
+            "fim": "2026-11-17T14:54:41.401+00:00",
+            "janela_h": 1.807,
+            "casos_por_hora": 56.45,
+            "casos_ok_por_hora": 35.42,
+            "intervalo_entre_inicios": {
+              "n": 101,
+              "media": 64.297,
+              "mediana": 59.996,
+              "p95": 93.052,
+              "max": 148.131,
+              "min": 59.961,
+              "desvio": 13.877
+            }
+          },
+          "gargalo": "silver"
+        },
+        "v2": {
+          "casos": 343,
+          "taxa_sucesso_pct": 98.3,
+          "lead_time": {
+            "n": 343,
+            "media": 8.547,
+            "mediana": 2.016,
+            "p95": 35.117,
+            "max": 126.418,
+            "min": 0.328,
+            "desvio": 17.492
+          },
+          "lead_time_casos_ok": {
+            "n": 337,
+            "media": 8.248,
+            "mediana": 1.994,
+            "p95": 35.093,
+            "max": 126.418,
+            "min": 0.806,
+            "desvio": 17.313
+          },
+          "etapas_por_caso": 3.9,
+          "pct_casos_com_silver_gold": 31.2,
+          "comandos_por_caso": 0.0,
+          "throughput": {
+            "casos": 343,
+            "casos_ok": 337,
+            "inicio": "2026-11-17T14:55:10.117+00:00",
+            "fim": "2026-11-17T20:51:20.832+00:00",
+            "janela_h": 5.936,
+            "casos_por_hora": 57.78,
+            "casos_ok_por_hora": 56.77,
+            "intervalo_entre_inicios": {
+              "n": 342,
+              "media": 62.438,
+              "mediana": 59.997,
+              "p95": 59.999,
+              "max": 241.728,
+              "min": 59.934,
+              "desvio": 16.792
+            }
+          },
+          "gargalo": "silver"
+        }
+      },
+      "comparacao": {
+        "delta_lead_time_mediano_pct": -93.4,
+        "delta_lead_time_medio_pct": -80.1,
+        "delta_p95_pct": -62.4,
+        "delta_taxa_sucesso_pp": 35.6,
+        "delta_etapas_por_caso": -0.89
+      }
+    }
+  },
+  "arquivos": {
+    "event_log_csv": "event_log.csv",
+    "event_log_intervalos_csv": "event_log_intervalos.csv",
+    "event_log_xes": "event_log.xes",
+    "dfg_frequencia_svg": "dfg_frequencia.svg",
+    "dfg_frequencia_png": "dfg_frequencia.png",
+    "dfg_desempenho_svg": "dfg_desempenho.svg",
+    "dfg_desempenho_png": "dfg_desempenho.png",
+    "duracoes_png": "duracao_atividades.png",
+    "lead_time_png": "lead_time_casos.png",
+    "variantes_png": "variantes.png"
+  },
+  "insights": [
+    {
+      "tema": "Gargalo",
+      "evidencia": "`silver` concentra 66,0% do lead time (mediana 17,8 s, p95 58,6 s, máx. 1,8 min).",
+      "oportunidade": "reprocessar só as partições dos lotes novos e pular silver/gold/catálogo quando a ingestão não grava lote novo (ciclo incremental, v2)"
+    },
+    {
+      "tema": "Concentração",
+      "evidencia": "`silver` + `ingerir` somam 77,7% do lead time.",
+      "oportunidade": "listar só objetos novos na landing (watermark) e paralelizar os uploads"
+    },
+    {
+      "tema": "Retrabalho de processamento",
+      "evidencia": "53,1% dos ciclos com ingestão OK não gravaram lote novo, e 1 deles reprocessaram silver/gold/catálogo mesmo assim (1,9 min no total).",
+      "oportunidade": "reprocessar só as partições dos lotes novos e pular silver/gold/catálogo quando a ingestão não grava lote novo (ciclo incremental, v2)"
+    },
+    {
+      "tema": "Variação",
+      "evidencia": "7 variante(s) em 445 caso(s); a principal cobre 51,9%; lead time com CV 1,52 (desvio 22,6 s). 4 variante(s) contêm falha.",
+      "oportunidade": "padronizar o caminho feliz e tratar as variantes de falha abaixo."
+    },
+    {
+      "tema": "Falha em `gold`",
+      "evidencia": "32 de 203 execuções (15,8%); causa mais frequente: \"AttributeError: '_duckdb.DuckDBPyConnection' object has no attribute 'fetch_arrow_table'\".",
+      "oportunidade": "retentativa com backoff e escrita atômica das tabelas"
+    },
+    {
+      "tema": "Falha em `ingerir`",
+      "evidencia": "8 de 445 execuções (1,8%); causa mais frequente: \"EndpointConnectionError: Could not connect to the endpoint URL: \"http://minio:9000/agrosmart-bronze\"\".",
+      "oportunidade": "health-check do MinIO antes do ciclo e retentativa com backoff dentro da etapa"
+    },
+    {
+      "tema": "Falha em `silver`",
+      "evidencia": "3 de 206 execuções (1,5%); causa mais frequente: \"etapa sem evento de conclusão (caso abortado)\".",
+      "oportunidade": "health-check do lake antes do ciclo e retentativa com backoff dentro da etapa"
+    },
+    {
+      "tema": "Recuperação (MTTR)",
+      "evidencia": "4 incidente(s); MTTR 11,7 min (da falha até o próximo caso OK); intervalo mediano entre ciclos 60,0 s.",
+      "oportunidade": "a recuperação depende do próximo ciclo: retentativa dentro do ciclo e alerta (Prometheus) na primeira falha encurtam o MTTR."
+    },
+    {
+      "tema": "Retentativas",
+      "evidencia": "41 etapa(s) com falha foram reexecutadas no caso seguinte; 4 com sucesso.",
+      "oportunidade": "tornar as etapas idempotentes (já são no bronze) e registrar a retentativa como tal."
+    },
+    {
+      "tema": "Retrabalho na atuação (idempotência)",
+      "evidencia": "2 de 4 comandos (50,0%) repetem o último comando do mesmo talhão sem mudar o payload (2 em ciclos consecutivos; 335 min de irrigação reenviados).",
+      "oportunidade": "chave de idempotência por talhão (não republicar comando igual ao vigente) ou estado retido no broker (retain) com o comando atual."
+    },
+    {
+      "tema": "Conformidade",
+      "evidencia": "fitness 0,961 contra o caminho feliz; 90,1% dos casos conformes.",
+      "oportunidade": "os desvios são exatamente os caminhos de falha: atacar as causas acima."
+    },
+    {
+      "tema": "Throughput",
+      "evidencia": "57,4 casos/hora (51,7 OK/hora) em 7,75 h de operação.",
+      "oportunidade": "com o ciclo mais curto (v2), dá para reduzir o intervalo do worker e decidir mais perto do tempo real."
+    },
+    {
+      "tema": "Antes × depois (v1 → v2)",
+      "evidencia": "lead time mediano dos casos OK 30,3 s → 2,0 s (-93,4%); p95 -62,4%; sucesso 62,7% → 98,3%; etapas por caso 4,79 → 3,90.",
+      "oportunidade": "a melhoria se paga onde não há lote novo; o próximo gargalo é o que sobra na v2 (`silver`)."
+    }
+  ]
+}

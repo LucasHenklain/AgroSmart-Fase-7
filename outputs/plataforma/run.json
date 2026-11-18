@@ -1,0 +1,104 @@
+{
+  "execucao_id": "ciclo-20261117T205103-bbf5",
+  "iniciado_em": "2026-11-17T20:51:20+00:00",
+  "instante_referencia": "2026-09-01T03:00:00+00:00",
+  "backend": "minio",
+  "modo": "completo",
+  "intervalo": null,
+  "sucesso": true,
+  "etapas": [
+    {
+      "nome": "simular",
+      "status": "pulada",
+      "duracao_s": 0.0,
+      "resumo": {
+        "motivo": "--sem-simular"
+      },
+      "erro": null
+    },
+    {
+      "nome": "ingerir",
+      "status": "ok",
+      "duracao_s": 1.63,
+      "resumo": {
+        "lotes": 17,
+        "gravados": 0,
+        "atualizados": 1,
+        "pulados": 16,
+        "rejeitados": 0,
+        "objetos_bronze": 6270
+      },
+      "erro": null
+    },
+    {
+      "nome": "silver",
+      "status": "ok",
+      "duracao_s": 11.38,
+      "resumo": {
+        "lidos": 31701,
+        "aprovados": 31512,
+        "quarentena": 8,
+        "substituidos": 181,
+        "reconciliacao_ok": true,
+        "defeitos_localizados": "n/a",
+        "intervalo": [
+          "2026-11-17",
+          "2026-11-17"
+        ]
+      },
+      "erro": null
+    },
+    {
+      "nome": "gold",
+      "status": "ok",
+      "duracao_s": 1.43,
+      "resumo": {
+        "tabelas": 14,
+        "puladas": 0
+      },
+      "erro": null
+    },
+    {
+      "nome": "catalogo",
+      "status": "ok",
+      "duracao_s": 2.46,
+      "resumo": {
+        "fontes": 6,
+        "tabelas_gold": 14
+      },
+      "erro": null
+    },
+    {
+      "nome": "copiloto",
+      "status": "pulada",
+      "duracao_s": 0.0,
+      "resumo": {
+        "motivo": "--sem-ia"
+      },
+      "erro": null
+    },
+    {
+      "nome": "decidir",
+      "status": "ok",
+      "duracao_s": 0.08,
+      "resumo": {
+        "data_ref": "2026-11-17",
+        "talhoes": 6,
+        "acoes": 1,
+        "comandos": 0
+      },
+      "erro": null
+    },
+    {
+      "nome": "atuar",
+      "status": "ok",
+      "duracao_s": 0.0,
+      "resumo": {
+        "publicadas": 0,
+        "falhas": 0
+      },
+      "erro": null
+    }
+  ],
+  "duracao_s": 17.01
+}

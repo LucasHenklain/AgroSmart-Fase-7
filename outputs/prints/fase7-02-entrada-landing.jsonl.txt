@@ -1,0 +1,4 @@
+﻿# arquivo real da landing (volume agrosmart-landing): /app/landing/sensores/20261117/leituras_20261117T1645Z.jsonl
+{"sensor_id":"SNS-0502","talhao_id":"TLH-05","medido_em":"2026-11-17T16:48:44Z","umidade_solo_pct":29.0,"temperatura_solo_c":29.6,"temperatura_ar_c":29.0,"umidade_ar_pct":48.3,"condutividade_ds_m":null,"ph":null,"bateria_pct":92.4,"rssi_dbm":-65}
+{"sensor_id":"SNS-0601","talhao_id":"TLH-06","medido_em":"2026-11-17T16:48:44Z","umidade_solo_pct":11.8,"temperatura_solo_c":29.7,"temperatura_ar_c":29.0,"umidade_ar_pct":45.3,"condutividade_ds_m":null,"ph":null,"bateria_pct":93.4,"rssi_dbm":-74}
+{"sensor_id":"SNS-0602","talhao_id":"TLH-06","medido_em":"2026-11-17T16:48:44Z","umidade_solo_pct":11.5,"temperatura_solo_c":29.8,"temperatura_ar_c":29.2,"umidade_ar_pct":48.3,"condutividade_ds_m":null,"ph":null,"bateria_pct":93.4,"rssi_dbm":-85}

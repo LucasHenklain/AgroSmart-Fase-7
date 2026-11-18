@@ -1,0 +1,10 @@
+2026-11-17T16:12:33+00:00  experimento 'v2': atraso 420s, queda 150s, alvos ['minio', 'mosquitto']
+2026-11-17T16:19:33+00:00  QUEDA minio: parando agrosmart-minio
+2026-11-17T16:19:55+00:00  $ docker stop agrosmart-minio -> rc=0 agrosmart-minio
+2026-11-17T16:22:25+00:00  RETORNO minio: iniciando agrosmart-minio
+2026-11-17T16:23:48+00:00  $ docker start agrosmart-minio -> rc=0 agrosmart-minio
+2026-11-17T16:28:48+00:00  QUEDA mosquitto: parando agrosmart-mosquitto
+2026-11-17T16:28:56+00:00  $ docker stop agrosmart-mosquitto -> rc=0 agrosmart-mosquitto
+2026-11-17T16:31:26+00:00  RETORNO mosquitto: iniciando agrosmart-mosquitto
+2026-11-17T16:31:27+00:00  $ docker start agrosmart-mosquitto -> rc=0 agrosmart-mosquitto
+2026-11-17T16:31:27+00:00  experimento concluído

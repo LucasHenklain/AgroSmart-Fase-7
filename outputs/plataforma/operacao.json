@@ -1,0 +1,101 @@
+{
+  "versao": "7.0.0",
+  "modo": "incremental",
+  "versao_processo": "v2",
+  "publicar": true,
+  "intervalo_s": 60.0,
+  "iniciado_em": 1794935765.2420313,
+  "fase": "aguardando",
+  "saudavel": true,
+  "motivo": "ok",
+  "ciclos": {
+    "ok": 213
+  },
+  "duracao_media_ciclo_s": 1.81,
+  "duracao_ultima_etapa_s": {
+    "ingerir": 1.63,
+    "decidir": 0.08,
+    "atuar": 0.0,
+    "silver": 11.38,
+    "gold": 1.43,
+    "catalogo": 2.46
+  },
+  "ultimo_ciclo": {
+    "execucao_id": "ciclo-20261117T205103-bbf5",
+    "sucesso": true,
+    "duracao_s": 17.01,
+    "terminado_em": 1794948680.8344753,
+    "etapas": [
+      {
+        "nome": "simular",
+        "status": "pulada",
+        "duracao_s": 0.0,
+        "erro": null
+      },
+      {
+        "nome": "ingerir",
+        "status": "ok",
+        "duracao_s": 1.63,
+        "erro": null
+      },
+      {
+        "nome": "silver",
+        "status": "ok",
+        "duracao_s": 11.38,
+        "erro": null
+      },
+      {
+        "nome": "gold",
+        "status": "ok",
+        "duracao_s": 1.43,
+        "erro": null
+      },
+      {
+        "nome": "catalogo",
+        "status": "ok",
+        "duracao_s": 2.46,
+        "erro": null
+      },
+      {
+        "nome": "copiloto",
+        "status": "pulada",
+        "duracao_s": 0.0,
+        "erro": null
+      },
+      {
+        "nome": "decidir",
+        "status": "ok",
+        "duracao_s": 0.08,
+        "erro": null
+      },
+      {
+        "nome": "atuar",
+        "status": "ok",
+        "duracao_s": 0.0,
+        "erro": null
+      }
+    ]
+  },
+  "ultimo_sucesso_em": 1794948680.8344743,
+  "lotes": {
+    "gravado": 1,
+    "atualizado": 1,
+    "pulado": 3408,
+    "rejeitado": 0
+  },
+  "silver": {
+    "lidos": 31701,
+    "aprovados": 31512,
+    "quarentena": 8
+  },
+  "acoes": {
+    "talhoes": 6,
+    "acoes": 1,
+    "comandos": 0
+  },
+  "comandos_publicados": 0,
+  "landing": {
+    "arquivos": 17,
+    "idade_ultima_s": 1.2
+  }
+}

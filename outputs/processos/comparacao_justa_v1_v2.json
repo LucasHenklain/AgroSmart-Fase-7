@@ -1,0 +1,32 @@
+{
+  "v1": {
+    "casos": 102,
+    "casos_incidente_duckdb": 32,
+    "sucesso_sem_incidente_pct": 91.4,
+    "ok_com_silver": 64,
+    "lead_mediano_com_silver_s": 30.3,
+    "lead_p95_com_silver_s": 93.3,
+    "silver_mediano_s": 24.3,
+    "lidos_silver_mediano": 44549,
+    "ok_sem_silver": 0,
+    "lead_mediano_sem_silver_s": null,
+    "lead_mediano_ok_s": 30.3,
+    "inicio": "2026-11-17T13:06:17.054+00:00",
+    "fim": "2026-11-17T14:54:31.082+00:00"
+  },
+  "v2": {
+    "casos": 343,
+    "casos_incidente_duckdb": 0,
+    "sucesso_sem_incidente_pct": 98.3,
+    "ok_com_silver": 106,
+    "lead_mediano_com_silver_s": 10.3,
+    "lead_p95_com_silver_s": 87.9,
+    "silver_mediano_s": 6.6,
+    "lidos_silver_mediano": 23012,
+    "ok_sem_silver": 231,
+    "lead_mediano_sem_silver_s": 1.03,
+    "lead_mediano_ok_s": 2.0,
+    "inicio": "2026-11-17T14:55:10.129+00:00",
+    "fim": "2026-11-17T20:51:03.824+00:00"
+  }
+}

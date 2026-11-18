@@ -1,0 +1,20 @@
+﻿✔ saudável · ok · fase ciclo · modo incremental (v2) · intervalo 60s
+ciclos {'ok': 242} · duração média 5.43s · último sucesso 
+2026-11-17T21:21:57+00:00 · comandos publicados 0
+          Último ciclo ·           
+    ciclo-20261117T212139-16d0     
+                                   
+  etapa      status   s      erro  
+ ───────────────────────────────── 
+  simular    pulada   0.0          
+  ingerir    ok       1.1          
+  silver     ok       11.2         
+  gold       ok       1.8          
+  catalogo   ok       2.9          
+  copiloto   pulada   0.0          
+  decidir    ok       0.1          
+  atuar      ok       0.0          
+                                   
+lotes {'gravado': 3, 'atualizado': 30, 'pulado': 3898, 'rejeitado': 0} · silver
+{'lidos': 36117, 'aprovados': 35928, 'quarentena': 8} · plano {'talhoes': 6, 
+'acoes': 1, 'comandos': 0} · landing {'arquivos': 19, 'idade_ultima_s': 1.9}

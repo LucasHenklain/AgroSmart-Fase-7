@@ -1349,6 +1349,44 @@ def status(
         raise typer.Exit(code=1)
 
 
+@app.command()
+def processos(
+    eventos: Annotated[
+        Path | None,
+        typer.Option(help="Trilha JSONL (padrão: outputs/plataforma/eventos.jsonl ou logs/)."),
+    ] = None,
+    saida: Annotated[Path | None, typer.Option(help="Pasta (padrão: outputs/processos).")] = None,
+    incluir_cli: Annotated[
+        bool, typer.Option("--incluir-cli", help="Incluir runs da CLI além do worker.")
+    ] = False,
+) -> None:
+    """Mineração de processos: event log CSV/XES, DFG, variantes, gargalos e v1 × v2."""
+    from agrosmart.mineracao import minerar
+
+    cfg = carregar_config()
+    if eventos is None:
+        exportado = cfg.dir_outputs / "plataforma" / "eventos.jsonl"
+        eventos = exportado if exportado.exists() else cfg.dir_logs / "eventos.jsonl"
+    saida = saida or cfg.dir_outputs / "processos"
+    if not eventos.exists():
+        console.print(f"{_FALHA} trilha não encontrada: {eventos}")
+        raise typer.Exit(code=1)
+    metricas = minerar(eventos, saida, apenas_worker=not incluir_cli)
+    esc, analise = metricas["escopo"], metricas["analise"]
+    console.print(
+        f"{_OK} {esc['casos']} caso(s) · {esc['instancias_atividade']} atividades · "
+        f"pm4py={metricas['configuracao']['pm4py']}"
+    )
+    if analise["gargalos"]:
+        g = analise["gargalos"][0]
+        console.print(
+            f"gargalo: [bold]{g['atividade']}[/bold] ({g['pct_lead_time']}% do lead time)"
+        )
+    for i, insight in enumerate(metricas["insights"][:5], 1):
+        console.print(f"  {i}. [bold]{insight['tema']}[/bold] — {insight['evidencia']}")
+    console.print(f"{_OK} relatório em [bold]{saida / 'relatorio.md'}[/bold]")
+
+
 # --- fim Fase 7 ---
 
 

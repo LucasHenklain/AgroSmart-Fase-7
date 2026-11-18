@@ -1,0 +1,10 @@
+﻿✔ 445 caso(s) · 1831 atividades · pm4py=True
+gargalo: silver (66.0% do lead time)
+  1. Gargalo — `silver` concentra 66,0% do lead time (mediana 17,8 s, p95 58,6 s, máx. 1,8 min).
+  2. Concentração — `silver` + `ingerir` somam 77,7% do lead time.
+  3. Retrabalho de processamento — 53,1% dos ciclos com ingestão OK não gravaram lote novo, e 1 deles reprocessaram silver/gold/catálogo mesmo assim (1,9 min 
+no total).
+  4. Variação — 7 variante(s) em 445 caso(s); a principal cobre 51,9%; lead time com CV 1,52 (desvio 22,6 s). 4 variante(s) contêm falha.
+  5. Falha em `gold` — 32 de 203 execuções (15,8%); causa mais frequente: "AttributeError: '_duckdb.DuckDBPyConnection' object has no attribute 
+'fetch_arrow_table'".
+✔ relatório em C:\Users\lmhsilva\Projetos\AgroSmart\outputs\processos\relatorio.md
