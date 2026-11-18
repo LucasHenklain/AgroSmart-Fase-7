@@ -105,7 +105,7 @@ jobs:
           print(f"**Cobertura**: linhas {float(r.get('line-rate'))*100:.1f}% · "
                 f"ramos {float(r.get('branch-rate'))*100:.1f}%")
           EOF
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: testes-relatorios
@@ -142,7 +142,7 @@ jobs:
         with:
           sarif_file: bandit.sarif
           category: bandit
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: sast-bandit
@@ -186,7 +186,7 @@ jobs:
           for nome, ids in sorted(vuln.items()):
               print(f"- {nome}: {', '.join(sorted(set(ids)))}")
           EOF
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: sca-pip-audit
@@ -237,7 +237,7 @@ jobs:
           sys.exit(os.getuid() == 0 or importlib.util.find_spec('pip') is not None)"
       - name: Exportar imagem para o scan
         run: docker save "$IMAGEM_CI" -o imagem.tar
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: imagem-ci
           path: imagem.tar
@@ -285,7 +285,7 @@ jobs:
         with:
           sarif_file: trivy.sarif
           category: trivy-imagem
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: imagem-trivy
