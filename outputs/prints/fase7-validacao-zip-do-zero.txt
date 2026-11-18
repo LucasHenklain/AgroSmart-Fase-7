@@ -1,0 +1,38 @@
+﻿== docker build a partir do ZIP extraído ==
+#19 DONE 4.9s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/60q5xivwpz2nzyor3elr3elwk
+== container limpo: carga inicial + 1 ciclo (backend filesystem, sem broker) ==
+
+14:49:37 INFO     etapa simular    ok      59.9s {'arquivos': 3149, 'registros': 34794, 'defeitos': 406}               
+                     
+14:51:01 INFO     etapa ingerir    ok      83.3s {'lotes': 3081, 'gravados': 3081, 'atualizados': 0, 'pulados': 0, 
+'rejeitados': 0,         
+14:51:38 INFO     etapa silver     ok      33.2s {'lidos': 34794, 'aprovados': 34208, 'quarentena': 405, 
+'substituidos': 181,               
+14:52:01 INFO     etapa gold       ok      21.3s {'tabelas': 14, 'puladas': 0}                                         
+                     
+14:52:26 INFO     etapa catalogo   ok      24.4s {'fontes': 6, 'tabelas_gold': 14}                                     
+                     
+14:52:26 INFO     etapa decidir    ok       0.3s {'data_ref': '2026-09-01', 'talhoes': 6, 'acoes': 3, 'comandos': 1}   
+                     
+14:52:26 INFO     carga-20261118T144835-6807 ok em 231.8s · simular=ok ingerir=ok silver=ok gold=ok catalogo=ok 
+copiloto=pulada decidir=ok  
+14:52:41 INFO     etapa ingerir    ok      14.9s {'lotes': 3081, 'gravados': 0, 'atualizados': 0, 'pulados': 3081, 
+'rejeitados': 0,         
+14:53:11 INFO     etapa silver     ok      30.1s {'lidos': 34794, 'aprovados': 34208, 'quarentena': 405, 
+'substituidos': 181,               
+14:53:15 INFO     etapa gold       ok       3.1s {'tabelas': 14, 'puladas': 0}                                         
+                     
+14:53:44 INFO     etapa catalogo   ok      29.8s {'fontes': 6, 'tabelas_gold': 14}                                     
+                     
+14:53:45 INFO     etapa decidir    ok       0.4s {'data_ref': '2026-09-01', 'talhoes': 6, 'acoes': 3, 'comandos': 1}   
+                     
+14:53:45 INFO     ciclo-20261118T145226-9e19 ok em 78.3s · simular=pulada ingerir=ok silver=ok gold=ok catalogo=ok 
+copiloto=pulada          
+✔ worker encerrado · ciclos {'ok': 2} · média 155.05s · status em outputs/status/operacao.json
+
+
+
+== pytest sobre o código extraído do ZIP (PYTHONPATH=<zip>/src) ==
+ [exited with code 0]
