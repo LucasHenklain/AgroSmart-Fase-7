@@ -30,7 +30,7 @@ Cada item do enunciado → artefato no pacote. Tudo foi executado nesta máquina
 | Análise de vulnerabilidades | bandit (SAST) · pip-audit (SCA) · trivy (imagem) |
 | Arquivos de configuração | `Dockerfile`, `.dockerignore`, `infra/docker-compose.yml`, `.github/workflows/devsecops.yml`, `.github/dependabot.yml` |
 | Descrição | `docs/fase7/03-pipeline-devsecops.md` |
-| Evidência de execução | `outputs/pipeline/<execução>/` (logs e artefatos por estágio) · `outputs/pipeline/ultimo/resumo.md` · execução reprovada anterior guardada como "antes" |
+| Evidência de execução | GitHub Actions `devsecops #2` aprovado (https://github.com/LucasHenklain/AgroSmart-Fase-7/actions · `outputs/prints/fase7-03-github-actions-run2.png`) · `outputs/pipeline/<execução>/` (logs e artefatos por estágio) · `outputs/pipeline/ultimo/resumo.md` · execução reprovada anterior guardada como "antes" |
 
 ## 4. Monitoramento e execução automatizada (10 %)
 

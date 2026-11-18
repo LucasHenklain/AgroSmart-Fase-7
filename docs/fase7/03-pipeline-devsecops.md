@@ -1,10 +1,9 @@
 # 03 — Pipeline DevSecOps (build, container, qualidade e vulnerabilidades)
 
-> **Situação da evidência.** O repositório ainda **não tem remoto**: o workflow
-> `.github/workflows/devsecops.yml` está pronto, mas **ainda não rodou no GitHub**.
-> Toda a evidência deste documento vem do **runner local** (`scripts/pipeline_local.py`),
-> que executa os mesmos estágios, com os mesmos comandos e os mesmos critérios de falha,
-> e grava logs e artefatos reais em `outputs/pipeline/`.
+> **Situação da evidência.** O pipeline roda nos **dois lugares**: no **GitHub Actions**
+> do repositório público <https://github.com/LucasHenklain/AgroSmart-Fase-7> (execução
+> `devsecops #2` aprovada, ver §5.4) e no **runner local** (`scripts/pipeline_local.py`), que
+> executa os mesmos estágios com os mesmos critérios e grava logs e artefatos em `outputs/pipeline/`.
 
 ## 1. Objetivo
 
@@ -146,6 +145,31 @@ Duração total 1.684,5 s.
 | sca | ✅ | 57,4 | **0 vulnerabilidades** em 66 dependências |
 | build | ✅ | 445,9 | imagem **292,5 MB**, usuário `10001:10001`, smoke tests OK |
 | imagem | ✅ | 166,9 | Debian 13.7 · **0 CRITICAL** · 47 HIGH · 92 MEDIUM · 65 LOW · 20 UNKNOWN — **0 com correção disponível** |
+
+### 5.4 Execução no GitHub Actions — `devsecops #2` (PASSOU)
+
+<https://github.com/LucasHenklain/AgroSmart-Fase-7/actions/runs/44336326618> · disparada pelo
+push do commit `0ad719a` na `main` em 18/11/2026 · **Success em 4 min 49 s** · print em
+`outputs/prints/fase7-03-github-actions-run2.png`.
+
+| Job | Resultado | Duração |
+|---|---|---|
+| Qualidade de código (ruff + complexidade) | ✅ | 12 s |
+| Testes + cobertura | ✅ | 1 min 42 s |
+| SAST (bandit) — SARIF enviado ao Code Scanning | ✅ | 25 s |
+| SCA (pip-audit) | ✅ | 40 s |
+| Build da imagem + smoke test | ✅ | 3 min 35 s |
+| Scan da imagem (Trivy) — SARIF enviado ao Code Scanning | ✅ | 48 s |
+| SonarCloud configurado? → SonarCloud (opcional) | pulado (sem `SONAR_TOKEN`) | — |
+
+Artefatos publicados: `testes-relatorios` (junit + coverage.xml), `sast-bandit`, `sca-pip-audit`,
+`imagem-ci` (278 MB), `imagem-trivy` e o registro do build. A execução #1 (push anterior) foi
+**cancelada pelo próprio workflow** (`concurrency` com `cancel-in-progress`) quando o segundo push
+chegou — comportamento esperado. No mesmo push o **Dependabot** rodou e abriu 5 PRs de atualização
+das actions (`setup-buildx-action` 4, `upload-artifact` 7, `download-artifact` 8,
+`codeql-action` 4, `sonarqube-scan-action` 8), cada um validado pelo mesmo pipeline. Avisos do run:
+actions em Node.js 20 (resolvidos pelos PRs do Dependabot) e uma falha não bloqueante ao salvar o
+cache do banco do Trivy.
 
 As vulnerabilidades restantes da imagem são do Debian 13 **sem correção publicada**
 (`--ignore-unfixed`); o gate só reprova CRITICAL corrigível e o agendamento semanal
