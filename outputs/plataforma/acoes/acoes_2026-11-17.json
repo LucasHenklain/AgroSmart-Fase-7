@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-17T20:51:20+00:00",
+  "gerado_em": "2026-11-18T00:00:09+00:00",
   "data_ref": "2026-11-17",
   "fonte": "gold.fato_balanco_hidrico + fato_leitura_diaria_talhao + dim_sensor",
   "resumo": {
@@ -25,9 +25,9 @@
         "area_ha": 18.6,
         "irrigado": true,
         "dia_leitura": "2026-11-17",
-        "umidade_media_pct": 25.68,
-        "fracao_agua_disponivel": 0.538,
-        "deficit_mm": 25.0,
+        "umidade_media_pct": 25.61,
+        "fracao_agua_disponivel": 0.534,
+        "deficit_mm": 25.2,
         "estadio": "R6",
         "estadio_critico_para_agua": false,
         "estresse_hidrico": false,
@@ -37,7 +37,7 @@
         "ur_media_7d_pct": null,
         "temp_media_7d_c": null,
         "sensores": 2,
-        "bateria_min_pct": 97.9,
+        "bateria_min_pct": 95.5,
         "cobertura_min_7d_pct": null,
         "acoes": 0
       }
@@ -51,9 +51,9 @@
         "area_ha": 12.4,
         "irrigado": true,
         "dia_leitura": "2026-11-17",
-        "umidade_media_pct": 28.55,
-        "fracao_agua_disponivel": 0.915,
-        "deficit_mm": 4.3,
+        "umidade_media_pct": 29.14,
+        "fracao_agua_disponivel": 0.949,
+        "deficit_mm": 2.6,
         "estadio": "R6",
         "estadio_critico_para_agua": false,
         "estresse_hidrico": false,
@@ -63,7 +63,7 @@
         "ur_media_7d_pct": null,
         "temp_media_7d_c": null,
         "sensores": 2,
-        "bateria_min_pct": 93.9,
+        "bateria_min_pct": 91.5,
         "cobertura_min_7d_pct": null,
         "acoes": 0
       }
@@ -77,9 +77,9 @@
         "area_ha": 9.8,
         "irrigado": true,
         "dia_leitura": "2026-11-17",
-        "umidade_media_pct": 30.04,
-        "fracao_agua_disponivel": 0.669,
-        "deficit_mm": 17.9,
+        "umidade_media_pct": 29.98,
+        "fracao_agua_disponivel": 0.666,
+        "deficit_mm": 18.1,
         "estadio": "R9",
         "estadio_critico_para_agua": false,
         "estresse_hidrico": false,
@@ -89,7 +89,7 @@
         "ur_media_7d_pct": null,
         "temp_media_7d_c": null,
         "sensores": 2,
-        "bateria_min_pct": 93.0,
+        "bateria_min_pct": 92.5,
         "cobertura_min_7d_pct": null,
         "acoes": 0
       }
@@ -103,9 +103,9 @@
         "area_ha": 22.0,
         "irrigado": true,
         "dia_leitura": "2026-11-17",
-        "umidade_media_pct": 28.06,
-        "fracao_agua_disponivel": 0.827,
-        "deficit_mm": 8.8,
+        "umidade_media_pct": 28.14,
+        "fracao_agua_disponivel": 0.832,
+        "deficit_mm": 8.6,
         "estadio": "maturacao",
         "estadio_critico_para_agua": false,
         "estresse_hidrico": false,
@@ -115,7 +115,7 @@
         "ur_media_7d_pct": null,
         "temp_media_7d_c": null,
         "sensores": 2,
-        "bateria_min_pct": 97.9,
+        "bateria_min_pct": 95.5,
         "cobertura_min_7d_pct": null,
         "acoes": 0
       }
@@ -129,7 +129,7 @@
         "area_ha": 7.5,
         "irrigado": true,
         "dia_leitura": "2026-11-17",
-        "umidade_media_pct": 29.09,
+        "umidade_media_pct": 29.1,
         "fracao_agua_disponivel": 0.783,
         "deficit_mm": 11.7,
         "estadio": "chumbinho",
@@ -141,7 +141,7 @@
         "ur_media_7d_pct": null,
         "temp_media_7d_c": null,
         "sensores": 2,
-        "bateria_min_pct": 93.9,
+        "bateria_min_pct": 91.5,
         "cobertura_min_7d_pct": null,
         "acoes": 0
       }
@@ -155,9 +155,9 @@
         "area_ha": 41.3,
         "irrigado": false,
         "dia_leitura": "2026-11-17",
-        "umidade_media_pct": 11.85,
+        "umidade_media_pct": 11.94,
         "fracao_agua_disponivel": 0.0,
-        "deficit_mm": 51.5,
+        "deficit_mm": 51.2,
         "estadio": "maturacao",
         "estadio_critico_para_agua": false,
         "estresse_hidrico": true,
@@ -167,7 +167,7 @@
         "ur_media_7d_pct": null,
         "temp_media_7d_c": null,
         "sensores": 2,
-        "bateria_min_pct": 94.9,
+        "bateria_min_pct": 92.5,
         "cobertura_min_7d_pct": null,
         "acoes": 1
       }
@@ -183,11 +183,11 @@
       "parametros": {
         "motivo_tecnico": "sinal_fraco",
         "rssi_medio_dbm": -90.1,
-        "leituras_sinal_fraco": 496,
+        "leituras_sinal_fraco": 700,
         "fracao_sinal_fraco": 0.09,
         "limiar_rssi_dbm": -95
       },
-      "motivo": "Sensor SNS-0602 com sinal médio de -90,1 dBm e 496 leitura(s) abaixo de -95 dBm (fração 0,090): reposicionar antena ou gateway para evitar perda de leituras.",
+      "motivo": "Sensor SNS-0602 com sinal médio de -90,1 dBm e 700 leitura(s) abaixo de -95 dBm (fração 0,090): reposicionar antena ou gateway para evitar perda de leituras.",
       "evidencias": [
         "dim_sensor:SNS-0602:2026-11-17"
       ],

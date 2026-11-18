@@ -1,9 +1,10 @@
-﻿$ docker compose -f infra/docker-compose.yml ps  (2026-11-17T17:18:43Z)
-NAME                     IMAGE                                                                     STATUS                    PORTS
-agrosmart-dashboard      sha256:4857e85d1c596b0157602e84fcac8c872f9b9bbb9eda04b266cf5dcb1acfa4f4   Up 3 hours (healthy)      8000/tcp, 127.0.0.1:8501->8501/tcp
-agrosmart-dispositivos   sha256:9e20b0d45118315d1dbe50f1f070c5ac4d9b2613fae34a424b819781ef746444   Up 4 hours                8000/tcp, 8501/tcp
-agrosmart-grafana        grafana/grafana:12.1.1                                                    Up 4 hours                127.0.0.1:3000->3000/tcp
-agrosmart-minio          minio/minio:latest                                                        Up 55 minutes (healthy)   0.0.0.0:9000-9001->9000-9001/tcp
-agrosmart-mosquitto      eclipse-mosquitto:2                                                       Up 47 minutes (healthy)   0.0.0.0:1883->1883/tcp
-agrosmart-prometheus     prom/prometheus:v3.5.0                                                    Up 4 hours                127.0.0.1:9090->9090/tcp
-agrosmart-worker         agrosmart:7.0.0                                                           Up 2 minutes (healthy)    127.0.0.1:8000->8000/tcp, 8501/tcp
+﻿$ docker compose -f infra/docker-compose.yml ps  (2026-11-18T12:59:42Z)
+NAME                     IMAGE                                                                     STATUS                  PORTS
+agrosmart-dashboard      sha256:4857e85d1c596b0157602e84fcac8c872f9b9bbb9eda04b266cf5dcb1acfa4f4   Up 22 hours (healthy)   8000/tcp, 127.0.0.1:8501->8501/tcp
+agrosmart-dispositivos   sha256:9e20b0d45118315d1dbe50f1f070c5ac4d9b2613fae34a424b819781ef746444   Up 23 hours             8000/tcp, 8501/tcp
+agrosmart-gateway        sha256:9e20b0d45118315d1dbe50f1f070c5ac4d9b2613fae34a424b819781ef746444   Up 16 hours             8000/tcp, 8501/tcp
+agrosmart-grafana        grafana/grafana:12.1.1                                                    Up 24 hours             127.0.0.1:3000->3000/tcp
+agrosmart-minio          minio/minio:latest                                                        Up 21 hours (healthy)   0.0.0.0:9000-9001->9000-9001/tcp
+agrosmart-mosquitto      eclipse-mosquitto:2                                                       Up 20 hours (healthy)   0.0.0.0:1883->1883/tcp
+agrosmart-prometheus     prom/prometheus:v3.5.0                                                    Up 24 hours             127.0.0.1:9090->9090/tcp
+agrosmart-worker         agrosmart:7.0.0                                                           Up 20 hours (healthy)   127.0.0.1:8000->8000/tcp, 8501/tcp
