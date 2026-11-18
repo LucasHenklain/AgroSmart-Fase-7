@@ -132,6 +132,21 @@ longos).
 | build | ✅ | 464,4 | imagem **292,5 MB**, usuário `10001:10001`; smoke `versao` → `agrosmart 7.0.0 · python 3.13.18`; `doctor`, `init + contratos` OK; `uid 10001 pip False` |
 | imagem | ✅ | 241,3 | Debian 13.7 · **0 CRITICAL** · 47 HIGH · 92 MEDIUM · 65 LOW · 5 UNKNOWN — **0 com correção disponível** em qualquer severidade |
 
+### 5.3 Execução final, sobre o código entregue — `outputs/pipeline/20261118T110823/` (PASSOU)
+
+Rodada no commit `14b3d16` (depois da correção do `/metrics`, do comando `processos`, do
+empacotador `--fase 7` e dos testes de operação); é a que está em `outputs/pipeline/ultimo/`.
+Duração total 1.684,5 s.
+
+| Estágio | Status | Duração (s) | Números |
+|---|---|---:|---|
+| qualidade | ✅ | 3,9 | lint e formatação limpos; complexidade máxima ≤ 30; 3 funções acima de 20 (alerta) |
+| testes | ✅ | 964,9 | **263 testes, 263 passaram**, 0 falhas, 0 pulados; cobertura **84,94 % linhas / 74,46 % ramos** (mínimo 70 %) |
+| sast | ✅ | 44,7 | **0 HIGH** · 1 MEDIUM · 3 LOW; 5 `# nosec` justificados; 16.056 linhas analisadas |
+| sca | ✅ | 57,4 | **0 vulnerabilidades** em 66 dependências |
+| build | ✅ | 445,9 | imagem **292,5 MB**, usuário `10001:10001`, smoke tests OK |
+| imagem | ✅ | 166,9 | Debian 13.7 · **0 CRITICAL** · 47 HIGH · 92 MEDIUM · 65 LOW · 20 UNKNOWN — **0 com correção disponível** |
+
 As vulnerabilidades restantes da imagem são do Debian 13 **sem correção publicada**
 (`--ignore-unfixed`); o gate só reprova CRITICAL corrigível e o agendamento semanal
 refaz o scan para pegar as correções quando saírem. Localmente o `bandit.sarif` não é

@@ -1,11 +1,11 @@
 {
-  "execucao": "20261117T134927",
-  "pasta": "outputs/pipeline/20261117T134927",
-  "commit": "e2aaa74",
-  "sujo": true,
+  "execucao": "20261118T110823",
+  "pasta": "outputs/pipeline/20261118T110823",
+  "commit": "14b3d16",
+  "sujo": false,
   "host": "Windows 11",
   "python": "3.13.1",
-  "duracao_s": 1620.7,
+  "duracao_s": 1684.5,
   "ca_corporativa": true,
   "criterios": {
     "complexidade_max": 30,
@@ -19,7 +19,7 @@
     {
       "estagio": "qualidade",
       "status": "passou",
-      "duracao_s": 11.0,
+      "duracao_s": 3.9,
       "log": "01-qualidade.log",
       "numeros": {
         "funcoes_complexidade_acima_alerta": 3,
@@ -31,19 +31,19 @@
     {
       "estagio": "testes",
       "status": "passou",
-      "duracao_s": 684.9,
+      "duracao_s": 964.9,
       "log": "02-testes.log",
       "numeros": {
-        "testes_total": 262,
-        "testes_passados": 262,
+        "testes_total": 263,
+        "testes_passados": 263,
         "testes_falhas": 0,
         "testes_erros": 0,
         "testes_pulados": 0,
-        "testes_tempo_s": 641.8,
-        "cobertura_linhas_pct": 85.1,
-        "cobertura_ramos_pct": 74.75,
-        "linhas_validas": 7484,
-        "linhas_cobertas": 6369,
+        "testes_tempo_s": 944.3,
+        "cobertura_linhas_pct": 84.94,
+        "cobertura_ramos_pct": 74.46,
+        "linhas_validas": 7511,
+        "linhas_cobertas": 6380,
         "cobertura_minima_pct": 70
       },
       "motivo": ""
@@ -51,7 +51,7 @@
     {
       "estagio": "sast",
       "status": "passou",
-      "duracao_s": 167.5,
+      "duracao_s": 44.7,
       "log": "03-sast.log",
       "numeros": {
         "bandit_high": 0,
@@ -64,14 +64,14 @@
           "B406": 1
         },
         "bandit_nosec_justificados": 5,
-        "bandit_linhas_analisadas": 15980
+        "bandit_linhas_analisadas": 16056
       },
       "motivo": ""
     },
     {
       "estagio": "sca",
       "status": "passou",
-      "duracao_s": 50.0,
+      "duracao_s": 57.4,
       "log": "04-sca.log",
       "numeros": {
         "pip_audit_vulnerabilidades": 0,
@@ -84,10 +84,10 @@
     {
       "estagio": "build",
       "status": "passou",
-      "duracao_s": 464.4,
+      "duracao_s": 445.9,
       "log": "05-build.log",
       "numeros": {
-        "imagem_bytes": 292450509,
+        "imagem_bytes": 292546962,
         "imagem_mb": 292.5,
         "imagem_usuario": "10001:10001"
       },
@@ -96,7 +96,7 @@
     {
       "estagio": "imagem",
       "status": "passou",
-      "duracao_s": 241.3,
+      "duracao_s": 166.9,
       "log": "06-imagem.log",
       "numeros": {
         "trivy_por_severidade": {
@@ -104,7 +104,7 @@
           "HIGH": 47,
           "MEDIUM": 92,
           "LOW": 65,
-          "UNKNOWN": 5
+          "UNKNOWN": 20
         },
         "trivy_corrigiveis_por_severidade": {
           "CRITICAL": 0,
@@ -113,7 +113,7 @@
           "LOW": 0,
           "UNKNOWN": 0
         },
-        "trivy_total": 209,
+        "trivy_total": 224,
         "imagem_so": "debian 13.7"
       },
       "motivo": ""
