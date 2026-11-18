@@ -32,8 +32,8 @@ from pathlib import Path
 
 from agrosmart.config import Config, carregar_config
 
-FASE_PADRAO = 6
-FASES_CONHECIDAS: frozenset[int] = frozenset({5, 6})
+FASE_PADRAO = 7
+FASES_CONHECIDAS: frozenset[int] = frozenset({5, 6, 7})
 INCLUIR: tuple[str, ...] = (
     "README.md",
     "pyproject.toml",
@@ -55,6 +55,20 @@ INCLUIR: tuple[str, ...] = (
 INCLUIR_POR_FASE: dict[int, tuple[str, ...]] = {
     5: (),
     6: ("firmware", "outputs/acoes"),
+    # Fase 7: plataforma em containers, DevSecOps, monitoramento e mineração de processos.
+    7: (
+        "firmware",
+        "outputs/acoes",
+        "outputs/processos",
+        "outputs/plataforma",
+        "outputs/pipeline",
+        ".github",
+        "Dockerfile",
+        ".dockerignore",
+        "sonar-project.properties",
+        ".trivyignore",
+        ".pip-audit-ignore",
+    ),
 }
 INCLUIR_ARQUIVOS_OUTPUTS: tuple[str, ...] = (
     "simulacao.json",
@@ -66,7 +80,16 @@ INCLUIR_ARQUIVOS_OUTPUTS: tuple[str, ...] = (
     "run.json",
 )
 EXCLUIR_PARTES: frozenset[str] = frozenset(
-    {"__pycache__", ".pytest_cache", ".ruff_cache", ".venv", "venv", ".git", "node_modules"}
+    {
+        ".git",
+        ".pytest_cache",
+        ".ruff_cache",
+        ".venv",
+        "venv",
+        "__pycache__",
+        "node_modules",
+        "_work",
+    }
 )
 EXCLUIR_SUFIXOS: frozenset[str] = frozenset({".pyc", ".pyo", ".zip", ".rar"})
 SUFIXOS_VIDEO: frozenset[str] = frozenset({".mp4", ".mov", ".mkv", ".webm", ".avi"})
@@ -85,6 +108,7 @@ DOCUMENTOS_POR_FASE: dict[int, tuple[str, ...]] = {
         "fase6/04-*.md",
         "fase6/05-*.md",
     ),
+    7: tuple(f"fase7/0{n}-*.md" for n in range(1, 7)),
 }
 MARCA_PENDENTE = "_a preencher_"
 LIMITE_AVISO_ZIP_MB = 100
@@ -262,6 +286,26 @@ def verificar_pre_requisitos(raiz: Path, fase: int = FASE_PADRAO) -> list[str]:
             avisos.append("outputs/acoes sem acoes_<data>.json — rodar `agrosmart automacao`")
         if not (raiz / "firmware").is_dir():
             avisos.append("firmware/ ausente — o código do ESP32 (Wokwi) precisa estar no zip")
+    if fase == 7:
+        exigidos = {
+            "outputs/prints/fase7-*.png": "prints da Fase 7 (python scripts/capturar_operacao.py)",
+            "outputs/processos/event_log.csv": "event log (agrosmart processos)",
+            "outputs/processos/event_log.xes": "event log XES (agrosmart processos)",
+            "outputs/pipeline/ultimo/resumo.json": "evidência do pipeline (pipeline_local.py)",
+            "entrega/pitch/slides-pitch-agrosmart.pdf": "slides do pitch",
+            ".github/workflows/*.yml": "workflow do GitHub Actions",
+            "Dockerfile": "Dockerfile",
+        }
+        for padrao, descricao in exigidos.items():
+            if not list(raiz.glob(padrao)):
+                avisos.append(f"{padrao} ausente — {descricao}")
+        if not any("pitch" in p.name.lower() for p in videos_da_entrega(raiz, fase)) and (
+            "pitch" not in texto_link.lower()
+        ):
+            avisos.append(
+                "vídeo pitch ausente: nenhum entrega/*pitch*fase7*.mp4 e sem link 'pitch' em "
+                "entrega/LINK_VIDEO.txt"
+            )
     return avisos
 
 

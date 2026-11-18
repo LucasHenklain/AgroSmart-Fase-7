@@ -1,11 +1,48 @@
-# AgroSmart — Fase 6
+# AgroSmart — Fase 7 (entrega final)
 
-Plataforma integrada de dados e IA para decisão no campo: coleta IoT (ESP32 + MQTT),
-Data Lake em camadas, automação inteligente que age sobre o gold e dashboard analítico.
-A Fase 5 (Data Lake, ingestão, copiloto de IA e modelo de negócio) continua inteira e
-documentada abaixo; a Fase 6 fecha o ciclo sensor → lake → decisão → atuador.
+Plataforma completa de dados e IA para decisão no campo: coleta IoT (ESP32 + MQTT), Data Lake em
+camadas, automação que age no atuador de irrigação, dashboard — e, na Fase 7, **execução contínua
+em containers**, **monitoramento** (Prometheus + Grafana + alertas), **esteira DevSecOps** e
+**mineração de processos** sobre o próprio ciclo. As Fases 5 e 6 continuam documentadas abaixo.
 
-> Entrega em grupo · PBL Fase 6 · Turma **4ESOA** · prazo 10/10/2026
+> Entrega em grupo · PBL Fase 7 · Turma **4ESOA** · prazo 24/11/2026
+
+## Fase 7 — em um comando
+
+```bash
+docker compose -f infra/docker-compose.yml up -d --build   # 9 serviços: lake, broker, gateway, worker, dashboard, monitoramento
+```
+
+| Abra | Para ver |
+|---|---|
+| <http://localhost:8501/?secao=operacao> | dashboard: gold, Automação e Operação |
+| <http://localhost:3000> | Grafana · painel "AgroSmart · Operação da plataforma" |
+| <http://localhost:9090/alerts> | Prometheus · 6 regras de alerta |
+| <http://localhost:8000/status> | worker: saúde, último ciclo, métricas (`/metrics`, `/health`) |
+
+Rede corporativa com inspeção TLS: `AGROSMART_CA_EXTRA=/caminho/ca.pem` antes do `up --build`
+(a CA entra só como *build secret*). Sem Docker: `python -m pip install -e ".[dev,ia,app,iot]"` e
+`agrosmart operar --ciclos 3` (worker no host; MinIO e Mosquitto continuam necessários, ou
+`AGROSMART_BACKEND=filesystem`).
+
+![Arquitetura final](docs/diagramas/arquitetura-fase7.png)
+
+| Requisito (peso) | Onde está |
+|---|---|
+| 1. Arquitetura final (15 %) | `docs/fase7/01-arquitetura-final.md`, `docs/diagramas/arquitetura-fase7.{svg,png}` |
+| 2. Execução da plataforma (20 %) | `docs/fase7/02-execucao-plataforma.md`, `infra/docker-compose.yml`, `src/agrosmart/operacao/`, `outputs/plataforma/`, `outputs/prints/fase7-02-*` |
+| 3. Pipeline DevSecOps (20 %) | `docs/fase7/03-pipeline-devsecops.md`, `Dockerfile`, `.github/workflows/devsecops.yml`, `scripts/pipeline_local.py`, `outputs/pipeline/` |
+| 4. Monitoramento e execução automatizada (10 %) | `docs/fase7/04-monitoramento.md`, `infra/monitoramento/`, `outputs/prints/fase7-04-*`, `outputs/prints/timelapse/` |
+| 5. Análise de processo + demonstração (25 %) | `docs/fase7/05-analise-de-processos.md`, `src/agrosmart/mineracao/`, `outputs/processos/`, `data/exemplos/fase7/event_log_exemplo.csv`, `entrega/apresentacao-agrosmart-fase7-4ESOA.mp4` |
+| 6. Pitch e visão de produto (10 %) | `docs/fase7/06-pitch-visao-produto.md`, `entrega/pitch/`, `entrega/pitch-agrosmart-fase7-4ESOA.mp4` |
+
+Checklist da rubrica: [`entrega/CHECKLIST-RUBRICA-FASE7.md`](entrega/CHECKLIST-RUBRICA-FASE7.md) ·
+PDFs em `docs/pdf/fase7/` · links dos vídeos em `entrega/LINK_VIDEO.txt`.
+
+Comandos novos: `agrosmart operar` (worker contínuo, `--incremental`), `agrosmart status [--url]`,
+`agrosmart processos` (mineração de processos), `python scripts/pipeline_local.py` (pipeline DevSecOps
+local), `python scripts/injetar_falhas.py` (experimento de falhas), `python scripts/capturar_operacao.py`
+(prints), `agrosmart empacotar --fase 7`.
 
 ## Equipe
 
@@ -17,7 +54,7 @@ documentada abaixo; a Fase 6 fecha o ciclo sensor → lake → decisão → atua
 | Lucas Henklain | 99350 |
 | Vinicius Pinheiro | 99198 |
 
-Zip da entrega: `lucasmoraeshenklaindasilva_99350_4ESOA_fase6_atividade.zip` (gerado por `agrosmart empacotar --fase 6`).
+Zip da entrega: `lucasmoraeshenklaindasilva_99350_4ESOA_fase7_atividade.zip` (gerado por `agrosmart empacotar --fase 7`; `--fase 6` e `--fase 5` reproduzem as entregas anteriores).
 
 ## Fase 6 — o que foi entregue
 

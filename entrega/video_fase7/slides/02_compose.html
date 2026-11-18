@@ -1,0 +1,21 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Execução · um comando sobe a plataforma inteira</div>
+  <h2>docker compose up — 9 serviços, 1 imagem da aplicação</h2>
+<pre class="term" style="font-size:22px"><span class="p">$</span> docker compose -f infra/docker-compose.yml up -d --build
+<span class="p">$</span> docker compose -f infra/docker-compose.yml ps        <span class="d"># saída real, 18/11/2026 12:59 UTC</span>
+<span class="k">NAME                     IMAGE                    STATUS                  PORTS</span>
+agrosmart-dashboard      agrosmart:7.0.0          Up 22 hours <span class="ok">(healthy)</span>   127.0.0.1:8501->8501
+agrosmart-dispositivos   agrosmart:7.0.0          Up 23 hours             <span class="d">(emulador · SIMULAÇÃO)</span>
+agrosmart-gateway        agrosmart:7.0.0          Up 16 hours             <span class="d">(MQTT → landing)</span>
+agrosmart-grafana        grafana/grafana:12.1.1   Up 24 hours             127.0.0.1:3000->3000
+agrosmart-minio          minio/minio:latest       Up 21 hours <span class="ok">(healthy)</span>   9000-9001
+agrosmart-mosquitto      eclipse-mosquitto:2      Up 20 hours <span class="ok">(healthy)</span>   1883
+agrosmart-prometheus     prom/prometheus:v3.5.0   Up 24 hours             127.0.0.1:9090->9090
+agrosmart-worker         agrosmart:7.0.0          Up 20 hours <span class="ok">(healthy)</span>   127.0.0.1:8000->8000
+
+<span class="p">$</span> agrosmart status --url http://localhost:8000/status
+<span class="ok">✔ saudável</span> · modo incremental (v2) · intervalo 60s · ciclos {'ok': 1183} · média 11,1 s</pre>
+  <p style="font-size:26px;color:#C8D9CF;margin-top:22px">Imagem multi-stage, usuário sem privilégio (UID 10001), sem pip, <b>cap_drop ALL</b>, <b>no-new-privileges</b>, init (tini) · portas só em 127.0.0.1.</p>
+  <div class="rodape"><span>outputs/prints/fase7-02-compose-ps.txt · fase7-04-agrosmart-status.txt</span><span>AgroSmart · Fase 7</span></div>
+</div></body></html>

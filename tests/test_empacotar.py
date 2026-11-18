@@ -21,9 +21,9 @@ from tests.conftest import fabricar_config
 
 
 def test_nome_do_zip_segue_o_padrao_da_plataforma() -> None:
-    assert FASE_PADRAO == 6
+    assert FASE_PADRAO == 7
     assert nome_do_zip("Lucas Moraes Henklain da Silva", "99350", "4ESOA") == (
-        "lucasmoraeshenklaindasilva_99350_4ESOA_fase6_atividade.zip"
+        "lucasmoraeshenklaindasilva_99350_4ESOA_fase7_atividade.zip"
     )
     assert nome_do_zip("Lucas Moraes Henklain da Silva", "99350", "4ESOA", fase=5) == (
         "lucasmoraeshenklaindasilva_99350_4ESOA_fase5_atividade.zip"
@@ -39,7 +39,7 @@ def test_nome_invalido_e_recusado() -> None:
     with pytest.raises(ErroEmpacotamento, match="RM"):
         nome_do_zip("Lucas", "", "1TDSA")
     with pytest.raises(ErroEmpacotamento, match="fase"):
-        nome_do_zip("Lucas", "RM1", "1TDSA", fase=7)
+        nome_do_zip("Lucas", "RM1", "1TDSA", fase=8)
 
 
 def test_selecao_inclui_artefatos_e_exclui_ambiente_e_lake() -> None:
@@ -131,14 +131,14 @@ def test_pre_requisitos_da_fase6_apontam_o_que_falta(tmp_path: Path) -> None:
 def test_empacota_testa_e_inventaria(tmp_path: Path) -> None:
     cfg = fabricar_config(RAIZ_PROJETO)
     resultado = empacotar("Equipe AgroSmart", "RM000", "1TDSA", config=cfg, pasta_saida=tmp_path)
-    assert resultado.destino.name == "equipeagrosmart_RM000_1TDSA_fase6_atividade.zip"
-    assert resultado.fase == 6
+    assert resultado.destino.name == "equipeagrosmart_RM000_1TDSA_fase7_atividade.zip"
+    assert resultado.fase == 7
     assert resultado.integridade_ok
     assert resultado.bytes_zip < resultado.bytes_originais
     with zipfile.ZipFile(resultado.destino) as zf:
         nomes = zf.namelist()
         assert "ENTREGA.json" in nomes and "README.md" in nomes
-        assert '"fase": 6' in zf.read("ENTREGA.json").decode("utf-8")
+        assert '"fase": 7' in zf.read("ENTREGA.json").decode("utf-8")
         assert zf.testzip() is None
     inventario = (tmp_path / "CONTEUDO_DO_ZIP.txt").read_text(encoding="utf-8")
     assert "README.md" in inventario and str(resultado.arquivos) in inventario
@@ -158,3 +158,37 @@ def test_simulacao_nao_grava_nada(tmp_path: Path) -> None:
     resultado = empacotar("Equipe", "RM1", "T1", config=cfg, pasta_saida=tmp_path, simular=True)
     assert resultado.arquivos > 50 and resultado.bytes_zip == 0
     assert not resultado.destino.exists()
+
+
+def test_fase7_inclui_devsecops_processos_e_exclui_intermediarios(tmp_path: Path) -> None:
+    raiz = tmp_path
+    for relativo in (
+        "Dockerfile",
+        ".github/workflows/devsecops.yml",
+        "outputs/processos/event_log.csv",
+        "outputs/pipeline/ultimo/resumo.json",
+        "outputs/plataforma/eventos.jsonl",
+        "entrega/video_fase7/_work/slide_01.png",
+        "entrega/video_fase7/telas/grafana.webm",
+        "docs/fase7/01-arquitetura-final.md",
+    ):
+        caminho = raiz / relativo
+        caminho.parent.mkdir(parents=True, exist_ok=True)
+        caminho.write_text("x", encoding="utf-8")
+    fase7 = {p.relative_to(raiz).as_posix() for p in selecionar_arquivos(raiz, fase=7)}
+    fase6 = {p.relative_to(raiz).as_posix() for p in selecionar_arquivos(raiz, fase=6)}
+    for esperado in (
+        "Dockerfile",
+        ".github/workflows/devsecops.yml",
+        "outputs/processos/event_log.csv",
+        "outputs/pipeline/ultimo/resumo.json",
+        "outputs/plataforma/eventos.jsonl",
+        "docs/fase7/01-arquitetura-final.md",
+    ):
+        assert esperado in fase7
+    assert "entrega/video_fase7/_work/slide_01.png" not in fase7
+    assert "entrega/video_fase7/telas/grafana.webm" not in fase7
+    assert "Dockerfile" not in fase6
+    avisos = verificar_pre_requisitos(raiz, fase=7)
+    assert any("event_log.xes" in a for a in avisos)
+    assert any("pitch" in a for a in avisos)

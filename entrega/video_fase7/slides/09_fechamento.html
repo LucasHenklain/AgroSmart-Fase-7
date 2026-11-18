@@ -1,0 +1,18 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Oportunidades priorizadas pela análise de processo</div>
+  <h2>Próximas melhorias — todas com evidência no event log</h2>
+  <div class="grid2">
+    <div class="card"><h3>Desempenho</h3><ul>
+      <li>partição horária / watermark no silver (gargalo remanescente)</li>
+      <li>limites de CPU por serviço (cauda p95)</li>
+      <li>intervalo do worker 60 s → 30 s</li></ul></div>
+    <div class="card"><h3>Confiabilidade</h3><ul>
+      <li>lock de dependências (classe "deriva de versão")</li>
+      <li>retentativa com backoff + health-check do lake (MTTR)</li>
+      <li>idempotência do comando por talhão</li>
+      <li>decidir só com dado fresco (falha silenciosa do broker)</li></ul></div>
+  </div>
+  <p class="lead">O AgroSmart termina como produto: <b>coleta</b>, <b>confia</b> no dado, <b>decide</b>, <b>age</b>, <b>se monitora</b> e <b>melhora</b> com evidência.</p>
+  <div class="rodape"><span>Lucas Dalmas · Lucas Emanuel · Kayque Moraes · Lucas Henklain · Vinicius Pinheiro</span><span>AgroSmart · 4ESOA</span></div>
+</div></body></html>

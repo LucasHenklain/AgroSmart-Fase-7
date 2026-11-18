@@ -1,1 +1,12 @@
-[A PREENCHER]
+AgroSmart · Fase 7 · Turma 4ESOA — vídeos
+
+Os arquivos dos vídeos estão neste pacote, em entrega/:
+- vídeo final (demonstração, 5–8 min): entrega/apresentacao-agrosmart-fase7-4ESOA.mp4
+- vídeo pitch (até 5 min):              entrega/pitch-agrosmart-fase7-4ESOA.mp4
+- slides do pitch:                      entrega/pitch/slides-pitch-agrosmart.pdf
+
+Links no YouTube (não listado), para quem preferir assistir online:
+- vídeo final: [A PREENCHER PELA EQUIPE]
+- pitch:       [A PREENCHER PELA EQUIPE]
+
+Repositório: [A PREENCHER PELA EQUIPE — link do GitHub]

@@ -10,8 +10,10 @@ montagem: é a tela do serviço no momento da gravação.
 
 from __future__ import annotations
 
+import json
 import shutil
 import sys
+import time
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
@@ -21,12 +23,24 @@ GRAFANA = "http://127.0.0.1:3000/d/agrosmart-operacao/agrosmart-operacao?orgId=1
 ST = "http://127.0.0.1:8501"
 
 
+PRONTO: dict[str, float] = {}  # roteiro -> segundos até a página ficar pronta (corte do início)
+_T0: dict[str, float] = {}
+
+
+def _marcar(p) -> None:
+    nome = getattr(p, "_roteiro", "")
+    if nome and nome not in PRONTO:
+        PRONTO[nome] = round(time.monotonic() - _T0[nome], 2)
+
+
 def _esperar_streamlit(p):
     p.get_by_text("AgroSmart · Camada de consumo").first.wait_for(timeout=180_000)
     p.wait_for_function(
         "() => !document.querySelector('[data-testid=\"stStatusWidget\"]')", timeout=180_000
     )
-    p.wait_for_timeout(1500)
+    p.wait_for_timeout(6000)  # gráficos Vega/Altair terminam de desenhar
+    p.mouse.move(1150, 600)  # rolagem no conteúdo principal, não na barra lateral
+    _marcar(p)
 
 
 def _rolar(p, passos: int, dy: int = 220, pausa: int = 900, seletor: str | None = None):
@@ -41,6 +55,8 @@ def _rolar(p, passos: int, dy: int = 220, pausa: int = 900, seletor: str | None 
 def grafana(p):
     p.goto(GRAFANA)
     p.wait_for_timeout(9000)
+    p.mouse.move(960, 600)
+    _marcar(p)
     _rolar(p, 10, 160, 1100)
     p.wait_for_timeout(2500)
 
@@ -48,6 +64,7 @@ def grafana(p):
 def prometheus(p):
     p.goto("http://127.0.0.1:9090/alerts")
     p.wait_for_timeout(4000)
+    _marcar(p)
     for texto in ("LandingParada", "CicloFalhando", "WorkerFora"):
         alvo = p.get_by_text(texto).first
         if alvo.count():
@@ -59,11 +76,17 @@ def prometheus(p):
 
 def worker(p):
     p.goto("http://127.0.0.1:8000/status")
-    p.wait_for_timeout(4000)
-    _rolar(p, 4, 260, 1000)
+    p.wait_for_timeout(1500)
+    p.evaluate("document.body.style.zoom = '2.2'")
+    p.mouse.move(960, 600)
+    _marcar(p)
+    p.wait_for_timeout(2500)
+    _rolar(p, 6, 260, 1000)
     p.goto("http://127.0.0.1:8000/metrics")
-    p.wait_for_timeout(3000)
-    _rolar(p, 6, 300, 800)
+    p.wait_for_timeout(800)
+    p.evaluate("document.body.style.zoom = '1.9'")
+    p.wait_for_timeout(2000)
+    _rolar(p, 8, 300, 800)
 
 
 def dashboard_operacao(p):
@@ -94,7 +117,9 @@ def html_local(nome_arquivo: str):
 
     def _gravar(p):
         p.goto((AQUI / nome_arquivo).resolve().as_uri())
-        p.wait_for_timeout(3000)
+        p.wait_for_timeout(2000)
+        p.mouse.move(960, 600)
+        _marcar(p)
         _rolar(p, 12, 240, 1100)
         p.wait_for_timeout(1500)
 
@@ -130,6 +155,8 @@ def main(nomes: list[str]) -> int:
                 record_video_size={"width": W, "height": H},
             )
             pagina = ctx.new_page()
+            _T0[nome] = time.monotonic()
+            pagina._roteiro = nome
             try:
                 ROTEIROS[nome](pagina)
             finally:
@@ -140,6 +167,9 @@ def main(nomes: list[str]) -> int:
             shutil.rmtree(tmp, ignore_errors=True)
             print(f"ok {destino.name} {destino.stat().st_size // 1024} KB", flush=True)
         nav.close()
+    marcas = SAIDA / "marcas.json"
+    atuais = json.loads(marcas.read_text(encoding="utf-8")) if marcas.exists() else {}
+    marcas.write_text(json.dumps({**atuais, **PRONTO}, indent=2), encoding="utf-8")
     return 0
 
 

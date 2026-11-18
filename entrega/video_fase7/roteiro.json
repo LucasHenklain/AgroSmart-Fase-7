@@ -1,0 +1,61 @@
+{
+  "fps": 30, "largura": 1920, "altura": 1080, "fonte_legenda": "Segoe UI", "tamanho_legenda": 38,
+  "cenas": [
+    {"id": "01", "tipo": "sequencia", "audio": "audio/01.mp3", "pausa_fim": 0.6,
+     "narracao": "Somos a equipe AgroSmart, turma 4ESOA, e esta é a entrega final, a Fase 7. O AgroSmart deixa de ser um conjunto de comandos e vira uma plataforma que roda sozinha, monitorada, construída por uma esteira DevSecOps e analisada com mineração de processos. Tudo o que aparece aqui são telas e números reais da plataforma rodando na nossa máquina; onde há simulação, ela está rotulada. Na arquitetura, da esquerda para a direita: os dispositivos de campo publicam por MQTT; o broker entrega ao gateway, que grava a landing; o worker roda o ciclo ingerir, silver, gold, catálogo, decidir e atuar a cada sessenta segundos; o MinIO guarda o data lake; e o dashboard entrega o resultado. Embaixo, a observabilidade, com Prometheus, Grafana e o event log da mineração, e a esteira DevSecOps que produz a imagem.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/01_capa.html", "duracao": 15, "movimento": "zoom_in"},
+       {"tipo": "imagem", "imagem": "img/arquitetura.png", "movimento": "pan_right", "ajuste": "conter", "cor_fundo": "#FBFCFA"}
+     ]},
+    {"id": "02", "tipo": "sequencia", "audio": "audio/02.mp3", "pausa_fim": 0.6,
+     "narracao": "A plataforma sobe com um único comando, docker compose up: nove serviços a partir de uma única imagem da aplicação, multi-stage, rodando como usuário sem privilégio. O emulador de doze sensores é simulação rotulada; o gateway, o worker, o dashboard, o broker, o lake e o monitoramento são reais e estão no ar há quase um dia. O worker expõe saúde, métricas e status por HTTP. Este é o status real: modo incremental, mais de mil e cem ciclos bem-sucedidos seguidos, e a duração de cada etapa do último ciclo.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/02_compose.html", "duracao": 20, "movimento": "static"},
+       {"tipo": "video", "video": "telas/worker.webm", "inicio": 2.2}
+     ]},
+    {"id": "03", "tipo": "sequencia", "audio": "audio/03.mp3", "pausa_fim": 0.6,
+     "narracao": "Entrada: cada sensor publica um JSON a cada cinco segundos, com umidade e temperatura do solo e do ar, bateria e sinal. O gateway grava as leituras na landing, em arquivos de quinze minutos. O worker ingere esses arquivos no bronze, valida e deduplica no silver, com quarentena para o que viola o contrato, e materializa o gold. Saída: o motor de decisão gera o plano de ações. Neste plano real, o talhão seis está em risco crítico, mas é de sequeiro: a trava agronômica impede irrigar, e a ação correta é inspecionar o sensor com sinal fraco. Quando um talhão irrigado precisa de água, o comando sai por MQTT com QoS 1. No início da operação, o talhão dois recebeu o comando de ligar a irrigação por 165 minutos; o emulador irrigou, a umidade subiu e os planos seguintes deixaram de pedir água. O ciclo fechou sozinho.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/03_entrada_saida.html", "movimento": "static"}
+     ]},
+    {"id": "04", "tipo": "sequencia", "audio": "audio/04.mp3", "pausa_fim": 0.6,
+     "narracao": "No dashboard, o produtor vê o mesmo gold que a automação leu. A aba Automação mostra o plano: ações por tipo e prioridade, risco por talhão e cada ação com motivo, evidência e status. A aba nova, Operação, mostra a plataforma rodando: saúde do worker, ciclos, duração por etapa nos últimos ciclos e a participação de cada etapa no tempo de ciclo. E a aba Água mostra o balanço hídrico do talhão, com os limiares de irrigação e de estresse.",
+     "itens": [
+       {"tipo": "video", "video": "telas/dashboard_automacao.webm", "inicio": 10.2, "duracao": 13},
+       {"tipo": "video", "video": "telas/dashboard_operacao.webm", "inicio": 43.0, "duracao": 15},
+       {"tipo": "video", "video": "telas/dashboard_agua.webm", "inicio": 11.4}
+     ]},
+    {"id": "05", "tipo": "sequencia", "audio": "audio/05.mp3", "pausa_fim": 0.6,
+     "narracao": "O monitoramento é contínuo. O Prometheus coleta as métricas do worker e do MinIO a cada quinze segundos, e o Grafana mostra o painel de operação, provisionado como código: saúde, ciclos, duração por etapa, lotes ingeridos, qualidade do silver, plano de ações e crescimento do lake. Seis regras de alerta cobrem worker fora, ciclo falhando, ciclo sem sucesso, landing parada, quarentena alta e lake fora. Para provar, paramos o gateway: a landing envelheceu e o alerta de landing parada disparou. No timelapse, a queda provocada do MinIO aparece como degrau nos ciclos com erro, e o worker se recupera sozinho. E o próprio monitoramento achou um bug nosso: o horário nas métricas perdia precisão e gerava um alerta falso. Corrigimos e criamos um teste de regressão. Em vinte e quatro horas, nenhum ciclo com erro desde a última subida.",
+     "itens": [
+       {"tipo": "video", "video": "telas/grafana.webm", "inicio": 19.3, "duracao": 18},
+       {"tipo": "video", "video": "telas/prometheus.webm", "inicio": 3.0, "duracao": 13},
+       {"tipo": "video", "video": "telas/timelapse.mp4", "duracao": 12},
+       {"tipo": "imagem", "imagem": "img/grafana_24h.png", "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#111217"}
+     ]},
+    {"id": "06", "tipo": "sequencia", "audio": "audio/06.mp3", "pausa_fim": 0.6,
+     "narracao": "Nenhuma mudança chega à imagem sem passar pela esteira DevSecOps: o workflow do GitHub Actions e um runner local que executa os mesmos estágios. Qualidade com ruff e complexidade; 262 testes, com 85 por cento de cobertura; análise estática com bandit, sem achado alto; auditoria de dependências com pip-audit, zero vulnerabilidades em 66 pacotes; build multi-stage de 292 megabytes; e scan da imagem com trivy, sem vulnerabilidade crítica. A primeira execução falhou: 92 vulnerabilidades nas dependências e uma biblioteca desatualizada na imagem. Corrigimos, e a execução final passou nos seis estágios.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/05_devsecops.html", "movimento": "static"}
+     ]},
+    {"id": "07", "tipo": "sequencia", "audio": "audio/07.mp3", "pausa_fim": 0.6,
+     "narracao": "Agora, a análise de processo. Cada ciclo do worker é um caso, com identificador, atividades e horários em milissegundos. Exportamos o event log em CSV e XES e minerámos 445 ciclos reais com o pm4py. O grafo de sequência direta mostra o processo: ingerir, silver, gold, catálogo, decidir e atuar, com desvios em vermelho para as falhas. O Inductive Miner gera um modelo com fitness de 0,985 contra o caminho feliz. São sete variantes: o caminho completo, o atalho incremental e as variantes de falha.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/06_eventlog.html", "duracao": 20, "movimento": "static"},
+       {"tipo": "imagem", "imagem": "img/dfg_desempenho.png", "duracao": 16, "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "imagem", "imagem": "img/variantes.png", "movimento": "static", "ajuste": "conter", "cor_fundo": "#FFFFFF"}
+     ]},
+    {"id": "08", "tipo": "sequencia", "audio": "audio/08.mp3", "pausa_fim": 0.6,
+     "narracao": "O gargalo é claro: o silver concentrava 66 por cento do tempo de ciclo, porque reprocessava todo o histórico a cada minuto, mesmo sem dado novo. As falhas também contam uma história real: 32 ciclos caíram no gold porque o container instalou uma versão nova do DuckDB, com outra API; e as quedas provocadas do MinIO deram um tempo médio de recuperação de 11,7 minutos. Daí veio a melhoria: o ciclo incremental. Sem lote novo, silver e gold são pulados; com lote novo, só o intervalo afetado é reprocessado. Resultado medido: o ciclo com dado novo caiu de 30,3 para 10,3 segundos, menos 66 por cento; sem dado novo, fecha em um segundo; e a taxa de sucesso subiu de 91 para 98 por cento.",
+     "itens": [
+       {"tipo": "imagem", "imagem": "img/duracao_atividades.png", "duracao": 13, "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "imagem", "imagem": "img/lead_time_casos.png", "duracao": 13, "movimento": "zoom_in", "ajuste": "conter", "cor_fundo": "#FFFFFF"},
+       {"tipo": "slide", "html": "slides/08_v1v2.html", "movimento": "static"}
+     ]},
+    {"id": "09", "tipo": "sequencia", "audio": "audio/09.mp3", "pausa_fim": 1.2,
+     "narracao": "Os próximos ganhos também vieram do processo: partição horária para o gargalo que restou; lock de dependências contra deriva de versão; retentativa com backoff para encurtar a recuperação; idempotência no comando de irrigação, que foi republicado em metade dos casos; e decidir só com dado fresco, porque a queda do broker não derrubou nenhum ciclo, e só o alerta de landing parada mostrou o problema. O AgroSmart termina como produto: coleta, confia no dado, decide, age, se monitora e melhora com evidência. Obrigado.",
+     "itens": [
+       {"tipo": "slide", "html": "slides/09_fechamento.html", "movimento": "static"}
+     ]}
+  ]
+}

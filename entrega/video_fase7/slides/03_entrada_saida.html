@@ -1,0 +1,32 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Entrada → processamento → saída · dados reais da execução</div>
+  <h2>Do sensor ao comando de irrigação</h2>
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:28px;color:#7BD389;margin-bottom:12px">ENTRADA · landing/sensores/20261117/…T1645Z.jsonl</h3>
+<pre class="term" style="font-size:21px">{"sensor_id":"SNS-0601","talhao_id":"TLH-06",
+ "medido_em":"2026-11-17T16:48:44Z",
+ "umidade_solo_pct":11.8,"temperatura_solo_c":29.7,
+ "temperatura_ar_c":29.0,"umidade_ar_pct":45.3,
+ "bateria_pct":93.4,"rssi_dbm":-74}</pre>
+      <h3 style="font-size:28px;color:#7BD389;margin:26px 0 12px">PROCESSAMENTO · um caso por ciclo (60 s)</h3>
+<pre class="term" style="font-size:21px">ingerir <span class="d">→</span> silver <span class="d">→</span> gold <span class="d">→</span> catálogo <span class="d">→</span> decidir <span class="d">→</span> atuar
+silver: 113.167 lidos · 112.978 aprovados · <span class="al">8 quarentena</span></pre>
+    </div>
+    <div>
+      <h3 style="font-size:28px;color:#7BD389;margin-bottom:12px">SAÍDA · plano de ações (acoes_2026-11-17.json)</h3>
+<pre class="term" style="font-size:21px">TLH-06 risco <span class="al">crítico</span> · FAD 0,0 · <span class="k">sequeiro</span>
+  → trava: <b>não irrigar</b> (sem atuador)
+ACT-0001 inspecionar_sensor SNS-0602
+  sinal médio -90,1 dBm · 700 leituras &lt; -95
+  evidência dim_sensor:SNS-0602:2026-11-17</pre>
+      <h3 style="font-size:28px;color:#7BD389;margin:26px 0 12px">SAÍDA · comando ao atuador (QoS 1)</h3>
+<pre class="term" style="font-size:21px"><span class="ok">comando_publicado</span> ciclo-20261117T134242-2c8e
+agrosmart/atuadores/TLH-02/irrigacao
+  {"acao": "ligar", "minutos": 165}
+<span class="d">→ emulador irriga · umidade sobe · plano seguinte: 0 comandos</span></pre>
+    </div>
+  </div>
+  <div class="rodape"><span>outputs/prints/fase7-02-* · outputs/plataforma/acoes/</span><span>AgroSmart · Fase 7</span></div>
+</div></body></html>

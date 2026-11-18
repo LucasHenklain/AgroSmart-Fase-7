@@ -38,6 +38,7 @@ DOCUMENTOS = (
 FASES = (
     (".", "AgroSmart Fase 5", "."),
     ("fase6", "AgroSmart Fase 6", "fase6"),
+    ("fase7", "AgroSmart Fase 7", "fase7"),
 )
 
 CSS = """
@@ -102,7 +103,11 @@ def lancar_navegador(playwright):
 def documentos_por_fase() -> list[tuple[Path, str, Path]]:
     """(origem .md, rótulo do rodapé, destino .pdf) para cada documento existente."""
     itens: list[tuple[Path, str, Path]] = []
+    # `python scripts/exportar_pdf.py fase7` exporta só a pasta pedida (e os diagramas).
+    pedidas = set(sys.argv[1:])
     for pasta, rotulo, saida in FASES:
+        if pedidas and pasta not in pedidas:
+            continue
         origem_dir = DOCS / pasta
         nomes = DOCUMENTOS if pasta == "." else sorted(p.name for p in origem_dir.glob("*.md"))
         for nome in nomes:

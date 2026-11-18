@@ -49,3 +49,9 @@ desktop.ini
 # --- DevSecOps local (bundle de CA da rede corporativa, cache do Trivy) ---
 .certs/
 .cache/
+
+# --- Fase 7: intermediários dos vídeos (regeneráveis) ---
+entrega/**/_work/
+entrega/**/telas/*.webm
+entrega/**/telas/*.mp4
+entrega/**/*.mp3

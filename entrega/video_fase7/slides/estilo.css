@@ -1,0 +1,24 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#0B1F17;color:#F3F7F4;font-family:"Segoe UI",Inter,Arial,sans-serif}
+.slide{position:relative;width:1920px;height:1080px;padding:90px 120px;background:radial-gradient(1200px 700px at 85% 10%,#15402C 0%,#0B1F17 60%)}
+.kicker{font-size:26px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7BD389;margin-bottom:18px}
+h1{font-size:76px;line-height:1.08;font-weight:700;color:#FFFFFF;letter-spacing:-.01em}
+h1 em{font-style:normal;color:#7BD389}
+h2{font-size:52px;line-height:1.12;font-weight:700;color:#FFFFFF;margin-bottom:34px}
+p.lead{font-size:34px;line-height:1.4;color:#C8D9CF;max-width:1500px;margin-top:30px}
+.rodape{position:absolute;left:120px;right:120px;bottom:60px;display:flex;justify-content:space-between;font-size:24px;color:#8FA89A}
+.pill{display:inline-block;border:2px solid #7BD389;color:#7BD389;border-radius:999px;padding:8px 22px;font-size:24px;font-weight:600;margin-right:14px}
+pre.term{font-family:Consolas,"Cascadia Mono",monospace;font-size:27px;line-height:1.42;background:#061410;border:2px solid #1E4A36;border-radius:18px;padding:34px 40px;color:#DDEBE2;white-space:pre;overflow:hidden}
+pre.term .p{color:#7BD389}pre.term .k{color:#F2C14E}pre.term .d{color:#8FA89A}pre.term .ok{color:#7BD389;font-weight:700}pre.term .al{color:#FF8C6B;font-weight:700}
+table.t{width:100%;border-collapse:collapse;font-size:30px}
+table.t th{font-size:24px;letter-spacing:.08em;text-transform:uppercase;color:#7BD389;text-align:left;padding:10px 16px;border-bottom:2px solid #1E4A36}
+table.t td{padding:14px 16px;border-bottom:1px solid #1E4A36;color:#E6EFE9;vertical-align:top}
+.critico{color:#FF8C6B;font-weight:700}.atencao{color:#F2C14E;font-weight:700}.normal{color:#7BD389;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.card{background:rgba(255,255,255,.04);border:2px solid #1E4A36;border-radius:18px;padding:30px 34px}
+.card h3{font-size:30px;color:#7BD389;margin-bottom:14px}
+.card p,.card li{font-size:28px;line-height:1.4;color:#DDEBE2}
+.card ul{margin-left:30px}
+.equipe{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}
+.equipe div{background:rgba(255,255,255,.05);border:2px solid #1E4A36;border-radius:16px;padding:22px 30px;font-size:30px}
+.equipe div small{display:block;font-size:22px;color:#8FA89A;margin-top:6px}

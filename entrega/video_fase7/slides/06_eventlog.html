@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Mineração de processos · o event log nasce da plataforma</div>
+  <h2>445 casos · 1.831 atividades · 13.733 eventos reais (7,75 h)</h2>
+<pre class="term" style="font-size:21px"><span class="k">case:concept:name           concept:name   lifecycle  time:timestamp                 resource versão</span>
+ciclo-20261117T130617-9ae9  ingerir        start      2026-11-17T13:06:17.054+00:00  worker   v1
+ciclo-20261117T130617-9ae9  ingerir        complete   2026-11-17T13:06:19.268+00:00  worker   v1
+ciclo-20261117T130617-9ae9  silver         start      2026-11-17T13:06:19.667+00:00  worker   v1
+ciclo-20261117T130617-9ae9  silver         complete   2026-11-17T13:06:40.741+00:00  worker   v1
+ciclo-20261117T130617-9ae9  <span class="al">gold (falha)</span>   complete   2026-11-17T13:06:42.545+00:00  worker   v1
+<span class="d">…  AttributeError: '_duckdb.DuckDBPyConnection' object has no attribute 'fetch_arrow_table'</span></pre>
+  <div class="grid2" style="margin-top:30px">
+    <div class="card"><h3>Modelagem</h3><ul>
+      <li>caso = ciclo do worker (<code>execucao_id</code>)</li>
+      <li>atividade = etapa; falha vira <code>&lt;etapa&gt; (falha)</code></li>
+      <li>start/complete em milissegundos · atributos v1/v2</li></ul></div>
+    <div class="card"><h3>Descoberta (pm4py 2.7)</h3><ul>
+      <li>DFG de frequência e de desempenho</li>
+      <li>Inductive e Heuristics Miner · 7 variantes</li>
+      <li>token replay: fitness <b>0,985</b> · 90,1 % conformes</li></ul></div>
+  </div>
+  <div class="rodape"><span>outputs/processos/event_log.{csv,xes} · src/agrosmart/mineracao/</span><span>AgroSmart · Fase 7</span></div>
+</div></body></html>

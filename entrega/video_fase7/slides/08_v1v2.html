@@ -1,0 +1,16 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head><body>
+<div class="slide">
+  <div class="kicker">Gargalo → melhoria aplicada → antes × depois (medido)</div>
+  <h2>silver = <span style="color:#FF8C6B">66 %</span> do tempo de ciclo → ciclo incremental (v2)</h2>
+  <table class="t">
+    <tr><th>Indicador (casos ok, sem o incidente DuckDB)</th><th>v1 completo</th><th>v2 incremental</th><th>Δ</th></tr>
+    <tr><td>Lead time mediano · ciclo <b>com</b> lote novo</td><td>30,3 s</td><td><b>10,3 s</b></td><td class="normal">−66 %</td></tr>
+    <tr><td>Silver mediano</td><td>24,3 s</td><td><b>6,6 s</b></td><td class="normal">−73 %</td></tr>
+    <tr><td>Registros lidos pelo silver (mediana)</td><td>44.549</td><td>23.012</td><td class="normal">−48 %</td></tr>
+    <tr><td>Lead time mediano · ciclo <b>sem</b> lote novo</td><td>~30 s (sempre reprocessava)</td><td><b>1,0 s</b></td><td class="normal">pula silver/gold</td></tr>
+    <tr><td>Sucesso (mesmas quedas provocadas do MinIO)</td><td>91,4 %</td><td><b>98,3 %</b></td><td class="normal">+6,9 p.p.</td></tr>
+    <tr><td>p95 · ciclo com lote novo</td><td>93,3 s</td><td>87,9 s</td><td class="atencao">≈ (contenção do host)</td></tr>
+  </table>
+  <p class="lead" style="font-size:27px">Falhas reais: <b>32</b> ciclos no gold (DuckDB 2.x na imagem) · quedas do MinIO · <b>MTTR 11,7 min</b> · comando de irrigação republicado em <b>50 %</b> dos casos.</p>
+  <div class="rodape"><span>docs/fase7/05-analise-de-processos.md · outputs/processos/comparacao_justa_v1_v2.json</span><span>AgroSmart · Fase 7</span></div>
+</div></body></html>
