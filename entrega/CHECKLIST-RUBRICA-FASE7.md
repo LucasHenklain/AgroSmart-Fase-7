@@ -26,7 +26,7 @@ Cada item do enunciado → artefato no pacote. Tudo foi executado nesta máquina
 |---|---|
 | Build | estágio `build` (docker multi-stage) · `Dockerfile` |
 | Execução via container | estágio `build` com smoke tests · `infra/docker-compose.yml` |
-| Análise de qualidade de código | ruff + formatação + complexidade · cobertura 85,1 % · SonarCloud opcional (`sonar-project.properties`) |
+| Análise de qualidade de código | ruff + formatação + complexidade · cobertura 84,9 % (execução final; 85,1 % na 1ª aprovada) · SonarCloud opcional (`sonar-project.properties`) |
 | Análise de vulnerabilidades | bandit (SAST) · pip-audit (SCA) · trivy (imagem) |
 | Arquivos de configuração | `Dockerfile`, `.dockerignore`, `infra/docker-compose.yml`, `.github/workflows/devsecops.yml`, `.github/dependabot.yml` |
 | Descrição | `docs/fase7/03-pipeline-devsecops.md` |
