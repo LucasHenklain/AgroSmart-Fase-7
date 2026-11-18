@@ -336,6 +336,13 @@ def empacotar(
         )
 
     destino.parent.mkdir(parents=True, exist_ok=True)
+    # O inventário é gravado antes de zipar para que a cópia dentro do zip descreva o próprio zip
+    # (antes ele era escrito depois e o zip levava o inventário da execução anterior).
+    gerado_em = datetime.now(UTC).isoformat(timespec="seconds")
+    cabecalho = [f"# {destino.name}", f"# {len(arquivos)} arquivos · gerado em {gerado_em}"]
+    (destino.parent / "CONTEUDO_DO_ZIP.txt").write_text(
+        "\n".join([*cabecalho, *inventario, ""]), encoding="utf-8"
+    )
     with zipfile.ZipFile(destino, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for arquivo in arquivos:
             zf.write(arquivo, arcname=arquivo.relative_to(raiz).as_posix())
@@ -345,7 +352,7 @@ def empacotar(
                 {
                     "atividade": f"AgroSmart Fase {fase}",
                     "fase": fase,
-                    "gerado_em": datetime.now(UTC).isoformat(timespec="seconds"),
+                    "gerado_em": gerado_em,
                     "arquivos": len(arquivos),
                     "avisos": avisos,
                 },
@@ -367,11 +374,6 @@ def empacotar(
             "se estourar, tirar o vídeo de entrega/ e deixar só o link"
         )
 
-    gerado_em = datetime.now(UTC).isoformat(timespec="seconds")
-    cabecalho = [f"# {destino.name}", f"# {len(arquivos)} arquivos · gerado em {gerado_em}"]
-    (destino.parent / "CONTEUDO_DO_ZIP.txt").write_text(
-        "\n".join([*cabecalho, *inventario, ""]), encoding="utf-8"
-    )
     return ResultadoEmpacotamento(
         destino,
         len(arquivos),

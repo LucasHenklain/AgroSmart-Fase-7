@@ -39,6 +39,13 @@ Rede corporativa com inspeção TLS: `AGROSMART_CA_EXTRA=/caminho/ca.pem` antes 
 Checklist da rubrica: [`entrega/CHECKLIST-RUBRICA-FASE7.md`](entrega/CHECKLIST-RUBRICA-FASE7.md) ·
 PDFs em `docs/pdf/fase7/` · links dos vídeos em `entrega/LINK_VIDEO.txt`.
 
+<!-- youtube:inicio -->
+Vídeos: `entrega/apresentacao-agrosmart-fase7-4ESOA.mp4` (final, 7:10) e `entrega/pitch-agrosmart-fase7-4ESOA.mp4` (pitch, 4:44), dentro do ZIP da entrega.
+<!-- youtube:fim -->
+
+Fechamento da entrega (preenche os links do YouTube, regenera e confere o ZIP):
+`python scripts/fechar_entrega.py --video-final <url> --pitch <url>` (sem os links, só regenera e confere).
+
 Comandos novos: `agrosmart operar` (worker contínuo, `--incremental`), `agrosmart status [--url]`,
 `agrosmart processos` (mineração de processos), `python scripts/pipeline_local.py` (pipeline DevSecOps
 local), `python scripts/injetar_falhas.py` (experimento de falhas), `python scripts/capturar_operacao.py`

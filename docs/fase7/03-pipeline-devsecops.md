@@ -168,8 +168,20 @@ Artefatos publicados: `testes-relatorios` (junit + coverage.xml), `sast-bandit`,
 chegou — comportamento esperado. No mesmo push o **Dependabot** rodou e abriu 5 PRs de atualização
 das actions (`setup-buildx-action` 4, `upload-artifact` 7, `download-artifact` 8,
 `codeql-action` 4, `sonarqube-scan-action` 8), cada um validado pelo mesmo pipeline. Avisos do run:
-actions em Node.js 20 (resolvidos pelos PRs do Dependabot) e uma falha não bloqueante ao salvar o
-cache do banco do Trivy.
+actions em Node.js 20 e uma falha não bloqueante ao salvar o cache do banco do Trivy (ambos
+tratados na §5.5).
+
+### 5.5 Dependabot mesclado e avisos zerados — `devsecops #9` e `#10` (PASSARAM)
+
+| Execução | Commit | Resultado | Avisos |
+|---|---|---|---|
+| [#9](https://github.com/LucasHenklain/AgroSmart-Fase-7/actions/runs/44339594260) | `63dd89a` (5 PRs do Dependabot mesclados, cada um aprovado no próprio CI) | ✅ 3 min 19 s | 7: Node.js 20 em `checkout@v4`, `setup-python@v5`, `cache@v4`, `build-push-action@v6` (o Dependabot abre só 5 PRs por vez e essas ficaram de fora) + `tar` exit 2 ao salvar o cache do Trivy |
+| [#10](https://github.com/LucasHenklain/AgroSmart-Fase-7/actions/runs/44363655522) | `7f3aba7` | ✅ 4 min 51 s | **0** |
+
+Correções do `#10`: `checkout@v7`, `setup-python@v7`, `cache@v6` e `build-push-action@v7`
+(todas `node24`, conferido no `action.yml` de cada tag) e um passo `if: always()` que devolve ao
+usuário do runner a pasta `.cache/trivy` — o container do Trivy grava o banco como root e o
+pós-passo do `actions/cache` não conseguia lê-la. Print: `outputs/prints/fase7-03-github-actions-run10.png`.
 
 As vulnerabilidades restantes da imagem são do Debian 13 **sem correção publicada**
 (`--ignore-unfixed`); o gate só reprova CRITICAL corrigível e o agendamento semanal
@@ -197,18 +209,23 @@ gate); no CI ele é instalado.
 `.trivyignore` e `.pip-audit-ignore` existem com o formato (ID, motivo, prazo `exp:`)
 mas **estão vazios**: nenhuma exceção foi necessária.
 
-### 6.3 Pendentes (abaixo do gate, em arquivos de outras frentes)
+### 6.3 Tratados depois das execuções da §5.2–5.3 (abaixo do gate)
 
-Não reprovam o gate (nenhum é HIGH) e ficam em arquivos mantidos por outras frentes da
-Fase 7; registrados para tratamento:
+Não reprovavam o gate (nenhum era HIGH); foram tratados no commit `7f3aba7` e o bandit
+passou a reportar **0 achados em qualquer severidade** (8 `# nosec`, todos com motivo na linha):
 
-| Arquivo:linha | Regra | Sugestão |
+| Arquivo | Regra | Tratamento |
 |---|---|---|
-| `src/agrosmart/pipeline.py:1304` | B310 (MEDIUM) `urlopen` | o esquema já é validado (`http`/`https`) na linha anterior: anotar `# nosec B310` com esse motivo |
-| `src/agrosmart/mineracao/__init__.py:74` | B110 `try/except/pass` | registrar o erro em log (`logger.debug`) em vez de engolir |
-| `src/agrosmart/mineracao/eventlog.py:441` | B405 import de `xml.etree` | se só *gera* XML (XES), `# nosec B405` com motivo; se ler XML externo, usar `defusedxml` |
-| `src/agrosmart/mineracao/visual.py:16` | B406 import de `xml.sax` | usa só `saxutils.escape` (não faz parsing): `# nosec B406` com esse motivo |
-| `ia/guardrails.py` (`validar`, 26), `orquestracao.py` (`executar`, 25), `mineracao/relatorio.py` (`gerar_insights`, 21) | C901 > 20 | candidatas a refatoração (o gate é 30) |
+| `src/agrosmart/pipeline.py` (`status --url`) | B310 (MEDIUM) `urlopen` | o esquema já é validado (`http`/`https`) na linha anterior: `# nosec B310` com esse motivo |
+| `src/agrosmart/mineracao/__init__.py` (`_xes`) | B110 `try/except/pass` | o erro do `pm4py.write_xes` agora vai para o log (`logger.debug`) antes do fallback manual |
+| `src/agrosmart/mineracao/eventlog.py` (`exportar_xes_manual`) | B405 import de `xml.etree` | só *gera* XML a partir do próprio event log, nunca faz parsing: `# nosec B405` |
+| `src/agrosmart/mineracao/visual.py` | B406 import de `xml.sax` | usa só `saxutils.escape` (não faz parsing): `# nosec B406` |
+
+### 6.4 Pendente (alerta, abaixo do gate)
+
+| Função | Regra | Situação |
+|---|---|---|
+| `ia/guardrails.py` (`validar`, 26), `orquestracao.py` (`executar`, 25), `mineracao/relatorio.py` (`gerar_insights`, 21) | C901 > 20 | candidatas a refatoração (o gate é 30); mantidas para não mexer em código validado às vésperas da entrega |
 
 ## 7. Como rodar localmente
 

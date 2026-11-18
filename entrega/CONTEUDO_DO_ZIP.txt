@@ -1,5 +1,5 @@
 # lucasmoraeshenklaindasilva_99350_4ESOA_fase7_atividade.zip
-# 582 arquivos · gerado em 2026-11-18T15:44:24+00:00
+# 585 arquivos · gerado em 2026-11-18T18:16:35+00:00
 .dockerignore
 .env.example
 .github/dependabot.yml
@@ -287,6 +287,7 @@ outputs/prints/fase6-05-dashboard-vegetacao.png
 outputs/prints/fase7-02-compose-ps.txt
 outputs/prints/fase7-02-entrada-landing.jsonl.txt
 outputs/prints/fase7-02-saida-comandos-publicados.jsonl.txt
+outputs/prints/fase7-03-github-actions-run10.png
 outputs/prints/fase7-03-github-actions-run2.png
 outputs/prints/fase7-04-agrosmart-status.txt
 outputs/prints/fase7-04-alerta-grafana-operacao.png
@@ -478,6 +479,7 @@ scripts/capturar_dashboard.py
 scripts/capturar_operacao.py
 scripts/empacotar.py
 scripts/exportar_pdf.py
+scripts/fechar_entrega.py
 scripts/gerar_diagrama_fase6.py
 scripts/gerar_diagrama_fase7.py
 scripts/gerar_painel_grafana.py
@@ -571,6 +573,7 @@ tests/test_catalogo.py
 tests/test_config.py
 tests/test_contratos.py
 tests/test_empacotar.py
+tests/test_fechar_entrega.py
 tests/test_ia.py
 tests/test_ingestao.py
 tests/test_manutencao.py

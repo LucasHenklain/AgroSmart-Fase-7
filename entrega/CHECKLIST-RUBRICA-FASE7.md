@@ -30,7 +30,7 @@ Cada item do enunciado → artefato no pacote. Tudo foi executado nesta máquina
 | Análise de vulnerabilidades | bandit (SAST) · pip-audit (SCA) · trivy (imagem) |
 | Arquivos de configuração | `Dockerfile`, `.dockerignore`, `infra/docker-compose.yml`, `.github/workflows/devsecops.yml`, `.github/dependabot.yml` |
 | Descrição | `docs/fase7/03-pipeline-devsecops.md` |
-| Evidência de execução | GitHub Actions `devsecops #2` aprovado (https://github.com/LucasHenklain/AgroSmart-Fase-7/actions · `outputs/prints/fase7-03-github-actions-run2.png`) · `outputs/pipeline/<execução>/` (logs e artefatos por estágio) · `outputs/pipeline/ultimo/resumo.md` · execução reprovada anterior guardada como "antes" |
+| Evidência de execução | GitHub Actions `devsecops #2` aprovado e `#10` aprovado sem nenhum aviso (https://github.com/LucasHenklain/AgroSmart-Fase-7/actions · `outputs/prints/fase7-03-github-actions-run2.png`, `fase7-03-github-actions-run10.png`) · Dependabot com 5 PRs mesclados · `outputs/pipeline/<execução>/` (logs e artefatos por estágio) · `outputs/pipeline/ultimo/resumo.md` · execução reprovada anterior guardada como "antes" |
 
 ## 4. Monitoramento e execução automatizada (10 %)
 
@@ -64,4 +64,6 @@ Cada item do enunciado → artefato no pacote. Tudo foi executado nesta máquina
 
 `python -m agrosmart empacotar --nome "Lucas Moraes Henklain da Silva" --rm 99350 --turma 4ESOA --fase 7`
 → `entrega/lucasmoraeshenklaindasilva_99350_4ESOA_fase7_atividade.zip` (inventário em `entrega/CONTEUDO_DO_ZIP.txt`).
+Fechamento em um comando (links do YouTube + ZIP regenerado + conferência de que todo arquivo do
+ZIP é idêntico ao do disco): `python scripts/fechar_entrega.py --video-final <url> --pitch <url>`.
 Documentos também em PDF: `docs/pdf/fase7/`.
