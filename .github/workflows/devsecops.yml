@@ -136,7 +136,7 @@ jobs:
           python -m bandit -r src app -c pyproject.toml -f sarif -o bandit.sarif --exit-zero
       - name: Gate — severidade HIGH reprova
         run: python -m bandit -r src app -c pyproject.toml --severity-level high
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         if: always() && hashFiles('bandit.sarif') != ''
         continue-on-error: true # repositório privado sem GHAS não tem Code Scanning
         with:
@@ -279,7 +279,7 @@ jobs:
           docker run --rm -v "$PWD:/w" -w /w -v "$PWD/.cache/trivy:/root/.cache/trivy" "$TRIVY_IMAGE"
           image --input imagem.tar --scanners vuln --ignorefile .trivyignore --skip-db-update
           --severity CRITICAL --ignore-unfixed --exit-code 1 --format table
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         if: always() && hashFiles('trivy.sarif') != ''
         continue-on-error: true
         with:
