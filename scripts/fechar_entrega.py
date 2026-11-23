@@ -207,10 +207,11 @@ def main(argv: list[str] | None = None) -> int:
     _passo("links")
     if final and pitch:
         gravar(LINK_VIDEO, preencher_link_video(ler(LINK_VIDEO), final, pitch))
+        gravar(README, preencher_readme(ler(README), final, pitch))
         print(f"   vídeo final: {final}\n   pitch:       {pitch}")
     else:
-        print("   sem links: LINK_VIDEO.txt fica como está (os vídeos vão dentro do zip)")
-    gravar(README, preencher_readme(ler(README), final, pitch))
+        # Sem links não mexe em nada: LINK_VIDEO.txt e README ficam como estão (com ou sem links).
+        print("   sem links: LINK_VIDEO.txt e README ficam como estão")
 
     # A saída do empacotar é evidência e vai dentro do próprio zip: reempacota até a cópia de
     # dentro ser igual à saída da execução que gerou o zip (em geral 2 passadas; no máximo 4).

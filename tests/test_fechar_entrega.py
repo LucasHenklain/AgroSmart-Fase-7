@@ -78,5 +78,10 @@ def test_readme_sem_marcadores_falha():
 
 
 def test_readme_real_tem_os_marcadores():
+    # Vale com ou sem os links já preenchidos: só o bloco entre os marcadores muda.
     texto = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
-    assert fe.preencher_readme(texto, None, None) == texto
+    assert texto.count(fe.MARCA_INI) == 1 and texto.count(fe.MARCA_FIM) == 1
+    novo = fe.preencher_readme(texto, FINAL, PITCH)
+    assert novo.split(fe.MARCA_INI)[0] == texto.split(fe.MARCA_INI)[0]
+    assert novo.split(fe.MARCA_FIM)[1] == texto.split(fe.MARCA_FIM)[1]
+    assert fe.preencher_readme(novo, FINAL, PITCH) == novo
