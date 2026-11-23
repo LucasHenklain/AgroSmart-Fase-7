@@ -40,7 +40,7 @@ Checklist da rubrica: [`entrega/CHECKLIST-RUBRICA-FASE7.md`](entrega/CHECKLIST-R
 PDFs em `docs/pdf/fase7/` · links dos vídeos em `entrega/LINK_VIDEO.txt`.
 
 <!-- youtube:inicio -->
-Vídeos: `entrega/apresentacao-agrosmart-fase7-4ESOA.mp4` (final, 7:10) e `entrega/pitch-agrosmart-fase7-4ESOA.mp4` (pitch, 4:44), dentro do ZIP da entrega.
+Vídeos no YouTube (não listado): [vídeo final, 7:10](https://youtu.be/78h7wF3JGSo) · [pitch, 4:44](https://youtu.be/GOnCf83vDFU). Os arquivos também estão no ZIP, em `entrega/`.
 <!-- youtube:fim -->
 
 Fechamento da entrega (preenche os links do YouTube, regenera e confere o ZIP):

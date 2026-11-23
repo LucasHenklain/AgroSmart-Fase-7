@@ -6,7 +6,7 @@ Os arquivos dos vídeos estão neste pacote, em entrega/:
 - slides do pitch:                      entrega/pitch/slides-pitch-agrosmart.pdf
 
 Links no YouTube (não listado), para quem preferir assistir online:
-- vídeo final: [A PREENCHER PELA EQUIPE]
-- pitch:       [A PREENCHER PELA EQUIPE]
+- vídeo final: https://youtu.be/78h7wF3JGSo
+- pitch:       https://youtu.be/GOnCf83vDFU
 
 Repositório (público): https://github.com/LucasHenklain/AgroSmart-Fase-7
